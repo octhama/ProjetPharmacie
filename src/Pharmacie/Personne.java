@@ -1,8 +1,7 @@
 package Pharmacie;
 
 public class Personne {
-    public Personne() {
-    }private String nom;
+    private String nom;
     private String prenom;
     private String adresse;
     private String telephone;
