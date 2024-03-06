@@ -1,5 +1,7 @@
 package Pharmacie;
 
+import Pharmacie.Pharmacie;
+
 public class Main {
 /**
  *Dans une pharmacie, les personnes viennent
@@ -62,15 +64,32 @@ public class Main {
         Ordonnance ordonnance = new Ordonnance(medecin, patient, pharmacien, medicament, medicamentGeneric, medicamentNonGeneric, medicamentSansOrdonnance, medicamentAvecOrdonnance, pharmacie, "Hopital de la gare", "bQb0w@example.com", "4 rue de la gare", "06 07 08 09 10", "06 07 08 09 10", "06 07 08 09 10", 30.0, "1234567890", "Mutuelle", "Aucun", "Aucun");
         System.out.println(ordonnance);
 
+        // Etablissons une reception d'ordonnance pour un patient donné envoyé par mail par un medecin et receptionné dans la boite mail de la pharmacie et l'afficher
+        BoiteMailMedecin boiteMailMedecin = new BoiteMailMedecin("medecin@example.com", "Ordonnance", "Ordonnance pour le patient");
+        System.out.println(boiteMailMedecin);
+        BoiteMailPharmacie boiteMailPharmacie = new BoiteMailPharmacie("pharmacie@example.com", "Ordonnance", "Ordonnance pour le patient");
+        System.out.println(boiteMailPharmacie);
+        ReceptionOrdonnance receptionOrdonnance = new ReceptionOrdonnance(medecin, patient, pharmacien, medicament, medicamentGeneric, medicamentNonGeneric, medicamentSansOrdonnance, medicamentAvecOrdonnance, pharmacie, "Hopital de la gare", "bQb0w@example.com", "4 rue de la gare", "06 07 08 09 10", "06 07 08 09 10", "06 07 08 09 10", 30.0, "1234567890", "Mutuelle", "Aucun", "Aucun");
+        System.out.println(receptionOrdonnance);
+
         // Etablissons un document médical pour un patient donné et l'afficher
         DocumentMedical documentMedical = new DocumentMedical(medecin, patient, pharmacien, medicament, medicamentGeneric, medicamentNonGeneric, medicamentSansOrdonnance, medicamentAvecOrdonnance, pharmacie, "Hopital de la gare", "bQb0w@example.com", "4 rue de la gare", "06 07 08 09 10", "06 07 08 09 10", "06 07 08 09 10", 30.0, "1234567890", "Mutuelle", "Aucun", "Aucun");
         System.out.println(documentMedical);
+
+        // A partir des enumérations, affiche les medicaments disponibles
+        System.out.println("Les medicaments disponibles sont : ");
+        for (EMedicament medicamentEnum : EMedicament.values()) {
+            System.out.println(medicamentEnum);
+        }
 
         // Etablissons une préparation pour un patient donné et l'afficher
         Preparation preparation = new Preparation("Preparation 1", "5", "1", "Aucune", documentMedical, medicament);
         System.out.println(preparation);
 
-
+        // Etablissons une facture pour un patient donné et l'afficher
+        Facture facture = new Facture(medecin, patient, pharmacien, medicament, medicamentGeneric, medicamentNonGeneric, medicamentSansOrdonnance, medicamentAvecOrdonnance, pharmacie, "Hopital de la gare", "bQb0w@example.com", "4 rue de la gare", "06 07 08 09 10", "06 07 08 09 10", "06 07 08 09 10", 30.0, "1234567890", "Mutuelle", "Aucun", "Aucun");
+        System.out.println(facture);
     }
+
 
 }
