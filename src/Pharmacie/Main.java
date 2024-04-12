@@ -34,12 +34,56 @@
 
 package Pharmacie;
 
-import Pharmacie.ui.InterfaceUtilisateur;
+import Pharmacie.ordonnance.Ordonnance;
+import Pharmacie.preparation.Preparation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
+   // Méthode principale
     public static void main(String[] args) {
-        // Point d'entrée de l'application
-        InterfaceUtilisateur interfaceUtilisateur = new InterfaceUtilisateur();
-        interfaceUtilisateur.demarrer();
-    }// Fin de l'application
+        // Créer une liste de médicaments
+        List<Medicament> medicaments = new ArrayList<>();
+        // Ajouter des médicaments à la liste
+        medicaments.add(new Medicament("Doliprane", 10, 100));
+        medicaments.add(new Medicament("Aspirine", 5, 50));
+        medicaments.add(new Medicament("Paracétamol", 8, 75));
+        medicaments.add(new Medicament("Ibuprofène", 7, 60));
+        medicaments.add(new Medicament("Efferalgan", 9, 80));
+        // Afficher les médicaments
+        for (Medicament medicament : medicaments) {
+            System.out.println("Nom du médicament : " + medicament.getNom());
+            System.out.println("Prix du médicament : " + medicament.getPrix());
+            System.out.println("Quantité en stock : " + medicament.getQuantiteEnStock());
+            System.out.println();
+        }
+        // Créer une liste d'ordonnances
+        List<Ordonnance> ordonnances = new ArrayList<>();
+        // Ajouter des ordonnances à la liste
+        ordonnances.add(new Ordonnance ("Dr. Dupont", "Jean Dupont", "01/01/2021", medicaments));
+        ordonnances.add(new Ordonnance("Dr. Durand", "Marie Durand", "02/01/2021", medicaments));
+        ordonnances.add(new Ordonnance("Dr. Martin", "Pierre Martin", "03/01/2021", medicaments));
+        // Afficher les ordonnances
+        for (Ordonnance ordonnance : ordonnances) {
+            System.out.println("Nom du médecin : " + ordonnance.getNomDuMedecin());
+            System.out.println("Nom du patient : " + ordonnance.getNomDuPatient());
+            System.out.println("Date de prescription : " + ordonnance.getDateDePrescription());
+            System.out.println("Liste des médicaments : " + ordonnance.getMedicaments());
+            System.out.println();
+        }
+        // Créer une liste de préparations
+        List<Preparation> preparations = new ArrayList<>();
+        // Ajouter des préparations à la liste
+        preparations.add(new Preparation(medicaments, "Jean Dupont", true));
+        preparations.add(new Preparation(medicaments, "Marie Durand", true));
+        preparations.add(new Preparation(medicaments, "Pierre Martin", true));
+        // Afficher les préparations
+        for (Preparation preparation : preparations) {
+            System.out.println("Nom du patient : " + preparation.getNomDuPatient());
+            System.out.println("Liste des médicaments : " + preparation.getMedicaments());
+            System.out.println("Date de préparation : " + preparation.getDateDePreparation());
+            System.out.println();
+        }
+    }
 }

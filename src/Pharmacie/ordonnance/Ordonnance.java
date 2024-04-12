@@ -11,7 +11,7 @@ public class Ordonnance {
     private List<Medicament> medicamentsPrescrits;
     private List<String> ingredientsPreparation;
 
-    public Ordonnance(String referenceMedecin, String referencePatient, String datePrescription, List<Medicament> medicamentsPrescrits, List<String> ingredientsPreparation) {
+    public Ordonnance(String referenceMedecin, String referencePatient, String datePrescription, List<Medicament> medicamentsPrescrits) {
         this.referenceMedecin = referenceMedecin;
         this.referencePatient = referencePatient;
         this.datePrescription = datePrescription;
@@ -106,6 +106,22 @@ public class Ordonnance {
 
     public boolean estValidePourPrixTotal(double prixTotal) {
         return this.getPrixTotal() == prixTotal;
+    }
+
+    public String getNomDuMedecin() {
+        return null;
+    }
+
+    public String getNomDuPatient() {
+        return null;
+    }
+
+    public String getDateDePrescription() {
+        return null;
+    }
+
+    public String getMedicaments() {
+        return null;
     }
 }
 

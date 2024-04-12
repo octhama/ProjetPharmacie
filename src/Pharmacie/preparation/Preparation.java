@@ -2,6 +2,7 @@ package Pharmacie.preparation;
 
 import Pharmacie.Medicament;
 
+import java.util.List;
 import java.util.Map;
 
 public class Preparation {
@@ -13,6 +14,10 @@ public class Preparation {
         this.medicaments = medicaments;
         this.patient = patient;
         this.estDelivrableLeLendemain = estDelivrableLeLendemain;
+    }
+
+    public Preparation(List<Medicament> medicaments, String jeanDupont, boolean estDelivrableLeLendemain) {
+
     }
 
     // Getters and setters
@@ -58,6 +63,14 @@ public class Preparation {
 
     public void delivrer() {
 
+    }
+
+    public String getNomDuPatient() {
+        return null;
+    }
+
+    public String getDateDePreparation() {
+        return null;
     }
 }
 

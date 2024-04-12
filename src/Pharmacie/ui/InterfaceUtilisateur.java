@@ -45,10 +45,33 @@ public class InterfaceUtilisateur {
     }
 
     public void demarrer() {
+        while (true) {
+            afficherMenuPrincipal();
+            int choix = lireChoixUtilisateur();
+            switch (choix) {
+                case 1:
+                    afficherMedicaments(null);
+                    break;
+                case 2:
+                    commanderPreparation();
+                    break;
+                case 3:
+                    quitter();
+                    break;
+                default:
+                    afficherMessageErreur("Veuillez choisir une option valide.");
+                    break;
+            }
+        }
     }
 
     public void fermer() {
+        System.out.println("Fermeture de l'application.");
     }
 
+    public void arreter() {
+        fermer();
+        quitter();
+    }
 
 }
