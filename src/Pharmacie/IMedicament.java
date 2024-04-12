@@ -1,6 +1,4 @@
-package Pharmacie.medicament;
-
-import Pharmacie.Medicament;
+package Pharmacie;
 
 public interface IMedicament {
     void ajouterMedicament(Medicament medicament);
