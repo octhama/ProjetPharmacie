@@ -12,5 +12,24 @@ public class CommandePreparation {
     }
 
     // Getters and setters
+    public Preparation getPreparation() {
+        return preparation;
+    }
+    public void setPreparation(Preparation preparation) {
+        this.preparation = preparation;
+    }
+    public LocalDate getDateCommande() {
+        return dateCommande;
+    }
+    public void setDateCommande(LocalDate dateCommande) {
+        this.dateCommande = dateCommande;
+    }
+    @Override
+    public String toString() {
+        return "CommandePreparation{" +
+                "preparation=" + preparation +
+                ", dateCommande=" + dateCommande +
+                '}';
+    }
 }
 

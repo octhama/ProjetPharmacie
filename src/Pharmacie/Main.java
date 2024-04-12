@@ -34,10 +34,12 @@
 
 package Pharmacie;
 
+import Pharmacie.ui.InterfaceUtilisateur;
+
 public class Main {
     public static void main(String[] args) {
         // Point d'entrée de l'application
-        // Initialisation de l'interface utilisateur et des gestionnaires
-        // Logique de contrôle principale
-    }
+        InterfaceUtilisateur interfaceUtilisateur = new InterfaceUtilisateur();
+        interfaceUtilisateur.demarrer();
+    }// Fin de l'application
 }

@@ -15,4 +15,20 @@ public class MedicamentCommande extends Medicament {
     }
 
     // Getters and setters pour dateCommande et fournisseur
+
+    public LocalDate getDateCommande() {
+        return dateCommande;
+    }
+
+    public void setDateCommande(LocalDate dateCommande) {
+        this.dateCommande = dateCommande;
+    }
+
+    public String getFournisseur() {
+        return fournisseur;
+    }
+
+    public void setFournisseur(String fournisseur) {
+        this.fournisseur = fournisseur;
+    }
 }
