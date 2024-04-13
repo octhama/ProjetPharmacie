@@ -38,7 +38,7 @@ public class UiGui extends JFrame implements ActionListener {
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
-        JMenu menuActionAdminMenu = new JMenu("Zone administrateur");
+        JMenu menuActionAdminMenu = new JMenu("Administrateur");
         JMenuItem ajouterMedicamentItem = new JMenuItem("Ajouter un médicament");
         ajouterMedicamentItem.addActionListener(this);
         menuActionAdminMenu.add(ajouterMedicamentItem);
@@ -60,9 +60,24 @@ public class UiGui extends JFrame implements ActionListener {
         JMenuItem listerPreparationsItem = new JMenuItem("Lister les préparations");
         listerPreparationsItem.addActionListener(this);
         menuActionAdminMenu.add(listerPreparationsItem);
+        JMenuItem itemQuitter = new JMenuItem("Quitter");
+        itemQuitter.addActionListener(this);
+        menuActionAdminMenu.add(itemQuitter);
         menuBar.add(menuActionAdminMenu);
 
-        JMenu menuActionClientMenu = new JMenu("Zone client");
+        JMenu menuActionPharmacienMenu = new JMenu("Pharmacien");
+        JMenuItem creerPreparationItem = new JMenuItem("Créer une préparation");
+        creerPreparationItem.addActionListener(this);
+        menuActionPharmacienMenu.add(creerPreparationItem);
+        JMenuItem modifierPreparationItem = new JMenuItem("Modifier une préparation");
+        modifierPreparationItem.addActionListener(this);
+        menuActionPharmacienMenu.add(modifierPreparationItem);
+        JMenuItem supprimerPreparationItem = new JMenuItem("Supprimer une préparation");
+        supprimerPreparationItem.addActionListener(this);
+        menuActionPharmacienMenu.add(supprimerPreparationItem);
+        menuBar.add(menuActionPharmacienMenu);
+
+        JMenu menuActionClientMenu = new JMenu("Client");
         JMenuItem rechercheMedicatemtItem = new JMenuItem("Rechercher un médicament");
         rechercheMedicatemtItem.addActionListener(this);
         menuActionClientMenu.add(rechercheMedicatemtItem);
@@ -72,10 +87,8 @@ public class UiGui extends JFrame implements ActionListener {
         JMenuItem enregistrerDemandeMedicamentGen = new JMenuItem("Enregistrer une demande de médicament générique");
         enregistrerDemandeMedicamentGen.addActionListener(this);
         menuActionClientMenu.add(enregistrerDemandeMedicamentGen);
-        JMenuItem itemQuitter = new JMenuItem("Quitter");
-        itemQuitter.addActionListener(this);
-        menuActionClientMenu.add(itemQuitter);
         menuBar.add(menuActionClientMenu);
+    
         setJMenuBar(menuBar);
 
         // Ajout du panel principal
