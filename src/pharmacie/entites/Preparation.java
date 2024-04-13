@@ -72,5 +72,29 @@ public class Preparation extends IPreparation.Builder<Preparation> implements IP
         return null;
     }
     // Autres méthodes et attributs de la classe
+
+    public Medicament getMedicament() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public Medicament getPatient() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public int getQuantite() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+        @Override
+    public String toString() {
+        return "Preparation [medicaments=" + medicaments + ", datePreparation=" + datePreparation + "]";
+    }
+
+        public Medicament getMedecin() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getMedecin'");
+        }
 }
 

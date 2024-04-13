@@ -11,107 +11,127 @@ import pharmacie.entites.Pharmacie;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
-public class UiGui {
+public class UiGui extends JFrame implements ActionListener {
 
-    private final Pharmacie pharmacie;
-    private JFrame frame;
+    private static final long serialVersionUID = 1L;
+    private static final String TITRE_APPLICATION = "Pharmacie";
+    private static final int LARGEUR_APPLICATION = 800;
+    private static final int HAUTEUR_APPLICATION = 600;
+
+    private Pharmacie pharmacie;
 
     public UiGui(Pharmacie pharmacie) {
+        super(TITRE_APPLICATION);
         this.pharmacie = pharmacie;
-        initialize();
-    }
+        setSize(LARGEUR_APPLICATION, HAUTEUR_APPLICATION);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
+        setVisible(true);
 
-    private void initialize() {
-        frame = new JFrame("Pharmacie");
-        frame.setBounds(100, 100, 600, 400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(new BorderLayout(0, 0));
+        // Ajout du menu
+        JMenuBar menuBar = new JMenuBar();
+        menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
 
-        JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
+        JMenu menuActionAdminMenu = new JMenu("Zone administrateur");
+        JMenuItem ajouterMedicamentItem = new JMenuItem("Ajouter un médicament");
+        ajouterMedicamentItem.addActionListener(this);
+        menuActionAdminMenu.add(ajouterMedicamentItem);
+        JMenuItem modifierMedicamentItem = new JMenuItem("Modifier un médicament");
+        modifierMedicamentItem.addActionListener(this);
+        menuActionAdminMenu.add(modifierMedicamentItem);
+        JMenuItem supprimerMedicamentItem = new JMenuItem("Supprimer un médicament");
+        supprimerMedicamentItem.addActionListener(this);
+        menuActionAdminMenu.add(supprimerMedicamentItem);
+        JMenuItem listerMedicamentsItem = new JMenuItem("Lister les médicaments");
+        listerMedicamentsItem.addActionListener(this);
+        menuActionAdminMenu.add(listerMedicamentsItem);
+        JMenuItem listerMedecinsItem = new JMenuItem("Lister les médecins");
+        listerMedecinsItem.addActionListener(this);
+        menuActionAdminMenu.add(listerMedecinsItem);
+        JMenuItem listerPatientsItem = new JMenuItem("Lister les patients");
+        listerPatientsItem.addActionListener(this);
+        menuActionAdminMenu.add(listerPatientsItem);
+        JMenuItem listerPreparationsItem = new JMenuItem("Lister les préparations");
+        listerPreparationsItem.addActionListener(this);
+        menuActionAdminMenu.add(listerPreparationsItem);
+        menuBar.add(menuActionAdminMenu);
 
-        JPanel medicamentsGeneriquesPanel = new JPanel();
-        tabbedPane.addTab("Médicaments Génériques", null, medicamentsGeneriquesPanel, null);
-        medicamentsGeneriquesPanel.setLayout(new BorderLayout(0, 0));
+        JMenu menuActionClientMenu = new JMenu("Zone client");
+        JMenuItem rechercheMedicatemtItem = new JMenuItem("Rechercher un médicament");
+        rechercheMedicatemtItem.addActionListener(this);
+        menuActionClientMenu.add(rechercheMedicatemtItem);
+        JMenuItem commandePreparation = new JMenuItem("Commander une préparation");
+        commandePreparation.addActionListener(this);
+        menuActionClientMenu.add(commandePreparation);
+        JMenuItem enregistrerDemandeMedicamentGen = new JMenuItem("Enregistrer une demande de médicament générique");
+        enregistrerDemandeMedicamentGen.addActionListener(this);
+        menuActionClientMenu.add(enregistrerDemandeMedicamentGen);
+        JMenuItem itemQuitter = new JMenuItem("Quitter");
+        itemQuitter.addActionListener(this);
+        menuActionClientMenu.add(itemQuitter);
+        menuBar.add(menuActionClientMenu);
+        setJMenuBar(menuBar);
 
-        JPanel medicamentsNonGeneriquesPanel = new JPanel();
-        tabbedPane.addTab("Médicaments Non Génériques", null, medicamentsNonGeneriquesPanel, null);
-        medicamentsNonGeneriquesPanel.setLayout(new BorderLayout(0, 0));
+        // Ajout du panel principal
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        add(mainPanel, BorderLayout.CENTER);
 
-        JPanel medicamentsPanel = new JPanel();
-        tabbedPane.addTab("Médicaments", null, medicamentsPanel, null);
-        medicamentsPanel.setLayout(new BorderLayout(0, 0));
+        // Création des panneaux pour afficher les différentes fonctionnalités
+        JPanel medicamentsPanel = new JPanel(new BorderLayout());
+        JPanel medecinsPanel = new JPanel(new BorderLayout());
+        JPanel patientsPanel = new JPanel(new BorderLayout());
+        JPanel medicamentsNonGeneriquesPanel = new JPanel(new BorderLayout());
+        JPanel medicamentsGeneriquesPanel = new JPanel(new BorderLayout());
+        JPanel preparationsPanel = new JPanel(new BorderLayout());
 
-        JPanel medecinsPanel = new JPanel();
-        tabbedPane.addTab("Médecins", null, medecinsPanel, null);
-        medecinsPanel.setLayout(new BorderLayout(0, 0));
+        // Ajout des panneaux à l'interface
+        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.addTab("Médicaments", medicamentsPanel);
+        tabbedPane.addTab("Médicaments non génériques", medicamentsNonGeneriquesPanel);
+        tabbedPane.addTab("Médicaments génériques", medicamentsGeneriquesPanel);
+        tabbedPane.addTab("Médecins", medecinsPanel);
+        tabbedPane.addTab("Patients", patientsPanel);
+        tabbedPane.addTab("Préparations", preparationsPanel);
+        add(tabbedPane, BorderLayout.CENTER);
 
-        JPanel patientsPanel = new JPanel();
-        tabbedPane.addTab("Patients", null, patientsPanel, null);
-        patientsPanel.setLayout(new BorderLayout(0, 0));
-
-        JPanel preparationsPanel = new JPanel();
-        tabbedPane.addTab("Préparations", null, preparationsPanel, null);
-        preparationsPanel.setLayout(new BorderLayout(0, 0));
-
-
+        // Affichage des listes correspondantes à chaque fonctionnalité
         afficherListeMedicaments(medicamentsPanel);
-        afficherListeMedicamentsGeneriques(medicamentsGeneriquesPanel);
-        afficherListeMedicamentsNonGeneriques(medicamentsNonGeneriquesPanel);
         afficherListeMedecins(medecinsPanel);
         afficherListePatients(patientsPanel);
+        afficherListeMedicamentsNonGeneriques(medicamentsNonGeneriquesPanel);
+        afficherListeMedicamentsGeneriques(medicamentsGeneriquesPanel);
         afficherListePreparations(preparationsPanel);
 
-        JMenuBar menuBar = new JMenuBar();
-        frame.setJMenuBar(menuBar);
+        // Ajout des boutons
+        JButton buttonQuitter = new JButton("Quitter");
+        JButton buttonTest = new JButton("Test");
+        buttonQuitter.addActionListener(this);
+        buttonTest.addActionListener(this);
 
-        JMenu actionsMenu = new JMenu("Actions");
-        menuBar.add(actionsMenu);
+        JPanel panelBoutons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        panelBoutons.add(buttonTest);
+        panelBoutons.add(buttonQuitter);
+        add(panelBoutons, BorderLayout.SOUTH);
 
-        JMenuItem chercherMedicamentItem = new JMenuItem("Cher. mon/mes Medic.");
-        chercherMedicamentItem.addActionListener(e -> chercherMedicament());
-        actionsMenu.add(chercherMedicamentItem);
-
-        JMenuItem commanderPreparationItem = new JMenuItem("Cmd. ma/mes Prépa.");
-        commanderPreparationItem.addActionListener(e -> commanderPreparation());
-        actionsMenu.add(commanderPreparationItem);
-
-        JMenuItem afficherPreparationsItem = new JMenuItem("Aff. ma/mes Prépa.");
-        afficherPreparationsItem.addActionListener(e -> afficherListePreparations(preparationsPanel));
-        actionsMenu.add(afficherPreparationsItem);
-
-        JButton closeButton = new JButton("Fermer");
-        closeButton.addActionListener(e -> System.exit(0));
-        frame.getContentPane().add(closeButton, BorderLayout.SOUTH);
-        frame.setVisible(true);
+        setVisible(true);
     }
 
-    private void supprimerMedicament() {
-        String nomMedicament = JOptionPane.showInputDialog(frame, "Entrez le nom du/des médicament(s) à supprimer :");
-        Medicament medicament = new Medicament(nomMedicament, 0, 0);
-        pharmacie.supprimerMedicament(medicament);
-        JOptionPane.showMessageDialog(frame, "Médicament supprimé : " + medicament.getNom());
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Quitter")) {
+            System.exit(0);
+        } else if (e.getActionCommand().equals("Ajouter un médicament")) {
+            // Ajouter le code pour l'ajout d'un médicament
+        }
     }
 
-    private void modifierMedicament() {
-        String nomMedicament = JOptionPane.showInputDialog(frame, "Entrez le nom du/des médicament(s) à modifier :");
-        int quantite = Integer.parseInt(JOptionPane.showInputDialog(frame, "Entrez la quantité à modifier :"));
-        Medicament medicament = new Medicament(nomMedicament, 0, quantite);
-        pharmacie.modifierMedicament(medicament);
-        JOptionPane.showMessageDialog(frame, "Médicament modifié : " + medicament.getNom());
-    }
-
-    private void modifierPreparation() {
-        String nomMedicament = JOptionPane.showInputDialog(frame, "Entrez le nom du/des médicament(s) à modifier :");
-        int quantite = Integer.parseInt(JOptionPane.showInputDialog(frame, "Entrez la quantité à modifier :"));
-        Medicament medicament = new Medicament(nomMedicament, 0, quantite);
-        Preparation preparation = new Preparation(medicament, quantite);
-        pharmacie.modifierPreparation(preparation);
-        JOptionPane.showMessageDialog(frame, "Préparation modifiée : " + preparation.getDescription());
-    }
-
+    // Méthode pour afficher la liste des médicaments
     private void afficherListeMedicaments(JPanel panel) {
         List<Medicament> medicaments = pharmacie.getMedicaments();
         JTextArea textArea = new JTextArea();
@@ -122,47 +142,50 @@ public class UiGui {
             StringBuilder sb = new StringBuilder();
             sb.append("Liste des médicaments :\n");
             for (Medicament medicament : medicaments) {
-                sb.append("- ").append(medicament.getNom()).append(" (").append(medicament.getQuantiteEnStock()).append(" en stock)\n");
+                sb.append("- ").append(medicament.getNom()).append("\n");
             }
             textArea.setText(sb.toString());
         }
         panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
     }
 
-    private void afficherListeMedicamentsGeneriques(JPanel panel) {
-        List<MedicamentGenerique> medicaments = pharmacie.getMedicamentsGeneriques();
-        JTextArea textArea = new JTextArea();
-        textArea.setBorder(new EmptyBorder(10, 10, 10, 10));
-        if (medicaments.isEmpty()) {
-            textArea.setText("Aucun médicament générique disponible pour le moment.");
-        } else {
-            StringBuilder sb = new StringBuilder();
-            sb.append("Liste des médicaments génériques :\n");
-            for (Medicament medicament : medicaments) {
-                sb.append("- ").append(medicament.getNom()).append(" (").append(medicament.getQuantiteEnStock()).append(" en stock)\n");
-            }
-            textArea.setText(sb.toString());
-        }
-        panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
-    }
-
+    // Méthode pour afficher la liste des médicaments non génériques
     private void afficherListeMedicamentsNonGeneriques(JPanel panel) {
-        List<MedicamentNonGenerique> medicaments = pharmacie.getMedicamentsNonGeneriques();
+        List<MedicamentNonGenerique> medicamentsNonGeneriques = pharmacie.getMedicamentsNonGeneriques();
         JTextArea textArea = new JTextArea();
         textArea.setBorder(new EmptyBorder(10, 10, 10, 10));
-        if (medicaments.isEmpty()) {
+        if (medicamentsNonGeneriques.isEmpty()) {
             textArea.setText("Aucun médicament non générique disponible pour le moment.");
         } else {
             StringBuilder sb = new StringBuilder();
             sb.append("Liste des médicaments non génériques :\n");
-            for (Medicament medicament : medicaments) {
-                sb.append("- ").append(medicament.getNom()).append(" (").append(medicament.getQuantiteEnStock()).append(" en stock)\n");
+            for (MedicamentNonGenerique medicamentNonGenerique : medicamentsNonGeneriques) {
+                sb.append("- ").append(medicamentNonGenerique.getNom()).append("\n");
             }
             textArea.setText(sb.toString());
         }
         panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
     }
 
+    // Méthode pour afficher la liste des médicaments génériques
+    private void afficherListeMedicamentsGeneriques(JPanel panel) {
+        List<MedicamentGenerique> medicamentsGeneriques = pharmacie.getMedicamentsGeneriques();
+        JTextArea textArea = new JTextArea();
+        textArea.setBorder(new EmptyBorder(10, 10, 10, 10));
+        if (medicamentsGeneriques.isEmpty()) {
+            textArea.setText("Aucun médicament générique disponible pour le moment.");
+        } else {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Liste des médicaments génériques :\n");
+            for (MedicamentGenerique medicamentGenerique : medicamentsGeneriques) {
+                sb.append("- ").append(medicamentGenerique.getNom()).append("\n");
+            }
+            textArea.setText(sb.toString());
+        }
+        panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
+    }
+
+    // Méthode pour afficher la liste des médecins
     private void afficherListeMedecins(JPanel panel) {
         List<Medecin> medecins = pharmacie.getMedecins();
         JTextArea textArea = new JTextArea();
@@ -180,6 +203,7 @@ public class UiGui {
         panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
     }
 
+    // Méthode pour afficher la liste des patients
     private void afficherListePatients(JPanel panel) {
         List<Patient> patients = pharmacie.getPatients();
         JTextArea textArea = new JTextArea();
@@ -197,54 +221,36 @@ public class UiGui {
         panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
     }
 
-    private void chercherMedicament() {
-        String nomMedicament = JOptionPane.showInputDialog(frame, "Entrez le nom du médicament à chercher :");
-        List<Medicament> medicaments = pharmacie.getMedicaments();
-        for (Medicament medicament : medicaments) {
-            if (medicament.getNom().equals(nomMedicament)) {
-                JOptionPane.showMessageDialog(frame, "Médicament trouvé : " + medicament.getNom());
-                return;
-            }
-        }
-        JOptionPane.showMessageDialog(frame, "Médicament non trouvé.");
-    }
-
-    private void commanderPreparation() {
-        String nomMedicament = JOptionPane.showInputDialog(frame, "Entrez le nom du/des médicament(s) à commander :");
-        int quantite = Integer.parseInt(JOptionPane.showInputDialog(frame, "Entrez la quantité à commander :"));
-        Medicament medicament = new Medicament(nomMedicament, 0, quantite);
-        Preparation preparation = new Preparation(medicament, quantite);
-        pharmacie.commanderPreparation(preparation);
-        JOptionPane.showMessageDialog(frame, "Préparation commandée : " + preparation.getDescription());
-    }
-
-    private void afficherListePreparations(JPanel preparationsPanel) {
+    // Méthode pour afficher la liste des préparations
+    private void afficherListePreparations(JPanel panel) {
         List<Preparation> preparations = pharmacie.getPreparations();
         JTextArea textArea = new JTextArea();
         textArea.setBorder(new EmptyBorder(10, 10, 10, 10));
         if (preparations.isEmpty()) {
-            textArea.setText("Aucune préparation disponible pour le moment.");
+            textArea.setText("Aucune préparation enregistrée pour le moment.");
         } else {
             StringBuilder sb = new StringBuilder();
             sb.append("Liste des préparations :\n");
             for (Preparation preparation : preparations) {
-                sb.append("- ").append(preparation.getDescription()).append("\n");
+                sb.append("- ").append(preparation.getMedicament().getNom()).append(" pour ").append(preparation.getPatient().getNom()).append(" par ").append(preparation.getMedecin().getNom()).append("\n");
             }
             textArea.setText(sb.toString());
         }
-        preparationsPanel.removeAll(); // Clear existing content
-        preparationsPanel.add(new JScrollPane(textArea), BorderLayout.CENTER);
-        preparationsPanel.revalidate(); // Refresh the panel
-        preparationsPanel.repaint(); // Repaint the panel
+        panel.add(new JScrollPane(textArea), BorderLayout.CENTER);
+    }
+
+    public static void main(String[] args) {
+        Pharmacie pharmacie = new Pharmacie(); // Remplacez par l'instanciation réelle de Pharmacie
+        SwingUtilities.invokeLater(() -> new UiGui(pharmacie));
     }
 
     public void afficher() {
-        EventQueue.invokeLater(() -> {
-            try {
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        // TODO Auto-generated method stub
+        setVisible(true);
+    }
+
+    public void fermer() {
+        // TODO Auto-generated method stub
+        setVisible(false);
     }
 }
