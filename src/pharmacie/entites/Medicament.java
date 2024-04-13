@@ -1,6 +1,6 @@
 package pharmacie.entites;
 
-public class Medicament {
+public class Medicament extends IPreparation.Builder<Medicament> {
     private String nom;
     private double prix;
     private int quantiteEnStock;
@@ -46,8 +46,23 @@ public class Medicament {
                 '}';
     }
 
-    public void removeFromStock(int quantiteDivisee) {
+    public void supprimerDuStock(int quantiteDivisee) {
         this.quantiteEnStock -= quantiteDivisee;
+    }
+
+    @Override
+    protected Medicament self() {
+        return null;
+    }
+
+    @Override
+    public Preparation build() {
+        return null;
+    }
+
+    public String getDescription() {
+        // TODO: Implémenter la méthode
+        return "";
     }
 
     // Builder statique pour créer des instances de sous-classes de Medicament
@@ -56,17 +71,17 @@ public class Medicament {
         protected double prix;
         protected int quantiteEnStock;
 
-        public Builder<T> withNom(String nom) {
+        public Builder<T> leNom(String nom) {
             this.nom = nom;
             return this;
         }
 
-        public Builder<T> withPrix(double prix) {
+        public Builder<T> lePrix(double prix) {
             this.prix = prix;
             return this;
         }
 
-        public Builder<T> withQuantiteEnStock(int quantiteEnStock) {
+        public Builder<T> laQuantiteEnStock(int quantiteEnStock) {
             this.quantiteEnStock = quantiteEnStock;
             return this;
         }

@@ -15,6 +15,10 @@ public interface IPreparation {
 
     boolean getDateDisponibilite();
 
+    IPreparation.Builder<Preparation> lesMedicaments(List<Medicament> medicaments);
+
+    Preparation.Builder<Medicament> laDatePreparation(LocalDate now);
+
     // Builder pour créer des instances de Preparation
     public static abstract class Builder<T extends Builder<T>> {
         List<Medicament> medicaments;
@@ -33,6 +37,10 @@ public interface IPreparation {
         protected abstract T self();
 
         public abstract Preparation build();
+
+        public T lesMedicaments(List<Medicament> medicaments) {
+            return null;
+        }
     }
 
     // Classe Builder concret pour Preparation

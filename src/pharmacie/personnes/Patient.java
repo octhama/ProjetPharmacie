@@ -3,7 +3,7 @@ package pharmacie.personnes;
 public class Patient extends Personne {
 
     // Constructeur privé
-    private Patient(String nom) {
+    public Patient(String nom) {
         super(nom);
     }
 
