@@ -88,6 +88,13 @@ public class UiGui extends JFrame implements ActionListener {
         enregistrerDemandeMedicamentGen.addActionListener(this);
         menuActionClientMenu.add(enregistrerDemandeMedicamentGen);
         menuBar.add(menuActionClientMenu);
+
+        // Ajout du panel de pied de page
+        JPanel footerPanel = new JPanel(new BorderLayout());
+        footerPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        JLabel footerLabel = new JLabel("Copyright 2023 - Pharmacie");
+        footerPanel.add(footerLabel, BorderLayout.CENTER);
+        add(footerPanel, BorderLayout.SOUTH);
     
         setJMenuBar(menuBar);
 
