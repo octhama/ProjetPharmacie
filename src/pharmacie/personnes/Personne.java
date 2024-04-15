@@ -18,6 +18,11 @@ public abstract class Personne {
     public abstract Builder pharmacienBuilder();
     public abstract Builder patientBuilder();
 
+    public void setNom(String nomPatient) {
+        // TODO Auto-generated method stub
+        this.nom = nomPatient;
+    }
+
     // Builder pour créer des instances de Personne
     public abstract static class Builder<T extends Personne> {
         protected String nom;
@@ -27,6 +32,6 @@ public abstract class Personne {
             return this;
         }
 
-        public abstract T build();
+        public abstract T build(); // Méthode abstraite pour construire une instance de T
     }
 }

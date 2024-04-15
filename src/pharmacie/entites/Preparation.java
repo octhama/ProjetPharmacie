@@ -2,6 +2,7 @@ package pharmacie.entites;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Preparation extends IPreparation.Builder<Preparation> implements IPreparation {
@@ -9,7 +10,7 @@ public class Preparation extends IPreparation.Builder<Preparation> implements IP
     private LocalDate datePreparation;
 
     // Constructeur privé
-    Preparation(Builder builder) {
+    public Preparation(Builder builder) {
         this.medicaments = builder.medicaments;
         this.datePreparation = builder.datePreparation;
     }
@@ -18,6 +19,32 @@ public class Preparation extends IPreparation.Builder<Preparation> implements IP
         this.medicaments = new ArrayList<>();
         this.medicaments.add(medicament);
         this.datePreparation = LocalDate.now();
+    }
+
+    public Preparation(String nomPreparation, String ingredients, String quantite, String prix, String description) {
+        // TODO Auto-generated constructor stub
+        this.medicaments = new ArrayList<>();
+        this.datePreparation = LocalDate.now();
+    }
+
+    // Constructeur public
+    public Preparation(List<Medicament> medicaments, LocalDate datePreparation) {
+        this.medicaments = medicaments;
+        this.datePreparation = datePreparation;
+    }
+
+    public Preparation(String text) {
+        // TODO Auto-generated constructor stub
+
+    }
+
+    // Méthodes setters pour les attributs
+    public void setMedicaments(List<Medicament> medicaments) {
+        this.medicaments = medicaments;
+    }
+
+    public void setDatePreparation(LocalDate datePreparation) {
+        this.datePreparation = datePreparation;
     }
 
     // Méthodes getters pour les attributs
@@ -39,7 +66,7 @@ public class Preparation extends IPreparation.Builder<Preparation> implements IP
             if (medicament.getQuantiteEnStock() > 1) {
                 int quantiteDivisee = medicament.getQuantiteEnStock() / 2;
                 medicament.supprimerDuStock(quantiteDivisee);
-                Medicament moitieMedicament = new Medicament(medicament.getNom(), medicament.getPrix(), quantiteDivisee);
+                Medicament moitieMedicament = new Medicament(Arrays.toString(medicament.getNom()), medicament.getPrix(), quantiteDivisee);
                 medicaments.add(moitieMedicament);
             }
         }
@@ -96,5 +123,6 @@ public class Preparation extends IPreparation.Builder<Preparation> implements IP
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getMedecin'");
         }
+
 }
 

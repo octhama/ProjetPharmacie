@@ -11,10 +11,20 @@ public class Medicament extends IPreparation.Builder<Medicament> {
         this.quantiteEnStock = quantiteEnStock;
     }
 
+    public Medicament(String nomMedicament) {
+        this.nom = nomMedicament;
+    }
+
+    public Medicament(String nomMedicament, String prix, String quantiteEnStock) {
+        this.nom = nomMedicament;
+        this.prix = Double.parseDouble(prix);
+        this.quantiteEnStock = Integer.parseInt(quantiteEnStock);
+    }
+
     // Getters et setters pour les attributs
 
-    public String getNom() {
-        return nom;
+    public char[] getNom() {
+        return nom.toCharArray();
     }
 
     public void setNom(String nom) {

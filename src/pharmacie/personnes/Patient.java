@@ -27,6 +27,10 @@ public class Patient extends Personne {
         public Patient build() {
             return new Patient(nom);
         }
+
+        public Object NomPatient(String jeanDupont) {
+            return NomPatient(jeanDupont);
+        }
     }
 
     // Autres méthodes spécifiques pour Patient

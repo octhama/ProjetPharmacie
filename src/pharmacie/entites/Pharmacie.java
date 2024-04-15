@@ -5,6 +5,7 @@ import pharmacie.nongeneriques.MedicamentNonGenerique;
 import pharmacie.personnes.Medecin;
 import pharmacie.personnes.Patient;
 
+import java.awt.*;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
@@ -17,6 +18,8 @@ public class Pharmacie {
     private final List<Patient> patients;
     private final List<Medecin> medecins;
     private final List<Preparation> preparations;
+    private final ArrayList<Object> ordonnance;
+    private ArrayList<Object> demandes;
 
     public Pharmacie() {
         this.medicaments = new ArrayList<>();
@@ -24,7 +27,9 @@ public class Pharmacie {
         this.medicamentsNonGeneriques = new ArrayList<>();
         this.patients = new ArrayList<>();
         this.medecins = new ArrayList<>();
+        this.ordonnance = new ArrayList<>();
         this.preparations = new ArrayList<>();
+        this.demandes = new ArrayList<>();
         initialiserMedicaments(); // Initialisation des médicaments
     }
 
@@ -70,20 +75,134 @@ public class Pharmacie {
         };
 
         Preparation preparation1 = builderPreparation
-                .lesMedicaments(List.of(medicaments.get(0), medicaments.get(1)))
+                .lesMedicaments(medicaments)
                 .laDatePreparation(LocalDate.now())
                 .build();
         Preparation preparation2 = builderPreparation
-                        .lesMedicaments(List.of(medicaments.get(2), medicaments.get(3)))
-                        .laDatePreparation(LocalDate.now())
-                        .build();
-
+                .lesMedicaments(medicaments)
+                .laDatePreparation(LocalDate.now())
+                .build();
+        Preparation preparation3 = builderPreparation
+                .lesMedicaments(medicaments)
+                .laDatePreparation(LocalDate.now())
+                .build();
+        Preparation preparation4 = builderPreparation
+                .lesMedicaments(medicaments)
+                .laDatePreparation(LocalDate.now())
+                .build();
+        Preparation preparation5 = builderPreparation
+                .lesMedicaments(medicaments)
+                .laDatePreparation(LocalDate.now())
+                .build();
+        Preparation preparation6 = builderPreparation
+                .lesMedicaments(medicaments)
+                .laDatePreparation(LocalDate.now())
+                .build();
+        Preparation preparation7 = builderPreparation
+                .lesMedicaments(medicaments)
+                .laDatePreparation(LocalDate.now())
+                .build();
+        Preparation preparation8 = builderPreparation
+                .lesMedicaments(medicaments)
+                .laDatePreparation(LocalDate.now())
+                .build();
+        Preparation preparation9 = builderPreparation
+                .lesMedicaments(medicaments)
+                .laDatePreparation(LocalDate.now())
+                .build();
+        Preparation preparation10 = builderPreparation
+                .lesMedicaments(medicaments)
+                .laDatePreparation(LocalDate.now())
+                .build();
         preparations.add(preparation1);
         preparations.add(preparation2);
+        preparations.add(preparation3);
+        preparations.add(preparation4);
+        preparations.add(preparation5);
+        preparations.add(preparation6);
+        preparations.add(preparation7);
+        preparations.add(preparation8);
+        preparations.add(preparation9);
+        preparations.add(preparation10);
+    }
+
+    private void initialiserPatients() {
+        Patient.Builder builderPatient = new Patient.Builder() {
+            @Override
+            public Patient build() {
+                return null;
+            }
+        };
+
+        Patient patient1 = builderPatient
+                .NomPatient("Jean Dupont")
+                .laDateDeNaissance(LocalDate.now())
+                .build();
+        Patient patient2 = builderPatient
+                .NomPatient("Marie Dupont")
+                .laDateDeNaissance(LocalDate.now())
+                .build();
+        Patient patient3 = builderPatient
+                .NomPatient("Pierre Dupont")
+                .laDateDeNaissance(LocalDate.now())
+                .build();
+        Patient patient4 = builderPatient
+                .NomPatient("Catherine Dupont")
+                .laDateDeNaissance(LocalDate.now())
+                .build();
+        Patient patient5 = builderPatient
+                .NomPatient("Michel Dupont")
+                .laDateDeNaissance(LocalDate.now())
+                .build();
+        patients.add(patient1);
+        patients.add(patient2);
+        patients.add(patient3);
+        patients.add(patient4);
+        patients.add(patient5);
+    }
+
+    private void initialiserOrdonnances() {
+        Ordonnance.Builder builderOrdonnance = new Ordonnance.Builder() {
+            @Override
+            public Ordonnance build() {
+                return null;
+            }
+        };
+
+        Ordonnance ordonnance1 = builderOrdonnance
+                .lePatient(patients.get(0))
+                .lesMedicaments(medicaments)
+                .laDateDePrescription(LocalDate.now())
+                .build();
+        Ordonnance ordonnance2 = builderOrdonnance
+                .lePatient(patients.get(1))
+                .lesMedicaments(medicaments)
+                .laDateDePrescription(LocalDate.now())
+                .build();
+        Ordonnance ordonnance3 = builderOrdonnance
+                .lePatient(patients.get(2))
+                .lesMedicaments(medicaments)
+                .laDateDePrescription(LocalDate.now())
+                .build();
+        Ordonnance ordonnance4 = builderOrdonnance
+                .lePatient(patients.get(3))
+                .lesMedicaments(medicaments)
+                .laDateDePrescription(LocalDate.now())
+                .build();
+        Ordonnance ordonnance5 = builderOrdonnance
+                .lePatient(patients.get(4))
+                .lesMedicaments(medicaments)
+                .laDateDePrescription(LocalDate.now())
+                .build();
+        ordonnance.add(ordonnance1);
+        ordonnance.add(ordonnance2);
+        ordonnance.add(ordonnance3);
+        ordonnance.add(ordonnance4);
+        ordonnance.add(ordonnance5);
     }
 
     private void initialiserMedicaments() {
-        Medicament.Builder<Medicament> builderMedicament = new Medicament.Builder() {
+        Medicament.Builder builderMedicament = new Medicament.Builder() {
             @Override
             public Medicament build() {
                 return null;
@@ -306,6 +425,14 @@ public class Pharmacie {
         medicaments.add(medicament12);
     }
 
+    public void ajouterMedicamentGenerique(MedicamentGenerique medicamentGenerique) {
+        medicamentsGeneriques.add(medicamentGenerique);
+    }
+
+    public void ajouterMedicamentNonGenerique(MedicamentNonGenerique medicamentNonGenerique) {
+        medicamentsNonGeneriques.add(medicamentNonGenerique);
+    }
+
     public List<Medicament> getMedicaments() {
         return medicaments;
     }
@@ -366,10 +493,11 @@ public class Pharmacie {
         return preparations.get(0);
     }
 
-    public void commanderPreparation(Preparation preparation) {
+    public Preparation commanderPreparation(Preparation preparation) {
         // Logique pour commander une préparation
         // Ajouter la préparation à la liste des préparations
         preparations.add(preparation);
+            return preparation;
     }
 
     public void modifierPreparation(Preparation preparation) {
@@ -384,10 +512,74 @@ public class Pharmacie {
         medicaments.set(0, medicament);
     }
 
-    public void supprimerMedicament(Medicament medicament) {
+    public void supprimerMedicament(String medicament) {
         // Logique pour supprimer un médicament
         // Supprimer le médicament de la liste des médicaments
         medicaments.remove(medicament);
+    }
+
+    public void modifierMedicament(String nomMedicament, String nouveauNomMedicament) {
+        // Logique pour modifier un médicament
+        // Modifier le médicament dans la liste des médicaments
+        medicaments.get(0).setNom(nouveauNomMedicament);
+    }
+
+    public boolean existeMedicament(String nomMedicament) {
+        return false;
+    }
+
+    public void supprimerPreparation(String nomPreparation) {
+        // Logique pour supprimer une préparation
+        // Supprimer la préparation de la liste des préparations
+        preparations.remove(0);
+    }
+
+    public Medicament rechercherMedicament(String nomMedicament) {
+        return null;
+    }
+
+    public void enregistrerDemandeMedicamentGen(String nomMedicamentGen) {
+        // Logique pour enregistrer une demande de médicament générique
+        // Ajouter la demande à la liste des demandes de médicaments génériques
+        demandes = new ArrayList<>();
+        demandes.add(nomMedicamentGen);
+
+    }
+
+    public void modifierPatient(String nomPatient) {
+        // Logique pour modifier un patient
+        // Modifier le patient dans la liste des patients
+        patients.get(0).setNom(nomPatient);
+    }
+
+    public void ajouterPatient(Patient patient) {
+        // Logique pour ajouter un patient
+        // Ajouter le patient à la liste des patients
+        patients.add(patient);
+    }
+
+    public void supprimerMedecin(String nomMedecin) {
+        // Logique pour supprimer un médecin
+        // Supprimer le médecin de la liste des médecins
+        medecins.remove(0);
+    }
+
+    public void modifierMedecin(String nomMedecin) {
+        // Logique pour modifier un médecin
+        // Modifier le médecin dans la liste des médecins
+        medecins.get(0).setNom(nomMedecin);
+    }
+
+    public void ajouterMedecin(Medecin medecin) {
+        // Logique pour ajouter un médecin
+        // Ajouter le médecin à la liste des médecins
+        medecins.add(medecin);
+    }
+
+    public void supprimerPatient(String nomPatient) {
+        // Logique pour supprimer un patient
+        // Supprimer le patient de la liste des patients
+        patients.remove(0);
     }
 }
 
