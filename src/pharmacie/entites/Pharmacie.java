@@ -4,6 +4,8 @@ import pharmacie.generiques.MedicamentGenerique;
 import pharmacie.nongeneriques.MedicamentNonGenerique;
 import pharmacie.personnes.Medecin;
 import pharmacie.personnes.Patient;
+import pharmacie.entites.IPreparation;
+import pharmacie.entites.Preparation;
 
 import java.awt.*;
 import java.time.DayOfWeek;
@@ -126,80 +128,6 @@ public class Pharmacie {
         preparations.add(preparation10);
     }
 
-    private void initialiserPatients() {
-        Patient.Builder builderPatient = new Patient.Builder() {
-            @Override
-            public Patient build() {
-                return null;
-            }
-        };
-
-        Patient patient1 = builderPatient
-                .NomPatient("Jean Dupont")
-                .laDateDeNaissance(LocalDate.now())
-                .build();
-        Patient patient2 = builderPatient
-                .NomPatient("Marie Dupont")
-                .laDateDeNaissance(LocalDate.now())
-                .build();
-        Patient patient3 = builderPatient
-                .NomPatient("Pierre Dupont")
-                .laDateDeNaissance(LocalDate.now())
-                .build();
-        Patient patient4 = builderPatient
-                .NomPatient("Catherine Dupont")
-                .laDateDeNaissance(LocalDate.now())
-                .build();
-        Patient patient5 = builderPatient
-                .NomPatient("Michel Dupont")
-                .laDateDeNaissance(LocalDate.now())
-                .build();
-        patients.add(patient1);
-        patients.add(patient2);
-        patients.add(patient3);
-        patients.add(patient4);
-        patients.add(patient5);
-    }
-
-    private void initialiserOrdonnances() {
-        Ordonnance.Builder builderOrdonnance = new Ordonnance.Builder() {
-            @Override
-            public Ordonnance build() {
-                return null;
-            }
-        };
-
-        Ordonnance ordonnance1 = builderOrdonnance
-                .lePatient(patients.get(0))
-                .lesMedicaments(medicaments)
-                .laDateDePrescription(LocalDate.now())
-                .build();
-        Ordonnance ordonnance2 = builderOrdonnance
-                .lePatient(patients.get(1))
-                .lesMedicaments(medicaments)
-                .laDateDePrescription(LocalDate.now())
-                .build();
-        Ordonnance ordonnance3 = builderOrdonnance
-                .lePatient(patients.get(2))
-                .lesMedicaments(medicaments)
-                .laDateDePrescription(LocalDate.now())
-                .build();
-        Ordonnance ordonnance4 = builderOrdonnance
-                .lePatient(patients.get(3))
-                .lesMedicaments(medicaments)
-                .laDateDePrescription(LocalDate.now())
-                .build();
-        Ordonnance ordonnance5 = builderOrdonnance
-                .lePatient(patients.get(4))
-                .lesMedicaments(medicaments)
-                .laDateDePrescription(LocalDate.now())
-                .build();
-        ordonnance.add(ordonnance1);
-        ordonnance.add(ordonnance2);
-        ordonnance.add(ordonnance3);
-        ordonnance.add(ordonnance4);
-        ordonnance.add(ordonnance5);
-    }
 
     private void initialiserMedicaments() {
         Medicament.Builder builderMedicament = new Medicament.Builder() {
