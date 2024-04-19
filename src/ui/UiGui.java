@@ -1,6 +1,5 @@
 package ui;
 
-import exceptions.ExeptionRuptureDeStock;
 import pharmacie.Medicament;
 import pharmacie.Pharmacie;
 
@@ -20,7 +19,8 @@ import java.util.Map;
 public class UiGui extends JFrame implements ActionListener {
     private final Pharmacie pharmacie;
     private final JPanel panelAfficherMedicaments;
-    private static final String CSV_FILE_PATH = "src/data/medicaments.csv";
+    private final JPanel panelAfficherMedicamentsGenerique;
+    private final JPanel panelAfficherMedicamentsNonGenerique;
     // Déclaration des attributs
     private final HashMap<Medicament, JCheckBox> medicamentCheckBoxMap;
     private final HashMap<JCheckBox, JSpinner> spinnerMap;
@@ -79,9 +79,20 @@ public class UiGui extends JFrame implements ActionListener {
         JTabbedPane tabbedPane = new JTabbedPane();
         mainPanel.add(tabbedPane, BorderLayout.CENTER);
 
+
         // Création des panneaux pour afficher les différentes fonctionnalités
         panelAfficherMedicaments = new JPanel(new BorderLayout());
+        panelAfficherMedicamentsGenerique = new JPanel(new BorderLayout());
+        panelAfficherMedicamentsNonGenerique = new JPanel(new BorderLayout());
         tabbedPane.addTab("Médicaments", panelAfficherMedicaments);
+        tabbedPane.addTab("Medicaments Génériques", panelAfficherMedicamentsGenerique);
+        tabbedPane.addTab("Medicaments Non Génériques", panelAfficherMedicamentsNonGenerique);
+
+        // Afficher les médicaments Génériques dans le panneau correspondant
+        afficherListeMedicamentsGen(panelAfficherMedicamentsGenerique);
+
+        // Afficher les médicaments Non Génériques dans le panneau correspondant
+        afficherListeMedicamentsNonGen(panelAfficherMedicamentsNonGenerique);
 
         // Ajout des boutons
         JButton buttonQuitter = new JButton("Quitter");
@@ -137,8 +148,6 @@ public class UiGui extends JFrame implements ActionListener {
     }
 
     private void commanderUnePreparation(HashMap<Object, Object> checkBoxSpinnerMap){
-        // Déclaration de selectedMedicamentsMap au niveau de la méthode
-        HashMap<JCheckBox, JSpinner> selectedMedicamentsMap = new HashMap<>();
     
         // Créer une fenêtre pour la commande de préparation
         JFrame frame = new JFrame("Commander une préparation");
@@ -150,9 +159,6 @@ public class UiGui extends JFrame implements ActionListener {
         // Créer un panneau pour les éléments de la fenêtre
         JPanel panel = new JPanel(new BorderLayout());
         frame.add(panel);
-
-        // Créer un panneau pour le bouton de recherche
-        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
         // Créer un panneau pour les médicaments
         JPanel medicamentPanel = new JPanel(new GridLayout(0, 1));
@@ -195,7 +201,6 @@ public class UiGui extends JFrame implements ActionListener {
             JPanel medicineEntryPanel = new JPanel(new BorderLayout());
             medicineEntryPanel.add(entryPanel, BorderLayout.CENTER);
             medicamentPanel.add(medicineEntryPanel);
-
             checkBoxSpinnerMap.put(checkBox, spinner);
         }
 
@@ -325,13 +330,73 @@ public class UiGui extends JFrame implements ActionListener {
             label.setAlignmentX(Component.LEFT_ALIGNMENT);
             medicamentsPanel.add(label);
         }
-
         // Ajouter le panneau des médicaments au panneau principal
         panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
         panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
         panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
 
+     // Afficher la liste des médicaments générique
+     private void afficherListeMedicamentsGen(JPanel panel) {
+        // Récupérer la liste des médicaments de la pharmacie
+        List<Medicament> medicaments = pharmacie.getMedicaments();
+
+        // Création d'un panneau pour afficher les médicaments
+        JPanel medicamentsPanel = new JPanel();
+        medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
+
+        // Ajouter les détails de chaque médicament au panneau
+        for (Medicament medicament : medicaments) {
+            if (medicament.isGenerique()) {
+                JLabel label = new JLabel(
+                        "<html><b>Nom:</b> " + medicament.getNom() +
+                                "<br><b>Prix:</b> " + medicament.getPrix() + " €" +
+                                "<br><b>Type:</b> " + medicament.getType() +
+                                "<br><b>Générique:</b> " + (medicament.isGenerique() ? "Oui" : "Non") +
+                                "<br><b>Quantité en stock:</b> " + medicament.getQuantiteEnStock() +
+                                "</html>"
+                );
+                label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                label.setAlignmentX(Component.LEFT_ALIGNMENT);
+                medicamentsPanel.add(label);
+            }
+        }
+        // Ajouter le panneau des médicaments au panneau principal
+        panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
+        panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
+        panel.revalidate(); // Mettre à jour l'affichage du panneau
+    }
+
+    // Afficher la liste des médicaments non générique
+    private void afficherListeMedicamentsNonGen(JPanel panel) {
+        // Récupérer la liste des médicaments de la pharmacie
+        List<Medicament> medicaments = pharmacie.getMedicaments();
+
+        // Création d'un panneau pour afficher les médicaments
+        JPanel medicamentsPanel = new JPanel();
+        medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
+
+        // Ajouter les détails de chaque médicament au panneau
+        for (Medicament medicament : medicaments) {
+            if (!medicament.isGenerique()) {
+                JLabel label = new JLabel(
+                        "<html><b>Nom:</b> " + medicament.getNom() +
+                                "<br><b>Prix:</b> " + medicament.getPrix() + " €" +
+                                "<br><b>Type:</b> " + medicament.getType() +
+                                "<br><b>Générique:</b> " + (medicament.isGenerique() ? "Oui" : "Non") +
+                                "<br><b>Quantité en stock:</b> " + medicament.getQuantiteEnStock() +
+                                "</html>"
+                );
+                label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                label.setAlignmentX(Component.LEFT_ALIGNMENT);
+                medicamentsPanel.add(label);
+            }
+        }
+        // Ajouter le panneau des médicaments au panneau principal
+        panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
+        panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
+        panel.revalidate(); // Mettre à jour l'affichage du panneau
+    }
 
     public void afficher() {
         // Afficher l'interface graphique
