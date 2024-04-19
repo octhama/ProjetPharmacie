@@ -27,8 +27,7 @@ public class Program {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
+        
         // version console
         /*Pharmacie pharmacie = new Pharmacie();
         CliUi cli = new CliUi(pharmacie);

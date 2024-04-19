@@ -1,41 +1,67 @@
 package pharmacie;
 
-import exceptions.ExeptionRuptureDeStock;
-
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Ordonnance {
-    private String numero;
-    private Medecin medecin;
-    private Patient patient;
-    private Date datePrescription;
-    // pour les ordonnances sans préparation
-    private Preparation preparation; // pour les ordonnances avec préparation
+    private String referenceMedecin;
+    private String referencePatient;
+    private LocalDate datePrescription;
+    private List<Medicament> medicaments;
 
-    public Ordonnance(Medicament nouveauMedicament, int i, List<Medicament> medicaments) {
-        medicaments.add(nouveauMedicament);
+    public Ordonnance(String referenceMedecin, String referencePatient, LocalDate datePrescription, List<Medicament> medicaments) {
+        this.referenceMedecin = referenceMedecin;
+        this.referencePatient = referencePatient;
+        this.datePrescription = datePrescription;
+        this.medicaments = medicaments;
     }
 
-    public Ordonnance(List<Medicament> medicaments, Preparation nouvellePreparation) {
-        preparation = nouvellePreparation;
+    public String getReferenceMedecin() {
+        return referenceMedecin;
+    }
+    public String getReferencePatient() {
+        return referencePatient;
+    }
+    public LocalDate getDatePrescription() {
+        return datePrescription;
+    }
+    public void setReferenceMedecin(String referenceMedecin) {
+        this.referenceMedecin = referenceMedecin;
+    }
+    public void setReferencePatient(String referencePatient) {
+        this.referencePatient = referencePatient;
+    }
+    public void setDatePrescription(LocalDate datePrescription) {
+        this.datePrescription = datePrescription;
+    }
+    public void setMedicaments(List<Medicament> medicaments) {
+        this.medicaments = medicaments;
+    }
+    public void addMedicament(Medicament medicament) {
+        medicaments.add(medicament);
+    }
+    public void removeMedicament(Medicament medicament) {
+        medicaments.remove(medicament);
+    }
+    public Medicament getMedicament(int index) {
+        return medicaments.get(index);
+    }
+    public int getNbMedicaments() {
+        return medicaments.size();
+    }
+    public boolean containsMedicament(Medicament medicament) {
+        return medicaments.contains(medicament);
+    }
+    public boolean isEmpty() {
+        return medicaments.isEmpty();
+    }
+    public void clear() {
+        medicaments.clear();
     }
 
-    // ... (autres attributs et méthodes)
-
-    public boolean estValide() {
-        return false;
+    public Medicament[] getMedicaments() {
+        return medicaments.toArray(new Medicament[0]);
     }
 
-    public List<Medicament> getMedicamentsADispenser() throws ExeptionRuptureDeStock {
-        return null;
-    }
-
-    public void close() {
-        // ... (Fermeture de l'ordonnance)
-        if (preparation != null) {
-            preparation.close();
-        }
-        System.out.println("L'ordonnance a été fermée.");
-    }
+    // Ajoute d'autres méthodes si nécessaire
 }

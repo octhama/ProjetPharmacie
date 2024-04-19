@@ -1,11 +1,8 @@
 package pharmacie;
 
 public class Patient extends Personne{
-    public Patient(String nomMedicament) {
-        super(nomMedicament);
+
+    public Patient(String nom, String prenom, String adresse, String telephone, String email, String specialite, String codePostal, String ville, String numeroNational, String dateDeNaissance, String lieuDeNaissance, String sexe, String numeroCarteEuroAssuranceMaladie) {
+        super(nom, prenom, adresse, telephone, email, specialite, codePostal, ville, numeroNational, dateDeNaissance, lieuDeNaissance, sexe, numeroCarteEuroAssuranceMaladie);
     }
-
-    // Constructeur privé
-
-    // Autres méthodes spécifiques pour Patient
 }

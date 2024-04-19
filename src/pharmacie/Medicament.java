@@ -3,19 +3,17 @@ package pharmacie;
 import enums.ETypeMedicament;
 import exceptions.ExeptionRuptureDeStock;
 
-import javax.swing.*;
-
 public class Medicament {
     private String nom;
     private double prix;
-    private String type;
+    private ETypeMedicament type;
     private boolean generique;
     private int quantiteEnStock;
 
     public Medicament(String nom, double prix2, ETypeMedicament eTypeMedicament, boolean generique2, int quantiteStock) {
         this.nom = nom;
         this.prix = prix2;
-        this.type = eTypeMedicament.toString();
+        this.type = ETypeMedicament.valueOf(eTypeMedicament.toString());
         this.generique = generique2;
         this.quantiteEnStock = quantiteStock;
     }
@@ -36,7 +34,7 @@ public class Medicament {
         return prix;
     }
 
-    public String getType() {
+    public ETypeMedicament getType() {
         return type;
     }
 
@@ -54,7 +52,7 @@ public class Medicament {
         this.quantiteEnStock += quantite;
     }
 
-    public String getTypeMedicament() {
+    public ETypeMedicament getTypeMedicament() {
         return type;
     }
 
@@ -65,5 +63,9 @@ public class Medicament {
     public void commander(int quantite) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'commander'");
+    }
+
+    public double getQuantitePourPreparation() {
+        return 0;
     }
 }

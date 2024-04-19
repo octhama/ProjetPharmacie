@@ -30,8 +30,6 @@ public class Pharmacie {
         return medicaments;
     }
 
-
-
     public Medicament trouverMedicament(String nomMedicament) {
         // Créer un pattern regex avec le nom du médicament
         Pattern pattern = Pattern.compile(nomMedicament, Pattern.CASE_INSENSITIVE);
@@ -65,40 +63,23 @@ public class Pharmacie {
         this.medicaments.addAll(medicaments);
     }
 
-    // Méthode commanderPreparation
-public String commanderPreparation(HashMap<JCheckBox, JSpinner> checkBoxSpinnerMap) throws ExeptionRuptureDeStock {
-    // Construire le message de confirmation
-    StringBuilder confirmationMessage = new StringBuilder("Le(s) médicament(s) suivant(s) ont été commandé(s) :\n");
-
-    // Parcourir chaque entrée dans la map
-    for (Map.Entry<JCheckBox, JSpinner> entry : checkBoxSpinnerMap.entrySet()) {
-        JCheckBox checkBox = entry.getKey();
-        JSpinner spinner = entry.getValue();
-        if (checkBox.isSelected()) {
-            Medicament medicament = (Medicament) checkBox.getClientProperty("medicament");
-            int quantite = (int) spinner.getValue();
-            int quantiteEnStock = medicament.getQuantiteEnStock();
-
-            // Vérifier si la quantité en stock est suffisante
-            if (quantite <= quantiteEnStock) {
-                int nouvelleQuantite = quantiteEnStock - quantite;
-                if (nouvelleQuantite >= 0) {
-                    // Mettre à jour la quantité en stock du médicament
-                    medicament.setQuantiteEnStock(nouvelleQuantite);
-                    // Ajouter les informations du médicament à la confirmation
-                    confirmationMessage.append("- ").append(medicament.getNom()).append(" (").append(quantite).append(" unité(s))\n");
-                } else {
-                    throw new ExeptionRuptureDeStock("Rupture de stock pour le médicament " + medicament.getNom());
-                }
-            } else {
-                throw new ExeptionRuptureDeStock("Stock insuffisant pour le médicament " + medicament.getNom());
+    public Preparation commanderPreparation(Ordonnance ordonnance) throws Exception {
+        // Vérifier si tous les médicaments de l'ordonnance sont disponibles en quantité suffisante
+        for (Medicament medicament : ordonnance.getMedicaments()) {
+            if (!medicaments.contains(medicament) || medicament.getQuantiteEnStock() <= 0) {
+                throw new Exception("Médicament " + medicament.getNom() + " non disponible en quantité suffisante.");
             }
         }
-    }
 
-    // Retourner le message de confirmation
-    return confirmationMessage.toString();
-}
+        // Créer une nouvelle préparation avec les médicaments de l'ordonnance
+        Preparation preparation = new Preparation();
+        preparation.setMedicaments(ordonnance.getMedicaments());
+
+        // Calculer le coût total de la préparation
+        preparation.setCoutTotal(preparation.calculerCoutTotal());
+
+        return preparation;
+    }
 
     public void dispense(Medicament medicament, int quantite) throws ExeptionRuptureDeStock {
         // Vérifier si la quantité demandée est disponible en stock

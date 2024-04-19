@@ -218,6 +218,11 @@ public class UiGui extends JFrame implements ActionListener {
 
         // Action du bouton de commande
         buttonCommander.addActionListener(e -> {
+            // Vérifier si une ordonnance est disponible
+            if (!ordonnanceDisponible()) {
+                JOptionPane.showMessageDialog(frame, "Une ordonnance est nécessaire pour commander une préparation.");
+                return; // Arrêter le traitement si l'ordonnance est manquante
+            }
             // Créer une boîte de dialogue pour la commande de médicaments
             JFrame dialogFrame = new JFrame("Commander une préparation");
             dialogFrame.setSize(400, 300);
@@ -259,31 +264,49 @@ public class UiGui extends JFrame implements ActionListener {
             // Ajouter un bouton pour valider la commande
             JButton validateButton = new JButton("Valider");
             buttonsPanel.add(validateButton);
+
             // Action du bouton de validation
             validateButton.addActionListener(validateEvent -> {
                 // Construire le message de confirmation
                 StringBuilder confirmationMessage = new StringBuilder("Le(s) médicament(s) suivant(s) ont été commandé(s) :\n");
-
+                // Un indicateur pour savoir si au moins un médicament n'était pas disponible en quantité suffisante
+                boolean stockInsuffisant = false;
                 // Parcourir chaque médicament sélectionné
                 for (int i = 0; i < selectedMedicaments.size(); i++) {
                     Medicament medicament = selectedMedicaments.get(i);
                     int quantite = selectedQuantities.get(i);
                     int quantiteEnStock = medicament.getQuantiteEnStock();
-
                     // Vérifier si la quantité en stock est suffisante
                     if (quantite <= quantiteEnStock) {
                         int nouvelleQuantite = quantiteEnStock - quantite;
                         if (nouvelleQuantite >= 0) {
                             // Mettre à jour la quantité en stock du médicament
                             medicament.setQuantiteEnStock(nouvelleQuantite);
-                            // Ajouter les informations du médicament à la confirmation
-                            confirmationMessage.append("- ").append(medicament.getNom()).append(" (").append(quantite).append(" unité(s))\n");
+                            // Gérer le cas où seule une partie du médicament est nécessaire pour la préparation
+                            if (medicament.getQuantitePourPreparation() < 1.0) {
+                                int reste = (int) (quantite * (1.0 - medicament.getQuantitePourPreparation()));
+                                confirmationMessage.append("- ").append(medicament.getNom()).append(" (").append(reste).append(" unité(s))\n");
+                            } else {
+                                // Ajouter les informations du médicament à la confirmation
+                                confirmationMessage.append("- ").append(medicament.getNom()).append(" (").append(quantite).append(" unité(s))\n");
+                            }
                         }
+                    } else {
+                        // Mettre à jour l'indicateur indiquant un stock insuffisant
+                        stockInsuffisant = true;
                     }
                 }
-                // Afficher le message de confirmation
-                JOptionPane.showMessageDialog(dialogFrame, confirmationMessage.toString());
-
+                // Si au moins un médicament n'était pas disponible en quantité suffisante, afficher un message d'erreur
+                if (stockInsuffisant) {
+                    JOptionPane.showMessageDialog(dialogFrame, "Stock insuffisant pour certains médicaments.");
+                } else {
+                    // Calculer la date de livraison
+                    Calendar dateLivraison = calculerDateLivraison();
+                    // Afficher le message de confirmation avec la date de livraison
+                    confirmationMessage.append("\nLa commande sera livrée le ").append(dateLivraison.getTime());
+                    // Afficher le message de confirmation
+                    JOptionPane.showMessageDialog(dialogFrame, confirmationMessage.toString());
+                }
                 // Fermer la boîte de dialogue
                 dialogFrame.dispose();
             });
@@ -305,7 +328,23 @@ public class UiGui extends JFrame implements ActionListener {
         // Afficher la fenêtre
         frame.setVisible(true);
     }
+    // Fonction pour vérifier si une ordonnance est disponible
+    private boolean ordonnanceDisponible() {
+        // Implémente la logique pour vérifier si une ordonnance est disponible
+        // Retourne true si une ordonnance est disponible, sinon false
+        return true;
+    }
 
+    // Fonction pour calculer la date de livraison en ajoutant un jour à la date actuelle
+    private Calendar calculerDateLivraison() {
+        Calendar dateLivraison = Calendar.getInstance();
+        dateLivraison.add(Calendar.DAY_OF_MONTH, 1); // Ajouter un jour
+        // Vérifier si la date de livraison est un dimanche
+        if (dateLivraison.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            dateLivraison.add(Calendar.DAY_OF_MONTH, 1); // Ajouter un jour supplémentaire
+        }
+        return dateLivraison;
+    }
 
     // Afficher les medicament de src/data/medicaments.csv
     private void afficherListeMedicaments(JPanel panel) {
