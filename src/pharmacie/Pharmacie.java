@@ -50,7 +50,7 @@ public class Pharmacie {
     }
 
 
-    public void acheterMedicament(String nomMedicament, int quantite) {
+    public void acheterMedicament(String nomMedicament, int quantite) throws ExeptionRuptureDeStock {
         // Implémentez la logique pour acheter un médicament
         Medicament medicament = trouverMedicament(nomMedicament);
         if (medicament != null) {

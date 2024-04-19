@@ -17,71 +17,97 @@ public class CliUi {
         this.pharmacie = pharmacie;
     }
 
-    public void demarrer() {
-        int choix;
-        Scanner scanner = new Scanner(System.in);
-
-        do {
-            afficherMenu();
-            choix = scanner.nextInt();
-
-            switch (choix) {
-                case 1:
-                    listerMedicaments();
-                    break;
-                case 2:
-                    acheterMedicament();
-                    break;
-                case 3:
-                    // ... (autres fonctionnalités à implémenter)
-                    break;
-                case 0:
-                    System.out.println("Au revoir !");
-                    break;
-                default:
-                    System.out.println("Choix invalide.");
-            }
-        } while (choix != 0);
+    public void afficherMenu() {
+        System.out.println("1. Afficher la liste des médicaments");
+        System.out.println("2. Chercher un medicament");
+        System.out.println("3. Commander une preparation");
+        System.out.println("4. Acheter un médicament");
+        System.out.println("5. Quitter");
     }
 
-    private void afficherMenu() {
-        System.out.println("\n***** Pharmacie *****");
-        System.out.println("1. Lister les médicaments");
-        System.out.println("2. Acheter un médicament");
-        System.out.println("3. ... (autres options)");
-        System.out.println("0. Quitter");
-        System.out.print("Votre choix : ");
-    }
-
-    private void listerMedicaments() {
+    public void afficherMedicaments() {
         List<Medicament> medicaments = pharmacie.getMedicaments();
-        if (medicaments.isEmpty()) {
-            System.out.println("Aucun médicament disponible.");
-        } else {
-            for (Medicament medicament : medicaments) {
-                System.out.println(medicament);
-            }
+        for (Medicament medicament : medicaments) {
+            System.out.println(medicament);
         }
     }
 
-    private void acheterMedicament() {
+    public void chercherMedicament() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nom du médicament : ");
+        System.out.println("Entrez le nom du médicament à chercher:");
         String nomMedicament = scanner.nextLine();
 
         Medicament medicament = pharmacie.trouverMedicament(nomMedicament);
-        if (medicament == null) {
-            System.out.println("Médicament introuvable.");
+        if (medicament != null) {
+            System.out.println(medicament);
         } else {
-            System.out.print("Quantité désirée : ");
-            int quantite = scanner.nextInt();
+            System.out.println("Le médicament " + nomMedicament + " n'existe pas dans la pharmacie.");
+        }
+    }
 
+    public void commanderPreparation() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Entrez le nom du médicament à commander:");
+        String nomMedicament = scanner.nextLine();
+
+        Medicament medicament = pharmacie.trouverMedicament(nomMedicament);
+        if (medicament != null) {
+            System.out.println("Entrez la quantité à commander:");
+            int quantite = scanner.nextInt();
             try {
-                pharmacie.dispense(medicament, quantite);
-                System.out.println("Médicament dispensé avec succès.");
-            } catch (ExeptionRuptureDeStock e) {
+                medicament.commander(quantite);
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+        } else {
+            System.out.println("Le médicament " + nomMedicament + " n'existe pas dans la pharmacie.");
         }
+    }
+
+    public void acheterMedicament() throws ExeptionRuptureDeStock {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Entrez le nom du médicament à acheter:");
+        String nomMedicament = scanner.nextLine();
+
+        Medicament medicament = pharmacie.trouverMedicament(nomMedicament);
+        if (medicament != null) {
+            System.out.println("Entrez la quantité à acheter:");
+            int quantite = scanner.nextInt();
+            try {
+                medicament.acheter(quantite);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            System.out.println("Le médicament " + nomMedicament + " n'existe pas dans la pharmacie.");
+        }
+    }
+
+    public void demarrer() throws ExeptionRuptureDeStock {
+        Scanner scanner = new Scanner(System.in);
+        int choix = 0;
+        do {
+            afficherMenu();
+            choix = scanner.nextInt();
+            switch (choix) {
+                case 1:
+                    afficherMedicaments();
+                    break;
+                case 2:
+                    chercherMedicament();
+                    break;
+                case 3:
+                    commanderPreparation();
+                    break;
+                case 4:
+                    acheterMedicament();
+                    break;
+                case 5:
+                    System.out.println("Au revoir!");
+                    break;
+                default:
+                    System.out.println("Choix invalide");
+            }
+        } while (choix != 5);
     }
 }

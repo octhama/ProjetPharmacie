@@ -49,7 +49,7 @@ public class Medicament {
     }
 
 
-    public void acheter(int quantite) {
+    public void acheter(int quantite) throws ExeptionRuptureDeStock {
         // Augmenter la quantité en stock du médicament
         this.quantiteEnStock += quantite;
     }
@@ -60,5 +60,10 @@ public class Medicament {
 
     public void setQuantiteEnStock(int quantite) {
         this.quantiteEnStock = quantite;
+    }
+
+    public void commander(int quantite) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'commander'");
     }
 }

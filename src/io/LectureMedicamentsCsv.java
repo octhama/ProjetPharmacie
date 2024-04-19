@@ -33,10 +33,14 @@ public class LectureMedicamentsCsv {
                 final int[] quantiteStock = {Integer.parseInt(champs[4])};
 
                 Medicament medicament = new Medicament(nom, prix, ETypeMedicament.valueOf(type), generique, quantiteStock[0]) {
-                       @Override
-                          public void acheter(int quantite) {
-                            quantiteStock[0] += quantite;
-                          }
+                    @Override
+                    public void acheter(int quantite) throws ExeptionRuptureDeStock {
+                        if (quantite > quantiteStock[0]) {
+                            throw new ExeptionRuptureDeStock("Rupture de stock pour le médicament " + nom);
+                        }
+
+                        quantiteStock[0] -= quantite;
+                    }
                 };
 
                 medicaments.add(medicament);
