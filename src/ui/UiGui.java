@@ -137,6 +137,9 @@ public class UiGui extends JFrame implements ActionListener {
     }
 
     private void commanderUnePreparation(HashMap<Object, Object> checkBoxSpinnerMap){
+        // Déclaration de selectedMedicamentsMap au niveau de la méthode
+        HashMap<JCheckBox, JSpinner> selectedMedicamentsMap = new HashMap<>();
+    
         // Créer une fenêtre pour la commande de préparation
         JFrame frame = new JFrame("Commander une préparation");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -251,31 +254,33 @@ public class UiGui extends JFrame implements ActionListener {
             // Ajouter un bouton pour valider la commande
             JButton validateButton = new JButton("Valider");
             buttonsPanel.add(validateButton);
-
-            // Ajouter un écouteur pour le bouton de validation
+            // Action du bouton de validation
             validateButton.addActionListener(validateEvent -> {
-                // Traiter la commande ici
-                for (Map.Entry<Object, Object> entry : checkBoxSpinnerMap.entrySet()) {
-                    JCheckBox checkBox = (JCheckBox) entry.getKey();
-                    int quantite = (int) ((JSpinner) entry.getValue()).getValue();
-                    String nomMedicament = checkBox.getText();
-                    Medicament medicament = pharmacie.trouverMedicament(nomMedicament);
-                    if (checkBox.isSelected()) {
-                        if (medicament != null) {
-                            try {
-                                pharmacie.dispense(medicament, quantite);
-                            } catch (ExeptionRuptureDeStock ex) {
-                                // Gérer l'exception de rupture de stock ici
-                                ex.printStackTrace();
-                            }
-                        } else {
-                            // Afficher un message si le médicament n'est pas trouvé
-                            JOptionPane.showMessageDialog(dialogFrame, "Le médicament " + nomMedicament + " n'existe pas dans la pharmacie.");
+                // Construire le message de confirmation
+                StringBuilder confirmationMessage = new StringBuilder("Le(s) médicament(s) suivant(s) ont été commandé(s) :\n");
+
+                // Parcourir chaque médicament sélectionné
+                for (int i = 0; i < selectedMedicaments.size(); i++) {
+                    Medicament medicament = selectedMedicaments.get(i);
+                    int quantite = selectedQuantities.get(i);
+                    int quantiteEnStock = medicament.getQuantiteEnStock();
+
+                    // Vérifier si la quantité en stock est suffisante
+                    if (quantite <= quantiteEnStock) {
+                        int nouvelleQuantite = quantiteEnStock - quantite;
+                        if (nouvelleQuantite >= 0) {
+                            // Mettre à jour la quantité en stock du médicament
+                            medicament.setQuantiteEnStock(nouvelleQuantite);
+                            // Ajouter les informations du médicament à la confirmation
+                            confirmationMessage.append("- ").append(medicament.getNom()).append(" (").append(quantite).append(" unité(s))\n");
                         }
                     }
                 }
-                JOptionPane.showMessageDialog(dialogFrame, "La commande a été passée avec succès !");
-                dialogFrame.dispose(); // Fermer la boîte de dialogue après la validation de la commande
+                // Afficher le message de confirmation
+                JOptionPane.showMessageDialog(dialogFrame, confirmationMessage.toString());
+
+                // Fermer la boîte de dialogue
+                dialogFrame.dispose();
             });
 
             // Ajouter un bouton pour annuler la commande
@@ -287,6 +292,9 @@ public class UiGui extends JFrame implements ActionListener {
 
             // Afficher la boîte de dialogue
             dialogFrame.setVisible(true);
+
+            // Fermer la fenêtre de commande de médicaments
+            frame.dispose();
         });
 
         // Afficher la fenêtre

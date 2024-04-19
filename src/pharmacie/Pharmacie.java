@@ -65,40 +65,40 @@ public class Pharmacie {
         this.medicaments.addAll(medicaments);
     }
 
-    public void commanderPreparation(HashMap<JCheckBox, JSpinner> checkBoxSpinnerMap) throws ExeptionRuptureDeStock {
-        // Construire le message de confirmation
-        StringBuilder confirmationMessage = new StringBuilder("Le(s) médicament(s) suivant(s) ont été commandé(s) :\n");
+    // Méthode commanderPreparation
+public String commanderPreparation(HashMap<JCheckBox, JSpinner> checkBoxSpinnerMap) throws ExeptionRuptureDeStock {
+    // Construire le message de confirmation
+    StringBuilder confirmationMessage = new StringBuilder("Le(s) médicament(s) suivant(s) ont été commandé(s) :\n");
 
-        // Parcourir chaque entrée dans la map
-        for (Map.Entry<JCheckBox, JSpinner> entry : checkBoxSpinnerMap.entrySet()) {
-            JCheckBox checkBox = entry.getKey();
-            JSpinner spinner = entry.getValue();
-            if (checkBox.isSelected()) {
-                Medicament medicament = (Medicament) checkBox.getClientProperty("medicament");
-                int quantite = (int) spinner.getValue();
-                int quantiteEnStock = medicament.getQuantiteEnStock();
+    // Parcourir chaque entrée dans la map
+    for (Map.Entry<JCheckBox, JSpinner> entry : checkBoxSpinnerMap.entrySet()) {
+        JCheckBox checkBox = entry.getKey();
+        JSpinner spinner = entry.getValue();
+        if (checkBox.isSelected()) {
+            Medicament medicament = (Medicament) checkBox.getClientProperty("medicament");
+            int quantite = (int) spinner.getValue();
+            int quantiteEnStock = medicament.getQuantiteEnStock();
 
-                // Vérifier si la quantité en stock est suffisante
-                if (quantite <= quantiteEnStock) {
-                    int nouvelleQuantite = quantiteEnStock - quantite;
-                    if (nouvelleQuantite >= 0) {
-                        // Mettre à jour la quantité en stock du médicament
-                        medicament.setQuantiteEnStock(nouvelleQuantite);
-                        // Ajouter les informations du médicament à la confirmation
-                        confirmationMessage.append("- ").append(medicament.getNom()).append(" (").append(quantite).append(" unité(s))\n");
-                    } else {
-                        throw new ExeptionRuptureDeStock("Rupture de stock pour le médicament " + medicament.getNom());
-                    }
+            // Vérifier si la quantité en stock est suffisante
+            if (quantite <= quantiteEnStock) {
+                int nouvelleQuantite = quantiteEnStock - quantite;
+                if (nouvelleQuantite >= 0) {
+                    // Mettre à jour la quantité en stock du médicament
+                    medicament.setQuantiteEnStock(nouvelleQuantite);
+                    // Ajouter les informations du médicament à la confirmation
+                    confirmationMessage.append("- ").append(medicament.getNom()).append(" (").append(quantite).append(" unité(s))\n");
                 } else {
-                    throw new ExeptionRuptureDeStock("Stock insuffisant pour le médicament " + medicament.getNom());
+                    throw new ExeptionRuptureDeStock("Rupture de stock pour le médicament " + medicament.getNom());
                 }
+            } else {
+                throw new ExeptionRuptureDeStock("Stock insuffisant pour le médicament " + medicament.getNom());
             }
         }
-
-        // Afficher la boîte de dialogue avec toutes les informations
-        JOptionPane.showMessageDialog(null, confirmationMessage.toString());
     }
 
+    // Retourner le message de confirmation
+    return confirmationMessage.toString();
+}
 
     public void dispense(Medicament medicament, int quantite) throws ExeptionRuptureDeStock {
         // Vérifier si la quantité demandée est disponible en stock
