@@ -1,8 +1,8 @@
-package pharmacie.util;
+package utils;
 
 import java.time.LocalDate;
 
-public class DateUtil {
+public class DateUtils {
     // Méthode pour obtenir la date actuelle
     public static LocalDate getDateActuelle() {
         return LocalDate.now();
