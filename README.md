@@ -1,1 +1,1 @@
-Diagram des et explication des fonctionnalité du projet
+Diagram des et explication des fonctionnalité du projet Pharmacie
