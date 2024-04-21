@@ -6,6 +6,10 @@ import ui.UiGui;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Classe principale du programme.
+ */
+
 public class Program {
     public static void main(String[] args) throws IOException {
         // version graphique
@@ -27,7 +31,7 @@ public class Program {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         // version console
         /*Pharmacie pharmacie = new Pharmacie();
         CliUi cli = new CliUi(pharmacie);

@@ -1,7 +1,11 @@
 package ui;
 
+import enums.ETypeMedicament;
+import io.EcritureRegistrePreparationCsv;
 import pharmacie.Medicament;
+import pharmacie.Ordonnance;
 import pharmacie.Pharmacie;
+import pharmacie.Preparation;
 
 
 import java.awt.*;
@@ -15,18 +19,40 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static io.EcritureRegistrePreparationCsv.fichierCsv;
+import static io.EcritureRegistrePreparationCsv.preparation;
 
+/**
+ * Interface graphique pour une pharmacie
+ */
+
+@SuppressWarnings("UnreachableCode")
 public class UiGui extends JFrame implements ActionListener {
     private final Pharmacie pharmacie;
     private final JPanel panelAfficherMedicaments;
     private final JPanel panelAfficherMedicamentsGenerique;
     private final JPanel panelAfficherMedicamentsNonGenerique;
-    // Déclaration des attributs
+    private final JPanel panelMedSurOrdonnance;
+    private final JPanel panelMedVenteLibre;
     private final HashMap<Medicament, JCheckBox> medicamentCheckBoxMap;
     private final HashMap<JCheckBox, JSpinner> spinnerMap;
 
-    public UiGui(Pharmacie pharmacie, HashMap<Medicament, JCheckBox> medicamentCheckBoxMap, HashMap<JCheckBox, JSpinner> spinnerMap) throws IOException {
+    /**
+     * Constructeur de l'interface graphique
+     *
+     * @param pharmacie             La pharmacie à gérer
+     * @param panelMedSurOrdonnance Le panel pour afficher les médicaments sur ordonnance
+     * @param panelMedVenteLibre    Le panel pour afficher les médicaments en vente libre
+     * @param medicamentCheckBoxMap La map pour stocker les médicaments et les cases à cocher
+     * @param spinnerMap            La map pour stocker les cases à cocher et les spinners
+     * @param fichierCsv            Le chemin du fichier CSV
+     * @throws IOException          Si une erreur d'entrée/sortie se produit
+     */
+
+    public UiGui(Pharmacie pharmacie, JPanel panelMedSurOrdonnance, JPanel panelMedVenteLibre, HashMap<Medicament, JCheckBox> medicamentCheckBoxMap, HashMap<JCheckBox, JSpinner> spinnerMap, String fichierCsv) throws IOException {
         this.pharmacie = pharmacie;
+        this.panelMedSurOrdonnance = panelMedSurOrdonnance;
+        this.panelMedVenteLibre = panelMedVenteLibre;
         this.medicamentCheckBoxMap = medicamentCheckBoxMap;
         this.spinnerMap = spinnerMap;
         this.setTitle("Pharmacie");
@@ -84,15 +110,27 @@ public class UiGui extends JFrame implements ActionListener {
         panelAfficherMedicaments = new JPanel(new BorderLayout());
         panelAfficherMedicamentsGenerique = new JPanel(new BorderLayout());
         panelAfficherMedicamentsNonGenerique = new JPanel(new BorderLayout());
+        panelMedSurOrdonnance = new JPanel(new BorderLayout());
+        panelMedVenteLibre = new JPanel(new BorderLayout());
+
         tabbedPane.addTab("Médicaments", panelAfficherMedicaments);
         tabbedPane.addTab("Medicaments Génériques", panelAfficherMedicamentsGenerique);
         tabbedPane.addTab("Medicaments Non Génériques", panelAfficherMedicamentsNonGenerique);
+        tabbedPane.addTab("Médicaments sur ordonnance", panelMedSurOrdonnance);
+        tabbedPane.addTab("Médicaments en vente libre", panelMedVenteLibre);
 
         // Afficher les médicaments Génériques dans le panneau correspondant
         afficherListeMedicamentsGen(panelAfficherMedicamentsGenerique);
 
         // Afficher les médicaments Non Génériques dans le panneau correspondant
         afficherListeMedicamentsNonGen(panelAfficherMedicamentsNonGenerique);
+
+        // Afficher les médicaments sur ordonnance dans le panneau correspondant
+        afficherListeMedicamentsSurOrdonnance(panelMedSurOrdonnance);
+
+        // Afficher les médicaments en vente libre dans le panneau correspondant
+        afficherListeMedicamentsEnVenteLibre(panelMedVenteLibre);
+
 
         // Ajout des boutons
         JButton buttonQuitter = new JButton("Quitter");
@@ -107,9 +145,31 @@ public class UiGui extends JFrame implements ActionListener {
         add(panelBoutons, BorderLayout.SOUTH);
     }
 
-    public UiGui(Pharmacie pharmacie) throws IOException {
-        this(pharmacie, new HashMap<>(), new HashMap<>());
+    /**
+     * Constructeur de l'interface graphique
+     * @param pharmacie La pharmacie à gérer
+     * @param panelMedSurOrdonnance Le panel pour afficher les médicaments sur ordonnance
+     * @param panelMedVenteLibre Le panel pour afficher les médicaments en vente libre
+     */
+
+    public UiGui(Pharmacie pharmacie, JPanel panelMedSurOrdonnance, JPanel panelMedVenteLibre) throws IOException {
+        this(pharmacie, panelMedVenteLibre, panelMedSurOrdonnance, new HashMap<>(), new HashMap<>(), fichierCsv);
     }
+
+    /**
+     * Constructeur de l'interface graphique
+     * @param pharmacie La pharmacie à gérer
+     * @throws IOException Si une erreur d'entrée/sortie se produit
+     */
+
+    public UiGui(Pharmacie pharmacie) throws IOException {
+        this(pharmacie, new JPanel(), new JPanel());
+    }
+
+    /**
+     * Constructeur de l'interface graphique
+     * @throws IOException Si une erreur d'entrée/sortie se produit
+     */
 
     // Méthode pour vérifier si un médicament existe dans src/data/medicaments.csv
     private void chercherMedicament() {
@@ -147,8 +207,14 @@ public class UiGui extends JFrame implements ActionListener {
         frame.setVisible(true);
     }
 
+    /**
+     * Méthode pour afficher la liste des médicaments génériques dans un JPanel
+     * @throws IOException Si une erreur d'entrée/sortie se produit
+     */
+
+    // Méthode pour commander une préparation
     private void commanderUnePreparation(HashMap<Object, Object> checkBoxSpinnerMap){
-    
+
         // Créer une fenêtre pour la commande de préparation
         JFrame frame = new JFrame("Commander une préparation");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -306,6 +372,9 @@ public class UiGui extends JFrame implements ActionListener {
                     confirmationMessage.append("\nLa commande sera livrée le ").append(dateLivraison.getTime());
                     // Afficher le message de confirmation
                     JOptionPane.showMessageDialog(dialogFrame, confirmationMessage.toString());
+
+                    // Appeler la méthode pour écrire l'ordonnance dans le fichier CSV
+                    EcritureRegistrePreparationCsv.ecrirePreparationsCsv("src/data/registrepreparation.csv", new Preparation(selectedMedicaments));
                 }
                 // Fermer la boîte de dialogue
                 dialogFrame.dispose();
@@ -328,12 +397,23 @@ public class UiGui extends JFrame implements ActionListener {
         // Afficher la fenêtre
         frame.setVisible(true);
     }
+
+    /**
+     * Méthode pour afficher la liste des médicaments dans un JPanel
+     * @throws IOException Si une erreur d'entrée/sortie se produit
+     */
+
     // Fonction pour vérifier si une ordonnance est disponible
     private boolean ordonnanceDisponible() {
         // Implémente la logique pour vérifier si une ordonnance est disponible
         // Retourne true si une ordonnance est disponible, sinon false
         return true;
     }
+
+    /**
+     * Méthode pour afficher la liste des médicaments dans un JPanel
+     * @throws IOException Si une erreur d'entrée/sortie se produit
+     */
 
     // Fonction pour calculer la date de livraison en ajoutant un jour à la date actuelle
     private Calendar calculerDateLivraison() {
@@ -345,6 +425,11 @@ public class UiGui extends JFrame implements ActionListener {
         }
         return dateLivraison;
     }
+
+    /**
+     * Méthode pour gérer les événements des boutons
+     * @throws IOException Si une erreur d'entrée/sortie se produit
+     */
 
     // Afficher les medicament de src/data/medicaments.csv
     private void afficherListeMedicaments(JPanel panel) {
@@ -374,6 +459,12 @@ public class UiGui extends JFrame implements ActionListener {
         panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
         panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
+
+    /**
+     *  Méthode pour gérer les événements des boutons
+     * @param panel
+     * @throws IOException Si une erreur d'entrée/sortie se produit
+     */
 
      // Afficher la liste des médicaments générique
      private void afficherListeMedicamentsGen(JPanel panel) {
@@ -406,6 +497,11 @@ public class UiGui extends JFrame implements ActionListener {
         panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
 
+    /**
+     * Méthode pour gérer les événements des boutons
+     * @throws IOException Si une erreur d'entrée/sortie se produit
+     */
+
     // Afficher la liste des médicaments non générique
     private void afficherListeMedicamentsNonGen(JPanel panel) {
         // Récupérer la liste des médicaments de la pharmacie
@@ -437,10 +533,93 @@ public class UiGui extends JFrame implements ActionListener {
         panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
 
+    /**
+     * Méthode pour gérer les événements des boutons
+     * @throws IOException Si une erreur d'entrée/sortie se produit
+     */
+
+    // Afficher la liste des médicaments sur ordonnance
+    private  void afficherListeMedicamentsSurOrdonnance(JPanel panel) {
+        // Récupérer la liste des médicaments de la pharmacie
+        List<Medicament> medicaments = pharmacie.getMedicaments();
+
+        // Création d'un panneau pour afficher les médicaments
+        JPanel medicamentsPanel = new JPanel();
+        medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
+
+        // Ajouter les détails de chaque médicament au panneau
+        for (Medicament medicament : medicaments) {
+            if (medicament.getType() == ETypeMedicament.ORDONNANCE) {
+                JLabel label = new JLabel(
+                        "<html><b>Nom:</b> " + medicament.getNom() +
+                                "<br><b>Prix:</b> " + medicament.getPrix() + " €" +
+                                "<br><b>Type:</b> " + medicament.getType() +
+                                "<br><b>Générique:</b> " + (medicament.isGenerique() ? "Oui" : "Non") +
+                                "<br><b>Quantité en stock:</b> " + medicament.getQuantiteEnStock() +
+                                "</html>"
+                );
+                label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                label.setAlignmentX(Component.LEFT_ALIGNMENT);
+                medicamentsPanel.add(label);
+            }
+        }
+        // Ajouter le panneau des médicaments au panneau principal
+        panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
+        panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
+        panel.revalidate(); // Mettre à jour l'affichage du panneau
+    }
+
+    /**
+     * Méthode pour gérer les événements des boutons
+     * @throws IOException Si une erreur d'entrée/sortie se produit
+     */
+
+    // Afficher la liste des médicaments en vente libre
+    private void afficherListeMedicamentsEnVenteLibre(JPanel panel) {
+        // Récupérer la liste des médicaments de la pharmacie
+        List<Medicament> medicaments = pharmacie.getMedicaments();
+
+        // Création d'un panneau pour afficher les médicaments
+        JPanel medicamentsPanel = new JPanel();
+        medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
+
+        // Ajouter les détails de chaque médicament au panneau
+        for (Medicament medicament : medicaments) {
+            if (medicament.getType() == ETypeMedicament.VENTE_LIBRE) {
+                JLabel label = new JLabel(
+                        "<html><b>Nom:</b> " + medicament.getNom() +
+                                "<br><b>Prix:</b> " + medicament.getPrix() + " €" +
+                                "<br><b>Type:</b> " + medicament.getType() +
+                                "<br><b>Générique:</b> " + (medicament.isGenerique() ? "Oui" : "Non") +
+                                "<br><b>Quantité en stock:</b> " + medicament.getQuantiteEnStock() +
+                                "</html>"
+                );
+                label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                label.setAlignmentX(Component.LEFT_ALIGNMENT);
+                medicamentsPanel.add(label);
+            }
+        }
+        // Ajouter le panneau des médicaments au panneau principal
+        panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
+        panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
+        panel.revalidate(); // Mettre à jour l'affichage du panneau
+    }
+
+    /**
+     * Méthode pour afficher l'interface graphique
+     * @throws IOException Si une erreur d'entrée/sortie se produit
+     */
+
     public void afficher() {
         // Afficher l'interface graphique
         this.setVisible(true);
     }
+
+    /**
+     * Méthode pour gérer les événements des boutons
+     * @param e L'événement déclenché
+     * @throws IOException Si une erreur d'entrée/sortie se produit
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {

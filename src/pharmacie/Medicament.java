@@ -24,6 +24,27 @@ public class Medicament {
 
     public Medicament(String nom2, String nom3, String nom4, String nom5, String nom6) {
         //TODO Auto-generated constructor stub
+        this.nom = nom2;
+        this.prix = Double.parseDouble(nom3);
+        this.type = ETypeMedicament.valueOf(nom4);
+        this.generique = Boolean.parseBoolean(nom5);
+        this.quantiteEnStock = Integer.parseInt(nom6);
+    }
+
+    public Medicament(String nom, int quantitePrescrite) {
+        //TODO Auto-generated constructor stub
+        this.nom = nom;
+        this.quantiteEnStock = quantitePrescrite;
+        this.prix = 0;
+        this.type = null;
+        this.generique = false;
+    }
+
+    public Medicament(String medicamentString) {
+        //TODO Auto-generated constructor stub
+        String[] parts = medicamentString.split("\\(");
+        this.nom = parts[0];
+        this.quantiteEnStock = Integer.parseInt(parts[1].substring(0, parts[1].length() - 1));
     }
 
     public String getNom() {
@@ -67,5 +88,9 @@ public class Medicament {
 
     public double getQuantitePourPreparation() {
         return 0;
+    }
+
+    public char[] getQuantitePrescrite() {
+        return null;
     }
 }

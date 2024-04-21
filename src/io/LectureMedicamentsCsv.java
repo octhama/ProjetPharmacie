@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe utilitaire pour lire les médicaments d'un fichier CSV.
+ */
+
 public class LectureMedicamentsCsv {
     private LectureMedicamentsCsv() {
         // Constructeur privé pour empêcher l'instanciation de la classe

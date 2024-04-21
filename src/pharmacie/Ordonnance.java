@@ -16,6 +16,15 @@ public class Ordonnance {
         this.medicaments = medicaments;
     }
 
+    public Ordonnance(LocalDate datePrescription, List<Medicament> medicaments) {
+        this.datePrescription = datePrescription;
+        this.medicaments = medicaments;
+    }
+
+    public Ordonnance(List<Medicament> selectedMedicaments) {
+        this.medicaments = selectedMedicaments;
+    }
+
     public String getReferenceMedecin() {
         return referenceMedecin;
     }
@@ -58,9 +67,19 @@ public class Ordonnance {
     public void clear() {
         medicaments.clear();
     }
-
     public Medicament[] getMedicaments() {
         return medicaments.toArray(new Medicament[0]);
+    }
+    public void setMedicaments(Medicament[] medicaments) {
+        this.medicaments = List.of(medicaments);
+    }
+
+    public char[] getReferencesMedecin() {
+        return null;
+    }
+
+    public char[] getReferencesPatient() {
+        return null;
     }
 
     // Ajoute d'autres méthodes si nécessaire
