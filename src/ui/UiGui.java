@@ -11,6 +11,8 @@ import pharmacie.Preparation;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import java.io.IOException;
@@ -19,8 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static io.EcritureRegistrePreparationCsv.fichierCsv;
-import static io.EcritureRegistrePreparationCsv.preparation;
+import static io.EcritureRegistrePreparationCsv.*;
 
 /**
  * Interface graphique pour une pharmacie
@@ -334,7 +335,7 @@ public class UiGui extends JFrame implements ActionListener {
             // Action du bouton de validation
             validateButton.addActionListener(validateEvent -> {
                 // Construire le message de confirmation
-                StringBuilder confirmationMessage = new StringBuilder("Le(s) médicament(s) suivant(s) ont été commandé(s) :\n");
+                StringBuilder confirmationMessage = new StringBuilder("Le(s) médicament(s) suivant(s) ont été commandé(s) :\n\n");
                 // Un indicateur pour savoir si au moins un médicament n'était pas disponible en quantité suffisante
                 boolean stockInsuffisant = false;
                 // Parcourir chaque médicament sélectionné
@@ -368,13 +369,38 @@ public class UiGui extends JFrame implements ActionListener {
                 } else {
                     // Calculer la date de livraison
                     Calendar dateLivraison = calculerDateLivraison();
+
                     // Afficher le message de confirmation avec la date de livraison
                     confirmationMessage.append("\nLa commande sera livrée le ").append(dateLivraison.getTime());
+
                     // Afficher le message de confirmation
                     JOptionPane.showMessageDialog(dialogFrame, confirmationMessage.toString());
 
+                    // Définition du contenu du fichier CSV
+                    StringBuilder csvContent = new StringBuilder();
+
+                    // Parcourir chaque médicament sélectionné
+                    for (int i = 0; i < selectedMedicaments.size(); i++) {
+                        Medicament medicament = selectedMedicaments.get(i);
+                        int quantite = selectedQuantities.get(i);
+                        int quantiteEnStock = medicament.getQuantiteEnStock();
+
+                        // Vérifier si la quantité en stock est suffisante
+                        if (quantite <= quantiteEnStock) {
+                            int nouvelleQuantite = quantiteEnStock - quantite;
+                            if (nouvelleQuantite >= 0) {
+                                // Mettre à jour la quantité en stock du médicament
+                                medicament.setQuantiteEnStock(nouvelleQuantite);
+                                // Ajouter les informations du médicament à la ligne du fichier CSV
+                                String csvLine = String.format("%s,%d,%s\n", medicament.getNom(), quantite, formatDateString(dateLivraison.getTime()));
+                                csvContent.append(csvLine);
+                            }
+                        }
+                    }
+
                     // Appeler la méthode pour écrire l'ordonnance dans le fichier CSV
                     EcritureRegistrePreparationCsv.ecrirePreparationsCsv("src/data/registrepreparation.csv", new Preparation(selectedMedicaments));
+
                 }
                 // Fermer la boîte de dialogue
                 dialogFrame.dispose();
@@ -396,6 +422,12 @@ public class UiGui extends JFrame implements ActionListener {
 
         // Afficher la fenêtre
         frame.setVisible(true);
+    }
+
+    // Méthode pour formater la date sous forme de chaîne
+    private String formatDateString(Date date) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return dateFormat.format(date);
     }
 
     /**
