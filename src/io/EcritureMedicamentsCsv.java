@@ -5,6 +5,7 @@ import pharmacie.Medicament;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EcritureMedicamentsCsv {
@@ -23,5 +24,16 @@ public class EcritureMedicamentsCsv {
                 );
             }
         }
+    }
+
+    public static List<Medicament> getMedicaments() throws IOException {
+        List<Medicament> medicaments = new ArrayList<>();
+        try {
+            medicaments = LectureMedicamentsCsv.lireMedicamentsCsv("src/data/medicaments.csv");
+        } catch (IOException e) {
+            // Propager l'exception pour que la méthode appelante puisse la gérer
+            throw e;
+        }
+        return medicaments;
     }
 }

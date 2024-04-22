@@ -15,7 +15,6 @@ public class Program {
         // version graphique
         // Créer une pharmacie
         Pharmacie pharmacie = new Pharmacie();
-
         // Chargement des médicaments depuis un fichier CSV
         try {
             List<Medicament> medicaments = LectureMedicamentsCsv.lireMedicamentsCsv("src/data/medicaments.csv");

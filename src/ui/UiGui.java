@@ -334,75 +334,50 @@ public class UiGui extends JFrame implements ActionListener {
 
             // Action du bouton de validation
             validateButton.addActionListener(validateEvent -> {
-                // Construire le message de confirmation
                 StringBuilder confirmationMessage = new StringBuilder("Le(s) médicament(s) suivant(s) ont été commandé(s) :\n\n");
-                // Un indicateur pour savoir si au moins un médicament n'était pas disponible en quantité suffisante
                 boolean stockInsuffisant = false;
-                // Parcourir chaque médicament sélectionné
+
                 for (int i = 0; i < selectedMedicaments.size(); i++) {
                     Medicament medicament = selectedMedicaments.get(i);
                     int quantite = selectedQuantities.get(i);
                     int quantiteEnStock = medicament.getQuantiteEnStock();
-                    // Vérifier si la quantité en stock est suffisante
-                    if (quantite <= quantiteEnStock) {
-                        int nouvelleQuantite = quantiteEnStock - quantite;
-                        if (nouvelleQuantite >= 0) {
-                            // Mettre à jour la quantité en stock du médicament
-                            medicament.setQuantiteEnStock(nouvelleQuantite);
-                            // Gérer le cas où seule une partie du médicament est nécessaire pour la préparation
-                            if (medicament.getQuantitePourPreparation() < 1.0) {
-                                int reste = (int) (quantite * (1.0 - medicament.getQuantitePourPreparation()));
-                                confirmationMessage.append("- ").append(medicament.getNom()).append(" (").append(reste).append(" unité(s))\n");
-                            } else {
-                                // Ajouter les informations du médicament à la confirmation
-                                confirmationMessage.append("- ").append(medicament.getNom()).append(" (").append(quantite).append(" unité(s))\n");
-                            }
-                        }
-                    } else {
-                        // Mettre à jour l'indicateur indiquant un stock insuffisant
+
+                    if (quantite > quantiteEnStock) {
                         stockInsuffisant = true;
+                        break; // Sortir de la boucle dès qu'un stock insuffisant est détecté
+                    }
+
+                    int nouvelleQuantite = quantiteEnStock - quantite;
+                    medicament.setQuantiteEnStock(nouvelleQuantite);
+
+                    if (medicament.getQuantitePourPreparation() < 1.0) {
+                        int reste = (int) (quantite * (1.0 - medicament.getQuantitePourPreparation()));
+                        confirmationMessage.append("- ").append(medicament.getNom()).append(" (").append(reste).append(" unité(s))\n");
+                    } else {
+                        confirmationMessage.append("- ").append(medicament.getNom()).append(" (").append(quantite).append(" unité(s))\n");
                     }
                 }
-                // Si au moins un médicament n'était pas disponible en quantité suffisante, afficher un message d'erreur
+
                 if (stockInsuffisant) {
                     JOptionPane.showMessageDialog(dialogFrame, "Stock insuffisant pour certains médicaments.");
                 } else {
-                    // Calculer la date de livraison
                     Calendar dateLivraison = calculerDateLivraison();
-
-                    // Afficher le message de confirmation avec la date de livraison
                     confirmationMessage.append("\nLa commande sera livrée le ").append(dateLivraison.getTime());
-
-                    // Afficher le message de confirmation
                     JOptionPane.showMessageDialog(dialogFrame, confirmationMessage.toString());
 
-                    // Définition du contenu du fichier CSV
                     StringBuilder csvContent = new StringBuilder();
-
-                    // Parcourir chaque médicament sélectionné
                     for (int i = 0; i < selectedMedicaments.size(); i++) {
                         Medicament medicament = selectedMedicaments.get(i);
                         int quantite = selectedQuantities.get(i);
-                        int quantiteEnStock = medicament.getQuantiteEnStock();
-
-                        // Vérifier si la quantité en stock est suffisante
-                        if (quantite <= quantiteEnStock) {
-                            int nouvelleQuantite = quantiteEnStock - quantite;
-                            if (nouvelleQuantite >= 0) {
-                                // Mettre à jour la quantité en stock du médicament
-                                medicament.setQuantiteEnStock(nouvelleQuantite);
-                                // Ajouter les informations du médicament à la ligne du fichier CSV
-                                String csvLine = String.format("%s,%d,%s\n", medicament.getNom(), quantite, formatDateString(dateLivraison.getTime()));
-                                csvContent.append(csvLine);
-                            }
-                        }
+                        int nouvelleQuantite = medicament.getQuantiteEnStock() - quantite;
+                        medicament.setQuantiteEnStock(nouvelleQuantite);
+                        String csvLine = String.format("%s,%d,%s\n", medicament.getNom(), quantite, formatDateString(dateLivraison.getTime()));
+                        csvContent.append(csvLine);
                     }
 
-                    // Appeler la méthode pour écrire l'ordonnance dans le fichier CSV
-                    EcritureRegistrePreparationCsv.ecrirePreparationsCsv("src/data/registrepreparation.csv", new Preparation(selectedMedicaments));
-
+                    Preparation preparation = new Preparation(); // Création de l'objet Preparation avec les données nécessaires
+                    EcritureRegistrePreparationCsv.ecrirePreparationsCsv(preparation); // Appel de la méthode pour écrire dans le fichier CSV
                 }
-                // Fermer la boîte de dialogue
                 dialogFrame.dispose();
             });
 

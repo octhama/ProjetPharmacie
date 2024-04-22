@@ -11,11 +11,11 @@ public  class Preparation {
 
 
     // Ajoutez ce constructeur à la classe Preparation
-    public Preparation(String nom, int quantite, String date, Medicament[] medicaments, double coutTotal) {
+    public Preparation(String nom, int quantite, String date, List<Medicament> medicaments, double coutTotal) {
         this.nom = nom;
         this.quantite = quantite;
         this.date = date;
-        this.medicaments = List.of(medicaments);
+        this.medicaments = medicaments;
         this.coutTotal = coutTotal;
     }
 
@@ -47,13 +47,35 @@ public  class Preparation {
         this.coutTotal = (double) o;
     }
 
+    public List<Medicament> getMedicaments() {
+        return medicaments;
+    }
+
     public String getNom() {
         return nom;
     }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     public int getQuantite() {
         return quantite;
     }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
     public String getDate() {
         return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public double getCoutTotal() {
+        return coutTotal;
     }
 }
