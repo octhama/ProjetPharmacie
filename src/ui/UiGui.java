@@ -130,12 +130,46 @@ public class UiGui extends JFrame implements ActionListener {
 
         // Afficher les médicaments en vente libre dans le panneau correspondant
         afficherListeMedicamentsEnVenteLibre(panelMedVenteLibre);
-
-
         
+        // Ajout des boutons et moteur de recherche
+        JButton buttonQuitter = new JButton("Quitter");
+        JButton buttonAfficher = new JButton("Afficher les médicaments");
+
+        JTextField searchField = new JTextField(20);
+        searchField.setForeground(Color.GRAY); // Couleur de texte grise
+        searchField.setText("Rechercher un médicament..."); // Texte placeholder
+
+        searchField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (searchField.getText().equals("Rechercher un médicament...")) {
+                    searchField.setText("");
+                    searchField.setForeground(Color.BLACK); // Changer la couleur du texte à noir lorsque le champ obtient le focus
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (searchField.getText().isEmpty()) {
+                    searchField.setText("Rechercher un médicament...");
+                    searchField.setForeground(Color.GRAY); // Changer la couleur du texte à gris lorsque le champ perd le focus
+                }
+            }
+        });
+
+        buttonQuitter.addActionListener(this);
+        buttonAfficher.addActionListener(this);
+
+        JPanel panelBoutonsEtRecherche = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        panelBoutonsEtRecherche.add(searchField);
+        panelBoutonsEtRecherche.add(buttonAfficher);
+        panelBoutonsEtRecherche.add(buttonQuitter);
+        add(panelBoutonsEtRecherche, BorderLayout.SOUTH);
+
+
+
 
         // Ajout moteur de recherche dynamique de médicament (les informations s'affichent en temps réel dans le panneau de médicaments)
-        JTextField searchField = new JTextField(20);
         searchField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -158,8 +192,8 @@ public class UiGui extends JFrame implements ActionListener {
     afficherListeMedicaments(panelAfficherMedicaments, suggestions);
             }
 
-            // Affiche les suggestions de médicaments dans le même format que la liste complète
-private void afficherListeMedicaments(JPanel panel, List<Medicament> suggestions) {
+    // Affiche les suggestions de médicaments dans le même format que la liste complète
+    private void afficherListeMedicaments(JPanel panel, List<Medicament> suggestions) {
     // Création d'un panneau pour afficher les suggestions de médicaments
     JPanel medicamentsPanel = new JPanel();
     medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
@@ -189,20 +223,6 @@ private void afficherListeMedicaments(JPanel panel, List<Medicament> suggestions
     panel.revalidate();
 }
         });
-        
-        // Ajout des boutons
-        JButton buttonQuitter = new JButton("Quitter");
-        JButton buttonAfficher = new JButton("Afficher les médicaments");
-
-        buttonQuitter.addActionListener(this);
-        buttonAfficher.addActionListener(this);
-
-        JPanel panelBoutons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        panelBoutons.add(buttonAfficher);
-        panelBoutons.add(buttonQuitter);
-        panelBoutons.add(searchField);
-        add(panelBoutons, BorderLayout.SOUTH);
-
     }
 
     /**
