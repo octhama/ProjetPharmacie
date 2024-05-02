@@ -56,7 +56,6 @@ public class Pharmacie {
     
     // Fonction de filtrage et de tri des suggestions
     private List<Medicament> filtrerEtTrierSuggestions(List<Medicament> suggestions) {
-        // ... (implémentation du filtrage et du tri)
         return suggestions;
     }
     
@@ -105,5 +104,4 @@ public class Pharmacie {
         }
     }
 
-    // Autres méthodes...
 }

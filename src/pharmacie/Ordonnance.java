@@ -81,6 +81,4 @@ public class Ordonnance {
     public char[] getReferencesPatient() {
         return null;
     }
-
-    // Ajoute d'autres méthodes si nécessaire
 }
