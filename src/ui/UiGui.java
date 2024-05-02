@@ -11,15 +11,15 @@ import pharmacie.Preparation;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import java.io.IOException;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static io.EcritureRegistrePreparationCsv.*;
 
@@ -27,7 +27,6 @@ import static io.EcritureRegistrePreparationCsv.*;
  * Interface graphique pour une pharmacie
  */
 
-@SuppressWarnings("UnreachableCode")
 public class UiGui extends JFrame implements ActionListener {
     private final Pharmacie pharmacie;
     private final JPanel panelAfficherMedicaments;
@@ -102,12 +101,12 @@ public class UiGui extends JFrame implements ActionListener {
         titreLabel.setHorizontalAlignment(SwingConstants.CENTER);
         mainPanel.add(titreLabel, BorderLayout.NORTH);
 
-        // TabbedPane pour les fonctionnalités
+        // TabbedPane pour afficher les médicaments
         JTabbedPane tabbedPane = new JTabbedPane();
         mainPanel.add(tabbedPane, BorderLayout.CENTER);
 
 
-        // Création des panneaux pour afficher les différentes fonctionnalités
+        // Création des panneaux pour afficher les médicaments
         panelAfficherMedicaments = new JPanel(new BorderLayout());
         panelAfficherMedicamentsGenerique = new JPanel(new BorderLayout());
         panelAfficherMedicamentsNonGenerique = new JPanel(new BorderLayout());
@@ -133,6 +132,64 @@ public class UiGui extends JFrame implements ActionListener {
         afficherListeMedicamentsEnVenteLibre(panelMedVenteLibre);
 
 
+        
+
+        // Ajout moteur de recherche dynamique de médicament (les informations s'affichent en temps réel dans le panneau de médicaments)
+        JTextField searchField = new JTextField(20);
+        searchField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updateList();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateList();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updateList();
+            }
+
+            private void updateList() {
+                String search = searchField.getText();
+    List<Medicament> suggestions = pharmacie.trouverMedicamentsSuggestions(search);
+    afficherListeMedicaments(panelAfficherMedicaments, suggestions);
+            }
+
+            // Affiche les suggestions de médicaments dans le même format que la liste complète
+private void afficherListeMedicaments(JPanel panel, List<Medicament> suggestions) {
+    // Création d'un panneau pour afficher les suggestions de médicaments
+    JPanel medicamentsPanel = new JPanel();
+    medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
+
+    // Ajouter les détails de chaque médicament suggéré au panneau
+    for (Medicament medicament : suggestions) {
+        JLabel label = new JLabel(
+                "<html><b>Nom:</b> " + medicament.getNom() +
+                        "<br><b>Prix:</b> " + medicament.getPrix() + " €" +
+                        "<br><b>Type:</b> " + medicament.getType() +
+                        "<br><b>Générique:</b> " + (medicament.isGenerique() ? "Oui" : "Non") +
+                        "<br><b>Quantité en stock:</b> " + medicament.getQuantiteEnStock() +
+                        "</html>"
+        );
+        label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        label.setAlignmentX(Component.LEFT_ALIGNMENT);
+        medicamentsPanel.add(label);
+    }
+
+    // Retirer les anciens éléments du panneau
+    panel.removeAll();
+
+    // Ajouter le panneau des suggestions de médicaments au panneau principal
+    panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
+
+    // Mettre à jour l'affichage du panneau
+    panel.revalidate();
+}
+        });
+        
         // Ajout des boutons
         JButton buttonQuitter = new JButton("Quitter");
         JButton buttonAfficher = new JButton("Afficher les médicaments");
@@ -143,7 +200,9 @@ public class UiGui extends JFrame implements ActionListener {
         JPanel panelBoutons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panelBoutons.add(buttonAfficher);
         panelBoutons.add(buttonQuitter);
+        panelBoutons.add(searchField);
         add(panelBoutons, BorderLayout.SOUTH);
+
     }
 
     /**
@@ -196,7 +255,7 @@ public class UiGui extends JFrame implements ActionListener {
         // Ajouter un écouteur pour le bouton de recherche
         searchButton.addActionListener(e -> {
             String nomMedicament = searchField.getText();
-            Medicament medicament = pharmacie.trouverMedicament(nomMedicament);
+            Medicament medicament = (Medicament) pharmacie.trouverMedicamentsSuggestions(nomMedicament);
             if (medicament != null) {
                 JOptionPane.showMessageDialog(frame, "Le médicament " + nomMedicament + " existe dans la pharmacie.");
             } else {
@@ -213,8 +272,7 @@ public class UiGui extends JFrame implements ActionListener {
      * @throws IOException Si une erreur d'entrée/sortie se produit
      */
 
-    // Méthode pour commander une préparation
-    private void commanderUnePreparation(HashMap<Object, Object> checkBoxSpinnerMap){
+    private void commanderUnePreparation(HashMap<Object, Object> checkBoxSpinnerMap) {
 
         // Créer une fenêtre pour la commande de préparation
         JFrame frame = new JFrame("Commander une préparation");
@@ -230,19 +288,20 @@ public class UiGui extends JFrame implements ActionListener {
         // Créer un panneau pour les médicaments
         JPanel medicamentPanel = new JPanel(new GridLayout(0, 1));
         panel.add(new JScrollPane(medicamentPanel), BorderLayout.CENTER);
+
         // Remplir le panneau des médicaments avec des cases à cocher et des spinners pour la sélection
         List<Medicament> medicaments = pharmacie.getMedicaments();
         for (Medicament medicament : medicaments) {
             JPanel entryPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
             JCheckBox checkBox = new JCheckBox();
-            JSpinner spinner = new JSpinner(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
+            JSpinner spinner = new JSpinner(new SpinnerNumberModel(0, 0, medicament.getQuantiteEnStock(), 1));
             JLabel nameLabel = new JLabel(medicament.getNom());
 
             // Ajouter les éléments à medicamentCheckBoxMap et spinnerMap
             medicamentCheckBoxMap.put(medicament, checkBox);
             spinnerMap.put(checkBox, spinner);
 
-            // Ajouter un écouteur d'item pour chaque checkbox
+            // Ajouter un écouteur d'item pour chaque checkbox pour activer/désactiver les spinners
             checkBox.addItemListener(e -> {
                 boolean isSelected = checkBox.isSelected();
                 spinner.setEnabled(isSelected);
@@ -250,6 +309,10 @@ public class UiGui extends JFrame implements ActionListener {
 
                 if (isSelected) {
                     int quantite = (int) spinner.getValue();
+                    if (quantite > medicament.getQuantiteEnStock()) {
+                        spinner.setValue(medicament.getQuantiteEnStock());
+                        JOptionPane.showMessageDialog(null, "Stock insuffisant pour ce médicament. Quantité maximum disponible : " + medicament.getQuantiteEnStock());
+                    }
                     checkBoxSpinnerMap.put(checkBox, spinner);
                 } else {
                     checkBoxSpinnerMap.remove(checkBox);
@@ -268,7 +331,6 @@ public class UiGui extends JFrame implements ActionListener {
             JPanel medicineEntryPanel = new JPanel(new BorderLayout());
             medicineEntryPanel.add(entryPanel, BorderLayout.CENTER);
             medicamentPanel.add(medicineEntryPanel);
-            checkBoxSpinnerMap.put(checkBox, spinner);
         }
 
         // Créer un panneau pour le bouton de commande
@@ -282,7 +344,6 @@ public class UiGui extends JFrame implements ActionListener {
         searchButton.addActionListener(e ->  chercherMedicament());
         bottomPanel.add(searchButton);
 
-
         // Action du bouton de commande
         buttonCommander.addActionListener(e -> {
             // Vérifier si une ordonnance est disponible
@@ -290,27 +351,28 @@ public class UiGui extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(frame, "Une ordonnance est nécessaire pour commander une préparation.");
                 return; // Arrêter le traitement si l'ordonnance est manquante
             }
-            // Créer une boîte de dialogue pour la commande de médicaments
-            JFrame dialogFrame = new JFrame("Commander une préparation");
-            dialogFrame.setSize(400, 300);
-            dialogFrame.setLocationRelativeTo(frame);
-            dialogFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            dialogFrame.setResizable(false);
+
+            // Créer une boîte de dialogue pour la confirmation de la commande
+            JFrame confirmationDialog = new JFrame("Confirmation de commande");
+            confirmationDialog.setSize(400, 300);
+            confirmationDialog.setLocationRelativeTo(frame);
+            confirmationDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            confirmationDialog.setResizable(false);
 
             // Créer un panneau pour les éléments de la boîte de dialogue
-            JPanel dialogPanel = new JPanel(new BorderLayout());
-            dialogFrame.add(dialogPanel);
+            JPanel confirmationPanel = new JPanel(new BorderLayout());
+            confirmationDialog.add(confirmationPanel);
 
-            // Créer un panneau pour les choix de médicaments
+            // Créer un panneau pour les choix de médicaments confirmés
             JPanel choicesPanel = new JPanel(new GridLayout(0, 1));
-            dialogPanel.add(new JScrollPane(choicesPanel), BorderLayout.CENTER);
+            confirmationPanel.add(new JScrollPane(choicesPanel), BorderLayout.CENTER);
 
             // Créer une liste pour stocker les médicaments sélectionnés et leurs quantités
             List<Medicament> selectedMedicaments = new ArrayList<>();
             List<Integer> selectedQuantities = new ArrayList<>();
 
-            // Ajouter les choix de médicaments à la boîte de dialogue
-            for (Map.Entry<Medicament, JCheckBox> entry : medicamentCheckBoxMap.entrySet()) {
+            // Afficher les choix de médicaments confirmés dans la boîte de dialogue
+            for (Map.Entry<Medicament, JCheckBox> entry : medicamentCheckBoxMap.entrySet()) { // Parcourir les entrées de la map de la boîte de la boîte de dialogue
                 Medicament medicament = entry.getKey();
                 JCheckBox checkBox = entry.getValue();
                 if (checkBox.isSelected()) {
@@ -319,14 +381,12 @@ public class UiGui extends JFrame implements ActionListener {
                     choicesPanel.add(choiceLabel);
                     selectedMedicaments.add(medicament);
                     selectedQuantities.add(quantite);
-                } else {
-                    checkBox.setEnabled(false);
                 }
             }
 
             // Créer un panneau pour les boutons de validation et d'annulation
             JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-            dialogPanel.add(buttonsPanel, BorderLayout.SOUTH);
+            confirmationPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
             // Ajouter un bouton pour valider la commande
             JButton validateButton = new JButton("Valider");
@@ -334,51 +394,49 @@ public class UiGui extends JFrame implements ActionListener {
 
             // Action du bouton de validation
             validateButton.addActionListener(validateEvent -> {
-                StringBuilder confirmationMessage = new StringBuilder("Le(s) médicament(s) suivant(s) ont été commandé(s) :\n\n");
+                // Vérifier si le stock est suffisant pour tous les médicaments sélectionnés
                 boolean stockInsuffisant = false;
-
                 for (int i = 0; i < selectedMedicaments.size(); i++) {
                     Medicament medicament = selectedMedicaments.get(i);
                     int quantite = selectedQuantities.get(i);
-                    int quantiteEnStock = medicament.getQuantiteEnStock();
-
-                    if (quantite > quantiteEnStock) {
+                    if (quantite > medicament.getQuantiteEnStock()) {
                         stockInsuffisant = true;
-                        break; // Sortir de la boucle dès qu'un stock insuffisant est détecté
-                    }
-
-                    int nouvelleQuantite = quantiteEnStock - quantite;
-                    medicament.setQuantiteEnStock(nouvelleQuantite);
-
-                    if (medicament.getQuantitePourPreparation() < 1.0) {
-                        int reste = (int) (quantite * (1.0 - medicament.getQuantitePourPreparation()));
-                        confirmationMessage.append("- ").append(medicament.getNom()).append(" (").append(reste).append(" unité(s))\n");
-                    } else {
-                        confirmationMessage.append("- ").append(medicament.getNom()).append(" (").append(quantite).append(" unité(s))\n");
+                        break;
                     }
                 }
 
                 if (stockInsuffisant) {
-                    JOptionPane.showMessageDialog(dialogFrame, "Stock insuffisant pour certains médicaments.");
+                    JOptionPane.showMessageDialog(confirmationDialog, "Stock insuffisant pour certains médicaments.");
                 } else {
+                    // Calculer la date de livraison estimée
                     Calendar dateLivraison = calculerDateLivraison();
-                    confirmationMessage.append("\nLa commande sera livrée le ").append(dateLivraison.getTime());
-                    JOptionPane.showMessageDialog(dialogFrame, confirmationMessage.toString());
 
-                    StringBuilder csvContent = new StringBuilder();
+                    // Construire le message de confirmation
+                    StringBuilder confirmationMessage = new StringBuilder("Les médicaments suivants ont été commandés :\n\n");
+                    for (int i = 0; i < selectedMedicaments.size(); i++) {
+                        Medicament medicament = selectedMedicaments.get(i);
+                        int quantite = selectedQuantities.get(i);
+                        confirmationMessage.append("- ").append(medicament.getNom()).append(" (").append(quantite).append(" unité(s))\n");
+                    }
+                    confirmationMessage.append("\nLa commande sera livrée le ").append(dateLivraison.getTime());
+
+                    // Afficher le message de confirmation
+                    JOptionPane.showMessageDialog(confirmationDialog, confirmationMessage.toString());
+
+                    // Mettre à jour les quantités en stock des médicaments
                     for (int i = 0; i < selectedMedicaments.size(); i++) {
                         Medicament medicament = selectedMedicaments.get(i);
                         int quantite = selectedQuantities.get(i);
                         int nouvelleQuantite = medicament.getQuantiteEnStock() - quantite;
                         medicament.setQuantiteEnStock(nouvelleQuantite);
-                        String csvLine = String.format("%s,%d,%s\n", medicament.getNom(), quantite, formatDateString(dateLivraison.getTime()));
-                        csvContent.append(csvLine);
                     }
 
-                    Preparation preparation = new Preparation(); // Création de l'objet Preparation avec les données nécessaires
+                    // Ecrire les informations de la commande dans le fichier CSV (à implémenter)
+                    Preparation preparation = new Preparation(); // Créer un objet Preparation avec les données nécessaires
                     EcritureRegistrePreparationCsv.ecrirePreparationsCsv(preparation); // Appel de la méthode pour écrire dans le fichier CSV
+
+                    confirmationDialog.dispose();
                 }
-                dialogFrame.dispose();
             });
 
             // Ajouter un bouton pour annuler la commande
@@ -386,10 +444,10 @@ public class UiGui extends JFrame implements ActionListener {
             buttonsPanel.add(cancelButton);
 
             // Ajouter un écouteur pour le bouton d'annulation
-            cancelButton.addActionListener(cancelEvent -> dialogFrame.dispose()); // Fermer la boîte de dialogue en cas d'annulation
+            cancelButton.addActionListener(cancelEvent -> confirmationDialog.dispose()); // Fermer la boîte de dialogue en cas d'annulation
 
-            // Afficher la boîte de dialogue
-            dialogFrame.setVisible(true);
+            // Afficher la boîte de dialogue de confirmation
+            confirmationDialog.setVisible(true);
 
             // Fermer la fenêtre de commande de médicaments
             frame.dispose();
@@ -399,11 +457,6 @@ public class UiGui extends JFrame implements ActionListener {
         frame.setVisible(true);
     }
 
-    // Méthode pour formater la date sous forme de chaîne
-    private String formatDateString(Date date) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return dateFormat.format(date);
-    }
 
     /**
      * Méthode pour afficher la liste des médicaments dans un JPanel
@@ -474,7 +527,7 @@ public class UiGui extends JFrame implements ActionListener {
      */
 
      // Afficher la liste des médicaments générique
-     private void afficherListeMedicamentsGen(JPanel panel) {
+    private void afficherListeMedicamentsGen(JPanel panel) {
         // Récupérer la liste des médicaments de la pharmacie
         List<Medicament> medicaments = pharmacie.getMedicaments();
 

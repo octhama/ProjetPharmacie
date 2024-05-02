@@ -93,4 +93,9 @@ public class Medicament {
     public char[] getQuantitePrescrite() {
         return null;
     }
+
+    public String getPrincipeActif() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPrincipeActif'");
+    }
 }

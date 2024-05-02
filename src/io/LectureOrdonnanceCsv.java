@@ -62,7 +62,6 @@ public class LectureOrdonnanceCsv {
 
     /**
      * Méthode pour parser la liste de médicaments à partir de la chaîne de données du fichier CSV.
-     *
      * @param medicamentsString Chaîne de données représentant la liste de médicaments.
      * @return Une liste de médicaments.
      */

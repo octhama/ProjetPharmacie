@@ -30,27 +30,39 @@ public class Pharmacie {
         return medicaments;
     }
 
-    public Medicament trouverMedicament(String nomMedicament) {
-        // Créer un pattern regex avec le nom du médicament
-        Pattern pattern = Pattern.compile(nomMedicament, Pattern.CASE_INSENSITIVE);
-
+    public List<Medicament> trouverMedicamentsSuggestions(String prefixe) {
+        // Créer un pattern regex avec le préfixe du nom du médicament
+        Pattern pattern = Pattern.compile("^" + prefixe, Pattern.CASE_INSENSITIVE);
+    
+        // Liste pour stocker les suggestions
+        List<Medicament> suggestions = new ArrayList<>();
+    
         // Parcourir la liste des médicaments
         for (Medicament medicament : medicaments) {
             // Vérifier si le nom du médicament correspond au pattern regex
             Matcher matcher = pattern.matcher(medicament.getNom());
             if (matcher.find()) {
-                // Retourner le médicament trouvé
-                return medicament;
+                // Ajouter le médicament à la liste de suggestions
+                suggestions.add(medicament);
             }
         }
-        // Retourner null si le médicament n'est pas trouvé
-        return null;
+    
+        // Filtrer et trier la liste des suggestions
+        suggestions = filtrerEtTrierSuggestions(suggestions);
+    
+        // Retourner la liste des suggestions
+        return suggestions;
     }
-
-
+    
+    // Fonction de filtrage et de tri des suggestions
+    private List<Medicament> filtrerEtTrierSuggestions(List<Medicament> suggestions) {
+        // ... (implémentation du filtrage et du tri)
+        return suggestions;
+    }
+    
     public void acheterMedicament(String nomMedicament, int quantite) throws ExeptionRuptureDeStock {
         // Implémentez la logique pour acheter un médicament
-        Medicament medicament = trouverMedicament(nomMedicament);
+        Medicament medicament = (Medicament) trouverMedicamentsSuggestions(nomMedicament);
         if (medicament != null) {
             medicament.acheter(quantite);
         } else {

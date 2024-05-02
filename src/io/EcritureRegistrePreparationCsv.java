@@ -4,6 +4,7 @@ import pharmacie.Medicament;
 import pharmacie.Preparation;
 
 import java.io.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,10 +33,10 @@ public class EcritureRegistrePreparationCsv {
                     headerSkipped = true;
                     continue; // Ignorer l'en-tête et passer à la prochaine itération de la boucle
                 }
-                System.out.println("Line read from CSV: \n\n" + line); // Ajout d'une instruction d'impression pour le débogage
+                //System.out.println("Line read from CSV: \n\n" + line); // Ajout d'une instruction d'impression pour le débogage
                 // On lit chaque ligne et incrémente l'identifiant s'il est plus grand que le compteur actuel
                 String[] parts = line.split(",");
-                int currentId = Integer.parseInt(parts[0].substring(7)); // Récupération de l'identifiant numérique
+                int currentId = Integer.parseInt(parts[0].substring(7)); // Récupérer l'identifiant numérique à partir de l'identifiant unique
                 idCounter = Math.max(idCounter, currentId);
             }
             // Incrémentation pour le prochain identifiant
@@ -53,41 +54,55 @@ public class EcritureRegistrePreparationCsv {
                 // Écrire l'en-tête
                 writer.write("idUnique,nom,quantite,date\n");
             }
+
+            // Validation des données de la préparation
+            if (preparation == null || preparation.getNom() == null || preparation.getNom().isEmpty() ||
+                    preparation.getQuantite() <= 0 || preparation.getDate() == null) {
+                System.out.println("Erreur: Données de préparation invalides.");
+                return;
+            }
+
             // On ajoute la préparation à la liste
             preparations.add(preparation);
-            // On met à jour la quantité de médicament en stock dans la liste des médicaments
+
+            // Mise à jour du stock de médicaments
             Medicament medicament = medicaments.stream()
                     .filter(m -> m.getNom().equals(preparation.getNom()))
                     .findFirst()
                     .orElse(null);
 
-            if (medicament != null && medicament.getQuantiteEnStock() >= preparation.getQuantite()) {
-                // Si le médicament est trouvé et la quantité est suffisante, décrémentez la quantité en stock
-                medicament.setQuantiteEnStock(medicament.getQuantiteEnStock() - preparation.getQuantite());
+            if (medicament != null) {
+                // Vérification de la quantité en stock
+                if (medicament.getQuantiteEnStock() >= preparation.getQuantite()) {
+                    // Décrémenter la quantité en stock
+                    medicament.setQuantiteEnStock(medicament.getQuantiteEnStock() - preparation.getQuantite());
 
-                // Ecriture de la ligne dans le fichier CSV
-                String idUnique = "CMD-PRP" + idCounter; // Identifiant unique auto-généré
-                String nom = preparation.getNom() != null ? preparation.getNom() : "null";
-                String quantite = String.valueOf(preparation.getQuantite());
-                String date = preparation.getDate() != null ? preparation.getDate() : "null";
+                    // Écriture de la ligne dans le fichier CSV
+                    String idUnique = genererIdUnique();
+                    String nom = preparation.getNom();
+                    String quantite = String.valueOf(preparation.getQuantite());
+                    String date = String.format(String.valueOf(DateTimeFormatter.ISO_DATE)); // Formatage de la date
 
-                // Ecriture de la ligne dans le fichier CSV
-                writer.write(
-                        idUnique + "," +
-                                nom + "," +
-                                quantite + "," +
-                                date + "\n"
-                );
-                idCounter++; // Incrémenter le compteur pour le prochain identifiant
+                    writer.write(
+                            idUnique + "," +
+                                    nom + "," +
+                                    quantite + "," +
+                                    date + "\n"
+                    );
+                } else {
+                    System.out.println("Erreur: Stock insuffisant pour le médicament " + preparation.getNom() + ".");
+                }
             } else {
-                // Gérez le cas où le médicament n'est pas trouvé ou la quantité en stock est insuffisante
-                System.out.println("Le médicament " + preparation.getNom() + " n'a pas été trouvé dans la liste des médicaments ou la quantité en stock est insuffisante.");
-                // Ajoutez ici la logique supplémentaire que vous souhaitez exécuter lorsque le médicament n'est pas trouvé ou la quantité en stock est insuffisante
+                System.out.println("Erreur: Médicament " + preparation.getNom() + " non trouvé dans la liste des médicaments.");
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Erreur d'écriture dans le fichier CSV: " + e.getMessage());
         }
+    }
+
+    private static String genererIdUnique() {
+        return "CMD-PREP" + idCounter++;
     }
 
     // Méthodes d'accès aux données

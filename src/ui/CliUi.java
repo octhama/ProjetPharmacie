@@ -37,7 +37,7 @@ public class CliUi {
         System.out.println("Entrez le nom du médicament à chercher:");
         String nomMedicament = scanner.nextLine();
 
-        Medicament medicament = pharmacie.trouverMedicament(nomMedicament);
+        Medicament medicament = (Medicament) pharmacie.trouverMedicamentsSuggestions(nomMedicament);
         if (medicament != null) {
             System.out.println(medicament);
         } else {
@@ -50,7 +50,7 @@ public class CliUi {
         System.out.println("Entrez le nom du médicament à commander:");
         String nomMedicament = scanner.nextLine();
 
-        Medicament medicament = pharmacie.trouverMedicament(nomMedicament);
+        Medicament medicament = (Medicament) pharmacie.trouverMedicamentsSuggestions(nomMedicament);
         if (medicament != null) {
             System.out.println("Entrez la quantité à commander:");
             int quantite = scanner.nextInt();
@@ -69,7 +69,7 @@ public class CliUi {
         System.out.println("Entrez le nom du médicament à acheter:");
         String nomMedicament = scanner.nextLine();
 
-        Medicament medicament = pharmacie.trouverMedicament(nomMedicament);
+        Medicament medicament = (Medicament) pharmacie.trouverMedicamentsSuggestions(nomMedicament);
         if (medicament != null) {
             System.out.println("Entrez la quantité à acheter:");
             int quantite = scanner.nextInt();
