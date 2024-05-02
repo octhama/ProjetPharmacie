@@ -75,9 +75,6 @@ public class UiGui extends JFrame implements ActionListener {
 
         JMenu menuActionsPatient = new JMenu("Menu Patient");
         menuBar.add(menuActionsPatient);
-        JMenuItem menuChercherMedicament = new JMenuItem("Chercher médicament");
-        menuChercherMedicament.addActionListener(e -> chercherMedicament());
-        menuActionsPatient.add(menuChercherMedicament);
 
         JMenuItem menuCommanderUnePreparation = new JMenuItem("Commander préparation(s)");
         menuCommanderUnePreparation.addActionListener(e -> {
@@ -166,9 +163,6 @@ public class UiGui extends JFrame implements ActionListener {
         panelBoutonsEtRecherche.add(buttonQuitter);
         add(panelBoutonsEtRecherche, BorderLayout.SOUTH);
 
-
-
-
         // Ajout moteur de recherche dynamique de médicament (les informations s'affichent en temps réel dans le panneau de médicaments)
         searchField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -247,47 +241,6 @@ public class UiGui extends JFrame implements ActionListener {
     }
 
     /**
-     * Constructeur de l'interface graphique
-     * @throws IOException Si une erreur d'entrée/sortie se produit
-     */
-
-    // Méthode pour vérifier si un médicament existe dans src/data/medicaments.csv
-    private void chercherMedicament() {
-        // Créer une fenêtre pour la recherche de médicament
-        JFrame frame = new JFrame("Chercher un médicament");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(400, 100);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-
-        // Créer un panneau pour les éléments de la fenêtre
-        JPanel panel = new JPanel(new FlowLayout());
-        frame.add(panel);
-
-        // Créer un champ de texte pour la recherche
-        JTextField searchField = new JTextField(20);
-        panel.add(searchField);
-
-        // Créer un bouton pour lancer la recherche
-        JButton searchButton = new JButton("Rechercher");
-        panel.add(searchButton);
-
-        // Ajouter un écouteur pour le bouton de recherche
-        searchButton.addActionListener(e -> {
-            String nomMedicament = searchField.getText();
-            Medicament medicament = (Medicament) pharmacie.trouverMedicamentsSuggestions(nomMedicament);
-            if (medicament != null) {
-                JOptionPane.showMessageDialog(frame, "Le médicament " + nomMedicament + " existe dans la pharmacie.");
-            } else {
-                JOptionPane.showMessageDialog(frame, "Le médicament " + nomMedicament + " n'existe pas dans la pharmacie.");
-            }
-        });
-
-        // Rendre la fenêtre visible
-        frame.setVisible(true);
-    }
-
-    /**
      * Méthode pour afficher la liste des médicaments génériques dans un JPanel
      * @throws IOException Si une erreur d'entrée/sortie se produit
      */
@@ -307,7 +260,37 @@ public class UiGui extends JFrame implements ActionListener {
 
         // Créer un panneau pour les médicaments
         JPanel medicamentPanel = new JPanel(new GridLayout(0, 1));
-        panel.add(new JScrollPane(medicamentPanel), BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(medicamentPanel);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        // Créér un conteneur pour le champ de recherche
+        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        panel.add(searchPanel, BorderLayout.NORTH);
+
+        // Créer un champ de recherche pour filtrer les médicaments
+        JTextField searchField = new JTextField("Rechercher un médicament...");
+        searchField.setForeground(Color.GRAY);
+        searchField.setColumns(20);
+        searchPanel.add(searchField);
+
+        // Ajouter un écouteur de focus pour le champ de recherche
+        searchField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (searchField.getText().equals("Rechercher un médicament...")) {
+                    searchField.setText("");
+                    searchField.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (searchField.getText().isEmpty()) {
+                    searchField.setText("Rechercher un médicament...");
+                    searchField.setForeground(Color.GRAY);
+                }
+            }
+        });
 
         // Remplir le panneau des médicaments avec des cases à cocher et des spinners pour la sélection
         List<Medicament> medicaments = pharmacie.getMedicaments();
@@ -353,6 +336,87 @@ public class UiGui extends JFrame implements ActionListener {
             medicamentPanel.add(medicineEntryPanel);
         }
 
+        // Ajouter un écouteur au champ de recherche pour la recherche dynamique
+        searchField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updateList();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateList();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updateList();
+            }
+
+            private void updateList() {
+                String search = searchField.getText();
+                // Filtrer les médicaments en fonction de la recherche
+                List<Medicament> filteredMedicaments = pharmacie.filterMedicaments(search);
+                // Mettre à jour l'affichage des médicaments
+                afficherMedicaments(filteredMedicaments);
+            }
+
+            private void afficherMedicaments(List<Medicament> filteredMedicaments) {
+                // Nettoyer le panneau des médicaments avant d'ajouter de nouveaux éléments
+                medicamentPanel.removeAll();
+            
+                // Parcourir la liste des médicaments filtrés
+                for (Medicament medicament : filteredMedicaments) {
+                    // Créer les composants pour afficher le médicament
+                    JPanel entryPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+                    JCheckBox checkBox = new JCheckBox();
+                    JSpinner spinner = new JSpinner(new SpinnerNumberModel(0, 0, medicament.getQuantiteEnStock(), 1));
+                    JLabel nameLabel = new JLabel(medicament.getNom());
+            
+                    // Ajouter les éléments à medicamentCheckBoxMap et spinnerMap
+                    medicamentCheckBoxMap.put(medicament, checkBox);
+                    spinnerMap.put(checkBox, spinner);
+            
+                    // Ajouter un écouteur d'item pour chaque case à cocher pour activer/désactiver les spinners
+                    checkBox.addItemListener(e -> {
+                        boolean isSelected = checkBox.isSelected();
+                        spinner.setEnabled(isSelected);
+                        nameLabel.setEnabled(isSelected);
+            
+                        if (isSelected) {
+                            int quantite = (int) spinner.getValue();
+                            if (quantite > medicament.getQuantiteEnStock()) {
+                                spinner.setValue(medicament.getQuantiteEnStock());
+                                JOptionPane.showMessageDialog(null, "Stock insuffisant pour ce médicament. Quantité maximum disponible : " + medicament.getQuantiteEnStock());
+                            }
+                            checkBoxSpinnerMap.put(checkBox, spinner);
+                        } else {
+                            checkBoxSpinnerMap.remove(checkBox);
+                        }
+                    });
+            
+                    // Par défaut, les spinners et les labels sont désactivés
+                    spinner.setEnabled(false);
+                    nameLabel.setEnabled(false);
+            
+                    // Ajouter les composants au panneau d'entrée
+                    entryPanel.add(checkBox);
+                    entryPanel.add(nameLabel);
+                    entryPanel.add(spinner);
+            
+                    // Encapsuler chaque médicament dans un panneau individuel
+                    JPanel medicineEntryPanel = new JPanel(new BorderLayout());
+                    medicineEntryPanel.add(entryPanel, BorderLayout.CENTER);
+                    medicamentPanel.add(medicineEntryPanel);
+                }
+            
+                // Rafraîchir l'interface utilisateur pour refléter les changements
+                medicamentPanel.revalidate();
+                medicamentPanel.repaint();
+            }
+            
+        });
+
         // Créer un panneau pour le bouton de commande
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panel.add(bottomPanel, BorderLayout.SOUTH);
@@ -360,9 +424,6 @@ public class UiGui extends JFrame implements ActionListener {
         // Ajouter un bouton pour lancer la commande
         JButton buttonCommander = new JButton("Commander");
         bottomPanel.add(buttonCommander);
-        JButton searchButton = new JButton("Rechercher");
-        searchButton.addActionListener(e ->  chercherMedicament());
-        bottomPanel.add(searchButton);
 
         // Action du bouton de commande
         buttonCommander.addActionListener(e -> {

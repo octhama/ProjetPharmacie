@@ -22,7 +22,6 @@ public class Program {
         } catch (IOException e) {
             e.printStackTrace();
         }
- 
         // Créer une interface graphique pour la pharmacie
         try {
             UiGui gui = new UiGui(pharmacie);

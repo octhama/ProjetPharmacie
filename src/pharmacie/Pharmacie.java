@@ -104,4 +104,25 @@ public class Pharmacie {
         }
     }
 
+    public List<Medicament> filterMedicaments(String search) {
+        // Créer une liste pour stocker les médicaments filtrés
+        List<Medicament> filteredMedicaments = new ArrayList<>();
+    
+        // Convertir la recherche en minuscules pour une recherche insensible à la casse
+        String searchTerm = search.toLowerCase();
+    
+        // Parcourir la liste des médicaments
+        for (Medicament medicament : medicaments) {
+            // Vérifier si le nom du médicament contient la recherche (insensible à la casse)
+            if (medicament.getNom().toLowerCase().contains(searchTerm)) {
+                // Ajouter le médicament à la liste des médicaments filtrés
+                filteredMedicaments.add(medicament);
+            }
+        }
+    
+        // Retourner la liste des médicaments filtrés
+        return filteredMedicaments;
+    }
+    
+
 }
