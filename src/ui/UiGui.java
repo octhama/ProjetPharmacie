@@ -634,22 +634,12 @@ public class UiGui extends JFrame implements ActionListener {
         menuPharmacienFrame.setVisible(true);
     }
 
-    /**
-     * Méthode pour afficher la liste des médicaments dans un JPanel
-     * @throws IOException Si une erreur d'entrée/sortie se produit
-     */
-
     // Fonction pour vérifier si une ordonnance est disponible
     private boolean ordonnanceDisponible() {
         // Implémente la logique pour vérifier si une ordonnance est disponible
         // Retourne true si une ordonnance est disponible, sinon false
         return true;
     }
-
-    /**
-     * Méthode pour afficher la liste des médicaments dans un JPanel
-     * @throws IOException Si une erreur d'entrée/sortie se produit
-     */
 
     // Fonction pour calculer la date de livraison en ajoutant un jour à la date actuelle
     private Calendar calculerDateLivraison() {
@@ -661,11 +651,6 @@ public class UiGui extends JFrame implements ActionListener {
         }
         return dateLivraison;
     }
-
-    /**
-     * Méthode pour gérer les événements des boutons
-     * @throws IOException Si une erreur d'entrée/sortie se produit
-     */
 
     // Afficher les medicament de src/data/medicaments.csv
     private void afficherListeMedicaments(JPanel panel) {
@@ -695,12 +680,6 @@ public class UiGui extends JFrame implements ActionListener {
         panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
         panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
-
-    /**
-     *  Méthode pour gérer les événements des boutons
-     * @param panel
-     * @throws IOException Si une erreur d'entrée/sortie se produit
-     */
 
      // Afficher la liste des médicaments générique
     private void afficherListeMedicamentsGen(JPanel panel) {
@@ -733,11 +712,6 @@ public class UiGui extends JFrame implements ActionListener {
         panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
 
-    /**
-     * Méthode pour gérer les événements des boutons
-     * @throws IOException Si une erreur d'entrée/sortie se produit
-     */
-
     // Afficher la liste des médicaments non générique
     private void afficherListeMedicamentsNonGen(JPanel panel) {
         // Récupérer la liste des médicaments de la pharmacie
@@ -768,11 +742,6 @@ public class UiGui extends JFrame implements ActionListener {
         panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
         panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
-
-    /**
-     * Méthode pour gérer les événements des boutons
-     * @throws IOException Si une erreur d'entrée/sortie se produit
-     */
 
     // Afficher la liste des médicaments sur ordonnance
     private  void afficherListeMedicamentsSurOrdonnance(JPanel panel) {
@@ -805,11 +774,6 @@ public class UiGui extends JFrame implements ActionListener {
         panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
 
-    /**
-     * Méthode pour gérer les événements des boutons
-     * @throws IOException Si une erreur d'entrée/sortie se produit
-     */
-
     // Afficher la liste des médicaments en vente libre
     private void afficherListeMedicamentsEnVenteLibre(JPanel panel) {
         // Récupérer la liste des médicaments de la pharmacie
@@ -841,21 +805,10 @@ public class UiGui extends JFrame implements ActionListener {
         panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
 
-    /**
-     * Méthode pour afficher l'interface graphique
-     * @throws IOException Si une erreur d'entrée/sortie se produit
-     */
-
     public void afficher() {
         // Afficher l'interface graphique
         this.setVisible(true);
     }
-
-    /**
-     * Méthode pour gérer les événements des boutons
-     * @param e L'événement déclenché
-     * @throws IOException Si une erreur d'entrée/sortie se produit
-     */
 
     @Override
     public void actionPerformed(ActionEvent e) {
