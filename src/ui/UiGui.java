@@ -382,16 +382,15 @@ public class UiGui extends JFrame implements ActionListener {
 
                 // Vérifier si les médicaments sélectionnés correspondent à ceux prescrits
                 if (!medicamentsCorrespondants(medicamentsPrescrits)) {
-                    JOptionPane.showMessageDialog(frame, "Certains médicaments sélectionnés ne correspondent pas à ceux prescrits.");
+                    JOptionPane.showMessageDialog(frame, "Le(s) médicament(s) sélectionné(s) ne correspond(ent) pas à ce(ux) prescrit(s).");
                     // Afficher une boîte de dialogue avec la liste des médicaments prescrits
-                    StringBuilder message = new StringBuilder("Les médicaments suivants sont prescrits dans l'ordonnance :\n\n");
+                    StringBuilder message = new StringBuilder("Le(s) médicament(s) suivant(s) sont prescrit(s) dans l'ordonnance :\n\n");
                     for (String medicamentPrescrit : medicamentsPrescrits) {
                         message.append("- ").append(medicamentPrescrit).append("\n");
                     }
                     message.append("\nVeuillez sélectionner les médicaments prescrits.");
                     JOptionPane.showMessageDialog(frame, message.toString());
                 }else{
-
                 // Créer une boîte de dialogue pour la confirmation de la commande
                 JFrame confirmationDialog = new JFrame("Confirmation de commande");
                 confirmationDialog.setSize(400, 300);
