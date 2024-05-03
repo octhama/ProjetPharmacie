@@ -107,22 +107,24 @@ public class Pharmacie {
     public List<Medicament> filterMedicaments(String search) {
         // Créer une liste pour stocker les médicaments filtrés
         List<Medicament> filteredMedicaments = new ArrayList<>();
-    
-        // Convertir la recherche en minuscules pour une recherche insensible à la casse
-        String searchTerm = search.toLowerCase();
-    
+
+        // Échapper les caractères spéciaux dans la recherche pour éviter les erreurs dans l'expression régulière
+        String escapedSearch = Pattern.quote(search);
+
+        // Créer un pattern regex avec une correspondance partielle du terme de recherche dans le nom du médicament
+        Pattern pattern = Pattern.compile("\\b" + escapedSearch, Pattern.CASE_INSENSITIVE);
+
         // Parcourir la liste des médicaments
         for (Medicament medicament : medicaments) {
-            // Vérifier si le nom du médicament contient la recherche (insensible à la casse)
-            if (medicament.getNom().toLowerCase().contains(searchTerm)) {
+            // Vérifier si le nom du médicament correspond au pattern regex
+            Matcher matcher = pattern.matcher(medicament.getNom());
+            if (matcher.find()) {
                 // Ajouter le médicament à la liste des médicaments filtrés
                 filteredMedicaments.add(medicament);
             }
         }
-    
+
         // Retourner la liste des médicaments filtrés
         return filteredMedicaments;
     }
-    
-
 }

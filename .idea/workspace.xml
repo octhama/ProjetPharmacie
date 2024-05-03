@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ffbf0945-00a1-41f4-a3ac-8b676c5570ed" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/dataordonnances.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/dataordonnances.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Pharmacie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Pharmacie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/UiGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UiGui.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,9 +31,9 @@
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2fx83ZbGYaxM3ev3I7Fw76HtqQE" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -45,7 +45,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "com.google.cloudcode.ide_session_index": "20240503_0000",
+    "com.google.cloudcode.ide_session_index": "20240503_0001",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
@@ -69,7 +69,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1714731170531</updated>
-      <workItem from="1714731171743" duration="928000" />
+      <workItem from="1714731171743" duration="4214000" />
+      <workItem from="1714735487573" duration="9987000" />
     </task>
     <servers />
   </component>
