@@ -5,6 +5,7 @@ import io.EcritureRegistrePreparationCsv;
 import pharmacie.Medicament;
 import pharmacie.Ordonnance;
 import pharmacie.Pharmacie;
+import pharmacie.Pharmacien;
 import pharmacie.Preparation;
 
 
@@ -17,7 +18,8 @@ import javax.swing.event.DocumentListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
@@ -131,6 +133,7 @@ public class UiGui extends JFrame implements ActionListener {
         // Ajout des boutons et moteur de recherche
         JButton buttonQuitter = new JButton("Quitter");
         JButton buttonAfficher = new JButton("Afficher les médicaments");
+        JButton buttonJeSuisPharmacien = new JButton("Je suis pharmacien");
 
         JTextField searchField = new JTextField(20);
         searchField.setForeground(Color.GRAY); // Couleur de texte grise
@@ -156,8 +159,13 @@ public class UiGui extends JFrame implements ActionListener {
 
         buttonQuitter.addActionListener(this);
         buttonAfficher.addActionListener(this);
+        buttonJeSuisPharmacien.addActionListener(e -> {
+            accesMenuPharmacien();
+        });
+        
 
         JPanel panelBoutonsEtRecherche = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        panelBoutonsEtRecherche.add(buttonJeSuisPharmacien);
         panelBoutonsEtRecherche.add(searchField);
         panelBoutonsEtRecherche.add(buttonAfficher);
         panelBoutonsEtRecherche.add(buttonQuitter);
@@ -515,7 +523,6 @@ public class UiGui extends JFrame implements ActionListener {
                     // Ecrire les informations de la commande dans le fichier CSV (à implémenter)
                     Preparation preparation = new Preparation(); // Créer un objet Preparation avec les données nécessaires
                     EcritureRegistrePreparationCsv.ecrirePreparationsCsv(preparation); // Appel de la méthode pour écrire dans le fichier CSV
-
                     confirmationDialog.dispose();
                 }
             });
@@ -538,6 +545,90 @@ public class UiGui extends JFrame implements ActionListener {
         frame.setVisible(true);
     }
 
+    private void accesMenuPharmacien() {
+        // Demander à l'utilisateur de saisir l'identifiant et le mot de passe
+        String id = JOptionPane.showInputDialog(null, "Identifiant pharmacien :");
+        String password = JOptionPane.showInputDialog(null, "Mot de passe :");
+    
+        // Vérifier l'authentification
+        if (authentifierPharmacien(id, password)) {
+            // Authentification réussie, afficher le menu du pharmacien
+            afficherMenuPharmacien();
+        } else {
+            // Afficher un message d'erreur si l'authentification a échoué
+            JOptionPane.showMessageDialog(null, "Identifiant ou mot de passe incorrect.");
+        }
+    }
+    
+    private boolean authentifierPharmacien(String id, String password) {
+    String csvFilePath = "src/data/authidpharmacien.csv";
+
+    try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+        String line;
+        // Lire chaque ligne du fichier CSV
+        while ((line = br.readLine()) != null) {
+            // Diviser la ligne en utilisant le délimiteur approprié (virgule dans ce cas)
+            String[] parts = line.split(",");
+            // Vérifier si la ligne contient l'identifiant et le mot de passe fournis
+            if (parts.length >= 2 && parts[0].equals(id) && parts[1].equals(password)) {
+                return true; // Authentification réussie
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    return false; // Aucune correspondance trouvée
+}
+
+    private void afficherMenuPharmacien() {
+        // Créer une nouvelle fenêtre pour le menu du pharmacien
+        JFrame menuPharmacienFrame = new JFrame("Menu Pharmacien");
+        menuPharmacienFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        menuPharmacienFrame.setSize(400, 300);
+        menuPharmacienFrame.setLocationRelativeTo(null);
+        menuPharmacienFrame.setResizable(false);
+    
+        // Créer un panneau pour les boutons du menu
+        JPanel menuPanel = new JPanel(new GridLayout(0, 1));
+        menuPharmacienFrame.add(menuPanel);
+    
+        // Ajouter des boutons pour les fonctionnalités du menu
+        JButton ajouterMedicamentButton = new JButton("Ajouter un médicament");
+        JButton ajouterPharmacienButton = new JButton("Ajouter un pharmacien");
+        JButton afficherLeStockMedicamentButton = new JButton("Afficher le stock des médicaments");
+        JButton afficherLesPreparationsButton = new JButton("Afficher les préparations");
+        JButton afficherLesOrdonnancesButton = new JButton("Afficher les ordonnances");
+        JButton afficherLesPatientsButton = new JButton("Afficher les patients");
+        JButton afficherLesPharmaciensButton = new JButton("Afficher les pharmaciens");
+        JButton afficherLesDemandesDeMedGen = new JButton("Afficher les demandes de médicaments génériques");
+
+        // Ajoutez d'autres boutons pour d'autres fonctionnalités si nécessaire
+    
+        // Ajouter des actions aux boutons
+        ajouterMedicamentButton.addActionListener(e -> {
+            // Ajouter la logique pour ajouter un médicament
+        });
+    
+        ajouterPharmacienButton.addActionListener(e -> {
+            // Ajouter la logique pour ajouter un pharmacien
+        });
+    
+        // Ajouter les boutons au panneau du menu
+        menuPanel.add(ajouterMedicamentButton);
+        menuPanel.add(ajouterPharmacienButton);
+        menuPanel.add(afficherLeStockMedicamentButton);
+        menuPanel.add(afficherLesPreparationsButton);
+        menuPanel.add(afficherLesOrdonnancesButton);
+        menuPanel.add(afficherLesPatientsButton);
+        menuPanel.add(afficherLesPharmaciensButton);
+        menuPanel.add(afficherLesDemandesDeMedGen);
+        
+        // Ajoutez d'autres boutons au panneau du menu si nécessaire
+    
+        // Afficher la fenêtre du menu du pharmacien
+        menuPharmacienFrame.setVisible(true);
+    }
 
     /**
      * Méthode pour afficher la liste des médicaments dans un JPanel
