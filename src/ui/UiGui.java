@@ -388,7 +388,7 @@ public class UiGui extends JFrame implements ActionListener {
                     for (String medicamentPrescrit : medicamentsPrescrits) {
                         message.append("- ").append(medicamentPrescrit).append("\n");
                     }
-                    message.append("\nVeuillez sélectionner les médicaments prescrits.");
+                    message.append("\nVeuillez sélectionner le(s) médicament(s) prescrit(s).");
                     JOptionPane.showMessageDialog(frame, message.toString());
                 }else{
                 // Créer une boîte de dialogue pour la confirmation de la commande
@@ -444,13 +444,13 @@ public class UiGui extends JFrame implements ActionListener {
                     }
 
                     if (stockInsuffisant) {
-                        JOptionPane.showMessageDialog(confirmationDialog, "Stock insuffisant pour certains médicaments.");
+                        JOptionPane.showMessageDialog(confirmationDialog, "Stock insuffisant pour ce(s) médicament(s).");
                     } else {
                         // Calculer la date de livraison estimée
                         Calendar dateLivraison = calculerDateLivraison();
 
                         // Construire le message de confirmation
-                        StringBuilder confirmationMessage = new StringBuilder("Les médicaments suivants ont été commandés :\n\n");
+                        StringBuilder confirmationMessage = new StringBuilder("Les médicament(s) suivant(s) ont été commandé(s) :\n\n");
                         for (int i = 0; i < selectedMedicaments.size(); i++) {
                             Medicament medicament = selectedMedicaments.get(i);
                             int quantite = selectedQuantities.get(i);
