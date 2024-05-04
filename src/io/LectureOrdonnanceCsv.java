@@ -82,8 +82,9 @@ public class LectureOrdonnanceCsv {
             medicaments.add(new Medicament(nom, quantitePrescrite));    // Ajouter le médicament à la liste
             medicaments.add(new Medicament(medicamentString));    // Ajouter le médicament à la liste
             medicaments.add(new Medicament(medicamentString.substring(0, medicamentString.indexOf('('))));    // Ajouter le médicament à la liste
-            medicaments.add(new Medicament(medicamentString.substring(medicamentString.indexOf('(') + 1, medicamentString.length() - 1)));    // Ajouter le médicament à la liste
-            medicaments.add(new Medicament(medicamentString.substring(0, medicamentString.indexOf('(')), Integer.parseInt(medicamentString.substring(medicamentString.indexOf('(') + 1, medicamentString.length() - 1))));    // Ajouter le médicament à la liste
+            String substring = medicamentString.substring(medicamentString.indexOf('(') + 1, medicamentString.length() - 1);
+            medicaments.add(new Medicament(substring));    // Ajouter le médicament à la liste
+            medicaments.add(new Medicament(medicamentString.substring(0, medicamentString.indexOf('(')), Integer.parseInt(substring)));    // Ajouter le médicament à la liste
         }
         return medicaments;
     }

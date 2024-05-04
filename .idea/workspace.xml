@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ffbf0945-00a1-41f4-a3ac-8b676c5570ed" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/dataordonnances.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/dataordonnances.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/LectureOrdonnanceCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/LectureOrdonnanceCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Medicament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Medicament.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/UiGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UiGui.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +36,9 @@
     <option name="directoryName" value="d78mdgmg" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/usr/local/Cellar/php/8.3.0/bin/php" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
@@ -51,7 +56,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "com.google.cloudcode.ide_session_index": "20240503_0001",
+    "com.google.cloudcode.ide_session_index": "20240504_0000",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
@@ -76,7 +81,8 @@
       <option name="presentableId" value="Default" />
       <updated>1714731170531</updated>
       <workItem from="1714731171743" duration="4214000" />
-      <workItem from="1714735487573" duration="21607000" />
+      <workItem from="1714735487573" duration="35141000" />
+      <workItem from="1714781609480" duration="12382000" />
     </task>
     <servers />
   </component>
