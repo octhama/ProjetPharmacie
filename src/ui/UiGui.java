@@ -30,6 +30,9 @@ public class UiGui extends JFrame implements ActionListener {
     private final HashMap<Medicament, JCheckBox> medicamentGenCheckBoxMap;
     private final HashMap<JCheckBox, JSpinner> spinnerMap;
     private final Map<Medicament, Boolean> selectedMedicamentStates = new HashMap<>();
+    // Déclaration de la variable spinnerStates
+    private final Map<JCheckBox, Object> spinnerStates = new HashMap<>();
+    private final Map<Medicament, Integer> spinnerValues = new HashMap<>();
     private static final String CSV_FILE_PATH = "src/data/dataordonnances.csv";
     private final Map<JCheckBox, Medicament> checkBoxMedicamentMap;
 
@@ -87,7 +90,7 @@ public class UiGui extends JFrame implements ActionListener {
         JMenuItem menuCommanderMedicamentVersionGenerique = new JMenuItem("Commander médicament(s) en version générique");
         menuCommanderMedicamentVersionGenerique.addActionListener(e -> {
             HashMap<Object, Object> checkBoxMedicamentMap = new HashMap<>();
-            commanderMedicamentVersionGenerique(checkBoxMedicamentMap);
+            commanderMedicamentVersionGenerique();
         });
         menuActionsPatient.add(menuCommanderMedicamentVersionGenerique);
 
@@ -328,6 +331,16 @@ public class UiGui extends JFrame implements ActionListener {
         searchField.setColumns(20);
         searchPanel.add(searchField, BorderLayout.CENTER);
 
+        // Stocker l'état des spinners avant la recherche
+        Map<JCheckBox, Integer> spinnerValues = new HashMap<>();
+        for (Map.Entry<Medicament, JCheckBox> entry : medicamentCheckBoxMap.entrySet()) {
+            JCheckBox checkBox = entry.getValue();
+            JSpinner spinner = spinnerMap.get(checkBox);
+            if (checkBox.isSelected()) {
+                spinnerValues.put(checkBox, (int) spinner.getValue());
+            }
+        }
+
         // Ajouter un écouteur au champ de recherche pour la recherche dynamique
         searchField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -346,16 +359,20 @@ public class UiGui extends JFrame implements ActionListener {
             }
 
             private void updateList() {
-                String search = searchField.getText();
-                // Sauvegarder l'état de sélection des médicaments
+                // Sauvegarder les états des éléments avant la recherche
                 saveSelectedMedicamentStates();
-                // Filtrer les médicaments en fonction de la recherche
+                saveSpinnerStates();
+
+                // Effectuer la recherche et afficher les médicaments filtrés
+                String search = searchField.getText();
                 List<Medicament> filteredMedicaments = pharmacie.filterMedicaments(search);
-                // Mettre à jour l'affichage des médicaments
                 afficherMedicaments(filteredMedicaments);
-                // Restaurer l'état de sélection des médicaments
+
+                // Restaurer les états des éléments après l'affichage des médicaments filtrés
                 restoreSelectedMedicamentStates();
+                restoreSpinnerStates();
             }
+
 
             private void afficherMedicaments(List<Medicament> filteredMedicaments) {
                 // Nettoyer le panneau des médicaments avant d'ajouter de nouveaux éléments
@@ -493,17 +510,25 @@ public class UiGui extends JFrame implements ActionListener {
                     List<Integer> selectedQuantities = new ArrayList<>();
 
                     // Afficher les choix de médicaments confirmés dans la boîte de dialogue
-                    for (Map.Entry<Medicament, JCheckBox> entry : medicamentCheckBoxMap.entrySet()) { // Parcourir les entrées de la map de la boîte de la boîte de dialogue
+                    for (Map.Entry<Medicament, JCheckBox> entry : medicamentCheckBoxMap.entrySet()) {
+                        // Parcourir les entrées de la map de la boîte de dialogue
                         Medicament medicament = entry.getKey();
                         JCheckBox checkBox = entry.getValue();
                         if (checkBox.isSelected()) {
-                            int quantite = (int) spinnerMap.get(checkBox).getValue();
+                            // Récupérer le spinner correspondant à la case à cocher sélectionnée
+                            JSpinner spinner = spinnerMap.get(checkBox);
+                            // Ajouter le spinner à la map avec la case à cocher correspondante
+                            checkBoxSpinnerMap.put(checkBox, spinner);
+                            // Ajouter les informations sur le médicament sélectionné à la boîte de dialogue
+                            int quantite = (int) spinner.getValue();
                             JLabel choiceLabel = new JLabel(medicament.getNom() + " - " + quantite + " unité(s)");
                             choicesPanel.add(choiceLabel);
+                            // Ajouter le médicament et sa quantité aux listes sélectionnées
                             selectedMedicaments.add(medicament);
                             selectedQuantities.add(quantite);
                         }
                     }
+
                     // Créer un panneau pour les boutons de validation et d'annulation
                     JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
                     confirmationPanel.add(buttonsPanel, BorderLayout.SOUTH);
@@ -648,7 +673,7 @@ public class UiGui extends JFrame implements ActionListener {
         return medicationEntry;
     }
 
-    private void commanderMedicamentVersionGenerique(HashMap<Object, Object> medicamentCheckBoxMap) {
+    private void commanderMedicamentVersionGenerique(HashMap<Object, Object> checkBoxSpinnerMap) {
         // Créer une fenêtre pour la commande de médicaments en version générique
         JFrame frame = new JFrame("Commander médicament(s) en version générique");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -853,6 +878,30 @@ public class UiGui extends JFrame implements ActionListener {
             boolean isSelected = entry.getValue();
             JCheckBox checkBox = medicamentCheckBoxMap.get(medicament);
             checkBox.setSelected(isSelected);
+        }
+    }
+
+    private void saveSpinnerStates() {
+        spinnerValues.clear();
+        for (Map.Entry<Medicament, JCheckBox> entry : medicamentCheckBoxMap.entrySet()) {
+            Medicament medicament = entry.getKey();
+            JCheckBox checkBox = entry.getValue();
+            if (checkBox.isSelected()) {
+                JSpinner spinner = spinnerMap.get(checkBox);
+                spinnerValues.put(medicament, (int) spinner.getValue());
+            }
+        }
+    }
+
+    private void restoreSpinnerStates() {
+        for (Map.Entry<Medicament, Integer> entry : spinnerValues.entrySet()) {
+            Medicament medicament = entry.getKey();
+            Integer value = entry.getValue();
+            JCheckBox checkBox = medicamentCheckBoxMap.get(medicament);
+            JSpinner spinner = spinnerMap.get(checkBox);
+            if (checkBox.isSelected()) {
+                spinner.setValue(value);
+            }
         }
     }
 

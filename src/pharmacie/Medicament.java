@@ -113,14 +113,6 @@ public class Medicament {
         throw new UnsupportedOperationException("Unimplemented method 'commander'");
     }
 
-    public double getQuantitePourPreparation() {
-        return 0;
-    }
-
-    public char[] getQuantitePrescrite() {
-        return null;
-    }
-
     public String getPrincipeActif() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPrincipeActif'");
