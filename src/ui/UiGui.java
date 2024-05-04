@@ -1,10 +1,11 @@
 package ui;
 
 import enums.ETypeMedicament;
+import io.EcritureRegistreDemandeVersionGeneriqueCsv;
 import io.EcritureRegistrePreparationCsv;
+import pharmacie.DemandeVersionGenerique;
 import pharmacie.Medicament;
 import pharmacie.Pharmacie;
-import pharmacie.Preparation;
 
 
 import java.awt.*;
@@ -18,8 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
-import static io.EcritureRegistrePreparationCsv.*;
-
 /**
  * Interface graphique pour une pharmacie
  */
@@ -28,10 +27,12 @@ public class UiGui extends JFrame implements ActionListener {
     private final Pharmacie pharmacie;
     private final JPanel panelAfficherMedicaments;
     private final HashMap<Medicament, JCheckBox> medicamentCheckBoxMap;
+    private final HashMap<Medicament, JCheckBox> medicamentGenCheckBoxMap;
     private final HashMap<JCheckBox, JSpinner> spinnerMap;
     private final Map<Medicament, Boolean> selectedMedicamentStates = new HashMap<>();
     private static final String CSV_FILE_PATH = "src/data/dataordonnances.csv";
-    private Map<JCheckBox, Medicament> checkBoxMedicamentMap;
+    private final Map<JCheckBox, Medicament> checkBoxMedicamentMap;
+
     /**
      * Constructeur de l'interface graphique
      *
@@ -41,11 +42,12 @@ public class UiGui extends JFrame implements ActionListener {
      * @param medicamentCheckBoxMap La map pour stocker les médicaments et les cases à cocher
      * @param spinnerMap            La map pour stocker les cases à cocher et les spinners
      * @param fichierCsv            Le chemin du fichier CSV
-     * @throws IOException          Si une erreur d'entrée/sortie se produit
+     * @throws IOException Si une erreur d'entrée/sortie se produit
      */
 
-    public UiGui(Pharmacie pharmacie, JPanel panelMedSurOrdonnance, JPanel panelMedVenteLibre, HashMap<Medicament, JCheckBox> medicamentCheckBoxMap, HashMap<JCheckBox, JSpinner> spinnerMap, String fichierCsv) throws IOException {
+    public UiGui(Pharmacie pharmacie, JPanel panelMedSurOrdonnance, JPanel panelMedVenteLibre, HashMap<Medicament, JCheckBox> medicamentCheckBoxMap, HashMap<JCheckBox, JSpinner> spinnerMap, String fichierCsv, HashMap<Medicament, JCheckBox> medicamentGenCheckBoxMap) throws IOException {
         this.pharmacie = pharmacie;
+        this.medicamentGenCheckBoxMap = medicamentGenCheckBoxMap;
         JPanel panelMedSurOrdonnance1 = panelMedSurOrdonnance;
         JPanel panelMedVenteLibre1 = panelMedVenteLibre;
         this.medicamentCheckBoxMap = medicamentCheckBoxMap;
@@ -72,15 +74,7 @@ public class UiGui extends JFrame implements ActionListener {
         JMenu menuActionsPatient = new JMenu("Menu Patient");
         menuBar.add(menuActionsPatient);
 
-        JMenuItem menuEnregistrerOrdonnance = new JMenuItem("Enregistrer une ordonnance");
-        menuEnregistrerOrdonnance.addActionListener(e -> {
-            String referenceOrdonnance = JOptionPane.showInputDialog(this, "Veuillez saisir la référence de l'ordonnance :");
-            if (ordonnanceDisponible(referenceOrdonnance)) {
-                JOptionPane.showMessageDialog(this, "L'ordonnance existe déjà.");
-            } else {
-                enregistrerOrdonnance(referenceOrdonnance);
-            }
-        });
+        JMenuItem menuEnregistrerOrdonnance = getjMenuItem();
         menuActionsPatient.add(menuEnregistrerOrdonnance);
 
         JMenuItem menuCommanderUnePreparation = new JMenuItem("Commander préparation(s)");
@@ -135,7 +129,7 @@ public class UiGui extends JFrame implements ActionListener {
 
         // Afficher les médicaments en vente libre dans le panneau correspondant
         afficherListeMedicamentsEnVenteLibre(panelMedVenteLibre);
-        
+
         // Ajout des boutons et moteur de recherche
         JButton buttonQuitter = new JButton("Quitter");
         JButton buttonAfficher = new JButton("Afficher les médicaments");
@@ -199,31 +193,48 @@ public class UiGui extends JFrame implements ActionListener {
                 afficherListeMedicaments(panelAfficherMedicaments, suggestions);
             }
 
-    // Affiche les suggestions de médicaments dans le même format que la liste complète
-    private void afficherListeMedicaments(JPanel panel, List<Medicament> suggestions) {
-    // Création d'un panneau pour afficher les suggestions de médicaments
-    JPanel medicamentsPanel = new JPanel();
-    medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
+            // Affiche les suggestions de médicaments dans le même format que la liste complète
+            private void afficherListeMedicaments(JPanel panel, List<Medicament> suggestions) {
+                // Création d'un panneau pour afficher les suggestions de médicaments
+                JPanel medicamentsPanel = new JPanel();
+                medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
 
-    // Ajouter les détails de chaque médicament suggéré au panneau
-    for (Medicament medicament : suggestions) {
-        JLabel label = getjLabel(medicament);
-        medicamentsPanel.add(label);
-    }
+                // Ajouter les détails de chaque médicament suggéré au panneau
+                for (Medicament medicament : suggestions) {
+                    JLabel label = getjLabel(medicament);
+                    medicamentsPanel.add(label);
+                }
 
-    // Retirer les anciens éléments du panneau
-    panel.removeAll();
+                // Retirer les anciens éléments du panneau
+                panel.removeAll();
 
-    // Ajouter le panneau des suggestions de médicaments au panneau principal
-    panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
+                // Ajouter le panneau des suggestions de médicaments au panneau principal
+                panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
 
-    // Mettre à jour l'affichage du panneau
-    panel.revalidate();
-}
+                // Mettre à jour l'affichage du panneau
+                panel.revalidate();
+            }
         });
     }
 
-    private void enregistrerOrdonnance(String referenceOrdonnance) {
+    public UiGui(Pharmacie pharmacie) throws IOException {
+        this(pharmacie, new JPanel(), new JPanel(), new HashMap<>(), new HashMap<>(), "src/data/dataordonnances.csv", new HashMap<>());
+    }
+
+    private JMenuItem getjMenuItem() {
+        JMenuItem menuEnregistrerOrdonnance = new JMenuItem("Enregistrer une ordonnance");
+        menuEnregistrerOrdonnance.addActionListener(e -> {
+            String referenceOrdonnance = JOptionPane.showInputDialog(this, "Veuillez saisir la référence de l'ordonnance :");
+            if (ordonnanceDisponible(referenceOrdonnance)) {
+                JOptionPane.showMessageDialog(this, "L'ordonnance existe déjà.");
+            } else {
+                enregistrerOrdonnance();
+            }
+        });
+        return menuEnregistrerOrdonnance;
+    }
+
+    private void enregistrerOrdonnance() {
         // Afficher une boîte de dialogue pour saisir le nom du médecin
         String referenceMedecin = JOptionPane.showInputDialog(this, "Veuillez saisir la référence du médecin :");
         // Afficher une boîte de dialogue pour saisir le nom du patient
@@ -239,16 +250,18 @@ public class UiGui extends JFrame implements ActionListener {
             return;
         }
 
-        // Afficher une boîte de dialogue pour saisir les médicaments prescrits
-        String medicamentsString = JOptionPane.showInputDialog(this, "Veuillez saisir les médicaments prescrits (séparés par des virgules) :");
+        // Afficher une boîte de dialogue pour saisir le ou les médicament(s) prescrit(s)
+        String medicamentsString = JOptionPane.showInputDialog(this, "Veuillez saisir le ou les médicament(s) prescrit(s) (séparés par des virgules) :");
+        String[] medicamentsArray = medicamentsString.split(",");
         Stack<String> medicaments = new Stack<>();
-        medicaments.addAll(Arrays.asList(medicamentsString.split(",")));
-
+        for (String medicament : medicamentsArray) {
+            medicaments.push(medicament);
+        }
         // Enregistrer l'ordonnance
-        enregistrerOrdonnance(referenceOrdonnance, referenceMedecin, referencePatient, datePrescription, medicaments);
+        ecrireOrdonnanceCsv(referenceMedecin, referencePatient, datePrescription, medicaments);
     }
 
-    public void enregistrerOrdonnance(String referenceOrdonnance, String referenceMedecin, String referencePatient, Date datePrescription, Stack<String> medicaments) {
+    public void ecrireOrdonnanceCsv(String referenceMedecin, String referencePatient, Date datePrescription, Stack<String> medicaments) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = dateFormat.format(datePrescription);
 
@@ -256,13 +269,12 @@ public class UiGui extends JFrame implements ActionListener {
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
 
-            StringBuilder sb = new StringBuilder();
-            sb.append(referenceMedecin).append(", ");
-            sb.append(referencePatient).append(", ");
-            sb.append(formattedDate).append(", ");
-            sb.append(String.join("; ", medicaments)).append("\n");
+            String sb = referenceMedecin + ", " +
+                    referencePatient + ", " +
+                    formattedDate + ", " +
+                    String.join("; ", medicaments) + "\n";
 
-            out.print(sb.toString());
+            out.print(sb);
 
             System.out.println("Ordonnance enregistrée avec succès.");
 
@@ -283,27 +295,6 @@ public class UiGui extends JFrame implements ActionListener {
         label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         label.setAlignmentX(Component.LEFT_ALIGNMENT);
         return label;
-    }
-
-    /**
-     * Constructeur de l'interface graphique
-     * @param pharmacie La pharmacie à gérer
-     * @param panelMedSurOrdonnance Le panel pour afficher les médicaments sur ordonnance
-     * @param panelMedVenteLibre Le panel pour afficher les médicaments en vente libre
-     */
-
-    public UiGui(Pharmacie pharmacie, JPanel panelMedSurOrdonnance, JPanel panelMedVenteLibre) throws IOException {
-        this(pharmacie, panelMedVenteLibre, panelMedSurOrdonnance, new HashMap<>(), new HashMap<>(), fichierCsv);
-    }
-
-    /**
-     * Constructeur de l'interface graphique
-     * @param pharmacie La pharmacie à gérer
-     * @throws IOException Si une erreur d'entrée/sortie se produit
-     */
-
-    public UiGui(Pharmacie pharmacie) throws IOException {
-        this(pharmacie, new JPanel(), new JPanel());
     }
 
     private void commanderUnePreparation(HashMap<Object, Object> checkBoxSpinnerMap) {
@@ -369,7 +360,7 @@ public class UiGui extends JFrame implements ActionListener {
             private void afficherMedicaments(List<Medicament> filteredMedicaments) {
                 // Nettoyer le panneau des médicaments avant d'ajouter de nouveaux éléments
                 medicamentPanel.removeAll();
-            
+
                 // Parcourir la liste des médicaments filtrés
                 for (Medicament medicament : filteredMedicaments) {
                     // Créer les composants pour afficher le médicament
@@ -377,7 +368,7 @@ public class UiGui extends JFrame implements ActionListener {
                     JCheckBox checkBox = new JCheckBox();
                     JSpinner spinner = new JSpinner(new SpinnerNumberModel(0, 0, medicament.getQuantiteEnStock(), 1));
                     JLabel nameLabel = new JLabel(medicament.getNom());
-            
+
                     // Ajouter les éléments à medicamentCheckBoxMap et spinnerMap
                     medicamentCheckBoxMap.put(medicament, checkBox);
                     spinnerMap.put(checkBox, spinner);
@@ -388,7 +379,7 @@ public class UiGui extends JFrame implements ActionListener {
                         boolean isSelected = checkBox.isSelected();
                         spinner.setEnabled(isSelected);
                         nameLabel.setEnabled(isSelected);
-            
+
                         if (isSelected) {
                             int quantite = (int) spinner.getValue();
                             if (quantite > quantiteEnStock) {
@@ -413,7 +404,7 @@ public class UiGui extends JFrame implements ActionListener {
                         // Colorer le texte en rouge pour les médicaments non génériques
                         nameLabel.setForeground(Color.RED);
                     }
-            
+
                     // Ajouter les composants au panneau d'entrée
                     entryPanel.add(checkBox);
                     entryPanel.add(nameLabel);
@@ -437,18 +428,18 @@ public class UiGui extends JFrame implements ActionListener {
                     // Par défaut, les spinners et les labels sont désactivés
                     spinner.setEnabled(false);
                     nameLabel.setEnabled(false);
-            
+
                     // Encapsuler chaque médicament dans un panneau individuel
                     JPanel medicineEntryPanel = new JPanel(new BorderLayout());
                     medicineEntryPanel.add(entryPanel, BorderLayout.CENTER);
                     medicamentPanel.add(medicineEntryPanel);
                 }
-            
+
                 // Rafraîchir l'interface utilisateur pour refléter les changements
                 medicamentPanel.revalidate();
                 medicamentPanel.repaint();
             }
-            
+
         });
 
         // Créer un panneau pour le bouton de commande
@@ -481,50 +472,49 @@ public class UiGui extends JFrame implements ActionListener {
                     }
                     message.append("\nVeuillez sélectionner le(s) médicament(s) prescrit(s).");
                     JOptionPane.showMessageDialog(frame, message.toString());
-                }else{
-                // Créer une boîte de dialogue pour la confirmation de la commande
-                JFrame confirmationDialog = new JFrame("Confirmation de commande");
-                confirmationDialog.setSize(400, 300);
-                confirmationDialog.setLocationRelativeTo(frame);
-                confirmationDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                confirmationDialog.setResizable(false);
+                } else {
+                    // Créer une boîte de dialogue pour la confirmation de la commande
+                    JFrame confirmationDialog = new JFrame("Confirmation de commande");
+                    confirmationDialog.setSize(400, 300);
+                    confirmationDialog.setLocationRelativeTo(frame);
+                    confirmationDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    confirmationDialog.setResizable(false);
 
-                // Créer un panneau pour les éléments de la boîte de dialogue
-                JPanel confirmationPanel = new JPanel(new BorderLayout());
-                confirmationDialog.add(confirmationPanel);
+                    // Créer un panneau pour les éléments de la boîte de dialogue
+                    JPanel confirmationPanel = new JPanel(new BorderLayout());
+                    confirmationDialog.add(confirmationPanel);
 
-                // Créer un panneau pour les choix de médicaments confirmés
-                JPanel choicesPanel = new JPanel(new GridLayout(0, 1));
-                confirmationPanel.add(new JScrollPane(choicesPanel), BorderLayout.CENTER);
+                    // Créer un panneau pour les choix de médicaments confirmés
+                    JPanel choicesPanel = new JPanel(new GridLayout(0, 1));
+                    confirmationPanel.add(new JScrollPane(choicesPanel), BorderLayout.CENTER);
 
-                // Créer une liste pour stocker les médicaments sélectionnés et leurs quantités
-                List<Medicament> selectedMedicaments = new ArrayList<>();
-                List<Integer> selectedQuantities = new ArrayList<>();
+                    // Créer une liste pour stocker les médicaments sélectionnés et leurs quantités
+                    List<Medicament> selectedMedicaments = new ArrayList<>();
+                    List<Integer> selectedQuantities = new ArrayList<>();
 
-                // Afficher les choix de médicaments confirmés dans la boîte de dialogue
-                for (Map.Entry<Medicament, JCheckBox> entry : medicamentCheckBoxMap.entrySet()) { // Parcourir les entrées de la map de la boîte de la boîte de dialogue
-                    Medicament medicament = entry.getKey();
-                    JCheckBox checkBox = entry.getValue();
-                    if (checkBox.isSelected()) {
-                        int quantite = (int) spinnerMap.get(checkBox).getValue();
-                        JLabel choiceLabel = new JLabel(medicament.getNom() + " - " + quantite + " unité(s)");
-                        choicesPanel.add(choiceLabel);
-                        selectedMedicaments.add(medicament);
-                        selectedQuantities.add(quantite);
+                    // Afficher les choix de médicaments confirmés dans la boîte de dialogue
+                    for (Map.Entry<Medicament, JCheckBox> entry : medicamentCheckBoxMap.entrySet()) { // Parcourir les entrées de la map de la boîte de la boîte de dialogue
+                        Medicament medicament = entry.getKey();
+                        JCheckBox checkBox = entry.getValue();
+                        if (checkBox.isSelected()) {
+                            int quantite = (int) spinnerMap.get(checkBox).getValue();
+                            JLabel choiceLabel = new JLabel(medicament.getNom() + " - " + quantite + " unité(s)");
+                            choicesPanel.add(choiceLabel);
+                            selectedMedicaments.add(medicament);
+                            selectedQuantities.add(quantite);
+                        }
                     }
-                }
-                // Créer un panneau pour les boutons de validation et d'annulation
-                JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-                confirmationPanel.add(buttonsPanel, BorderLayout.SOUTH);
+                    // Créer un panneau pour les boutons de validation et d'annulation
+                    JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+                    confirmationPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
-                // Ajouter un bouton pour valider la commande
-                JButton validateButton = new JButton("Valider");
-                buttonsPanel.add(validateButton);
+                    // Ajouter un bouton pour valider la commande
+                    JButton validateButton = new JButton("Valider");
+                    buttonsPanel.add(validateButton);
 
-                // Action du bouton de validation
-
+                    // Action du bouton de validation
                     validateButton.addActionListener(validateEvent -> {
-                        // Vérifier si le stock est suffisant pour tous les médicaments sélectionnés
+                        // Vérifier si le stock est suffisant pour tous les médicaments sélectionnés dans le fichier CSV src/data/medicaments.csv
                         boolean stockInsuffisant = false;
                         for (int i = 0; i < selectedMedicaments.size(); i++) {
                             Medicament medicament = selectedMedicaments.get(i);
@@ -583,35 +573,82 @@ public class UiGui extends JFrame implements ActionListener {
                                 int nouvelleQuantite = medicament.getQuantiteEnStock() - quantite;
                                 medicament.setQuantiteEnStock(nouvelleQuantite);
                             }
-
                             // Ecrire les informations de la commande dans le fichier CSV (à implémenter)
-                            Preparation preparation = new Preparation(); // Créer un objet Preparation avec les données nécessaires
-                            EcritureRegistrePreparationCsv.ecrirePreparationsCsv(preparation); // Appel de la méthode pour écrire dans le fichier CSV
-                            confirmationDialog.dispose();
+                            EcritureRegistrePreparationCsv.ecrireRegistrePreparationCsv(selectedMedicaments, selectedQuantities, "src/data/registrepreparation.csv");
                         }
                     });
 
-                // Ajouter un bouton pour annuler la commande
-                JButton cancelButton = new JButton("Annuler");
-                buttonsPanel.add(cancelButton);
+                    // Ajouter un bouton pour annuler la commande
+                    JButton cancelButton = new JButton("Annuler");
+                    buttonsPanel.add(cancelButton);
 
-                // Ajouter un écouteur pour le bouton d'annulation
-                cancelButton.addActionListener(cancelEvent -> confirmationDialog.dispose()); // Fermer la boîte de dialogue en cas d'annulation
+                    // Ajouter un écouteur pour le bouton d'annulation
+                    cancelButton.addActionListener(cancelEvent -> confirmationDialog.dispose()); // Fermer la boîte de dialogue en cas d'annulation
 
-                // Afficher la boîte de dialogue de confirmation
-                confirmationDialog.setVisible(true);
+                    // Afficher la boîte de dialogue de confirmation
+                    confirmationDialog.setVisible(true);
 
-                // Fermer la fenêtre de commande de médicaments
-                frame.dispose();
+                    // Fermer la fenêtre de commande de médicaments
+                    frame.dispose();
+                }
             }
-        }
         });
 
         // Afficher la fenêtre
         frame.setVisible(true);
     }
 
-    private void commanderMedicamentVersionGenerique(HashMap<Object, Object> checkBoxSpinnerMap){
+    private void afficherListeMedicamentsNonGenOnDemand(JPanel panel, List<Medicament> medicaments) {
+        // Création d'un panneau pour afficher les médicaments
+        JPanel medicamentsPanel = new JPanel();
+        medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
+
+        // Ajouter les détails de chaque médicament au panneau
+        for (Medicament medicament : medicaments) {
+            if (!medicament.isGenerique()) {
+                JPanel medicationEntry = getjPanel(medicament);
+                medicamentsPanel.add(medicationEntry);
+            }
+        }
+
+        // Ajouter le panneau des médicaments au panneau principal
+        panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
+        panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
+        panel.revalidate(); // Mettre à jour l'affichage du panneau
+    }
+
+    private JPanel getjPanel(Medicament medicament) {
+        JPanel medicationEntry = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JLabel label = new JLabel(medicament.getNom());
+        JCheckBox checkBox = new JCheckBox();
+
+        // Vérifier si une demande est enregistrée dans le mapping
+        if (checkBoxMedicamentMap.containsKey(checkBox)) {
+            checkBox.setSelected(true);
+            label.setText(medicament.getNom() + " - Version générique demandée");
+        } else {
+            checkBox.setSelected(false);
+            label.setText(medicament.getNom());
+        }
+
+        checkBox.addItemListener(e -> {
+            if (checkBox.isSelected()) {
+                label.setText(medicament.getNom() + " - Version générique demandée");
+                // Ajouter la demande au mapping
+                checkBoxMedicamentMap.put(checkBox, medicament);
+            } else {
+                label.setText(medicament.getNom());
+                // Retirer la demande du mapping
+                checkBoxMedicamentMap.remove(checkBox);
+            }
+        });
+
+        medicationEntry.add(checkBox);
+        medicationEntry.add(label);
+        return medicationEntry;
+    }
+
+    private void commanderMedicamentVersionGenerique(HashMap<Object, Object> medicamentCheckBoxMap) {
         // Créer une fenêtre pour la commande de médicaments en version générique
         JFrame frame = new JFrame("Commander médicament(s) en version générique");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -641,72 +678,108 @@ public class UiGui extends JFrame implements ActionListener {
         searchField.setColumns(20);
         searchPanel.add(searchField, BorderLayout.CENTER);
 
-        // Ajouter un écouteur au champ de recherche pour la recherche dynamique
-        searchField.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                updateList();
+        // Appeler la méthode pour afficher la liste des médicaments non génériques pour lesquels une version générique est demandée
+        afficherListeMedicamentsNonGenOnDemand(medicamentPanel, pharmacie.getMedicaments());
+
+        // Créer un panneau pour le bouton enregistrer la demande, retourner à la fenêtre principale et réinitialiser les champs de recherche
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panel.add(bottomPanel, BorderLayout.SOUTH);
+
+        // Ajouter un bouton pour lancer la commande
+        JButton buttonCommander = new JButton("Enregistrer demande(s)");
+        bottomPanel.add(buttonCommander);
+
+        JButton buttonReinitialiser = new JButton("Réinitialiser");
+        bottomPanel.add(buttonReinitialiser);
+
+        JButton buttonRetour = new JButton("Retour");
+        bottomPanel.add(buttonRetour);
+
+        // Action du bouton de commande
+        buttonCommander.addActionListener(e -> {
+            // Créer une boîte de dialogue pour la confirmation de la commande
+            JFrame confirmationDialog = new JFrame("Confirmation de demande");
+            confirmationDialog.setSize(400, 300);
+            confirmationDialog.setLocationRelativeTo(frame);
+            confirmationDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            confirmationDialog.setResizable(false);
+
+            // Créer un panneau pour les éléments de la boîte de dialogue
+            JPanel confirmationPanel = new JPanel(new BorderLayout());
+            confirmationDialog.add(confirmationPanel);
+
+            // Créer un panneau pour les choix de médicaments confirmés
+            JPanel choicesPanel = new JPanel(new GridLayout(0, 1)); // Utilisation d'une disposition en grille
+            confirmationPanel.add(new JScrollPane(choicesPanel), BorderLayout.CENTER);
+
+            // Créer une liste pour stocker les médicaments sélectionnés
+            List<Medicament> selectedMedicaments = new ArrayList<>();
+
+            // Afficher les choix de médicaments confirmés dans la boîte de dialogue
+            for (Map.Entry<Medicament, JCheckBox> entry : medicamentGenCheckBoxMap.entrySet()) {
+                Medicament medicament = entry.getKey();
+                JCheckBox checkBox = entry.getValue();
+                if (checkBox.isSelected()) {
+                JLabel choiceLabel = new JLabel(medicament.getNom());
+                choicesPanel.add(choiceLabel);
+                selectedMedicaments.add(medicament);
             }
+        }
+            // Créer un panneau pour les boutons de validation et d'annulation
+            JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+            confirmationPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                updateList();
-            }
+            // Ajouter un bouton pour valider la commande
+            JButton validateButton = new JButton("Valider");
+            buttonsPanel.add(validateButton);
 
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                updateList();
-            }
-
-            private void updateList() {
-                String search = searchField.getText();
-                // Sauvegarder l'état de sélection des médicaments
-                saveSelectedMedicamentStates();
-                // Filtrer les médicaments en fonction de la recherche
-                List<Medicament> filteredMedicaments = pharmacie.filterMedicaments(search);
-                // Mettre à jour l'affichage des médicaments
-                afficherListeMedicamentsNonGenOnDemand(filteredMedicaments);
-                // Restaurer l'état de sélection des médicaments
-                restoreSelectedMedicamentStates();
-            }
-
-            // Méthode pour afficher la liste des médicaments non génériques pour lesquels une version générique est demandée
-            private void afficherListeMedicamentsNonGenOnDemand(List<Medicament> filteredMedicaments) {
-                // Récupérer la liste des médicaments de la pharmacie
-                List<Medicament> medicaments = pharmacie.getMedicaments();
-
-                // Création d'un panneau pour afficher les médicaments
-                JPanel medicamentsPanel = new JPanel();
-                medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
-
-                // Ajouter les détails de chaque médicament au panneau
-                for (Medicament medicament : medicaments) {
-                    if (!medicament.isGenerique()) {
-                        JPanel medicationEntry = new JPanel(new FlowLayout(FlowLayout.LEFT));
-                        JLabel label = new JLabel(medicament.getNom());
-                        JCheckBox checkBox = new JCheckBox();
-                        checkBox.addItemListener(e -> {
-                            if (checkBox.isSelected()) {
-                                label.setText(medicament.getNom() + " - Version générique demandée");
-                            } else {
-                                label.setText(medicament.getNom());
-                            }
-                        });
-                        medicationEntry.add(checkBox);
-                        medicationEntry.add(label);
-                        medicamentsPanel.add(medicationEntry);
-
-                        // Ajouter la case à cocher à la map avec le médicament correspondant
-                        checkBoxMedicamentMap.put(checkBox, medicament);
-                    }
+            // Action du bouton de validation
+            validateButton.addActionListener(validateEvent -> {
+                // Construire le message de confirmation
+                StringBuilder confirmationMessage = new StringBuilder("Les médicament(s) suivant(s) ont été demandé(s) en version générique :\n\n");
+                for (Medicament medicament : selectedMedicaments) {
+                    confirmationMessage.append("- ").append(medicament.getNom()).append("\n");
                 }
+                confirmationMessage.append("\nLa demande a été enregistrée avec succès.");
 
-                // Ajouter le panneau des médicaments au panneau principal
-                panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
-                panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
-                panel.revalidate(); // Mettre à jour l'affichage du panneau
+                // Afficher le message de confirmation
+                JOptionPane.showMessageDialog(confirmationDialog, confirmationMessage.toString());
+
+                // Ecrire les informations de la demande dans le fichier CSV (à implémenter)
+                DemandeVersionGenerique demande = new DemandeVersionGenerique(); // Créer un objet DemandeVersionGenerique avec les données nécessaires
+                EcritureRegistreDemandeVersionGeneriqueCsv.ecrireDemandesVersionGeneriqueCsv(demande); // Appel de la méthode pour écrire dans le fichier CSV
+                confirmationDialog.dispose();
+            });
+
+            // Ajouter un bouton pour annuler la commande
+            JButton cancelButton = new JButton("Annuler");
+            buttonsPanel.add(cancelButton);
+
+            // Ajouter un écouteur pour le bouton d'annulation
+            cancelButton.addActionListener(cancelEvent -> confirmationDialog.dispose()); // Fermer la boîte de dialogue en cas d'annulation
+
+            // Afficher les médicaments sélectionnés dans le panneau de confirmation
+            for (Medicament medicament : selectedMedicaments) {
+                JLabel choiceLabel = new JLabel(medicament.getNom() + " - Version générique demandée");
+                choicesPanel.add(choiceLabel);
             }
 
+            // Afficher la boîte de dialogue de confirmation
+            confirmationDialog.setVisible(true);
+        });
+
+        // Action du bouton de réinitialisation
+        buttonReinitialiser.addActionListener(e -> {
+            // Réinitialiser les champs de recherche
+            searchField.setText("");
+            // Réinitialiser les médicaments affichés
+            afficherListeMedicamentsNonGenOnDemand(medicamentPanel, pharmacie.getMedicaments());
+        });
+
+        // Action du bouton de retour
+        buttonRetour.addActionListener(e -> {
+            // Fermer la fenêtre de commande de médicaments
+            frame.dispose();
         });
 
         // Afficher la fenêtre
@@ -743,8 +816,7 @@ public class UiGui extends JFrame implements ActionListener {
     private void removePrix50PourcentLabel(JPanel entryPanel) {
         Component[] components = entryPanel.getComponents();
         for (Component component : components) {
-            if (component instanceof JLabel) {
-                JLabel label = (JLabel) component;
+            if (component instanceof JLabel label) {
                 if (label.getText().contains("| Prix mg 50%")) {
                     entryPanel.remove(label);
                     entryPanel.revalidate();
@@ -904,7 +976,7 @@ public class UiGui extends JFrame implements ActionListener {
                 if (parts.length >= 2 && parts[1].trim().equals(referencePatient.trim())) {
                     // Ajouter les médicaments prescrits à la liste
                     if (parts.length >= 4) {
-                        String[] medicaments = parts[3].split(",");
+                        String[] medicaments = parts[3].split(";");
                         for (String medicament : medicaments) {
                             medicamentsPrescrits.add(medicament.trim());
                         }
@@ -923,11 +995,23 @@ public class UiGui extends JFrame implements ActionListener {
         for (Map.Entry<Medicament, JCheckBox> entry : medicamentCheckBoxMap.entrySet()) {
             Medicament medicament = entry.getKey();
             JCheckBox checkBox = entry.getValue();
-            if (checkBox.isSelected() && !medicamentsPrescrits.contains(medicament.getNom())) {
-                return false; // Un médicament sélectionné ne correspond pas à ceux prescrits
+            if (checkBox.isSelected()) {
+                boolean correspondant = false;
+                for (String medicamentPrescrit : medicamentsPrescrits) {
+                    // Vérifier si le nom du médicament sélectionné correspond à un médicament prescrit
+                    if (medicamentPrescrit.equalsIgnoreCase(medicament.getNom())) {
+                        correspondant = true;
+                        break;
+                    }
+                }
+                // Si aucun médicament prescrit ne correspond, retourner false
+                if (!correspondant) {
+                    return false;
+                }
             }
         }
-        return true; // Tous les médicaments sélectionnés correspondent à ceux prescrits
+        // Si tous les médicaments sélectionnés correspondent à ceux prescrits, retourner true
+        return true;
     }
 
     // Fonction pour calculer la date de livraison en ajoutant un jour à la date actuelle

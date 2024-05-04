@@ -1,4 +1,6 @@
 idUnique,nom,quantite,date
-CMD-PRP1,Paracetamol,20,2024-04-17
-CMD-PRP2,Ibuprofene,30,2024-04-17
-CMD-PRP3,Aspirine,10,2024-04-17
+CMD-PREP7,Paracétamol 719mg,3,2024-05-04
+CMD-PREP8,Mébendazole 865mg,3,2024-05-04
+CMD-PREP9,Rivaroxaban 248mg,0,2024-05-04
+CMD-PREP10,Dopamine 566mg,4,2024-05-04
+CMD-PREP11,Naproxen 129mg,0,2024-05-04

@@ -5,10 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ffbf0945-00a1-41f4-a3ac-8b676c5570ed" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/data/demandes_version_generique.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/io/EcritureRegistreDemandeVersionGeneriqueCsv.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pharmacie/DemandeVersionGenerique.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/dataordonnances.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/dataordonnances.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/LectureOrdonnanceCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/LectureOrdonnanceCsv.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pharmacie/Medicament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Medicament.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/listedecommandesmedgen.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/registrepreparation.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/registrepreparation.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/EcritureCommandesMedGenCsv.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/EcritureMedicamentsCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/EcritureMedicamentsCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/EcritureOrdonnancesCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/EcritureOrdonnancesCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/EcritureRegistrePreparationCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/EcritureRegistrePreparationCsv.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/UiGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UiGui.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,12 +54,16 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2fx83ZbGYaxM3ev3I7Fw76HtqQE" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Program.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
@@ -72,6 +84,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="pharmacie" />
+      <recent name="io" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -82,12 +100,15 @@
       <updated>1714731170531</updated>
       <workItem from="1714731171743" duration="4214000" />
       <workItem from="1714735487573" duration="35141000" />
-      <workItem from="1714781609480" duration="12382000" />
+      <workItem from="1714781609480" duration="35615000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

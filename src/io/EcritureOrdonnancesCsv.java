@@ -15,19 +15,4 @@ public class EcritureOrdonnancesCsv {
      * @param filePath Le chemin du fichier CSV.
      * @param ordonnance L'ordonnance à écrire.
      */
-    public static void ecrireOrdinanceCsv(String filePath, Ordonnance ordonnance) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            List<Medicament> medicaments = List.of(ordonnance.getMedicaments());
-            for (Medicament medicament : medicaments) {
-                writer.write(medicament.getNom() + "," +
-                        medicament.getPrix() + "," +
-                        medicament.getTypeMedicament() + "," +
-                        medicament.isGenerique() + "," +
-                        medicament.getQuantiteEnStock());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

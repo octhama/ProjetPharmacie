@@ -17,6 +17,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/src/data/demandes_version_generique.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/src/data/listedecommandesmedgen.csv">
           <value>
             <Attribute>
