@@ -30,11 +30,9 @@ public class UiGui extends JFrame implements ActionListener {
     private final HashMap<Medicament, JCheckBox> medicamentGenCheckBoxMap;
     private final HashMap<JCheckBox, JSpinner> spinnerMap;
     private final Map<Medicament, Boolean> selectedMedicamentStates = new HashMap<>();
-    // Déclaration de la variable spinnerStates
     private final Map<JCheckBox, Object> spinnerStates = new HashMap<>();
     private final Map<Medicament, Integer> spinnerValues = new HashMap<>();
     private static final String CSV_FILE_PATH = "src/data/dataordonnances.csv";
-    private final Map<JCheckBox, Medicament> checkBoxMedicamentMap;
 
     /**
      * Constructeur de l'interface graphique
@@ -63,7 +61,7 @@ public class UiGui extends JFrame implements ActionListener {
         this.setResizable(false);
         this.setBackground(Color.WHITE);
         this.setVisible(true);
-        checkBoxMedicamentMap = new HashMap<>();
+        Map<JCheckBox, Medicament> checkBoxMedicamentMap = new HashMap<>();
 
         // Ajout du menu
         JMenuBar menuBar = new JMenuBar();
@@ -77,7 +75,9 @@ public class UiGui extends JFrame implements ActionListener {
         JMenu menuActionsPatient = new JMenu("Menu Patient");
         menuBar.add(menuActionsPatient);
 
+        // Déclaration du menu d'enregistrement d'ordonnance en dehors de la méthode
         JMenuItem menuEnregistrerOrdonnance = getjMenuItem();
+        // Ajouter le menu au menuActionsPatient
         menuActionsPatient.add(menuEnregistrerOrdonnance);
 
         JMenuItem menuCommanderUnePreparation = new JMenuItem("Commander préparation(s)");
@@ -89,7 +89,6 @@ public class UiGui extends JFrame implements ActionListener {
 
         JMenuItem menuCommanderMedicamentVersionGenerique = new JMenuItem("Commander médicament(s) en version générique");
         menuCommanderMedicamentVersionGenerique.addActionListener(e -> {
-            HashMap<Object, Object> checkBoxSpinnerMap = new HashMap<>();
             commanderMedicamentVersionGenerique();
         });
         menuActionsPatient.add(menuCommanderMedicamentVersionGenerique);
@@ -225,7 +224,7 @@ public class UiGui extends JFrame implements ActionListener {
     }
 
     private JMenuItem getjMenuItem() {
-        JMenuItem menuEnregistrerOrdonnance = new JMenuItem("Enregistrer une ordonnance");
+        JMenuItem menuEnregistrerOrdonnance = new JMenuItem("Enregistrer une ordonnance (Authentification médecin requise)");
         menuEnregistrerOrdonnance.addActionListener(e -> {
             String referenceOrdonnance = JOptionPane.showInputDialog(this, "Veuillez saisir la référence de l'ordonnance :");
             if (ordonnanceDisponible(referenceOrdonnance)) {
@@ -238,30 +237,42 @@ public class UiGui extends JFrame implements ActionListener {
     }
 
     private void enregistrerOrdonnance() {
-        // Afficher une boîte de dialogue pour saisir le nom du médecin
-        String referenceMedecin = JOptionPane.showInputDialog(this, "Veuillez saisir la référence du médecin :");
-        // Afficher une boîte de dialogue pour saisir le nom du patient
-        String referencePatient = JOptionPane.showInputDialog(this, "Veuillez saisir la référence du patient :");
-        // Afficher une boîte de dialogue pour saisir la date de prescription
-        String datePrescriptionString = JOptionPane.showInputDialog(this, "Veuillez saisir la date de prescription (format : yyyy-MM-dd) :");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date datePrescription = null;
-        try {
-            datePrescription = dateFormat.parse(datePrescriptionString);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Format de date invalide. Veuillez saisir une date au format yyyy-MM-dd.");
-            return;
-        }
+        // Demander à l'utilisateur de s'authentifier en tant que médecin
+        String idMedecin = JOptionPane.showInputDialog(this, "Veuillez saisir votre identifiant médecin :");
+        String passwordMedecin = JOptionPane.showInputDialog(this, "Veuillez saisir votre mot de passe médecin :");
 
-        // Afficher une boîte de dialogue pour saisir le ou les médicament(s) prescrit(s)
-        String medicamentsString = JOptionPane.showInputDialog(this, "Veuillez saisir le ou les médicament(s) prescrit(s) (séparés par des virgules) :");
-        String[] medicamentsArray = medicamentsString.split(",");
-        Stack<String> medicaments = new Stack<>();
-        for (String medicament : medicamentsArray) {
-            medicaments.push(medicament);
+        // Vérifier l'authentification
+        if (authentifierMedecin(idMedecin, passwordMedecin)) {
+            // Authentification réussie, continuer avec l'enregistrement de l'ordonnance
+
+            // Afficher une boîte de dialogue pour saisir le nom du médecin
+            String referenceMedecin = JOptionPane.showInputDialog(this, "Veuillez saisir la référence du médecin :");
+            // Afficher une boîte de dialogue pour saisir le nom du patient
+            String referencePatient = JOptionPane.showInputDialog(this, "Veuillez saisir la référence du patient :");
+            // Afficher une boîte de dialogue pour saisir la date de prescription
+            String datePrescriptionString = JOptionPane.showInputDialog(this, "Veuillez saisir la date de prescription (format : yyyy-MM-dd) :");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date datePrescription = null;
+            try {
+                datePrescription = dateFormat.parse(datePrescriptionString);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Format de date invalide. Veuillez saisir une date au format yyyy-MM-dd.");
+                return;
+            }
+
+            // Afficher une boîte de dialogue pour saisir le ou les médicament(s) prescrit(s)
+            String medicamentsString = JOptionPane.showInputDialog(this, "Veuillez saisir le ou les médicament(s) prescrit(s) (séparés par des virgules) :");
+            String[] medicamentsArray = medicamentsString.split(",");
+            Stack<String> medicaments = new Stack<>();
+            for (String medicament : medicamentsArray) {
+                medicaments.push(medicament);
+            }
+            // Enregistrer l'ordonnance
+            ecrireOrdonnanceCsv(referenceMedecin, referencePatient, datePrescription, medicaments);
+        } else {
+            // Afficher un message d'erreur si l'authentification a échoué
+            JOptionPane.showMessageDialog(this, "Identifiant ou mot de passe médecin incorrect. Vous n'êtes pas autorisé à enregistrer une ordonnance.");
         }
-        // Enregistrer l'ordonnance
-        ecrireOrdonnanceCsv(referenceMedecin, referencePatient, datePrescription, medicaments);
     }
 
     public void ecrireOrdonnanceCsv(String referenceMedecin, String referencePatient, Date datePrescription, Stack<String> medicaments) {
@@ -928,6 +939,27 @@ public class UiGui extends JFrame implements ActionListener {
 
     return false; // Aucune correspondance trouvée
 }
+
+    // Méthode pour authentifier le médecin
+    private boolean authentifierMedecin(String id, String password) {
+        String csvFilePath = "src/data/authidmedecin.csv";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+            String line;
+            // Lire chaque ligne du fichier CSV
+            while ((line = br.readLine()) != null) {
+                // Diviser la ligne en utilisant le délimiteur approprié (virgule dans ce cas)
+                String[] parts = line.split(",");
+                // Vérifier si la ligne contient l'identifiant et le mot de passe fournis
+                if (parts.length >= 2 && parts[0].equals(id) && parts[1].equals(password)) {
+                    return true; // Authentification réussie
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false; // Authentification échouée
+    }
 
     private void afficherMenuPharmacien() {
         // Créer une nouvelle fenêtre pour le menu du pharmacien
