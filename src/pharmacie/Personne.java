@@ -30,6 +30,10 @@ public abstract class Personne {
         this.sexe = sexe;
         this.numeroCarteEuroAssuranceMaladie = numeroCarteEuroAssuranceMaladie;
     }
+
+    public Personne(String element, String element1, String element2, String element3) {
+    }
+
     public String getNom() {
         return nom;
     }

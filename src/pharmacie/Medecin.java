@@ -9,6 +9,10 @@ public class Medecin extends Personne{
         super(nom, prenom, adresse, telephone, email, specialite, codePostal, ville, numeroNational, dateDeNaissance, lieuDeNaissance, sexe, numeroCarteEuroAssuranceMaladie);
     }
 
+    public Medecin(String element, String element1, String element2, String element3) {
+        super(element, element1, element2, element3);
+    }
+
     public Ordonnance creerOrdonnance(Patient patient, List<Medicament> medicaments) {
         return null;
     }
