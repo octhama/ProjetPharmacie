@@ -19,6 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
+import static io.EcritureRegistrePreparationCsv.medicaments;
+
 /**
  * Interface graphique pour une pharmacie
  */
@@ -89,8 +91,8 @@ public class UiGui extends JFrame implements ActionListener {
 
         JMenuItem menuCommanderMedicamentVersionGenerique = new JMenuItem("Commander médicament(s) en version générique");
         menuCommanderMedicamentVersionGenerique.addActionListener(e -> {
-            HashMap<Object, Object> checkBoxMedicamentMap = new HashMap<>();
-            commanderMedicamentVersionGenerique();
+            HashMap<Object, Object> checkBoxSpinnerMap = new HashMap<>();
+            commanderMedicamentVersionGenerique(checkBoxSpinnerMap);
         });
         menuActionsPatient.add(menuCommanderMedicamentVersionGenerique);
 
@@ -331,16 +333,6 @@ public class UiGui extends JFrame implements ActionListener {
         searchField.setColumns(20);
         searchPanel.add(searchField, BorderLayout.CENTER);
 
-        // Stocker l'état des spinners avant la recherche
-        Map<JCheckBox, Integer> spinnerValues = new HashMap<>();
-        for (Map.Entry<Medicament, JCheckBox> entry : medicamentCheckBoxMap.entrySet()) {
-            JCheckBox checkBox = entry.getValue();
-            JSpinner spinner = spinnerMap.get(checkBox);
-            if (checkBox.isSelected()) {
-                spinnerValues.put(checkBox, (int) spinner.getValue());
-            }
-        }
-
         // Ajouter un écouteur au champ de recherche pour la recherche dynamique
         searchField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -373,7 +365,7 @@ public class UiGui extends JFrame implements ActionListener {
                 restoreSpinnerStates();
             }
 
-
+            // Afficher les médicaments filtrés dans le panneau des médicaments
             private void afficherMedicaments(List<Medicament> filteredMedicaments) {
                 // Nettoyer le panneau des médicaments avant d'ajouter de nouveaux éléments
                 medicamentPanel.removeAll();
@@ -623,59 +615,9 @@ public class UiGui extends JFrame implements ActionListener {
         frame.setVisible(true);
     }
 
-    private void afficherListeMedicamentsNonGenOnDemand(JPanel panel, List<Medicament> medicaments) {
-        // Création d'un panneau pour afficher les médicaments
-        JPanel medicamentsPanel = new JPanel();
-        medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
-
-        // Ajouter les détails de chaque médicament au panneau
-        for (Medicament medicament : medicaments) {
-            if (!medicament.isGenerique()) {
-                JPanel medicationEntry = getjPanel(medicament);
-                medicamentsPanel.add(medicationEntry);
-            }
-        }
-
-        // Ajouter le panneau des médicaments au panneau principal
-        panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
-        panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
-        panel.revalidate(); // Mettre à jour l'affichage du panneau
-    }
-
-    private JPanel getjPanel(Medicament medicament) {
-        JPanel medicationEntry = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel label = new JLabel(medicament.getNom());
-        JCheckBox checkBox = new JCheckBox();
-
-        // Vérifier si une demande est enregistrée dans le mapping
-        if (checkBoxMedicamentMap.containsKey(checkBox)) {
-            checkBox.setSelected(true);
-            label.setText(medicament.getNom() + " - Version générique demandée");
-        } else {
-            checkBox.setSelected(false);
-            label.setText(medicament.getNom());
-        }
-
-        checkBox.addItemListener(e -> {
-            if (checkBox.isSelected()) {
-                label.setText(medicament.getNom() + " - Version générique demandée");
-                // Ajouter la demande au mapping
-                checkBoxMedicamentMap.put(checkBox, medicament);
-            } else {
-                label.setText(medicament.getNom());
-                // Retirer la demande du mapping
-                checkBoxMedicamentMap.remove(checkBox);
-            }
-        });
-
-        medicationEntry.add(checkBox);
-        medicationEntry.add(label);
-        return medicationEntry;
-    }
-
     private void commanderMedicamentVersionGenerique(HashMap<Object, Object> checkBoxSpinnerMap) {
         // Créer une fenêtre pour la commande de médicaments en version générique
-        JFrame frame = new JFrame("Commander médicament(s) en version générique");
+        JFrame frame = new JFrame("Demande de médicament(s) en version générique");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(600, 400);
         frame.setLocationRelativeTo(null);
@@ -703,8 +645,8 @@ public class UiGui extends JFrame implements ActionListener {
         searchField.setColumns(20);
         searchPanel.add(searchField, BorderLayout.CENTER);
 
-        // Appeler la méthode pour afficher la liste des médicaments non génériques pour lesquels une version générique est demandée
-        afficherListeMedicamentsNonGenOnDemand(medicamentPanel, pharmacie.getMedicaments());
+        // Afficher les médicaments non génériques
+        afficherListeMedicamentsNonGenOnDemand(medicamentPanel);
 
         // Créer un panneau pour le bouton enregistrer la demande, retourner à la fenêtre principale et réinitialiser les champs de recherche
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -783,12 +725,6 @@ public class UiGui extends JFrame implements ActionListener {
             // Ajouter un écouteur pour le bouton d'annulation
             cancelButton.addActionListener(cancelEvent -> confirmationDialog.dispose()); // Fermer la boîte de dialogue en cas d'annulation
 
-            // Afficher les médicaments sélectionnés dans le panneau de confirmation
-            for (Medicament medicament : selectedMedicaments) {
-                JLabel choiceLabel = new JLabel(medicament.getNom() + " - Version générique demandée");
-                choicesPanel.add(choiceLabel);
-            }
-
             // Afficher la boîte de dialogue de confirmation
             confirmationDialog.setVisible(true);
         });
@@ -798,7 +734,7 @@ public class UiGui extends JFrame implements ActionListener {
             // Réinitialiser les champs de recherche
             searchField.setText("");
             // Réinitialiser les médicaments affichés
-            afficherListeMedicamentsNonGenOnDemand(medicamentPanel, pharmacie.getMedicaments());
+            afficherListeMedicamentsNonGenOnDemand(medicamentPanel);
         });
 
         // Action du bouton de retour
@@ -809,6 +745,52 @@ public class UiGui extends JFrame implements ActionListener {
 
         // Afficher la fenêtre
         frame.setVisible(true);
+    }
+
+    private void afficherListeMedicamentsNonGenOnDemand(JPanel medicamentPanel) {
+        // Nettoyer le panneau des médicaments avant d'ajouter de nouveaux éléments
+        medicamentPanel.removeAll();
+
+        // Récupérer la liste des médicaments non génériques
+        List<Medicament> medicamentsNonGen = pharmacie.getMedicamentsNonGeneriques();
+
+        // Parcourir la liste des médicaments non génériques
+        for (Medicament medicament : medicamentsNonGen) {
+            // Créer les composants pour afficher le médicament
+            JPanel entryPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+            JCheckBox checkBox = new JCheckBox();
+            JLabel nameLabel = new JLabel(medicament.getNom());
+            JLabel genLabel = new JLabel("Version générique demandée");
+            genLabel.setForeground(Color.BLUE); // Mettre la couleur du label en bleu
+
+            // Ajouter les éléments à medicamentGenCheckBoxMap
+            medicamentGenCheckBoxMap.put(medicament, checkBox);
+
+            // Ajouter le label une seule fois au panel
+            entryPanel.add(checkBox);
+            entryPanel.add(nameLabel);
+            entryPanel.add(genLabel);
+
+            // Ajouter un écouteur d'item pour chaque case à cocher pour activer/désactiver les labels
+            checkBox.addItemListener(e -> {
+                boolean isSelected = checkBox.isSelected();
+                nameLabel.setEnabled(isSelected);
+                genLabel.setVisible(isSelected); // Afficher ou cacher le label en fonction de l'état du checkbox
+            });
+
+            // Par défaut, les labels sont désactivés
+            nameLabel.setEnabled(false);
+            genLabel.setVisible(false); // Cacher le label par défaut
+
+            // Encapsuler chaque médicament dans un panneau individuel
+            JPanel medicineEntryPanel = new JPanel(new BorderLayout());
+            medicineEntryPanel.add(entryPanel, BorderLayout.CENTER);
+            medicamentPanel.add(medicineEntryPanel);
+        }
+
+        // Rafraîchir l'interface utilisateur pour refléter les changements
+        medicamentPanel.revalidate();
+        medicamentPanel.repaint();
     }
 
     private JCheckBox getjCheckBox(Medicament medicament, JPanel entryPanel) {

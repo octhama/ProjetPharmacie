@@ -1,8 +1,6 @@
 package pharmacie;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.*;
-import enums.ETypeMedicament;
+
 import exceptions.ExeptionRuptureDeStock;
 
 import javax.swing.*;
@@ -18,11 +16,6 @@ public class Pharmacie {
         this.medicaments = new ArrayList<>();
         this.ordonnances = new ArrayList<>();
         this.patients = new ArrayList<>();
-    }
-
-    public void ajouterMedicament(String nom, double prix, ETypeMedicament type, boolean generique, int quantiteStock) {
-        // Ajouter un médicament à la liste
-        medicaments.add(new Medicament(nom, prix, type, generique, quantiteStock));
     }
 
     public List<Medicament> getMedicaments() {
@@ -74,36 +67,6 @@ public class Pharmacie {
         this.medicaments.addAll(medicaments);
     }
 
-    public Preparation commanderPreparation(Ordonnance ordonnance) throws Exception {
-        // Vérifier si tous les médicaments de l'ordonnance sont disponibles en quantité suffisante
-        for (Medicament medicament : ordonnance.getMedicaments()) {
-            if (!medicaments.contains(medicament) || medicament.getQuantiteEnStock() <= 0) {
-                throw new Exception("Médicament " + medicament.getNom() + " non disponible en quantité suffisante.");
-            }
-        }
-
-        // Créer une nouvelle préparation avec les médicaments de l'ordonnance
-        Preparation preparation = new Preparation();
-        preparation.setMedicaments(ordonnance.getMedicaments());
-
-        // Calculer le coût total de la préparation
-        preparation.setCoutTotal(preparation.calculerCoutTotal());
-
-        return preparation;
-    }
-
-    public void dispense(Medicament medicament, int quantite) throws ExeptionRuptureDeStock {
-        // Vérifier si la quantité demandée est disponible en stock
-        if (medicament.getQuantiteEnStock() < quantite) {
-            // Lever une exception si la quantité demandée dépasse le stock disponible
-            throw new ExeptionRuptureDeStock("Rupture de stock pour le médicament " + medicament.getNom());
-        } else {
-            // Déduire la quantité dispensée du stock du médicament
-            medicament.setQuantiteEnStock(medicament.getQuantiteEnStock() - quantite);
-            // Autres actions éventuelles liées à la dispensation du médicament
-        }
-    }
-
     public List<Medicament> filterMedicaments(String search) {
         // Créer une liste pour stocker les médicaments filtrés
         List<Medicament> filteredMedicaments = new ArrayList<>();
@@ -126,5 +89,14 @@ public class Pharmacie {
 
         // Retourner la liste des médicaments filtrés
         return filteredMedicaments;
+    }
+
+    public List<Medicament> getMedicamentsNonGeneriques() {
+        for (Medicament medicament : medicaments) {
+            if (!medicament.isGenerique()) {
+                return medicaments;
+            }
+        }
+        return List.of();
     }
 }
