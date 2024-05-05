@@ -3,7 +3,7 @@ package pharmacie;
 public class DemandeVersionGenerique {
     private String reference;
     private String date;
-    private String nomMedicament; // Ajout du champ nomMedicament
+    private String nomMedicament;
     private boolean etatDeLaDemande;
 
     public DemandeVersionGenerique(String reference, String date, String nomMedicament, boolean etatDeLaDemande) {
@@ -20,28 +20,29 @@ public class DemandeVersionGenerique {
         this.etatDeLaDemande = false;
     }
 
-    // Méthode pour obtenir le nom du médicament
+    public DemandeVersionGenerique(String nom, boolean b) {
+        this.nomMedicament = nom;
+        this.etatDeLaDemande = b;
+    }
+
     public String getNomMedicament() {
         return nomMedicament;
     }
 
-    // Méthode pour obtenir la référence de la demande
     public String getReference() {
         return reference;
     }
 
-    // Méthode pour obtenir la date de la demande
     public String getDate() {
         return date;
     }
 
-    // Méthode pour vérifier si la demande a été faite
     public boolean isDemande() {
         return etatDeLaDemande;
     }
 
     // Méthode pour convertir la demande en format CSV
     public String toCsv() {
-        return nomMedicament + "," + (isDemande() ? "1" : "0");
+        return nomMedicament + "," + (isDemande() ? "1" : "0") + "," + date;
     }
 }

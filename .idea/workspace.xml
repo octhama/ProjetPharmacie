@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ffbf0945-00a1-41f4-a3ac-8b676c5570ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/registrepreparation.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/registrepreparation.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pharmacie/Pharmacie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Pharmacie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/demandes_version_generique.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/demandes_version_generique.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/EcritureRegistreDemandeVersionGeneriqueCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/EcritureRegistreDemandeVersionGeneriqueCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/DemandeVersionGenerique.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/DemandeVersionGenerique.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/UiGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UiGui.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +92,7 @@
       <updated>1714731170531</updated>
       <workItem from="1714731171743" duration="4214000" />
       <workItem from="1714735487573" duration="35141000" />
-      <workItem from="1714781609480" duration="48395000" />
+      <workItem from="1714781609480" duration="54217000" />
     </task>
     <servers />
   </component>

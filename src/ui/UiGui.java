@@ -19,8 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
-import static io.EcritureRegistrePreparationCsv.medicaments;
-
 /**
  * Interface graphique pour une pharmacie
  */
@@ -92,7 +90,7 @@ public class UiGui extends JFrame implements ActionListener {
         JMenuItem menuCommanderMedicamentVersionGenerique = new JMenuItem("Commander médicament(s) en version générique");
         menuCommanderMedicamentVersionGenerique.addActionListener(e -> {
             HashMap<Object, Object> checkBoxSpinnerMap = new HashMap<>();
-            commanderMedicamentVersionGenerique(checkBoxSpinnerMap);
+            commanderMedicamentVersionGenerique();
         });
         menuActionsPatient.add(menuCommanderMedicamentVersionGenerique);
 
@@ -615,7 +613,7 @@ public class UiGui extends JFrame implements ActionListener {
         frame.setVisible(true);
     }
 
-    private void commanderMedicamentVersionGenerique(HashMap<Object, Object> checkBoxSpinnerMap) {
+    private void commanderMedicamentVersionGenerique() {
         // Créer une fenêtre pour la commande de médicaments en version générique
         JFrame frame = new JFrame("Demande de médicament(s) en version générique");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -632,7 +630,7 @@ public class UiGui extends JFrame implements ActionListener {
         JScrollPane scrollPane = new JScrollPane(medicamentPanel);
         panel.add(scrollPane, BorderLayout.CENTER);
 
-        // Créér un conteneur pour le champ de recherche
+        // Créer un conteneur pour le champ de recherche
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panel.add(searchPanel, BorderLayout.NORTH);
 
@@ -679,19 +677,27 @@ public class UiGui extends JFrame implements ActionListener {
             JPanel choicesPanel = new JPanel(new GridLayout(0, 1)); // Utilisation d'une disposition en grille
             confirmationPanel.add(new JScrollPane(choicesPanel), BorderLayout.CENTER);
 
-            // Créer une liste pour stocker les médicaments sélectionnés
-            List<Medicament> selectedMedicaments = new ArrayList<>();
+            // Créer une liste pour stocker les demandes de médicaments sélectionnés
+            List<DemandeVersionGenerique> selectedDemandes = new ArrayList<>();
 
-            // Afficher les choix de médicaments confirmés dans la boîte de dialogue
+            // Ajouter les demandes de médicaments sélectionnés à la liste
             for (Map.Entry<Medicament, JCheckBox> entry : medicamentGenCheckBoxMap.entrySet()) {
                 Medicament medicament = entry.getKey();
                 JCheckBox checkBox = entry.getValue();
                 if (checkBox.isSelected()) {
-                JLabel choiceLabel = new JLabel(medicament.getNom());
-                choicesPanel.add(choiceLabel);
-                selectedMedicaments.add(medicament);
+                    // Créer une demande pour le médicament sélectionné
+                    DemandeVersionGenerique demande = new DemandeVersionGenerique(medicament.getNom(), checkBox.isSelected());
+                    selectedDemandes.add(demande);
+
+                    // Ajouter une étiquette pour le médicament sélectionné
+                    JLabel choiceLabel = new JLabel(medicament.getNom());
+                    choicesPanel.add(choiceLabel);
+                }
             }
-        }
+
+            // Écrire les demandes dans le fichier CSV
+            EcritureRegistreDemandeVersionGeneriqueCsv.ecrireDemandesVersionGeneriqueCsv(selectedDemandes);
+
             // Créer un panneau pour les boutons de validation et d'annulation
             JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
             confirmationPanel.add(buttonsPanel, BorderLayout.SOUTH);
@@ -704,17 +710,17 @@ public class UiGui extends JFrame implements ActionListener {
             validateButton.addActionListener(validateEvent -> {
                 // Construire le message de confirmation
                 StringBuilder confirmationMessage = new StringBuilder("Les médicament(s) suivant(s) ont été demandé(s) en version générique :\n\n");
-                for (Medicament medicament : selectedMedicaments) {
-                    confirmationMessage.append("- ").append(medicament.getNom()).append("\n");
+
+                // Ajouter les demandes de médicaments sélectionnés au message de confirmation
+                for (DemandeVersionGenerique demande : selectedDemandes) {
+                    confirmationMessage.append("- ").append(demande.getNomMedicament()).append("\n");
                 }
                 confirmationMessage.append("\nLa demande a été enregistrée avec succès.");
 
                 // Afficher le message de confirmation
                 JOptionPane.showMessageDialog(confirmationDialog, confirmationMessage.toString());
 
-                // Ecrire les informations de la demande dans le fichier CSV (à implémenter)
-                DemandeVersionGenerique demande = new DemandeVersionGenerique(); // Créer un objet DemandeVersionGenerique avec les données nécessaires
-                EcritureRegistreDemandeVersionGeneriqueCsv.ecrireDemandesVersionGeneriqueCsv(demande); // Appel de la méthode pour écrire dans le fichier CSV
+                // Fermer la boîte de dialogue de confirmation
                 confirmationDialog.dispose();
             });
 
