@@ -20,4 +20,8 @@ public class Medecin extends Personne{
     public Ordonnance creerOrdonnance(Patient patient, Preparation preparation) {
         return null;
     }
+
+    public String getReference() {
+        return null;
+    }
 }

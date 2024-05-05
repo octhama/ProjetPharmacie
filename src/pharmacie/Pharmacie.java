@@ -99,4 +99,23 @@ public class Pharmacie {
         }
         return List.of();
     }
+
+    public List<DemandeVersionGenerique> getDemandesVersionGenerique() {
+        List<DemandeVersionGenerique> demandes = new ArrayList<>();
+        for (Medicament medicament : medicaments) {
+            if (!medicament.isGenerique()) {
+                demandes.add(new DemandeVersionGenerique(medicament.getNom()));
+            }
+        }
+        return demandes;
+    }
+
+    public List<Patient> getPatients() {
+        return patients;
+    }
+
+    public List<Medecin> getMedecins() {
+        return List.of();
+    }
+
 }

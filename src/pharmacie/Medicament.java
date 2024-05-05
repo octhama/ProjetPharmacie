@@ -121,4 +121,5 @@ public class Medicament {
     public boolean estCommandeA50Pourcent() {
         return commandeA50Pourcent;
     }
+
 }

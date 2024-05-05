@@ -25,24 +25,20 @@ public class DemandeVersionGenerique {
         this.etatDeLaDemande = b;
     }
 
+    public DemandeVersionGenerique(String nom) {
+        this.nomMedicament = nom;
+    }
+
     public String getNomMedicament() {
         return nomMedicament;
-    }
-
-    public String getReference() {
-        return reference;
-    }
-
-    public String getDate() {
-        return date;
     }
 
     public boolean isDemande() {
         return etatDeLaDemande;
     }
 
-    // Méthode pour convertir la demande en format CSV
-    public String toCsv() {
-        return nomMedicament + "," + (isDemande() ? "1" : "0") + "," + date;
+
+    public String isVersionGeneriqueDemandee() {
+        return null;
     }
 }

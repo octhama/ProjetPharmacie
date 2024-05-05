@@ -3,9 +3,8 @@ package ui;
 import enums.ETypeMedicament;
 import io.EcritureRegistreDemandeVersionGeneriqueCsv;
 import io.EcritureRegistrePreparationCsv;
-import pharmacie.DemandeVersionGenerique;
-import pharmacie.Medicament;
-import pharmacie.Pharmacie;
+import io.LectureRegistrePreparation;
+import pharmacie.*;
 
 
 import java.awt.*;
@@ -38,19 +37,14 @@ public class UiGui extends JFrame implements ActionListener {
      * Constructeur de l'interface graphique
      *
      * @param pharmacie             La pharmacie à gérer
-     * @param panelMedSurOrdonnance Le panel pour afficher les médicaments sur ordonnance
-     * @param panelMedVenteLibre    Le panel pour afficher les médicaments en vente libre
      * @param medicamentCheckBoxMap La map pour stocker les médicaments et les cases à cocher
      * @param spinnerMap            La map pour stocker les cases à cocher et les spinners
-     * @param fichierCsv            Le chemin du fichier CSV
      * @throws IOException Si une erreur d'entrée/sortie se produit
      */
 
-    public UiGui(Pharmacie pharmacie, JPanel panelMedSurOrdonnance, JPanel panelMedVenteLibre, HashMap<Medicament, JCheckBox> medicamentCheckBoxMap, HashMap<JCheckBox, JSpinner> spinnerMap, String fichierCsv, HashMap<Medicament, JCheckBox> medicamentGenCheckBoxMap) throws IOException {
+    public UiGui(Pharmacie pharmacie, HashMap<Medicament, JCheckBox> medicamentCheckBoxMap, HashMap<JCheckBox, JSpinner> spinnerMap, HashMap<Medicament, JCheckBox> medicamentGenCheckBoxMap) throws IOException {
         this.pharmacie = pharmacie;
         this.medicamentGenCheckBoxMap = medicamentGenCheckBoxMap;
-        JPanel panelMedSurOrdonnance1 = panelMedSurOrdonnance;
-        JPanel panelMedVenteLibre1 = panelMedVenteLibre;
         this.medicamentCheckBoxMap = medicamentCheckBoxMap;
         this.spinnerMap = spinnerMap;
         this.setTitle("Pharmacie");
@@ -61,7 +55,6 @@ public class UiGui extends JFrame implements ActionListener {
         this.setResizable(false);
         this.setBackground(Color.WHITE);
         this.setVisible(true);
-        Map<JCheckBox, Medicament> checkBoxMedicamentMap = new HashMap<>();
 
         // Ajout du menu
         JMenuBar menuBar = new JMenuBar();
@@ -111,8 +104,8 @@ public class UiGui extends JFrame implements ActionListener {
         panelAfficherMedicaments = new JPanel(new BorderLayout());
         JPanel panelAfficherMedicamentsGenerique = new JPanel(new BorderLayout());
         JPanel panelAfficherMedicamentsNonGenerique = new JPanel(new BorderLayout());
-        panelMedSurOrdonnance = new JPanel(new BorderLayout());
-        panelMedVenteLibre = new JPanel(new BorderLayout());
+        JPanel panelMedSurOrdonnance = new JPanel(new BorderLayout());
+        JPanel panelMedVenteLibre = new JPanel(new BorderLayout());
 
         tabbedPane.addTab("Médicaments", panelAfficherMedicaments);
         tabbedPane.addTab("Medicaments Génériques", panelAfficherMedicamentsGenerique);
@@ -220,7 +213,7 @@ public class UiGui extends JFrame implements ActionListener {
     }
 
     public UiGui(Pharmacie pharmacie) throws IOException {
-        this(pharmacie, new JPanel(), new JPanel(), new HashMap<>(), new HashMap<>(), "src/data/dataordonnances.csv", new HashMap<>());
+        this(pharmacie, new HashMap<>(), new HashMap<>(), new HashMap<>());
     }
 
     private JMenuItem getjMenuItem() {
@@ -962,52 +955,248 @@ public class UiGui extends JFrame implements ActionListener {
     }
 
     private void afficherMenuPharmacien() {
+        SwingUtilities.invokeLater(() -> {
         // Créer une nouvelle fenêtre pour le menu du pharmacien
         JFrame menuPharmacienFrame = new JFrame("Menu Pharmacien");
         menuPharmacienFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        menuPharmacienFrame.setSize(400, 300);
+        menuPharmacienFrame.setSize(600, 600);
         menuPharmacienFrame.setLocationRelativeTo(null);
         menuPharmacienFrame.setResizable(false);
-    
-        // Créer un panneau pour les boutons du menu
-        JPanel menuPanel = new JPanel(new GridLayout(0, 1));
-        menuPharmacienFrame.add(menuPanel);
-    
-        // Ajouter des boutons pour les fonctionnalités du menu
-        JButton ajouterMedicamentButton = new JButton("Ajouter un médicament");
-        JButton ajouterPharmacienButton = new JButton("Ajouter un pharmacien");
-        JButton afficherLeStockMedicamentButton = new JButton("Afficher le stock des médicaments");
-        JButton afficherLesPreparationsButton = new JButton("Afficher les préparations");
-        JButton afficherLesOrdonnancesButton = new JButton("Afficher les ordonnances");
-        JButton afficherLesPatientsButton = new JButton("Afficher les patients");
-        JButton afficherLesPharmaciensButton = new JButton("Afficher les pharmaciens");
-        JButton afficherLesDemandesDeMedGen = new JButton("Afficher les demandes de médicaments génériques");
 
-        // Ajoutez d'autres boutons pour d'autres fonctionnalités si nécessaire
-    
-        // Ajouter des actions aux boutons
-        ajouterMedicamentButton.addActionListener(e -> {
-            // Ajouter la logique pour ajouter un médicament
+        JMenuBar menuBar = new JMenuBar();
+        menuPharmacienFrame.setJMenuBar(menuBar);
+
+        // Créer un conteneur pour les panneaux de contenu
+        JPanel contentPanel = new JPanel(new CardLayout());
+        menuPharmacienFrame.add(contentPanel);
+
+        // Création des panneaux pour afficher les informations
+        JPanel panelAffichageMedicaments = new JPanel(new BorderLayout());
+        contentPanel.add(panelAffichageMedicaments, "Medicaments");
+        JPanel panelAffichageDemandeMedicamentsGeneriques = new JPanel(new BorderLayout());
+        contentPanel.add(panelAffichageDemandeMedicamentsGeneriques, "Demandes");
+        JPanel panelAffichageRegistrePreparation = new JPanel(new BorderLayout());
+        contentPanel.add(panelAffichageRegistrePreparation, "Registre");
+        JPanel panelAffichageListePatients = new JPanel(new BorderLayout());
+        contentPanel.add(panelAffichageListePatients, "Patients");
+        JPanel panelAffichageListeMedecins = new JPanel(new BorderLayout());
+        contentPanel.add(panelAffichageListeMedecins, "Medecins");
+
+        // Créer un menu pour les actions d'affichage de données
+        JMenu menuActionsAffichage = new JMenu("Affichage de données");
+        menuBar.add(menuActionsAffichage);
+        JMenuItem menuItemAfficherMedicaments = new JMenuItem("Afficher les médicaments");
+        menuActionsAffichage.add(menuItemAfficherMedicaments);
+        JMenuItem menuItemAfficherDemandeMedicamentsGeneriques = new JMenuItem("Afficher les demandes de médicaments génériques");
+        menuActionsAffichage.add(menuItemAfficherDemandeMedicamentsGeneriques);
+        JMenuItem menuItemAfficherRegistrePreparation = new JMenuItem("Afficher le registre de préparation");
+        menuActionsAffichage.add(menuItemAfficherRegistrePreparation);
+        JMenuItem menuItemAfficherListePatients = new JMenuItem("Afficher la liste des patients");
+        menuActionsAffichage.add(menuItemAfficherListePatients);
+        JMenuItem menuItemAfficherListeMedecins = new JMenuItem("Afficher la liste des médecins");
+        menuActionsAffichage.add(menuItemAfficherListeMedecins);
+
+        // Ajouter les actions correspondantes aux éléments de menu
+
+        // Action pour afficher les médicaments
+        menuItemAfficherMedicaments.addActionListener(e -> {
+            // Appeler la méthode pour afficher les médicaments dans le panneau de la fenêtre
+            afficherMedicaments(panelAffichageMedicaments);
         });
-    
-        ajouterPharmacienButton.addActionListener(e -> {
-            // Ajouter la logique pour ajouter un pharmacien
+
+        // Action pour afficher les demandes de médicaments génériques
+        menuItemAfficherDemandeMedicamentsGeneriques.addActionListener(e -> {
+            // Appeler la méthode pour afficher les demandes de médicaments génériques dans le panneau de la fenêtre
+            afficherDemandeMedicamentsGeneriques(panelAffichageDemandeMedicamentsGeneriques);
         });
-    
-        // Ajouter les boutons au panneau du menu
-        menuPanel.add(ajouterMedicamentButton);
-        menuPanel.add(ajouterPharmacienButton);
-        menuPanel.add(afficherLeStockMedicamentButton);
-        menuPanel.add(afficherLesPreparationsButton);
-        menuPanel.add(afficherLesOrdonnancesButton);
-        menuPanel.add(afficherLesPatientsButton);
-        menuPanel.add(afficherLesPharmaciensButton);
-        menuPanel.add(afficherLesDemandesDeMedGen);
-        
+
+        // Action pour afficher le registre de préparation
+        menuItemAfficherRegistrePreparation.addActionListener(e -> {
+            // Appeler la méthode pour afficher le registre de préparation dans le panneau de la fenêtre
+            try {
+                afficherRegistrePreparation(panelAffichageRegistrePreparation);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        // Action pour afficher la liste des patients
+        menuItemAfficherListePatients.addActionListener(e -> {
+            // Appeler la méthode pour afficher la liste des patients dans le panneau de la fenêtre
+            afficherListePatients(panelAffichageListePatients);
+        });
+
+        // Action pour afficher la liste des médecins
+        menuItemAfficherListeMedecins.addActionListener(e -> {
+            // Appeler la méthode pour afficher la liste des médecins dans le panneau de la fenêtre
+            afficherListeMedecins(panelAffichageListeMedecins);
+        });
+
+        // Créer un menu pour les actions du pharmacien
+        JMenu menuActions = new JMenu("Gest. Stock Médicaments");
+        menuBar.add(menuActions);
+        JMenuItem menuItemCommanderPreparation = new JMenuItem("Ajouter un médicament");
+        menuActions.add(menuItemCommanderPreparation);
+        JMenuItem menuItemModifMed = new JMenuItem("Modifier un médicament");
+        menuActions.add(menuItemModifMed);
+        JMenuItem menuItemRetirerMedicament = new JMenuItem("Retirer un médicament");
+        menuActions.add(menuItemRetirerMedicament);
+        JMenuItem menuItemCommanderPreparationGeneriqueDemandeVersionGenerique = new JMenuItem("Ajouter un médicament de marque en version générique");
+        menuActions.add(menuItemCommanderPreparationGeneriqueDemandeVersionGenerique);
+
+        // Créer un menu pour les actions du pharmacien
+        JMenu menuActionsGestionDesPersonnes = new JMenu("Gest. Personnes");
+        menuBar.add(menuActionsGestionDesPersonnes);
+        JMenuItem menuItemAjouterPatient = new JMenuItem("Ajouter un patient");
+        menuActionsGestionDesPersonnes.add(menuItemAjouterPatient);
+        JMenuItem menuItemSuppPatient = new JMenuItem("Supprimer un patient");
+        menuActionsGestionDesPersonnes.add(menuItemSuppPatient);
+        JMenuItem menuItemAjouterMedecin = new JMenuItem("Ajouter un médecin");
+        menuActionsGestionDesPersonnes.add(menuItemAjouterMedecin);
+        JMenuItem menuItemSuppMedecin = new JMenuItem("Supprimer un médecin");
+        menuActionsGestionDesPersonnes.add(menuItemSuppMedecin);
+        JMenuItem menuItemAjouterPharmacien = new JMenuItem("Ajouter un pharmacien");
+        menuActionsGestionDesPersonnes.add(menuItemAjouterPharmacien);
+        JMenuItem menuItemSuppPharmacien = new JMenuItem("Supprimer un pharmacien");
+        menuActionsGestionDesPersonnes.add(menuItemSuppPharmacien);
+
         // Ajoutez d'autres boutons au panneau du menu si nécessaire
-    
+
         // Afficher la fenêtre du menu du pharmacien
         menuPharmacienFrame.setVisible(true);
+        });
+    }
+
+    // Afficher les medicament de src/data/medicaments.csv
+    private void afficherMedicaments(JPanel panel) {
+        // Créer une fenêtre pour afficher les médicaments
+        JFrame frame = new JFrame("Liste des médicaments");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(600, 400);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+
+        // Création d'un panneau pour afficher les médicaments
+        JPanel medicamentsPanel = new JPanel();
+        medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
+
+        // Ajouter les détails de chaque médicament au panneau (ajouté un label "en rupture de stock" en rouge devant les médicaments avec une quantité en stock inférieure à 20 unités)
+        for (Medicament medicament : pharmacie.getMedicaments()) {
+            JLabel label = new JLabel(medicament.getNom() + " - " + medicament.getQuantiteEnStock() + " unité(s)");
+            if (medicament.getQuantiteEnStock() < 20) {
+                label.setForeground(Color.RED); // Mettre la couleur du label en rouge
+                label.setText("En rupture de stock - " + medicament.getNom() + " - " + medicament.getQuantiteEnStock() + " unité(s)");
+            }
+            medicamentsPanel.add(label);
+        }
+
+        // Ajouter le panneau des médicaments au panneau principal
+        panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
+        panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
+        panel.revalidate(); // Mettre à jour l'affichage du panneau
+    }
+
+    // Afficher les medicament de src/data/listeMedecins.csv
+    private void afficherListeMedecins(JPanel panel) {
+        // Créer une fenêtre pour afficher la liste des médecins
+        JFrame frame = new JFrame("Liste des médecins");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(600, 400);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+
+        // Création d'un panneau pour afficher la liste des médecins
+        JPanel medecinPanel = new JPanel();
+        medecinPanel.setLayout(new BoxLayout(medecinPanel, BoxLayout.Y_AXIS));
+
+        // Ajouter les détails de chaque médecin au panneau
+        for (Medecin medecin : pharmacie.getMedecins()) {
+            JLabel label = new JLabel(medecin.getPrenom() + " " + medecin.getNom() + " - " + medecin.getReference());
+            medecinPanel.add(label);
+        }
+
+        // Ajouter le panneau des médecins au panneau principal
+        panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
+        panel.add(new JScrollPane(medecinPanel), BorderLayout.CENTER);
+        panel.revalidate(); // Mettre à jour l'affichage du panneau
+    }
+
+    // Afficher les medicaments dans src/data/listePatients.csv
+    private void afficherListePatients(JPanel panel) {
+        // Créer une fenêtre pour afficher la liste des patients
+        JFrame frame = new JFrame("Liste des patients");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(600, 400);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+
+        // Création d'un panneau pour afficher la liste des patients
+        JPanel patientPanel = new JPanel();
+        patientPanel.setLayout(new BoxLayout(patientPanel, BoxLayout.Y_AXIS));
+
+        // Ajouter les détails de chaque patient au panneau
+        for (Patient patient : pharmacie.getPatients()) {
+            JLabel label = new JLabel(patient.getPrenom() + " " + patient.getNom() + " - " + patient.getReference());
+            patientPanel.add(label);
+        }
+
+        // Ajouter le panneau des patients au panneau principal
+        panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
+        panel.add(new JScrollPane(patientPanel), BorderLayout.CENTER);
+        panel.revalidate(); // Mettre à jour l'affichage du panneau
+    }
+
+    // Afficher le registre de préparation en utilisant la classe LectureRegistrePreparation
+    private void afficherRegistrePreparation(JPanel panel) throws IOException {
+        // Créer une fenêtre pour afficher le registre de préparation
+        JFrame frame = new JFrame("Registre de préparation");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(600, 400);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+
+        // Création d'un panneau pour afficher les médicaments préparés
+        JPanel preparationPanel = new JPanel();
+        preparationPanel.setLayout(new BoxLayout(preparationPanel, BoxLayout.Y_AXIS));
+
+        // Lire le registre de préparation
+        String preparations = LectureRegistrePreparation.lireRegistrePreparation("src/data/registrepreparation.csv");
+
+        // Ajouter les détails de chaque préparation commandée dans le panneau
+        for (String preparation : preparations.split("\n")) {
+            JLabel label = new JLabel(preparation);
+            preparationPanel.add(label);
+        }
+
+        // Ajouter le panneau des médicaments au panneau principal
+        panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
+        panel.add(new JScrollPane(preparationPanel), BorderLayout.CENTER);
+        panel.revalidate(); // Mettre à jour l'affichage du panneau
+    }
+
+    // Afficher les medicament de src/data/demandes_version_generique.csv
+    private void afficherDemandeMedicamentsGeneriques(JPanel panel) {
+        // Créer une fenêtre pour afficher les demandes de médicaments génériques
+        JFrame frame = new JFrame("Demandes de médicaments génériques");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(600, 400);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+
+        // Création d'un panneau pour afficher les médicaments en demande de version générique
+        JPanel demandePanel = new JPanel();
+        demandePanel.setLayout(new BoxLayout(demandePanel, BoxLayout.Y_AXIS));
+
+        // Ajouter les détails de chaque demande au panneau
+        for (DemandeVersionGenerique demande : pharmacie.getDemandesVersionGenerique()) {
+            JLabel label = new JLabel(demande.getNomMedicament() + " - Version générique demandée : " + demande.isVersionGeneriqueDemandee());
+            demandePanel.add(label);
+        }
+
+        // Ajouter le panneau des médicaments au panneau principal
+        panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
+        panel.add(new JScrollPane(demandePanel), BorderLayout.CENTER);
+        panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
 
     private boolean ordonnanceDisponible(String referencePatient) {
@@ -1145,7 +1334,7 @@ public class UiGui extends JFrame implements ActionListener {
         JPanel medicamentsPanel = new JPanel();
         medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
 
-        // Ajouter les détails de chaque médicament au panneau
+        // Ajouter les détails de chaque médicament non générique au panneau
         for (Medicament medicament : medicaments) {
             if (!medicament.isGenerique()) {
                 JLabel label = getjLabel(medicament);

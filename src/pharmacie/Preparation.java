@@ -1,8 +1,10 @@
 package pharmacie;
 
+import java.util.Calendar;
 import java.util.List;
 
 public  class Preparation {
+    public String getIdCommande;
     private List<Medicament> medicaments;
     private String nom;
     private int quantite;
@@ -77,5 +79,17 @@ public  class Preparation {
 
     public double getCoutTotal() {
         return coutTotal;
+    }
+
+    public Medicament getMedicament() {
+        return null;
+    }
+
+    public Calendar getDatePreparation() {
+        return null;
+    }
+
+    public String getNomMedicament() {
+        return null;
     }
 }
