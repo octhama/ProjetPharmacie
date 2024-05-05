@@ -19,8 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
-import static io.EcritureRegistrePreparationCsv.medicaments;
-
 /**
  * Interface graphique pour une pharmacie
  */
@@ -621,7 +619,7 @@ public class UiGui extends JFrame implements ActionListener {
 
                                 // Réécrire le fichier CSV des médicaments avec les nouvelles quantités
                                 try {
-                                    EcritureMedicamentsCsv.ecrireMedicamentsCsv(selectedMedicaments, "src/data/medicaments.csv");
+                                    EcritureMedicamentsCsv.ecrireMajQttStockMedicamentsCsv(selectedMedicaments, "src/data/medicaments.csv");
                                 } catch (IOException ex) {
                                     throw new RuntimeException(ex);
                                 }
@@ -1070,8 +1068,16 @@ public class UiGui extends JFrame implements ActionListener {
         // Créer un menu pour les actions du pharmacien
         JMenu menuActions = new JMenu("Gest. Stock Médicaments");
         menuBar.add(menuActions);
-        JMenuItem menuItemCommanderPreparation = new JMenuItem("Ajouter un médicament");
-        menuActions.add(menuItemCommanderPreparation);
+        JMenuItem menuItemAjouterMedicament = new JMenuItem("Ajouter un médicament");
+        menuActions.add(menuItemAjouterMedicament);
+        menuItemAjouterMedicament.addActionListener(e -> {
+            // Appeler la méthode pour ajouter un médicament
+            try {
+                ajouterMedicament();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         JMenuItem menuItemModifMed = new JMenuItem("Modifier un médicament");
         menuActions.add(menuItemModifMed);
         JMenuItem menuItemRetirerMedicament = new JMenuItem("Retirer un médicament");
@@ -1425,6 +1431,113 @@ public class UiGui extends JFrame implements ActionListener {
         panel.add(new JScrollPane(medicamentsPanel), BorderLayout.CENTER);
         panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
+
+    // Ajouter médicament dans le src/data/medicaments.csv
+    private void ajouterMedicament() throws IOException {
+        // Créer une boîte de dialogue pour saisir les détails du médicament
+        JDialog dialog = new JDialog();
+        dialog.setTitle("Ajouter un médicament");
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.setSize(400, 300);
+        dialog.setLocationRelativeTo(null);
+        dialog.setLayout(new BorderLayout());
+
+        // Créer un panneau pour les champs de saisie
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new GridLayout(5, 2));
+        dialog.add(inputPanel, BorderLayout.CENTER);
+
+        // Ajouter des champs de saisie pour le nom, le prix, la quantité en stock et le type du médicament
+        JTextField nomField = new JTextField();
+        JTextField prixField = new JTextField();
+        JComboBox<ETypeMedicament> typeComboBox = new JComboBox<>(ETypeMedicament.values());
+        Checkbox generiqueCheckBox = new Checkbox("Générique");
+        JTextField quantiteField = new JTextField();
+
+
+        inputPanel.add(new JLabel("Nom :"));
+        inputPanel.add(nomField);
+
+        inputPanel.add(new JLabel("Prix :"));
+        inputPanel.add(prixField);
+
+        inputPanel.add(new JLabel("Type :"));
+        inputPanel.add(typeComboBox);
+
+        inputPanel.add(new JLabel("Générique :"));
+        inputPanel.add(generiqueCheckBox);
+
+        inputPanel.add(new JLabel("Quantité en stock :"));
+        inputPanel.add(quantiteField);
+
+        //Créer un conteneur pour les boutons Ajouter, Reinitaliser et Quitter
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new FlowLayout());
+        dialog.add(buttonsPanel, BorderLayout.SOUTH);
+
+        // Créer un bouton pour ajouter le médicament
+        JButton addButton = new JButton("Ajouter");
+        buttonsPanel.add(addButton);
+
+        // Créer un bouton pour réinitialiser les champs
+        JButton resetButton = new JButton("Réinitialiser");
+        buttonsPanel.add(resetButton);
+
+        // Créer un bouton pour fermer la boîte de dialogue
+        JButton closeButton = new JButton("Fermer");
+        buttonsPanel.add(closeButton);
+
+        // Action du bouton Ajouter
+        addButton.addActionListener(e -> {
+            // Récupérer les valeurs saisies par l'utilisateur
+            String nom = nomField.getText();
+            double prix = Double.parseDouble(prixField.getText());
+            ETypeMedicament type = (ETypeMedicament) typeComboBox.getSelectedItem();
+            boolean generique = generiqueCheckBox.getState();
+            int quantite = Integer.parseInt(quantiteField.getText());
+
+
+            // Créer un nouveau médicament avec les valeurs saisies
+            Medicament medicament = new Medicament(nom, prix, type, generique, quantite);
+
+            // Ajouter le médicament à la liste des médicaments de la pharmacie
+            pharmacie.ajouterMedicament(medicament);
+
+            // Mettre à jour le fichier CSV des médicaments
+            try {
+                EcritureMedicamentsCsv.ecrireAjoutDeMedicamentCsv("src/data/medicaments.csv", medicament);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
+            // Afficher un message de confirmation
+            JOptionPane.showMessageDialog(dialog, "Le médicament a été ajouté avec succès.");
+
+            // Fermer la boîte de dialogue
+            dialog.dispose();
+        });
+
+        // Action du bouton Réinitialiser
+        resetButton.addActionListener(e -> {
+            // Réinitialiser les champs de saisie
+            nomField.setText("");
+            prixField.setText("");
+            typeComboBox.setSelectedIndex(0);
+            generiqueCheckBox.setState(false);
+            quantiteField.setText("");
+
+        });
+
+        // Action du bouton Fermer
+        closeButton.addActionListener(e -> {
+            // Fermer la boîte de dialogue
+            dialog.dispose();
+        });
+
+        // Afficher la boîte de dialogue
+        dialog.setVisible(true);
+    }
+
 
     public void afficher() {
         // Afficher l'interface graphique

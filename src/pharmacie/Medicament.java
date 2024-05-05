@@ -74,6 +74,13 @@ public class Medicament {
         this.quantiteEnStock = quantiteStock;
     }
 
+    public Medicament(String nom, double prix, int quantite, ETypeMedicament type) {
+        this.nom = nom;
+        this.prix = prix;
+        this.quantiteEnStock = quantite;
+        this.type = type;
+    }
+
     public String getNom() {
         return nom;
     }

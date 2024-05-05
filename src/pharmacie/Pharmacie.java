@@ -118,4 +118,7 @@ public class Pharmacie {
         return List.of();
     }
 
+    public void ajouterMedicament(Medicament medicament) {
+        medicaments.add(medicament);
+    }
 }

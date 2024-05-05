@@ -199,3 +199,5 @@ Dafalgan 604mg,6.45,VENTE_LIBRE,FALSE,99
 Aprotinin 673mg,15.16,ORDONNANCE,TRUE,99
 Quetiapine 226mg,4.26,VENTE_LIBRE,TRUE,56
 Glibenclamide 251mg,3.84,ORDONNANCE,TRUE,19
+Paracétamol 1mg,1.0,VENTE_LIBRE,true,200
+Paracétamol 2mg,2.0,VENTE_LIBRE,false,100
