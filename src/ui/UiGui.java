@@ -282,8 +282,8 @@ public class UiGui extends JFrame implements ActionListener {
         String formattedDate = dateFormat.format(datePrescription);
 
         try (FileWriter fw = new FileWriter(CSV_FILE_PATH, true);
-             BufferedWriter bw = new BufferedWriter(fw);
-             PrintWriter out = new PrintWriter(bw)) {
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw)) {
 
             String sb = referenceMedecin + ", " +
                     referencePatient + ", " +

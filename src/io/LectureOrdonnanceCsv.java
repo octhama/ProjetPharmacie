@@ -69,13 +69,6 @@ public class LectureOrdonnanceCsv {
         List<Medicament> medicaments = new ArrayList<>();
         String[] medicamentStrings = medicamentsString.split(",");
         for (String medicamentString : medicamentStrings) {
-            // Analyser chaque partie pour extraire le nom du médicament et la quantité prescrite
-            // La logique dépendra du format dans lequel les médicaments sont stockés dans le fichier CSV
-            // Par exemple, le format pourrait être "NomMedicament(QuantitePrescrite)"
-            // Vous devrez ajuster cette logique en fonction de votre format réel
-            // Ajouter le médicament à la liste
-
-            // Split the string to get the name and quantity
             String[] parts = medicamentString.split("\\(");
             String nom = parts[0];
             int quantitePrescrite = Integer.parseInt(parts[1].substring(0, parts[1].length() - 1));
