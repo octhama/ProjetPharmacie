@@ -1,14 +1,31 @@
 package io;
 
+import pharmacie.DemandeVersionGenerique;
 import pharmacie.Medicament;
 import pharmacie.Ordonnance;
+import ui.UiGui;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+
+import interfaces.IDocuments;
 
 /**
  * Classe pour lire les ordonnances à partir d'un fichier CSV.
@@ -81,4 +98,48 @@ public class LectureOrdonnanceCsv {
         }
         return medicaments;
     }
+
+    // Méthode pour authentifier le médecin
+    public static boolean authentifierMedecin(String id, String password) {
+            String csvFilePath = "src/data/authidmedecin.csv";
+        
+            try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+                String line;
+                // Lire chaque ligne du fichier CSV
+                while ((line = br.readLine()) != null) {
+                    // Diviser la ligne en utilisant le délimiteur approprié (virgule dans ce cas)
+                    String[] parts = line.split(",");
+                    // Vérifier si la ligne contient l'identifiant et le mot de passe fournis
+                    if (parts.length >= 2 && parts[0].equals(id) && parts[1].equals(password)) {
+                        return true; // Authentification réussie
+                    }
+                }
+            } catch (IOException e) {
+                    e.printStackTrace();
+            }
+            return false; // Authentification échouée
+        }
+
+    public static boolean ordonnanceDisponible(String referencePatient) {
+            String csvFilePath = "src/data/dataordonnances.csv";
+    
+            try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+                String line;
+                // Lire chaque ligne du fichier CSV
+                while ((line = br.readLine()) != null) {
+                    // Diviser la ligne en utilisant le délimiteur approprié (virgule dans ce cas)
+                    String[] parts = line.split(",");
+                    // Vérifier si la ligne contient la référence du patient donnée
+                    if (parts.length >= 2 && parts[1].trim().equals(referencePatient.trim())) {
+                        return true; // Ordonnance trouvée
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+    
+            return false; // Aucune correspondance trouvée
+        }
+
+
 }

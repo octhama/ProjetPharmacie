@@ -1,6 +1,6 @@
 package pharmacie;
 
-public  class Preparation {
+public class Preparation {
     private String nom;
 
 

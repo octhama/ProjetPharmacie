@@ -1,7 +1,13 @@
 package pharmacie;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.swing.JCheckBox;
+
 import enums.ETypeMedicament;
 import exceptions.ExeptionRuptureDeStock;
+import ui.UiGui;
 
 public class Medicament {
     private String nom;
@@ -138,4 +144,26 @@ public class Medicament {
         return commandeA50Pourcent;
     }
 
+    public static boolean medicamentsCorrespondants(List<String> medicamentsPrescrits) {
+        for (Map.Entry<Medicament, JCheckBox> entry : UiGui.medicamentCheckBoxMap.entrySet()) {
+            Medicament medicament = entry.getKey();
+            JCheckBox checkBox = entry.getValue();
+            if (checkBox.isSelected()) {
+                boolean correspondant = false;
+                for (String medicamentPrescrit : medicamentsPrescrits) {
+                    // Vérifier si le nom du médicament sélectionné correspond à un médicament prescrit
+                    if (medicamentPrescrit.equalsIgnoreCase(medicament.getNom())) {
+                        correspondant = true;
+                        break;
+                    }
+                }
+                // Si aucun médicament prescrit ne correspond, retourner false
+                if (!correspondant) {
+                    return false;
+                }
+            }
+        }
+        // Si tous les médicaments sélectionnés correspondent à ceux prescrits, retourner true
+        return true;
+    }
 }
