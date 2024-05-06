@@ -14,7 +14,7 @@ private LectureMedecinCsv() {
         throw new AssertionError("Cette classe ne peut pas être instanciée");
     }
 
-    public static List<Medecin> chargerMedecinsDepuisCSV(String cheminFichier) throws IOException {
+    public static List<Medecin> chargerMedecinsDepuisCSV() throws IOException {
         List<Medecin> medecins = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader("src/data/authidmedecin.csv"))) {

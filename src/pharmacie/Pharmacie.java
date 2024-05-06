@@ -9,12 +9,11 @@ import java.util.List;
 
 public class Pharmacie {
     private final List<Medicament> medicaments;
-    private final List<Ordonnance> ordonnances;
     private final List<Patient> patients;
 
     public Pharmacie() {
         this.medicaments = new ArrayList<>();
-        this.ordonnances = new ArrayList<>();
+        List<Ordonnance> ordonnances = new ArrayList<>();
         this.patients = new ArrayList<>();
     }
 
@@ -120,5 +119,19 @@ public class Pharmacie {
 
     public void ajouterMedicament(Medicament medicament) {
         medicaments.add(medicament);
+    }
+
+
+    public void modifierMedicament(Medicament medicament) {
+        for (int i = 0; i < medicaments.size(); i++) {
+            if (medicaments.get(i).getNom().equals(medicament.getNom())) {
+                medicaments.set(i, medicament);
+                break;
+            }
+        }
+    }
+
+    public void retirerMedicament(Medicament medicament) {
+        medicaments.remove(medicament);
     }
 }

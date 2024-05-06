@@ -81,7 +81,7 @@ public class EcritureMedicamentsCsv {
         }
     }
 
-    public static void ecrireModifierMedicamentCsv(Medicament medicament, String fichierCsv) throws IOException {
+    public static void ecrireModificationDeMedicamentCsv(Medicament medicament, String fichierCsv) throws IOException {
         // Lire toutes les lignes du fichier CSV
         List<String> lignes = Files.readAllLines(Paths.get(fichierCsv));
 

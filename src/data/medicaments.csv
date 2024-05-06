@@ -1,14 +1,14 @@
 nom,prix,type_medicament,generique,quantite_stock
-Mébendazole 865mg,19.34,ORDONNANCE,FALSE,6
+Mébendazole 865mg,18.0,ORDONNANCE,false,76
 Escitalopram 493mg,11.63,VENTE_LIBRE,FALSE,70
 Épinephrine 800mg,16.26,ORDONNANCE,TRUE,57
-Rivaroxaban 248mg,13.92,VENTE_LIBRE,TRUE,20
+Rivaroxaban 248mg,13.92,VENTE_LIBRE,TRUE,16
 Diclofenac 300mg,14.16,VENTE_LIBRE,TRUE,99
 Azithromycine 644mg,4.65,VENTE_LIBRE,TRUE,46
 Adrénaline 937mg,15.14,ORDONNANCE,TRUE,25
 Naproxen 129mg,16.44,VENTE_LIBRE,TRUE,38
 Desloratadine 116mg,14.67,ORDONNANCE,FALSE,92
-Noradrénaline 362mg,2.23,ORDONNANCE,TRUE,16
+Noradrénaline 362mg,2.23,ORDONNANCE,TRUE,13
 Halopéridol 531mg,16.61,ORDONNANCE,TRUE,91
 Valproate 339mg,11.94,ORDONNANCE,TRUE,38
 Lévocétirizine 934mg,10.78,ORDONNANCE,TRUE,64
@@ -199,5 +199,3 @@ Dafalgan 604mg,6.45,VENTE_LIBRE,FALSE,99
 Aprotinin 673mg,15.16,ORDONNANCE,TRUE,99
 Quetiapine 226mg,4.26,VENTE_LIBRE,TRUE,56
 Glibenclamide 251mg,3.84,ORDONNANCE,TRUE,19
-Paracétamol 1mg,1.0,VENTE_LIBRE,true,200
-Paracétamol 2mg,2.0,VENTE_LIBRE,false,100

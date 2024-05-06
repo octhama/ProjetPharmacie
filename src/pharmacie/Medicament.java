@@ -81,6 +81,15 @@ public class Medicament {
         this.type = type;
     }
 
+    public Medicament(String nom, int prix, ETypeMedicament type, boolean generique, Integer quantiteStock) {
+        //TODO Auto-generated constructor stub
+        this.nom = nom;
+        this.prix = prix;
+        this.type = type;
+        this.generique = generique;
+        this.quantiteEnStock = quantiteStock;
+    }
+
     public String getNom() {
         return nom;
     }
