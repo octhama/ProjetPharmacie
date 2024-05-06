@@ -31,13 +31,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/src/data/listedecommandesmedgen.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/src/data/medicaments.csv">
           <value>
             <Attribute>
@@ -46,13 +39,6 @@
           </value>
         </entry>
         <entry key="/src/data/registrepreparation.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/src/data/registrepreparationmedsansordonnance.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
