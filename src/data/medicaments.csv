@@ -1,5 +1,5 @@
 nom,prix,type_medicament,generique,quantite_stock
-Mébendazole 865mg,18.0,ORDONNANCE,false,76
+Mébendazole 865mg,18.0,ORDONNANCE,false,72
 Escitalopram 493mg,11.63,VENTE_LIBRE,FALSE,70
 Épinephrine 800mg,16.26,ORDONNANCE,TRUE,57
 Rivaroxaban 248mg,13.92,VENTE_LIBRE,TRUE,16
