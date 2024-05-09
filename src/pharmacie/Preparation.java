@@ -1,45 +1,29 @@
 package pharmacie;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
+import javax.swing.*;
+import javax.swing.event.*;
 
 import interfaces.IDocuments;
 import io.EcritureMedicamentsCsv;
 import io.EcritureRegistrePreparationCsv;
 import io.LectureMedicamentsCsv;
 import io.LectureOrdonnanceCsv;
+import org.jetbrains.annotations.NotNull;
 import ui.UiGui;
 import utils.DateUtlis;
 
 public class Preparation {
     private String nom;
-
-
     // Ajoutez ce constructeur à la classe Preparation
     public Preparation(String nom) {
         this.nom = nom;
     }
+
     public String getNom() {
         return nom;
     }
@@ -85,6 +69,7 @@ public class Preparation {
 
         // Ajouter un écouteur au champ de recherche pour la recherche dynamique
         searchField.getDocument().addDocumentListener(new DocumentListener() {
+
             @Override
             public void insertUpdate(DocumentEvent e) {
                 updateList();
@@ -116,7 +101,7 @@ public class Preparation {
             }
 
             // Afficher les médicaments filtrés dans le panneau des médicaments
-            private void afficherMedicaments(List<Medicament> filteredMedicaments) {
+            private void afficherMedicaments(@NotNull List<Medicament> filteredMedicaments) {
                 // Nettoyer le panneau des médicaments avant d'ajouter de nouveaux éléments
                 medicamentPanel.removeAll();
 
@@ -298,7 +283,7 @@ public class Preparation {
                         buttonsPanel.add(validateButton);
 
                         // Action du bouton de validation
-                        validateButton.addActionListener(validateEvent -> {
+                        validateButton.addActionListener(_ -> {
                             // Vérifier si le stock est suffisant pour tous les médicaments sélectionnés dans le fichier CSV src/data/medicaments.csv
                             for (int i = 0; i < selectedMedicaments.size(); i++) {
                                 Medicament medicament = selectedMedicaments.get(i);
@@ -373,7 +358,7 @@ public class Preparation {
                         buttonsPanel.add(cancelButton);
 
                         // Ajouter un écouteur pour le bouton d'annulation
-                        cancelButton.addActionListener(cancelEvent -> confirmationDialog.dispose()); // Fermer la boîte de dialogue en cas d'annulation
+                        cancelButton.addActionListener(_ -> confirmationDialog.dispose()); // Fermer la boîte de dialogue en cas d'annulation
 
                         // Afficher la boîte de dialogue de confirmation
                         confirmationDialog.setVisible(true);

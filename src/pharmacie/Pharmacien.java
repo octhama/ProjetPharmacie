@@ -1,18 +1,9 @@
 package pharmacie;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.awt.*;
+import java.io.*;
 
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 import interfaces.IDocuments;
 
@@ -20,18 +11,6 @@ public class Pharmacien extends Personne {
 
     public Pharmacien(String Id, String MotDePasse, String nom, String prenom) {
         super(Id, MotDePasse, nom, prenom);
-    }
-
-    public String getReference() {
-        return null;
-    }
-
-    public String getId() {
-        return null;
-    }
-
-    public String getMotDePasse() {
-        return null;
     }
 
     public static boolean authentifierPharmacien(String id, String password) {

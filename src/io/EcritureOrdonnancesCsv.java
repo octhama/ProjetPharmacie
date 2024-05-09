@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Stack;
 
 public class EcritureOrdonnancesCsv {
-
         public static void ecrireOrdonnanceCsv(String referenceMedecin, String referencePatient, Date datePrescription, Stack<String> medicaments) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = dateFormat.format(datePrescription);
@@ -36,5 +35,4 @@ public class EcritureOrdonnancesCsv {
             System.err.println("Erreur lors de l'enregistrement de l'ordonnance : " + e.getMessage());
         }
     }
-    
 }

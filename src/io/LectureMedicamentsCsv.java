@@ -2,6 +2,7 @@ package io;
 
 import enums.ETypeMedicament;
 import exceptions.ExeptionRuptureDeStock;
+import org.jetbrains.annotations.NotNull;
 import pharmacie.Medicament;
 
 import java.io.BufferedReader;
@@ -20,7 +21,7 @@ public class LectureMedicamentsCsv {
         throw new AssertionError("Cette classe ne peut pas être instanciée");
     }
 
-    public static List<Medicament> lireMedicamentsCsv(String cheminFichier) throws IOException {
+    public static @NotNull List<Medicament> lireMedicamentsCsv(String cheminFichier) throws IOException {
         List<Medicament> medicaments = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {
@@ -54,7 +55,7 @@ public class LectureMedicamentsCsv {
         return medicaments;
     }
 
-    public static List<String> getMedicamentsPrescrits(String referencePatient) {
+    public static @NotNull List<String> getMedicamentsPrescrits(String referencePatient) {
         String csvFilePath = "src/data/dataordonnances.csv";
         List<String> medicamentsPrescrits = new ArrayList<>();
 

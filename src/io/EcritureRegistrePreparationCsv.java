@@ -11,7 +11,7 @@ import java.util.List;
 
 public class EcritureRegistrePreparationCsv {
     private static int idCounter; // Compteur pour les identifiants uniques
-    private static List<Preparation> preparations; // Liste des préparations
+    public static List<Preparation> preparations; // Liste des préparations
     public static List<Medicament> medicaments; // Liste des médicaments
     public static final String fichierCsv = "src/data/registrepreparation.csv"; // Chemin du fichier CSV
 
@@ -54,10 +54,6 @@ public class EcritureRegistrePreparationCsv {
 
     private static String genererIdUnique() {
         return "CMD-PREP" + idCounter++;
-    }
-
-    public static List<Medicament> getMedicaments() {
-        return medicaments;
     }
 
     public static void ecrireRegistrePreparationCsv(List<Medicament> selectedMedicaments, List<Integer> selectedQuantities, String csvFilePath) {

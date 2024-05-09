@@ -10,13 +10,14 @@ import javax.swing.*;
 import enums.ETypeMedicament;
 import io.EcritureMedicamentsCsv;
 import io.LectureRegistrePreparation;
+import org.jetbrains.annotations.NotNull;
 import pharmacie.*;
 import ui.UiGui;
 
 public interface IDocuments {
     
     // Affiche les suggestions de médicaments dans le même format que la liste complète
-    static void afficherListeMedicaments(JPanel panel, List<Medicament> suggestions) {
+    static void afficherListeMedicaments(JPanel panel, @NotNull List<Medicament> suggestions) {
         // Création d'un panneau pour afficher les suggestions de médicaments
         JPanel medicamentsPanel = new JPanel();
         medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
@@ -296,7 +297,6 @@ public interface IDocuments {
         inputPanel.add(new JLabel("Nom :"));
         inputPanel.add(nomField);
 
-
         //Créer un conteneur pour les boutons Supprimer, Reinitaliser et Quitter
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new FlowLayout());
@@ -570,7 +570,7 @@ public interface IDocuments {
         panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
 
-    static void afficherListeMedicamentsNonGenOnDemand(JPanel medicamentPanel) {
+    static void afficherListeMedicamentsNonGenOnDemand(@NotNull JPanel medicamentPanel) {
         // Nettoyer le panneau des médicaments avant d'ajouter de nouveaux éléments
         medicamentPanel.removeAll();
 
@@ -616,7 +616,7 @@ public interface IDocuments {
         medicamentPanel.repaint();
     }
 
-    static void removePrix50PourcentLabel(JPanel entryPanel) {
+    static void removePrix50PourcentLabel(@NotNull JPanel entryPanel) {
         Component[] components = entryPanel.getComponents();
         for (Component component : components) {
             if (component instanceof JLabel label) {
@@ -630,7 +630,7 @@ public interface IDocuments {
         }
     }
 
-    static String extractQuantiteEnMg(String nomMedicament) {
+    static @NotNull String extractQuantiteEnMg(@NotNull String nomMedicament) {
         // Extraire la quantité en mg du nom du médicament
         String[] parts = nomMedicament.split(" ");
         for (String part : parts) {

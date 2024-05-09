@@ -1,44 +1,18 @@
 package pharmacie;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.util.ArrayList;
+import java.awt.*;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import interfaces.IDocuments;
 import io.EcritureRegistreDemandeVersionGeneriqueCsv;
 import ui.UiGui;
 
 public class DemandeVersionGenerique {
-    private String reference;
-    private String date;
     private String nomMedicament;
     private boolean etatDeLaDemande;
-
-    public DemandeVersionGenerique(String reference, String date, String nomMedicament, boolean etatDeLaDemande) {
-        this.reference = reference;
-        this.date = date;
-        this.nomMedicament = nomMedicament;
-        this.etatDeLaDemande = etatDeLaDemande;
-    }
-
-    public DemandeVersionGenerique() {
-        this.reference = "";
-        this.date = "";
-        this.nomMedicament = "";
-        this.etatDeLaDemande = false;
-    }
 
     public DemandeVersionGenerique(String nom, boolean b) {
         this.nomMedicament = nom;
@@ -49,6 +23,10 @@ public class DemandeVersionGenerique {
         this.nomMedicament = nom;
     }
 
+    public DemandeVersionGenerique() {
+
+    }
+
     public String getNomMedicament() {
         return nomMedicament;
     }
@@ -56,7 +34,6 @@ public class DemandeVersionGenerique {
     public boolean isDemande() {
         return etatDeLaDemande;
     }
-
 
     public String isVersionGeneriqueDemandee() {
         return null;

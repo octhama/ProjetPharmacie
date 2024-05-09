@@ -1,7 +1,6 @@
 package pharmacie;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Stack;
@@ -9,34 +8,14 @@ import java.util.Stack;
 import javax.swing.JOptionPane;
 
 import io.EcritureOrdonnancesCsv;
-import io.LectureOrdonnanceCsv;
+import io.LectureMedecinCsv;
 
 public class Ordonnance {
-    private String referenceMedecin;
-    private String referencePatient;
-    private LocalDate datePrescription;
-    private List<Medicament> medicaments;
 
-    public Ordonnance(String referenceMedecin, String referencePatient, LocalDate datePrescription, List<Medicament> medicaments) {
-        this.referenceMedecin = referenceMedecin;
-        this.referencePatient = referencePatient;
-        this.datePrescription = datePrescription;
-        this.medicaments = medicaments;
-    }
+    public static List<Medicament> medicaments;
 
-    public Ordonnance(LocalDate datePrescription, List<Medicament> medicaments) {
-        this.datePrescription = datePrescription;
-        this.medicaments = medicaments;
-    }
-
-    public void setMedicaments(List<Medicament> medicaments) {
-        this.medicaments = medicaments;
-    }
-    public Medicament[] getMedicaments() {
-        return medicaments.toArray(new Medicament[0]);
-    }
-    public void setMedicaments(Medicament[] medicaments) {
-        this.medicaments = List.of(medicaments);
+    public Ordonnance(List<Medicament> medicaments) {
+        Ordonnance.medicaments = medicaments;
     }
 
     public static void enregistrerOrdonnance() {
@@ -45,7 +24,7 @@ public class Ordonnance {
         String passwordMedecin = JOptionPane.showInputDialog(null, "Veuillez saisir votre mot de passe médecin :");
 
         // Vérifier l'authentification
-        if (LectureOrdonnanceCsv.authentifierMedecin(idMedecin, passwordMedecin)) {
+        if (LectureMedecinCsv.authentifierMedecin(idMedecin, passwordMedecin)) {
             // Authentification réussie, continuer avec l'enregistrement de l'ordonnance
 
             // Afficher une boîte de dialogue pour saisir le nom du médecin
@@ -78,4 +57,7 @@ public class Ordonnance {
         }
     }
 
+    public long getMedicaments() {
+        return 0;
+    }
 }

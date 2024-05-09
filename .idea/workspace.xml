@@ -5,9 +5,90 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ffbf0945-00a1-41f4-a3ac-8b676c5570ed" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/annotations-24.0.0-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/annotations-24.0.0-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/annotations-24.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/apiguardian-api-1.1.2-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/apiguardian-api-1.1.2-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/apiguardian-api-1.1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/hamcrest-core-1.3-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/hamcrest-core-1.3-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-4.13.1-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-4.13.1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-4.13.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-5.8.1-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-5.8.1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-5.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-api-5.8.1-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-api-5.8.1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-api-5.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-engine-5.8.1-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-engine-5.8.1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-engine-5.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-params-5.8.1-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-params-5.8.1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-jupiter-params-5.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-platform-commons-1.8.1-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-platform-commons-1.8.1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-platform-commons-1.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-platform-engine-1.8.1-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-platform-engine-1.8.1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-platform-engine-1.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/opentest4j-1.2.0-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/opentest4j-1.2.0-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/opentest4j-1.2.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/nonstandardregistry.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/AcheterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/AfficherdemandemedicamentsgeneriquesTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/AfficherlistemedicamentsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/AfficherregistrepreparationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/AuthentifiermedecinTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/AuthentifierpharmacienTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/CommandermedicamentversiongeneriqueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/ETypeMedicamentTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/EcriredemandesversiongeneriquecsvTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/EcriremajqttstockmedicamentscsvTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/EcriremodificationdemedicamentcsvTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/EcrireordonnancecsvTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/EcrireregistrepreparationcsvTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/EcriresuppressiondemedicamentcsvTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/EnregistrerordonnanceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/GetjcheckboxTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/GetjlabelTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/GetmedicamentsprescritsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/GetquantiteenstockTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/LireregistrepreparationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/MainTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/SaveselectedmedicamentstatesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjetPharmacie.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjetPharmacie.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/dataordonnances.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/dataordonnances.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/demandes_version_generique.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/demandes_version_generique.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDocuments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/IDocuments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/EcritureMedicamentsCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/EcritureMedicamentsCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/EcritureOrdonnancesCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/EcritureOrdonnancesCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/EcritureRegistreDemandeVersionGeneriqueCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/EcritureRegistreDemandeVersionGeneriqueCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/EcritureRegistrePreparationCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/EcritureRegistrePreparationCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/LectureMedecinCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/LectureMedecinCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/LectureMedicamentsCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/LectureMedicamentsCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/LectureOrdonnanceCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/LectureOrdonnanceCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/LectureRegistrePreparation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/LectureRegistrePreparation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/DemandeVersionGenerique.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/DemandeVersionGenerique.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Medecin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Medecin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Medicament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Medicament.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/MedicamentGenerique.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/MedicamentMarque.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Ordonnance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Ordonnance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Patient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Personne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Personne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Pharmacie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Pharmacie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Pharmacien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Pharmacien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Preparation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Preparation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/UiGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UiGui.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +101,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Script" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -46,9 +129,13 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/pharmacie/Pharmacie.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="d78mdgmg" />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/usr/local/Cellar/php/8.3.0/bin/php" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -71,15 +158,58 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Program.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "true",
+    "JUnit.AccesmenupharmacienTest.executor": "Run",
+    "JUnit.AcheterTest.executor": "Run",
+    "JUnit.AfficherdemandemedicamentsgeneriquesTest.executor": "Run",
+    "JUnit.AfficherlistemedecinsTest.executor": "Run",
+    "JUnit.AfficherlistemedicamentsTest.executor": "Run",
+    "JUnit.AfficherlistemedicamentsTest.test_empty_suggested_medications.executor": "Run",
+    "JUnit.AffichermedicamentsTest.executor": "Run",
+    "JUnit.AfficherregistrepreparationTest.executor": "Run",
+    "JUnit.AfficherregistrepreparationTest.test_scrollbarIfContentExceedsSize.executor": "Run",
+    "JUnit.AjoutermedicamentTest.executor": "Run",
+    "JUnit.AuthentifiermedecinTest.executor": "Run",
+    "JUnit.AuthentifierpharmacienTest.executor": "Run",
+    "JUnit.CommandermedicamentversiongeneriqueDeuxTest.executor": "Run",
+    "JUnit.CommandermedicamentversiongeneriqueTest.executor": "Run",
+    "JUnit.CommandermedicamentversiongeneriqueTest.test_display_non_generic_medicines_correctly.executor": "Run",
+    "JUnit.CommandermedicamentversiongeneriqueTest.test_display_window_correctly.executor": "Run",
+    "JUnit.ETypeMedicamentTest.executor": "Run",
+    "JUnit.EcrireajoutdemedicamentcsvTest.executor": "Run",
+    "JUnit.EcriredemandesversiongeneriquecsvTest.executor": "Run",
+    "JUnit.EcriredemandesversiongeneriquecsvTest.test_throws_io_exception_when_fails_to_write_to_csv.executor": "Debug",
+    "JUnit.EcriremajqttstockmedicamentscsvTest.executor": "Run",
+    "JUnit.EcriremajqttstockmedicamentscsvTest.test_nullMedicamentsList.executor": "Debug",
+    "JUnit.EcriremodificationdemedicamentcsvTest.executor": "Run",
+    "JUnit.EcrireordonnancecsvTest.executor": "Run",
+    "JUnit.EcrireregistrepreparationcsvTest.executor": "Run",
+    "JUnit.EcriresuppressiondemedicamentcsvTest.executor": "Run",
+    "JUnit.EnregistrerordonnanceTest.executor": "Run",
+    "JUnit.EnregistrerordonnanceTest.test_valid_credentials_and_valid_inputs.executor": "Run",
+    "JUnit.GetjcheckboxTest.executor": "Run",
+    "JUnit.GetjlabelTest.executor": "Run",
+    "JUnit.GetmedicamentsprescritsTest.executor": "Run",
+    "JUnit.GetquantiteenstockTest.executor": "Run",
+    "JUnit.IsgeneriqueTest.executor": "Run",
+    "JUnit.LireregistrepreparationTest.executor": "Run",
+    "JUnit.MainTest.executor": "Run",
+    "JUnit.MedicamentscorrespondantsTest.executor": "Run",
+    "JUnit.SaveselectedmedicamentstatesTest.executor": "Run",
+    "JUnit.TrouvermedicamentssuggestionsTest$TrouvermedicamentssuggestionsTest.executor": "Run",
+    "Repository.Attach.Annotations": "true",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "com.google.cloudcode.ide_session_index": "20240506_0001",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.google.cloudcode.ide_session_index": "20240507_0003",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/kuassitehou/Documents/Documents - OHMPXV/GitHub/POO-ESA/ProjetPharmacie",
+    "last_opened_file_path": "/Users/kuassitehou/Documents/Documents - OHMPXV/GitHub/POO-ESA/ProjetPharmacieVersionAlpha",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -87,6 +217,10 @@
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "/Users/kuassitehou/Documents/Documents - OHMPXV/GitHub/POO-ESA/ProjetPharmacie/src/Main.java",
     "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }
@@ -96,6 +230,85 @@
       <recent name="pharmacie" />
       <recent name="io" />
     </key>
+  </component>
+  <component name="RunManager" selected="JUnit.EnregistrerordonnanceTest">
+    <configuration name="Program" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Program" />
+      <module name="ProjetPharmacie" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommandermedicamentversiongeneriqueDeuxTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjetPharmacie" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.CommandermedicamentversiongeneriqueDeuxTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EnregistrerordonnanceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjetPharmacie" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.EnregistrerordonnanceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EnregistrerordonnanceTest.test_valid_credentials_and_valid_inputs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjetPharmacie" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.EnregistrerordonnanceTest" />
+      <option name="METHOD_NAME" value="test_valid_credentials_and_valid_inputs" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjetPharmacie" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.MainTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.EnregistrerordonnanceTest" />
+        <item itemvalue="JUnit.EnregistrerordonnanceTest.test_valid_credentials_and_valid_inputs" />
+        <item itemvalue="JUnit.MainTest" />
+        <item itemvalue="Application.Program" />
+        <item itemvalue="JUnit.CommandermedicamentversiongeneriqueDeuxTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -110,6 +323,12 @@
       <workItem from="1714781609480" duration="95338000" />
       <workItem from="1714956955972" duration="212000" />
       <workItem from="1714957290198" duration="78000" />
+      <workItem from="1715023886764" duration="28000" />
+      <workItem from="1715023934982" duration="5019000" />
+      <workItem from="1715036358135" duration="1724000" />
+      <workItem from="1715047203115" duration="13569000" />
+      <workItem from="1715102649817" duration="2921000" />
+      <workItem from="1715115700812" duration="641000" />
     </task>
     <servers />
   </component>
@@ -122,16 +341,5 @@
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
     <settings-migrated>true</settings-migrated>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ui/UiGui.java</url>
-          <line>1219</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

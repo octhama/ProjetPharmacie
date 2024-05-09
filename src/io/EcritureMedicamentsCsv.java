@@ -1,5 +1,6 @@
 package io;
 
+import org.jetbrains.annotations.NotNull;
 import pharmacie.Medicament;
 
 import java.io.BufferedWriter;
@@ -10,7 +11,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class EcritureMedicamentsCsv {
-    public static void ecrireMajQttStockMedicamentsCsv(List<Medicament> medicaments, String fichierCsv) throws IOException {
+    public static void ecrireMajQttStockMedicamentsCsv(@NotNull List<Medicament> medicaments, String fichierCsv) throws IOException {
         // Lire toutes les lignes du fichier CSV
         List<String> lignes = Files.readAllLines(Paths.get(fichierCsv));
 
@@ -44,7 +45,7 @@ public class EcritureMedicamentsCsv {
         }
     }
 
-    public static void ecrireAjoutDeMedicamentCsv(String fichierCsv, Medicament medicament) throws IOException {
+    public static void ecrireAjoutDeMedicamentCsv(String fichierCsv, @NotNull Medicament medicament) throws IOException {
         // Construire la ligne à écrire dans le fichier CSV
         String ligne = medicament.getNom() + "," + medicament.getPrix() + "," + medicament.getType() + "," + medicament.isGenerique() + "," + medicament.getQuantiteEnStock();
 

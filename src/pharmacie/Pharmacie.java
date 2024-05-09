@@ -1,11 +1,11 @@
 package pharmacie;
+
 import java.util.regex.*;
 
 import exceptions.ExeptionRuptureDeStock;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Pharmacie {
     private final List<Medicament> medicaments;
@@ -120,7 +120,6 @@ public class Pharmacie {
     public void ajouterMedicament(Medicament medicament) {
         medicaments.add(medicament);
     }
-
 
     public void modifierMedicament(Medicament medicament) {
         for (int i = 0; i < medicaments.size(); i++) {

@@ -1,26 +1,15 @@
 package ui;
 
-import enums.ETypeMedicament;
 import interfaces.IDocuments;
-import io.EcritureMedicamentsCsv;
-import io.EcritureOrdonnancesCsv;
-import io.EcritureRegistreDemandeVersionGeneriqueCsv;
-import io.EcritureRegistrePreparationCsv;
-import io.LectureMedecinCsv;
-import io.LectureMedicamentsCsv;
 import io.LectureOrdonnanceCsv;
-import io.LectureRegistrePreparation;
 import pharmacie.*;
-import utils.DateUtlis;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
+import javax.swing.event.*;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
@@ -242,7 +231,6 @@ public class UiGui extends JFrame implements ActionListener {
                 String nomMedicament = medicament.getNom();
                 String quantiteEnMg = IDocuments.extractQuantiteEnMg(nomMedicament);
                 if (!quantiteEnMg.isEmpty()) {
-                    int quantiteComplete = Integer.parseInt(quantiteEnMg.replace("mg", ""));
                     double prixUnitaireComplete = medicament.getPrix();
                     double prixUnitaire50Pourcent = prixUnitaireComplete / 2;
                     // Afficher les prix
