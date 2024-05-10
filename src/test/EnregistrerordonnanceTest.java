@@ -1,12 +1,9 @@
 package test;
 
-
 import pharmacie.Medicament;
 import pharmacie.Ordonnance;
 
-
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 
