@@ -1,3 +1,8 @@
+Note importante
+=======================================================================================================================================================================================================================================================
+
+Ce projet est une application de gestion de pharmacie développée en Java avec une interface graphique en JavaFX. Il s'agit d'un projet académique ne respectant pas le design pattern MVC(Model-View-Controller). Il est uniquement réalisé dans un but pédagogique. Des fichiers CSV font office de base de données pour stocker les informations des médicaments, des patients, des ordonnances et des commandes.
+
 Pharmacie
 =======================================================================================================================================================================================================================================================
 Contexte
@@ -34,14 +39,12 @@ Une date de prescription
 Liste de médicaments
 Ingrédients pour une préparation
 
-Note importante : Ce projet est une application de gestion de pharmacie développée en Java avec une interface graphique en JavaFX. Il s'agit d'un projet académique ne respectant pas le design pattern MVC(Model-View-Controller). Il est uniquement réalisé dans un but pédagogique. Des fichiers CSV font office de base de données pour stocker les informations des médicaments, des patients, des ordonnances et des commandes.
-
 Diagramme des classes et explication des fonctionnalités du projet Pharmacie
 =======================================================================================================================================================================================================================================================
 
 Voici le diagramme des classes de l'application :
 
-Diagramme des Classes - Application Pharmacie
+Diagramme des Classes - Application Pharmacie (proposition d'analyse UML général pour une application de gestion de pharmacie)
 
 Légende des Classes
 
@@ -53,6 +56,13 @@ Médicament:
     prix: Prix du médicament
     quantiteStock: Quantité du médicament en stock
     prescriptionRequise: Indication si une ordonnance est requise pour le médicament
+
+Pharmacie:
+
+    listeMedicaments: Liste des médicaments disponibles (objets Médicament)
+    listePatients: Liste des patients enregistrés (objets Patient)
+    listeOrdonnances: Liste des ordonnances enregistrées (objets Ordonnance)
+    listeCommandes: Liste des commandes en cours (objets Commande)
 
 Ordonnance:
 
@@ -70,6 +80,21 @@ Patient:
     adresse: Adresse du patient
     historiqueOrdonnances: Liste des ordonnances du patient (objets Ordonnance)
 
+Pharmacien:
+
+    nom: Nom du pharmacien
+    prenom: Prénom du pharmacien
+    adresse: Adresse du pharmacien
+    pharmacie: Nom de la pharmacie
+    listeCommandes: Liste des commandes traitées par le pharmacien (objets Commande)
+
+Médecin:
+    
+        nom: Nom du médecin
+        prenom: Prénom du médecin
+        specialite: Spécialité du médecin
+        listeOrdonnances: Liste des ordonnances prescrites par le médecin (objets Ordonnance)
+
 Commande:
 
     id: Identifiant unique de la commande
@@ -78,10 +103,22 @@ Commande:
     statut: Statut de la commande (en cours, livrée)
     Relations entre les Classes
 
-Un médicament peut apparaître dans plusieurs ordonnances. (Relation "Plusieurs à plusieurs" entre Médicament et Ordonnance)
-Une ordonnance est associée à un seul patient. (Relation "Un à plusieurs" entre Ordonnance et Patient)
-Une commande peut contenir plusieurs médicaments. (Relation "Plusieurs à plusieurs" entre Commande et Médicament)
-Un patient peut avoir plusieurs ordonnances. (Relation "Un à plusieurs" entre Patient et Ordonnance)
+Préparation:
+
+    listeMedicaments: Liste des médicaments composant la préparation
+    quantiteMedicaments: Quantité de chaque médicament nécessaire pour la préparation
+
+DemandeVersionGenerique:
+
+    listeMedicaments: Liste des médicaments pour lesquels la version générique est demandée
+
+Relations entre les Classes
+
+    La classe Médicament est associée à la classe Ordonnance par l'intermédiaire de la classe Préparation, qui permet de définir les médicaments nécessaires pour une préparation.
+    La classe Ordonnance est associée à la classe Patient, qui permet de conserver l'historique des ordonnances délivrées à un patient.
+    La classe Ordonnance est associée à la classe Médecin, qui permet de conserver la liste des ordonnances prescrites par un médecin.
+    La classe Commande est associée à la classe Médicament, qui permet de gérer les médicaments commandés dans une commande spécifique.
+    La classe Commande est associée à la classe Pharmacien, qui permet de conserver la liste des commandes traitées par un pharmacien spécifique.
 
 Fonctionnalités des Classes
 
@@ -103,6 +140,23 @@ Classe Commande:
     Gérer les commandes de médicaments manquants.
     Suivre l'état des commandes (en cours, livrée).
     Associer les médicaments commandés à une commande spécifique.
+
+Classe Pharmacie:
+    Gérer les listes de médicaments, patients, ordonnances et commandes.
+    Permettre d'ajouter, de modifier et de supprimer des éléments de ces listes.
+    Proposer des fonctionnalités de recherche et de consultation des données.
+
+Classe Préparation:
+    Stocker les informations sur les médicaments composant une préparation.
+    Déterminer la quantité de médicaments nécessaires pour une préparation.
+
+Classe Pharmacien:
+    Gérer les informations personnelles du pharmacien (nom, prénom, adresse, etc.).
+    Associer les commandes traitées par le pharmacien à son profil.
+
+Classe Médecin:
+    Stocker les informations personnelles du médecin (nom, prénom, spécialité, etc.).
+    Conserver la liste des ordonnances prescrites par le médecin.
 
 Explication des fonctionnalités de l'application Pharmacie
 =======================================================================================================================================================================================================================================================
@@ -134,6 +188,23 @@ Gestion des Commandes:
     Suivre l'état des commandes (en cours, livrée).
     Recevoir les médicaments commandés le lendemain (sauf le dimanche).
     Afficher la liste des commandes en cours et celles déjà livrées.
+
+Gestion des Préparations:
+    Créer une nouvelle préparation magistrale à partir d'une ordonnance.
+    Ajouter les médicaments nécessaires à la préparation, en précisant les quantités.
+    Calculer le coût total de la préparation en fonction des médicaments utilisés.
+    Gérer les restes de médicaments pour les préparations suivantes.
+
+Gestion des Pharmaciens:
+    Enregistrer les informations personnelles d'un pharmacien (nom, prénom, adresse, etc.).
+    Associer les commandes traitées par le pharmacien à son profil.
+    Afficher la liste des commandes traitées par un pharmacien spécifique.
+
+Gestion des Médecins:
+    Enregistrer les informations personnelles d'un médecin (nom, prénom, spécialité, etc.).
+    Conserver la liste des ordonnances prescrites par le médecin.
+    Rechercher un médecin par son nom ou sa spécialité.
+
 
 L'application de gestion de pharmacie permet de gérer efficacement les médicaments, les ordonnances, les patients et les commandes, en offrant une interface conviviale pour les utilisateurs. Elle facilite le suivi des stocks, des prescriptions médicales et des livraisons de médicaments, contribuant ainsi à une meilleure gestion des activités pharmaceutiques.
 

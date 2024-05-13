@@ -15,14 +15,16 @@ public class Medicament {
     private boolean generique;
     private int quantiteEnStock;
     private boolean commandeA50Pourcent;
+    private boolean prescriptionRequise; // Indique si une ordonnance est requise pour acheter le médicament
 
-    public Medicament(String nom, double prix2, ETypeMedicament eTypeMedicament, boolean generique2, int quantiteStock, boolean commandeA50Pourcent) {
+    public Medicament(String nom, double prix2, ETypeMedicament eTypeMedicament, boolean generique2, int quantiteStock, boolean commandeA50Pourcent, boolean prescriptionRequise) {
         this.nom = nom;
         this.prix = prix2;
         this.type = ETypeMedicament.valueOf(eTypeMedicament.toString());
         this.generique = generique2;
         this.quantiteEnStock = quantiteStock;
         this.commandeA50Pourcent = commandeA50Pourcent;
+        this.prescriptionRequise = prescriptionRequise;
     }
 
     public Medicament(boolean commandeA50Pourcent) {

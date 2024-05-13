@@ -12,7 +12,12 @@ import io.LectureMedecinCsv;
 
 public class Ordonnance {
 
+    public String idOrdonnance;
+    public String referenceMedecin;
+    public String referencePatient;
+    public Date datePrescription;
     public static List<Medicament> medicaments;
+    public String ingredientsPreparation;
 
     public Ordonnance(List<Medicament> medicaments) {
         Ordonnance.medicaments = medicaments;
