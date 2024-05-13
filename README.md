@@ -1,7 +1,10 @@
-==================================================================================================================================================================================================================
 Ennoncé :
+=======================================================================================================================================================================================================================================================
 
 Pharmacie
+=======================================================================================================================================================================================================================================================
+Contexte
+=======================================================================================================================================================================================================================================================
 
 Dans une pharmacie, les personnes viennent
 Chercher des médicaments
@@ -34,11 +37,8 @@ Une date de prescription
 Liste de médicaments
 Ingrédients pour une préparation
 
-=======================================================================================================================================================================================================================================================
-
 Note importante : Ce projet est une application de gestion de pharmacie développée en Java avec une interface graphique en JavaFX. Il s'agit d'un projet académique ne respectant pas le modèle MVC. Il est uniquement réalisé dans un but pédagogique.
 
-=======================================================================================================================================================================================================================================================
 Diagramme des classes et explication des fonctionnalités du projet Pharmacie
 =======================================================================================================================================================================================================================================================
 
@@ -107,9 +107,8 @@ Classe Commande:
     Suivre l'état des commandes (en cours, livrée).
     Associer les médicaments commandés à une commande spécifique.
 
-=======================================================================================================================================================================================================================================================
-
 Explication des fonctionnalités de l'application Pharmacie
+=======================================================================================================================================================================================================================================================
 
 L'application de gestion de pharmacie propose plusieurs fonctionnalités pour gérer les médicaments, les ordonnances, les patients et les commandes. Voici un aperçu des principales fonctionnalités de l'application :
 
@@ -141,9 +140,8 @@ Gestion des Commandes:
 
 L'application de gestion de pharmacie permet de gérer efficacement les médicaments, les ordonnances, les patients et les commandes, en offrant une interface conviviale pour les utilisateurs. Elle facilite le suivi des stocks, des prescriptions médicales et des livraisons de médicaments, contribuant ainsi à une meilleure gestion des activités pharmaceutiques.
 
-================================================================================================================================================================================================================================================================================================================================================================================================
-
 Conclusion
+=======================================================================================================================================================================================================================================================
 
 L'application de gestion de pharmacie est un outil informatique pratique pour les pharmacies, permettant de gérer efficacement les médicaments, les ordonnances, les patients et les commandes. Grâce à son interface conviviale et ses fonctionnalités avancées, elle facilite le suivi des activités pharmaceutiques et contribue à une meilleure organisation des tâches quotidiennes.
 
