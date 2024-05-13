@@ -48,7 +48,7 @@ Diagramme des Classes - Application Pharmacie (proposition d'analyse UML génér
 
 Légende des Classes
 
-Médicament:
+Médicament :
 
     nom: Nom du médicament
     marque: Marque du médicament (si applicable)
@@ -57,14 +57,14 @@ Médicament:
     quantiteStock: Quantité du médicament en stock
     prescriptionRequise: Indication si une ordonnance est requise pour le médicament
 
-Pharmacie:
+Pharmacie :
 
     listeMedicaments: Liste des médicaments disponibles (objets Médicament)
     listePatients: Liste des patients enregistrés (objets Patient)
     listeOrdonnances: Liste des ordonnances enregistrées (objets Ordonnance)
     listeCommandes: Liste des commandes en cours (objets Commande)
 
-Ordonnance:
+Ordonnance :
 
     id: Identifiant unique de l'ordonnance
     refMedecin: Référence du médecin prescripteur
@@ -80,7 +80,7 @@ Patient:
     adresse: Adresse du patient
     historiqueOrdonnances: Liste des ordonnances du patient (objets Ordonnance)
 
-Pharmacien:
+Pharmacien :
 
     nom: Nom du pharmacien
     prenom: Prénom du pharmacien
@@ -88,14 +88,14 @@ Pharmacien:
     pharmacie: Nom de la pharmacie
     listeCommandes: Liste des commandes traitées par le pharmacien (objets Commande)
 
-Médecin:
+Médecin :
     
-        nom: Nom du médecin
-        prenom: Prénom du médecin
-        specialite: Spécialité du médecin
-        listeOrdonnances: Liste des ordonnances prescrites par le médecin (objets Ordonnance)
+    nom: Nom du médecin
+    prenom: Prénom du médecin
+    specialite: Spécialité du médecin
+    listeOrdonnances: Liste des ordonnances prescrites par le médecin (objets Ordonnance)
 
-Commande:
+Commande :
 
     id: Identifiant unique de la commande
     dateCommande: Date de la commande
@@ -103,7 +103,7 @@ Commande:
     statut: Statut de la commande (en cours, livrée)
     Relations entre les Classes
 
-Préparation:
+Préparation :
 
     listeMedicaments: Liste des médicaments composant la préparation
     quantiteMedicaments: Quantité de chaque médicament nécessaire pour la préparation
@@ -122,39 +122,39 @@ Relations entre les Classes
 
 Fonctionnalités des Classes
 
-Classe Médicament:
+Classe Médicament :
     Gérer les informations de base sur les médicaments (nom, marque, prix, etc.).
     Suivre la quantité de médicaments en stock.
     Identifier si une ordonnance est requise pour le médicament.
 
-Classe Ordonnance:
+Classe Ordonnance :
     Stocker les informations d'une ordonnance (médecin, patient, date, médicaments).
     Gérer la liste des médicaments prescrits, en différenciant les médicaments génériques.
     Pouvoir inclure les ingrédients d'une préparation magistrale.
 
-Classe Patient:
+Classe Patient :
     Enregistrer les informations personnelles des patients (nom, prénom, adresse).
     Conserver l'historique des ordonnances délivrées au patient.
 
-Classe Commande:
+Classe Commande :
     Gérer les commandes de médicaments manquants.
     Suivre l'état des commandes (en cours, livrée).
     Associer les médicaments commandés à une commande spécifique.
 
-Classe Pharmacie:
+Classe Pharmacie :
     Gérer les listes de médicaments, patients, ordonnances et commandes.
     Permettre d'ajouter, de modifier et de supprimer des éléments de ces listes.
     Proposer des fonctionnalités de recherche et de consultation des données.
 
-Classe Préparation:
+Classe Préparation :
     Stocker les informations sur les médicaments composant une préparation.
     Déterminer la quantité de médicaments nécessaires pour une préparation.
 
-Classe Pharmacien:
+Classe Pharmacien :
     Gérer les informations personnelles du pharmacien (nom, prénom, adresse, etc.).
     Associer les commandes traitées par le pharmacien à son profil.
 
-Classe Médecin:
+Classe Médecin :
     Stocker les informations personnelles du médecin (nom, prénom, spécialité, etc.).
     Conserver la liste des ordonnances prescrites par le médecin.
 
@@ -163,44 +163,44 @@ Explication des fonctionnalités de l'application Pharmacie
 
 L'application de gestion de pharmacie propose plusieurs fonctionnalités pour gérer les médicaments, les ordonnances, les patients et les commandes. Voici un aperçu des principales fonctionnalités de l'application :
 
-Gestion des Médicaments:
+Gestion des Médicaments :
     Ajouter un nouveau médicament à la liste des médicaments disponibles.
     Mettre à jour les informations d'un médicament existant (prix, stock, etc.).
     Rechercher un médicament par son nom ou sa marque.
     Afficher la liste des médicaments en stock et ceux qui doivent être commandés.
     Vérifier si une ordonnance est requise pour un médicament donné.
 
-Gestion des Ordonnances:
+Gestion des Ordonnances :
     Créer une nouvelle ordonnance pour un patient.
     Ajouter des médicaments à une ordonnance, en précisant s'ils sont génériques ou de marque.
     Inclure les ingrédients d'une préparation magistrale dans une ordonnance.
     Afficher les détails d'une ordonnance (médecin, patient, médicaments prescrits, etc.).
     Rechercher les ordonnances par patient ou médecin.
 
-Gestion des Patients:
+Gestion des Patients :
     Enregistrer les informations personnelles d'un nouveau patient.
     Consulter l'historique des ordonnances délivrées à un patient.
     Rechercher un patient par son nom ou prénom.
     Afficher la liste des patients enregistrés dans la pharmacie.
 
-Gestion des Commandes:
+Gestion des Commandes :
     Passer une commande pour des médicaments manquants.
     Suivre l'état des commandes (en cours, livrée).
     Recevoir les médicaments commandés le lendemain (sauf le dimanche).
     Afficher la liste des commandes en cours et celles déjà livrées.
 
-Gestion des Préparations:
+Gestion des Préparations :
     Créer une nouvelle préparation magistrale à partir d'une ordonnance.
     Ajouter les médicaments nécessaires à la préparation, en précisant les quantités.
     Calculer le coût total de la préparation en fonction des médicaments utilisés.
     Gérer les restes de médicaments pour les préparations suivantes.
 
-Gestion des Pharmaciens:
+Gestion des Pharmaciens :
     Enregistrer les informations personnelles d'un pharmacien (nom, prénom, adresse, etc.).
     Associer les commandes traitées par le pharmacien à son profil.
     Afficher la liste des commandes traitées par un pharmacien spécifique.
 
-Gestion des Médecins:
+Gestion des Médecins :
     Enregistrer les informations personnelles d'un médecin (nom, prénom, spécialité, etc.).
     Conserver la liste des ordonnances prescrites par le médecin.
     Rechercher un médecin par son nom ou sa spécialité.
@@ -208,8 +208,35 @@ Gestion des Médecins:
 
 L'application de gestion de pharmacie permet de gérer efficacement les médicaments, les ordonnances, les patients et les commandes, en offrant une interface conviviale pour les utilisateurs. Elle facilite le suivi des stocks, des prescriptions médicales et des livraisons de médicaments, contribuant ainsi à une meilleure gestion des activités pharmaceutiques.
 
-Conclusion
+Perspectives d'amélioration
 =======================================================================================================================================================================================================================================================
 
-L'application de gestion de pharmacie est un outil informatique pratique pour les pharmacies, permettant de gérer efficacement les médicaments, les ordonnances, les patients et les commandes. Grâce à son interface conviviale et ses fonctionnalités avancées, elle facilite le suivi des activités pharmaceutiques et contribue à une meilleure organisation des tâches quotidiennes.
+L'application de gestion de pharmacie pourrait être améliorée en intégrant les fonctionnalités suivantes :
+
+Respecter le design pattern MVC (Model-View-Controller) pour une meilleure séparation des responsabilités entre les différentes composantes de l'application. Cela permettrait de rendre le code plus modulaire, maintenable et évolutif.
+
+Gestion des Stocks :
+    Mettre en place un système de gestion des stocks automatisé pour suivre les entrées et sorties de médicaments.
+    Proposer des alertes en cas de rupture de stock ou de péremption des médicaments.
+    Gérer les commandes automatiques en fonction des besoins des patients.
+
+Gestion des Préparations :
+    Intégrer un module de calcul des quantités de médicaments nécessaires pour les préparations en fonction des ordonnances.
+    Proposer des suggestions de substitutions génériques pour les médicaments de marque.
+
+Gestion des Ordonnances :
+    Permettre la génération automatique d'ordonnances électroniques à partir des prescriptions des médecins.
+    Proposer des outils d'analyse des prescriptions pour détecter d'éventuelles interactions médicamenteuses.
+
+Gestion des Patients :
+    Mettre en place un système de suivi des traitements des patients pour améliorer la prise en charge médicale.
+    Proposer des services de consultation en ligne pour les patients afin de faciliter la communication avec les pharmaciens.
+
+Gestion des Médecins :
+    Intégrer un annuaire des médecins partenaires pour faciliter les échanges d'informations médicales.
+    Proposer des outils de suivi des prescriptions médicales pour améliorer la qualité des soins.
+
+Gestion des Commandes :
+    Mettre en place un système de suivi des livraisons pour informer les patients de l'état de leur commande.
+    Proposer des services de livraison à domicile pour les patients ne pouvant se déplacer en pharmacie.
 

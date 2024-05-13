@@ -30,11 +30,13 @@ public class UiGui extends JFrame implements ActionListener {
     public static List<Integer> selectedQuantities = new ArrayList<>();
     /**
      * Constructeur de l'interface graphique
-     *
-     * @param pharmacie             La pharmacie à gérer
-     * @param medicamentCheckBoxMap La map pour stocker les médicaments et les cases à cocher
-     * @param spinnerMap            La map pour stocker les cases à cocher et les spinners
-     * @throws IOException Si une erreur d'entrée/sortie se produit
+     * @param pharmacie             La pharmacie à gérer dans l'interface graphique (initialisée à vide)
+     * @param medicamentCheckBoxMap La map pour stocker les médicaments et les cases à cocher correspondantes (initialisée à vide)
+     * @param spinnerMap            La map pour stocker les cases à cocher et les spinners correspondants (initialisée à vide)
+     * @param medicamentGenCheckBoxMap La map pour stocker les médicaments génériques et les cases à cocher correspondantes (initialisée à vide)
+     * @param selectedMedicaments   La liste des médicaments sélectionnés par l'utilisateur (initialisée à vide)
+     * @param selectedQuantities    La liste des quantités sélectionnées par l'utilisateur (initialisée à vide)
+     * @throws IOException          En cas d'erreur d'entrée/sortie
      */
 
     public UiGui(Pharmacie pharmacie, HashMap<Medicament, JCheckBox> medicamentCheckBoxMap, HashMap<JCheckBox, JSpinner> spinnerMap, HashMap<Medicament, JCheckBox> medicamentGenCheckBoxMap, List<Medicament> selectedMedicaments, List<Integer> selectedQuantities) throws IOException {
@@ -127,10 +129,12 @@ public class UiGui extends JFrame implements ActionListener {
         JButton buttonAfficher = new JButton("Afficher les médicaments");
         JButton buttonJeSuisPharmacien = new JButton("Je suis pharmacien");
 
+        // Champ de recherche
         JTextField searchField = new JTextField(20);
         searchField.setForeground(Color.GRAY); // Couleur de texte grise
         searchField.setText("Rechercher un médicament..."); // Texte placeholder
 
+        // Ajout d'un listener pour le champ de recherche
         searchField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -187,14 +191,29 @@ public class UiGui extends JFrame implements ActionListener {
         });
     }
 
+    /**
+     * Constructeur de l'interface graphique
+     * @param pharmacie             La pharmacie à gérer dans l'interface graphique (initialisée à vide)
+     * @param selectedMedicaments   La liste des médicaments sélectionnés par l'utilisateur (initialisée à vide)
+     * @param selectedQuantities    La liste des quantités sélectionnées par l'utilisateur (initialisée à vide)
+     * @throws IOException          En cas d'erreur d'entrée/sortie
+     */
+
     public UiGui(Pharmacie pharmacie, List<Medicament> selectedMedicaments, List<Integer> selectedQuantities) throws IOException {
         this(pharmacie, new HashMap<>(), new HashMap<>(), new HashMap<>(), selectedMedicaments, selectedQuantities);
     }
+
+    /**
+     * Constructeur de l'interface graphique
+     * @param pharmacie             La pharmacie à gérer dans l'interface graphique (initialisée à vide)
+     * @throws IOException          En cas d'erreur d'entrée/sortie
+     */
 
     public UiGui(Pharmacie pharmacie) throws IOException {
         this(pharmacie, new ArrayList<>(), new ArrayList<>());
     }
 
+    // Méthode pour obtenir le menu d'enregistrement d'ordonnance
     private JMenuItem getjMenuItem() {
         JMenuItem menuEnregistrerOrdonnance = new JMenuItem("Enregistrer une ordonnance (Authentification médecin requise)");
         menuEnregistrerOrdonnance.addActionListener(e -> {
@@ -208,6 +227,7 @@ public class UiGui extends JFrame implements ActionListener {
         return menuEnregistrerOrdonnance;
     }
 
+    // Méthode pour obtenir un label pour un médicament donné (avec ses informations)
     public static JLabel getjLabel(Medicament medicament) {
         JLabel label = new JLabel(
                 "<html><b>Nom:</b> " + medicament.getNom() +
@@ -222,6 +242,7 @@ public class UiGui extends JFrame implements ActionListener {
         return label;
     }
 
+    // Méthode pour obtenir une case à cocher pour un médicament donné (avec ses informations)
     public static JCheckBox getjCheckBox(Medicament medicament, JPanel entryPanel) {
         JCheckBox halfDoseCheckBox = new JCheckBox("50% du mg");
         halfDoseCheckBox.addItemListener(e -> {

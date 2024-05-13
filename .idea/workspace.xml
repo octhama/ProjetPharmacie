@@ -5,8 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ffbf0945-00a1-41f4-a3ac-8b676c5570ed" name="Changes" comment="update">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/CommanderUnepreparationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Pharmacien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Pharmacien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Preparation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Preparation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AcheterTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AfficherdemandemedicamentsgeneriquesTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AfficherlistemedicamentsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AfficherregistrepreparationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AuthentifiermedecinTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AuthentifierpharmacienTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/CommandermedicamentversiongeneriqueTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/ETypeMedicamentTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/EcriredemandesversiongeneriquecsvTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/EcriremajqttstockmedicamentscsvTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/EcriremodificationdemedicamentcsvTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/EcrireordonnancecsvTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/EcrireregistrepreparationcsvTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/EcriresuppressiondemedicamentcsvTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/EnregistrerordonnanceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/GetjcheckboxTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/GetjlabelTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/GetmedicamentsprescritsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/GetquantiteenstockTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/LireregistrepreparationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/MainTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/SaveselectedmedicamentstatesTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/UiGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UiGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/DateUtlis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/DateUtlis.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +126,8 @@
     "JUnit.AjoutermedicamentTest.executor": "Run",
     "JUnit.AuthentifiermedecinTest.executor": "Run",
     "JUnit.AuthentifierpharmacienTest.executor": "Run",
+    "JUnit.CommanderUnepreparationTest.testCommanderUnePreparation.executor": "Run",
+    "JUnit.CommanderUnepreparationTest.test_display_GUI_correctly.executor": "Run",
     "JUnit.CommandermedicamentversiongeneriqueDeuxTest.executor": "Run",
     "JUnit.CommandermedicamentversiongeneriqueTest.executor": "Run",
     "JUnit.CommandermedicamentversiongeneriqueTest.test_display_non_generic_medicines_correctly.executor": "Run",
@@ -123,6 +152,7 @@
     "JUnit.LireregistrepreparationTest.executor": "Run",
     "JUnit.MainTest.executor": "Run",
     "JUnit.MedicamentscorrespondantsTest.executor": "Run",
+    "JUnit.PreparationCommanderUnePreparationTest.testCommanderUnePreparation.executor": "Run",
     "JUnit.SaveselectedmedicamentstatesTest.executor": "Run",
     "JUnit.TrouvermedicamentssuggestionsTest$TrouvermedicamentssuggestionsTest.executor": "Run",
     "Repository.Attach.Annotations": "true",
@@ -132,7 +162,7 @@
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.google.cloudcode.ide_session_index": "20240513_0000",
+    "com.google.cloudcode.ide_session_index": "20240513_0003",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
@@ -159,7 +189,7 @@
       <recent name="io" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EnregistrerordonnanceTest">
+  <component name="RunManager" selected="Application.Program">
     <configuration name="Program" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Program" />
       <module name="ProjetPharmacie" />
@@ -167,7 +197,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommandermedicamentversiongeneriqueDeuxTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CommanderUnepreparationTest.testCommanderUnePreparation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProjetPharmacie" />
       <extension name="coverage">
         <pattern>
@@ -176,8 +206,25 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.CommandermedicamentversiongeneriqueDeuxTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="test.CommanderUnepreparationTest" />
+      <option name="METHOD_NAME" value="testCommanderUnePreparation" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommanderUnepreparationTest.test_display_GUI_correctly" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjetPharmacie" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.CommanderUnepreparationTest" />
+      <option name="METHOD_NAME" value="test_display_GUI_correctly" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -197,7 +244,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EnregistrerordonnanceTest.test_valid_credentials_and_valid_inputs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PreparationCommanderUnePreparationTest.testCommanderUnePreparation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProjetPharmacie" />
       <extension name="coverage">
         <pattern>
@@ -206,35 +253,20 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.EnregistrerordonnanceTest" />
-      <option name="METHOD_NAME" value="test_valid_credentials_and_valid_inputs" />
+      <option name="MAIN_CLASS_NAME" value="test.PreparationCommanderUnePreparationTest" />
+      <option name="METHOD_NAME" value="testCommanderUnePreparation" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProjetPharmacie" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.MainTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.EnregistrerordonnanceTest" />
-        <item itemvalue="JUnit.EnregistrerordonnanceTest.test_valid_credentials_and_valid_inputs" />
-        <item itemvalue="JUnit.MainTest" />
         <item itemvalue="Application.Program" />
-        <item itemvalue="JUnit.CommandermedicamentversiongeneriqueDeuxTest" />
+        <item itemvalue="JUnit.CommanderUnepreparationTest.testCommanderUnePreparation" />
+        <item itemvalue="JUnit.CommanderUnepreparationTest.test_display_GUI_correctly" />
+        <item itemvalue="JUnit.PreparationCommanderUnePreparationTest.testCommanderUnePreparation" />
+        <item itemvalue="JUnit.EnregistrerordonnanceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -259,6 +291,9 @@
       <workItem from="1715115700812" duration="641000" />
       <workItem from="1715222527549" duration="10916000" />
       <workItem from="1715621654069" duration="742000" />
+      <workItem from="1715622454111" duration="3573000" />
+      <workItem from="1715633049096" duration="369000" />
+      <workItem from="1715633489974" duration="2395000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -316,7 +351,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715607286332</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="update">
+      <option name="closed" value="true" />
+      <created>1715622530348</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1715622530348</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

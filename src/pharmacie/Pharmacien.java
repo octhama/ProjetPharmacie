@@ -50,7 +50,7 @@ public class Pharmacien extends Personne {
     }
 
     private static void afficherMenuPharmacien() {
-        SwingUtilities.invokeLater(() -> {
+        SwingUtilities.invokeLater(() -> { // Exécuter l'interface graphique dans le thread de l'EDT (Event Dispatch Thread)
         // Créer une nouvelle fenêtre pour le menu du pharmacien
         JFrame menuPharmacienFrame = new JFrame("Menu Pharmacien");
         menuPharmacienFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -20,7 +20,7 @@ import utils.DateUtlis;
 public class Preparation {
     private String nom;
     // Ajoutez ce constructeur à la classe Preparation
-    public Preparation(String nom) {
+    public Preparation() {
         this.nom = nom;
     }
 

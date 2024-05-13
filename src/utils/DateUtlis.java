@@ -3,6 +3,10 @@ package utils;
 import java.util.Calendar;
 
 public class DateUtlis {
+    /**
+     * Fonction pour calculer la date de livraison en ajoutant un jour à la date actuelle
+     * @return la date de livraison
+     */
 
     // Fonction pour calculer la date de livraison en ajoutant un jour à la date actuelle
     public static Calendar calculerDateLivraison() {
