@@ -106,3 +106,44 @@ Classe Commande:
     Gérer les commandes de médicaments manquants.
     Suivre l'état des commandes (en cours, livrée).
     Associer les médicaments commandés à une commande spécifique.
+
+=======================================================================================================================================================================================================================================================
+
+Explication des fonctionnalités de l'application Pharmacie
+
+L'application de gestion de pharmacie propose plusieurs fonctionnalités pour gérer les médicaments, les ordonnances, les patients et les commandes. Voici un aperçu des principales fonctionnalités de l'application :
+
+Gestion des Médicaments:
+    Ajouter un nouveau médicament à la liste des médicaments disponibles.
+    Mettre à jour les informations d'un médicament existant (prix, stock, etc.).
+    Rechercher un médicament par son nom ou sa marque.
+    Afficher la liste des médicaments en stock et ceux qui doivent être commandés.
+    Vérifier si une ordonnance est requise pour un médicament donné.
+
+Gestion des Ordonnances:
+    Créer une nouvelle ordonnance pour un patient.
+    Ajouter des médicaments à une ordonnance, en précisant s'ils sont génériques ou de marque.
+    Inclure les ingrédients d'une préparation magistrale dans une ordonnance.
+    Afficher les détails d'une ordonnance (médecin, patient, médicaments prescrits, etc.).
+    Rechercher les ordonnances par patient ou médecin.
+
+Gestion des Patients:
+    Enregistrer les informations personnelles d'un nouveau patient.
+    Consulter l'historique des ordonnances délivrées à un patient.
+    Rechercher un patient par son nom ou prénom.
+    Afficher la liste des patients enregistrés dans la pharmacie.
+
+Gestion des Commandes:
+    Passer une commande pour des médicaments manquants.
+    Suivre l'état des commandes (en cours, livrée).
+    Recevoir les médicaments commandés le lendemain (sauf le dimanche).
+    Afficher la liste des commandes en cours et celles déjà livrées.
+
+L'application de gestion de pharmacie permet de gérer efficacement les médicaments, les ordonnances, les patients et les commandes, en offrant une interface conviviale pour les utilisateurs. Elle facilite le suivi des stocks, des prescriptions médicales et des livraisons de médicaments, contribuant ainsi à une meilleure gestion des activités pharmaceutiques.
+
+================================================================================================================================================================================================================================================================================================================================================================================================
+
+Conclusion
+
+L'application de gestion de pharmacie est un outil informatique pratique pour les pharmacies, permettant de gérer efficacement les médicaments, les ordonnances, les patients et les commandes. Grâce à son interface conviviale et ses fonctionnalités avancées, elle facilite le suivi des activités pharmaceutiques et contribue à une meilleure organisation des tâches quotidiennes.
+
