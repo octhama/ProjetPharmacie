@@ -1,6 +1,3 @@
-Ennoncé :
-=======================================================================================================================================================================================================================================================
-
 Pharmacie
 =======================================================================================================================================================================================================================================================
 Contexte
@@ -37,7 +34,7 @@ Une date de prescription
 Liste de médicaments
 Ingrédients pour une préparation
 
-Note importante : Ce projet est une application de gestion de pharmacie développée en Java avec une interface graphique en JavaFX. Il s'agit d'un projet académique ne respectant pas le modèle MVC. Il est uniquement réalisé dans un but pédagogique.
+Note importante : Ce projet est une application de gestion de pharmacie développée en Java avec une interface graphique en JavaFX. Il s'agit d'un projet académique ne respectant pas le design pattern MVC(Model-View-Controller). Il est uniquement réalisé dans un but pédagogique. Des fichiers CSV font office de base de données pour stocker les informations des médicaments, des patients, des ordonnances et des commandes.
 
 Diagramme des classes et explication des fonctionnalités du projet Pharmacie
 =======================================================================================================================================================================================================================================================
