@@ -5,35 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ffbf0945-00a1-41f4-a3ac-8b676c5570ed" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/src/test/CommanderUnepreparationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pharmacie/Pharmacien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Pharmacien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pharmacie/Preparation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Preparation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AcheterTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AfficherdemandemedicamentsgeneriquesTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AfficherlistemedicamentsTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AfficherregistrepreparationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AuthentifiermedecinTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/AuthentifierpharmacienTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/CommandermedicamentversiongeneriqueTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/ETypeMedicamentTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/EcriredemandesversiongeneriquecsvTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/EcriremajqttstockmedicamentscsvTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/EcriremodificationdemedicamentcsvTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/EcrireordonnancecsvTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/EcrireregistrepreparationcsvTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/EcriresuppressiondemedicamentcsvTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/EnregistrerordonnanceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/GetjcheckboxTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/GetjlabelTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/GetmedicamentsprescritsTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/GetquantiteenstockTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/LireregistrepreparationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/MainTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/SaveselectedmedicamentstatesTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/UiGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UiGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/DateUtlis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/DateUtlis.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,7 +266,7 @@
       <workItem from="1715621654069" duration="742000" />
       <workItem from="1715622454111" duration="3573000" />
       <workItem from="1715633049096" duration="369000" />
-      <workItem from="1715633489974" duration="2395000" />
+      <workItem from="1715633489974" duration="4024000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -359,7 +332,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715622530348</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="update">
+      <option name="closed" value="true" />
+      <created>1715641123121</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1715641123121</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
