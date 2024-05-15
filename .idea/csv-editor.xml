@@ -38,13 +38,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/src/data/nonstandardregistry.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/src/data/registrepreparation.csv">
           <value>
             <Attribute>
