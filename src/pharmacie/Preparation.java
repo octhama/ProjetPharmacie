@@ -22,6 +22,8 @@ public class Preparation {
     private String nom;
     private int quantite;
     private String date;
+    private Commande commande; // Attribut pour stocker la commande associée à la préparation
+
 
     // Ajoutez ce constructeur à la classe Preparation
     public Preparation() {
@@ -413,6 +415,11 @@ public class Preparation {
 
     public static List<Preparation> getPreparations() {
         return preparations;
+    }
+
+    // Méthode pour associer une commande à la préparation
+    public void setCommande(Commande commande) {
+        this.commande = commande;
     }
 
     public void ajouterPreparations(List<Preparation> preparations) {

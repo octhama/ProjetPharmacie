@@ -242,6 +242,65 @@ public class UiGui extends JFrame implements ActionListener {
         return label;
     }
 
+    public static JPanel createOrdonnancePanel(Ordonnance ordonnance) {
+        JPanel ordonnancePanel = new JPanel();
+        ordonnancePanel.setLayout(new GridLayout(0, 1));
+
+        // Ajouter les détails de l'ordonnance
+        JLabel referenceMedecinLabel = new JLabel("Références du médecin: " + ordonnance.getReferencesDuMedecin());
+        JLabel referencePatientLabel = new JLabel("Références du patient: " + ordonnance.getReferencesDuPatient());
+        JLabel datePrescriptionLabel = new JLabel("Date de prescription: " + ordonnance.getDatePrescription());
+        JLabel listeMedicamentsLabel = new JLabel("Liste des médicaments:");
+
+        // Créer un panneau pour afficher la liste des médicaments
+        JPanel medicamentsPanel = new JPanel();
+        medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
+        // Ajouter chaque médicament de l'ordonnance à ce panneau
+        for (Medicament medicament : ordonnance.getMedicaments()) {
+            JLabel medicamentLabel = new JLabel("- " + medicament.getNom());
+            medicamentsPanel.add(medicamentLabel);
+        }
+
+        // Ajouter les détails au panneau principal de l'ordonnance
+        ordonnancePanel.add(referenceMedecinLabel);
+        ordonnancePanel.add(referencePatientLabel);
+        ordonnancePanel.add(datePrescriptionLabel);
+        ordonnancePanel.add(listeMedicamentsLabel);
+        ordonnancePanel.add(medicamentsPanel);
+
+        // Styling
+        ordonnancePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        return ordonnancePanel;
+    }
+
+    public static JPanel createPreparationPanel(Preparation preparation, List<Commande> commandes) {
+        // Créer un panneau pour afficher les détails de la préparation
+        JPanel preparationPanel = new JPanel(new GridLayout(commandes.size() + 1, 2));
+        preparationPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        // Ajouter le nom de la préparation au panneau
+        JLabel nomLabel = new JLabel("Nom:");
+        JLabel nomValueLabel = new JLabel(preparation.getNom());
+        preparationPanel.add(nomLabel);
+        preparationPanel.add(nomValueLabel);
+
+        // Ajouter les commandes au panneau
+        JLabel commandesLabel = new JLabel("Commandes:");
+        preparationPanel.add(commandesLabel);
+
+        StringBuilder commandesText = new StringBuilder();
+        for (Commande commande : commandes) {
+            if (commande.getIdUnique().startsWith(preparation.getIdUnique())) {
+                commandesText.append(commande.getIdUnique()).append(", ");
+            }
+        }
+        JLabel commandesValueLabel = new JLabel(commandesText.toString());
+        preparationPanel.add(commandesValueLabel);
+
+        return preparationPanel;
+    }
+
     // Méthode pour obtenir une case à cocher pour un médicament donné (avec ses informations)
     public static JCheckBox getjCheckBox(Medicament medicament, JPanel entryPanel) {
         JCheckBox halfDoseCheckBox = new JCheckBox("50% du mg");

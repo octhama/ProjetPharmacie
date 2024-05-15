@@ -1,5 +1,6 @@
 package io;
 
+import pharmacie.Commande;
 import pharmacie.Preparation;
 
 import java.io.BufferedReader;
@@ -17,12 +18,17 @@ public class LectureRegistrePreparation {
             while ((ligne = reader.readLine()) != null) {
                 String[] champs = ligne.split(",");
                 String idUnique = champs[0];
-                String nom = champs[1];
-                int quantite = Integer.parseInt(champs[2]);
-                String date = champs[3];
+                int numeroCommande = Integer.parseInt(champs[1]);
+                String nom = champs[2];
+                String commentaires = champs[3];
+                int quantite = Integer.parseInt(champs[4]);
+                String date = champs[5];
 
                 Preparation preparation = new Preparation(idUnique, nom, quantite, date);
                 preparations.add(preparation);
+                Commande commande = new Commande(idUnique, numeroCommande, commentaires, quantite, date);
+                preparation.setCommande(commande);
+
             }
         } catch (IOException e) {
             e.printStackTrace();

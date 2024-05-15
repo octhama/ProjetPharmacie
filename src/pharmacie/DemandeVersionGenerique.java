@@ -25,7 +25,6 @@ public class DemandeVersionGenerique {
         this.nomMedicament = nom;
     }
 
-
     public DemandeVersionGenerique(String nomMedicament, boolean demande, LocalDate dateDemande) {
         this.nomMedicament = nomMedicament;
         this.etatDeLaDemande = demande;

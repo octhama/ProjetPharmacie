@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ffbf0945-00a1-41f4-a3ac-8b676c5570ed" name="Changes" comment="update">
+      <change afterPath="$PROJECT_DIR$/src/data/registrecommande.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/io/LectureCommande.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pharmacie/Commande.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/dataordonnances.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/dataordonnances.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/LectureOrdonnanceCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/LectureOrdonnanceCsv.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pharmacie/Medicament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Medicament.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pharmacie/Ordonnance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Ordonnance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDocuments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/IDocuments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/LectureRegistrePreparation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/LectureRegistrePreparation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/DemandeVersionGenerique.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/DemandeVersionGenerique.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Pharmacien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Pharmacien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Preparation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Preparation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/UiGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UiGui.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715800807126</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="update">
+      <option name="closed" value="true" />
+      <created>1715803698657</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1715803698657</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,16 +279,5 @@
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
     <settings-migrated>true</settings-migrated>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ui/UiGui.java</url>
-          <line>1219</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

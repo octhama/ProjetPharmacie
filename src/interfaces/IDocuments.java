@@ -2,6 +2,7 @@ package interfaces;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,11 +10,15 @@ import javax.swing.*;
 
 import enums.ETypeMedicament;
 import io.EcritureMedicamentsCsv;
+import io.LectureCommande;
 import io.LectureOrdonnanceCsv;
 import io.LectureRegistrePreparation;
 import org.jetbrains.annotations.NotNull;
 import pharmacie.*;
 import ui.UiGui;
+
+import static ui.UiGui.createOrdonnancePanel;
+import static ui.UiGui.createPreparationPanel;
 
 public interface IDocuments {
     
@@ -115,34 +120,6 @@ public interface IDocuments {
         // Ajouter le panneau des patients au panneau principal
         panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
         panel.add(new JScrollPane(patientPanel), BorderLayout.CENTER);
-        panel.revalidate(); // Mettre à jour l'affichage du panneau
-    }
-
-    // Afficher le registre de préparation en utilisant la classe LectureRegistrePreparation
-    static void afficherRegistrePreparation(JPanel panel) throws IOException {
-        // Créer une fenêtre pour afficher le registre de préparation
-        JFrame frame = new JFrame("Registre de préparation");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(600, 400);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-
-        // Création d'un panneau pour afficher les médicaments préparés
-        JPanel preparationPanel = new JPanel();
-        preparationPanel.setLayout(new BoxLayout(preparationPanel, BoxLayout.Y_AXIS));
-
-        // Lire le registre de préparation
-        List<Preparation> preparations = LectureRegistrePreparation.lireRegistrePreparation("src/data/registrepreparation.csv");
-
-        // Ajouter les détails de chaque préparation commandée dans le panneau
-        for (Preparation preparation : preparations) {
-            JLabel label = new JLabel(preparation.toString());
-            preparationPanel.add(label);
-        }
-
-        // Ajouter le panneau des médicaments au panneau principal
-        panel.removeAll(); // Retirer les éventuels anciens éléments du panneau
-        panel.add(new JScrollPane(preparationPanel), BorderLayout.CENTER);
         panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
 
@@ -694,8 +671,8 @@ public interface IDocuments {
 
         // Ajouter les détails de chaque ordonnance au panneau
         for (Ordonnance ordonnance : ordonnances) {
-            JLabel label = new JLabel(ordonnance.toString());
-            ordonnancesPanel.add(label);
+            JPanel ordonnancePanel = createOrdonnancePanel(ordonnance); // Créer le panneau pour chaque ordonnance
+            ordonnancesPanel.add(ordonnancePanel); // Ajouter le panneau de l'ordonnance au panneau principal
         }
 
         // Ajouter le panneau des ordonnances au panneau principal
@@ -703,4 +680,35 @@ public interface IDocuments {
         panelAffichageInfo.add(new JScrollPane(ordonnancesPanel), BorderLayout.CENTER);
         panelAffichageInfo.revalidate(); // Mettre à jour l'affichage du panneau
     }
+
+    static void afficherRegistrePreparation(JPanel panelAffichageInfo) throws Exception {
+        // Créer un panneau pour afficher les préparations
+        JPanel preparationsPanel = new JPanel();
+        preparationsPanel.setLayout(new BoxLayout(preparationsPanel, BoxLayout.Y_AXIS));
+
+        // Lire les préparations depuis le fichier CSV
+        List<Preparation> preparations = LectureRegistrePreparation.lireRegistrePreparation("src/data/registrepreparation.csv");
+
+        // Lire les commandes depuis le fichier CSV
+        List<Commande> commandes = LectureCommande.lireCommandes("src/data/registrecommande.csv");
+
+        // Ajouter les détails de chaque préparation au panneau
+        for (Preparation preparation : preparations) {
+            // Filtrer les commandes associées à cette préparation
+            List<Commande> commandesAssociees = new ArrayList<>();
+            for (Commande commande : commandes) {
+                if (commande.getIdUnique().startsWith(preparation.getIdUnique())) {
+                    commandesAssociees.add(commande);
+                }
+            }
+            JPanel preparationPanel = createPreparationPanel(preparation, commandesAssociees);
+            preparationsPanel.add(preparationPanel);
+        }
+
+        // Ajouter le panneau des préparations au panneau principal
+        panelAffichageInfo.removeAll(); // Retirer les éventuels anciens éléments du panneau
+        panelAffichageInfo.add(new JScrollPane(preparationsPanel), BorderLayout.CENTER);
+        panelAffichageInfo.revalidate(); // Mettre à jour l'affichage du panneau
+    }
+
 }

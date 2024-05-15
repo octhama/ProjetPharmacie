@@ -123,7 +123,7 @@ public class Pharmacien extends Personne {
             // Appeler la méthode pour afficher le registre de préparation dans le panneau de la fenêtre
             try {
                 IDocuments.afficherRegistrePreparation(panelAffichageInfo);
-            } catch (IOException ex) {
+            } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         });
