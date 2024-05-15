@@ -67,10 +67,14 @@ public class Medicament {
     }
 
     public Medicament(String medicamentString) {
-        //TODO Auto-generated constructor stub
-        String[] parts = medicamentString.split("\\(");
-        this.nom = parts[0];
-        this.quantiteEnStock = Integer.parseInt(parts[1].substring(0, parts[1].length() - 1));
+        // Trouver l'index du dernier espace dans la chaîne
+        int lastSpaceIndex = medicamentString.lastIndexOf(" ");
+
+        // Extraire le nom du médicament (tout avant le dernier espace)
+        this.nom = medicamentString.substring(0, lastSpaceIndex);
+
+        // Extraire la quantité en stock (tout après le dernier espace)
+        this.quantiteEnStock = Integer.parseInt(medicamentString.substring(lastSpaceIndex + 1, medicamentString.length() - 2));
     }
 
     public Medicament(String nom, double prix, ETypeMedicament type, boolean generique, int quantiteStock) {

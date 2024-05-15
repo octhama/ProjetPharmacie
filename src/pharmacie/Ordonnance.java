@@ -3,6 +3,7 @@ package pharmacie;
 import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Stack;
@@ -11,29 +12,55 @@ import static io.EcritureOrdonnancesCsv.ecrireOrdonnanceCsv;
 import static io.LectureMedecinCsv.authentifierMedecin;
 
 public class Ordonnance {
+    private final String referencesDuMedecin;
+    private final String referencesDuPatient;
     private final LocalDate datePrescription;
     public static List<Medicament> medicaments;
 
-    public Ordonnance(LocalDate datePrescription, List<Medicament> medicaments) {
+    public Ordonnance(String referencesDuMedecin, String referencesDuPatient, LocalDate datePrescription, List<Medicament> medicaments) {
+        this.referencesDuMedecin = referencesDuMedecin;
+        this.referencesDuPatient = referencesDuPatient;
         this.datePrescription = datePrescription;
+        Ordonnance.medicaments = new ArrayList<>();
+        for (Medicament medicament : medicaments) {
+            Ordonnance.medicaments.add(new Medicament(String.valueOf(medicament)));
+        }
+    }
+
+    public Ordonnance(String referencesDuMedecin, String referencesDuPatient, String dateDePrescription, String[] medicaments) {
+        this.referencesDuMedecin = referencesDuMedecin;
+        this.referencesDuPatient = referencesDuPatient;
+        this.datePrescription = LocalDate.parse(dateDePrescription.trim());
+        Ordonnance.medicaments = new ArrayList<>();
+        for (String medicament : medicaments) {
+            Ordonnance.medicaments.add(new Medicament(String.valueOf(medicament)));
+        }
+    }
+
+    public String getReferencesDuMedecin() {
+        return referencesDuMedecin;
+    }
+
+    public String getReferencesDuPatient() {
+        return referencesDuPatient;
+    }
+
+    public LocalDate getDatePrescription() {
+        return datePrescription;
+    }
+
+    public List<Medicament> getMedicaments() {
+        return medicaments;
+    }
+
+    public void setMedicaments(List<Medicament> medicaments) {
         this.medicaments = medicaments;
     }
 
-    public Ordonnance(String referencesDuMedecin, String referencesDuPatient, String dateDePrescription, String listeDesMedicaments) {
-        //TODO Auto-generated constructor stub
-        this.datePrescription = LocalDate.parse(dateDePrescription);
-        String[] parts = listeDesMedicaments.split(",");
-        for (String part : parts) {
-            String[] subParts = part.split("\\(");
-            String nom = subParts[0];
-            int quantite = Integer.parseInt(subParts[1].substring(0, subParts[1].length() - 1));
-            for (Medicament medicament : medicaments) {
-                if (medicament.getNom().equals(nom)) {
-                    medicament.setQuantiteEnStock(medicament.getQuantiteEnStock() - quantite);
-                }
-            }
-        }
+    public void ajouterMedicament(Medicament medicament) {
+        medicaments.add(medicament);
     }
+
 
     public static void enregistrerOrdonnance() {
         // Demander à l'utilisateur de s'authentifier en tant que médecin

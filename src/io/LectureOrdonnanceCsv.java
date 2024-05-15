@@ -71,7 +71,9 @@ public class LectureOrdonnanceCsv {
                 String DateDePrescription = champs[2];
                 String ListeDesMedicaments = champs[3];
 
-                Ordonnance ordonnance = new Ordonnance(ReferencesDuMedecin, ReferencesDuPatient, DateDePrescription, ListeDesMedicaments);
+                String[] medicaments = ListeDesMedicaments.split(",");
+
+                Ordonnance ordonnance = new Ordonnance(ReferencesDuMedecin, ReferencesDuPatient, DateDePrescription, medicaments);
                 ordonnances.add(ordonnance);
             }
         } catch (IOException e) {
