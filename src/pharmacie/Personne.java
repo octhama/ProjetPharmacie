@@ -32,15 +32,4 @@ public abstract class Personne {
         this.prenom = prenom;
     }
 
-    public Personne(String Id, String NumeroNational, String Reference, String MotDePasse, String civilite, String nom, String prenom, String adresse) {
-        this.Id = Id;
-        this.NumeroNational = NumeroNational;
-        this.Reference = Reference;
-        this.MotDePasse = MotDePasse;
-        this.civilite = civilite;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresse = adresse;
-    }
-
 }

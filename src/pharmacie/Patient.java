@@ -11,11 +11,7 @@ public class Patient extends Personne{
         return null;
     }
 
-    public Object getNom() {
-        return null;
-    }
+    public Object getNom() {return null;}
 
-    public String getPrenom() {
-        return null;
-    }
+    public String getPrenom() {return null;}
 }
