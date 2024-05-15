@@ -11,6 +11,7 @@ public abstract class Personne {
     private String adresse;
     private String ContactGSM;
     private String statut;
+    private String historiqueOrdonnance;
 
     public Personne(String Id, String NumeroNational, String Reference, String MotDePasse, String civilite, String nom, String prenom, String adresse, String ContactGSM, String statut) {
         this.Id = Id;

@@ -1,37 +1,32 @@
 package io;
 
-import pharmacie.Medecin;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LectureMedecinCsv {
 private LectureMedecinCsv() {
         // Constructeur privé pour empêcher l'instanciation de la classe
         throw new AssertionError("Cette classe ne peut pas être instanciée");
     }
+    // Méthode pour authentifier le médecin
+    public static boolean authentifierMedecin(String id, String password) {
+        String csvFilePath = "src/data/authidmedecin.csv";
 
-    public static List<Medecin> chargerMedecinsDepuisCSV() throws IOException {
-        List<Medecin> medecins = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader("src/data/authidmedecin.csv"))) {
-            String ligne;
-            while ((ligne = br.readLine()) != null) {
-                String[] elements = ligne.split(",");
-                if (elements.length == 4) {
-                    Medecin medecin = new Medecin(elements[0], elements[1], elements[2], elements[3]);
-                    medecins.add(medecin);
-                } else {
-                    System.err.println("Erreur de format dans le fichier CSV pour la ligne : " + ligne);
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+            String line;
+            // Lire chaque ligne du fichier CSV
+            while ((line = br.readLine()) != null) {
+                // Diviser la ligne en utilisant le délimiteur approprié (virgule dans ce cas)
+                String[] parts = line.split(",");
+                // Vérifier si la ligne contient l'identifiant et le mot de passe fournis
+                if (parts.length >= 2 && parts[0].equals(id) && parts[1].equals(password)) {
+                    return true; // Authentification réussie
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return medecins;
+        return false; // Authentification échouée
     }
 }

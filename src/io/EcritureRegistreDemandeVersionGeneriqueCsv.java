@@ -11,7 +11,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class EcritureRegistreDemandeVersionGeneriqueCsv {
-
     public static void ecrireDemandesVersionGeneriqueCsv(List<DemandeVersionGenerique> demandes) {
         // Chemin du fichier CSV
         String filePath = "src/data/demandes_version_generique.csv";

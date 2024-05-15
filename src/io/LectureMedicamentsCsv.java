@@ -2,6 +2,7 @@ package io;
 
 import enums.ETypeMedicament;
 import exceptions.ExeptionRuptureDeStock;
+import org.jetbrains.annotations.NotNull;
 import pharmacie.Medicament;
 
 import java.io.BufferedReader;
@@ -20,7 +21,7 @@ public class LectureMedicamentsCsv {
         throw new AssertionError("Cette classe ne peut pas être instanciée");
     }
 
-    public static List<Medicament> lireMedicamentsCsv(String cheminFichier) throws IOException {
+    public static @NotNull List<Medicament> lireMedicamentsCsv(String cheminFichier) throws IOException {
         List<Medicament> medicaments = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {
@@ -53,4 +54,34 @@ public class LectureMedicamentsCsv {
 
         return medicaments;
     }
+
+    public static @NotNull List<String> getMedicamentsPrescrits(String referencePatient) {
+        String csvFilePath = "src/data/dataordonnances.csv";
+        List<String> medicamentsPrescrits = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+            String line;
+            // Lire chaque ligne du fichier CSV
+            while ((line = br.readLine()) != null) {
+                // Diviser la ligne en utilisant le délimiteur approprié (virgule dans ce cas)
+                String[] parts = line.split(",");
+                // Vérifier si la ligne contient la référence du patient donnée
+                if (parts.length >= 2 && parts[1].trim().equals(referencePatient.trim())) {
+                    // Ajouter les médicaments prescrits à la liste
+                    if (parts.length >= 4) {
+                        String[] medicaments = parts[3].split(";");
+                        for (String medicament : medicaments) {
+                            medicamentsPrescrits.add(medicament.trim());
+                        }
+                    }
+                    break; // Arrêter la recherche après avoir trouvé la référence du patient
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return medicamentsPrescrits;
+    }
 }
+

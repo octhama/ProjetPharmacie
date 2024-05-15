@@ -1,19 +1,34 @@
 package io;
 
+import pharmacie.Preparation;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LectureRegistrePreparation {
-    public static String lireRegistrePreparation(String s) throws IOException {
-        BufferedReader reader = new BufferedReader (new FileReader("src/data/registrepreparation.csv"));
-        String line;
-        StringBuilder stringBuilder = new StringBuilder();
-        while ((line = reader.readLine()) != null) {
-            stringBuilder.append(line).append("\n");
+    public static List<Preparation> lireRegistrePreparation(String cheminFichier) throws IOException {
+        List<Preparation> preparations = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {
+            String ligne;
+            reader.readLine(); // Lire la première ligne (entêtes) et l'ignorer
+            while ((ligne = reader.readLine()) != null) {
+                String[] champs = ligne.split(",");
+                String idUnique = champs[0];
+                String nom = champs[1];
+                int quantite = Integer.parseInt(champs[2]);
+                String date = champs[3];
+
+                Preparation preparation = new Preparation(idUnique, nom, quantite, date);
+                preparations.add(preparation);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        reader.close();
-        return stringBuilder.toString();
+        return preparations;
     }
 }
+
 

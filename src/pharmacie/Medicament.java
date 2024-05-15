@@ -1,7 +1,12 @@
 package pharmacie;
 
+import java.util.*;
+import javax.swing.JCheckBox;
 import enums.ETypeMedicament;
 import exceptions.ExeptionRuptureDeStock;
+import ui.UiGui;
+
+import static io.EcritureRegistrePreparationCsv.medicaments;
 
 public class Medicament {
     private String nom;
@@ -10,17 +15,19 @@ public class Medicament {
     private boolean generique;
     private int quantiteEnStock;
     private boolean commandeA50Pourcent;
+    private boolean prescriptionRequise; // Indique si une ordonnance est requise pour acheter le médicament
 
-    public Medicament(String nom, double prix2, ETypeMedicament eTypeMedicament, boolean generique2, int quantiteStock, boolean commandeA50Pourcent) {
+    public Medicament(String nom, double prix2, ETypeMedicament eTypeMedicament, boolean generique2, int quantiteStock, boolean commandeA50Pourcent, boolean prescriptionRequise) {
         this.nom = nom;
         this.prix = prix2;
         this.type = ETypeMedicament.valueOf(eTypeMedicament.toString());
         this.generique = generique2;
         this.quantiteEnStock = quantiteStock;
         this.commandeA50Pourcent = commandeA50Pourcent;
+        this.prescriptionRequise = prescriptionRequise;
     }
 
-    public Medicament(String[] split, boolean commandeA50Pourcent) {
+    public Medicament(boolean commandeA50Pourcent) {
         //TODO Auto-generated constructor stub
         this.commandeA50Pourcent = commandeA50Pourcent;
     }
@@ -90,6 +97,37 @@ public class Medicament {
         this.quantiteEnStock = quantiteStock;
     }
 
+    public Medicament() {
+
+    }
+
+    public Medicament(String med2, double v, ETypeMedicament o, Boolean o1, int i) {
+        //TODO Auto-generated constructor stub
+        this.nom = med2;
+        this.prix = v;
+        this.type = o;
+        this.generique = o1;
+        this.quantiteEnStock = i;
+    }
+
+    public Medicament(String med3, Double o, Object o1, Object o2, int i) {
+        //TODO Auto-generated constructor stub
+        this.nom = med3;
+        this.prix = o;
+        this.type = (ETypeMedicament) o1;
+        this.generique = (Boolean) o2;
+        this.quantiteEnStock = i;
+    }
+
+    public Medicament(String med4, double v, ETypeMedicament o, Boolean o1, Integer o2) {
+        //TODO Auto-generated constructor stub
+        this.nom = med4;
+        this.prix = v;
+        this.type = o;
+        this.generique = o1;
+        this.quantiteEnStock = o2;
+    }
+
     public String getNom() {
         return nom;
     }
@@ -110,32 +148,51 @@ public class Medicament {
         return quantiteEnStock;
     }
 
-
     public void acheter(int quantite) throws ExeptionRuptureDeStock {
         // Augmenter la quantité en stock du médicament
         this.quantiteEnStock += quantite;
-    }
-
-    public ETypeMedicament getTypeMedicament() {
-        return type;
     }
 
     public void setQuantiteEnStock(int quantite) {
         this.quantiteEnStock = quantite;
     }
 
-    public void commander(int quantite) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'commander'");
-    }
-
-    public String getPrincipeActif() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPrincipeActif'");
-    }
-
     public boolean estCommandeA50Pourcent() {
         return commandeA50Pourcent;
     }
 
+    public static boolean medicamentsCorrespondants(List<String> medicamentsPrescrits) {
+        for (Map.Entry<Medicament, JCheckBox> entry : UiGui.medicamentCheckBoxMap.entrySet()) {
+            Medicament medicament = entry.getKey();
+            JCheckBox checkBox = entry.getValue();
+            if (checkBox.isSelected()) {
+                boolean correspondant = false;
+                for (String medicamentPrescrit : medicamentsPrescrits) {
+                    // Vérifier si le nom du médicament sélectionné correspond à un médicament prescrit
+                    if (medicamentPrescrit.equalsIgnoreCase(medicament.getNom())) {
+                        correspondant = true;
+                        break;
+                    }
+                }
+                // Si aucun médicament prescrit ne correspond, retourner false
+                if (!correspondant) {
+                    return false;
+                }
+            }
+        }
+        // Si tous les médicaments sélectionnés correspondent à ceux prescrits, retourner true
+        return true;
+    }
+
+    public void setMedicaments(List<Medicament> medicaments) {
+        Ordonnance.medicaments = medicaments;
+    }
+
+    public Medicament[] getMedicaments() {
+        return medicaments.toArray(new Medicament[0]);
+    }
+
+    public void setMedicaments(Medicament[] medicaments) {
+        Ordonnance.medicaments = List.of(medicaments);
+    }
 }
