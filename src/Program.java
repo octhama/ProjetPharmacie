@@ -1,10 +1,6 @@
-import io.LectureDemandeVersionGeneriqueCsv;
 import io.LectureMedicamentsCsv;
-import io.LectureRegistrePreparation;
-import pharmacie.DemandeVersionGenerique;
 import pharmacie.Medicament;
 import pharmacie.Pharmacie;
-import pharmacie.Preparation;
 import ui.UiGui;
 
 import java.io.IOException;
