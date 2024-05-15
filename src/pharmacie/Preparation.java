@@ -18,14 +18,51 @@ import ui.UiGui;
 import utils.DateUtlis;
 
 public class Preparation {
+    private String idUnique;
     private String nom;
+    private int quantite;
+    private String date;
+
     // Ajoutez ce constructeur à la classe Preparation
     public Preparation() {
         this.nom = nom;
     }
 
+    public Preparation(String idUnique, String nom, int quantite, String date) {
+        this.idUnique = idUnique;
+        this.nom = nom;
+        this.quantite = quantite;
+        this.date = date;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Preparation{" +
+                "idUnique='" + idUnique + '\'' +
+                ", nom='" + nom + '\'' +
+                ", quantite=" + quantite +
+                ", date='" + date + '\'' +
+                '}';
+    }
+
+    // Déclaration d'une liste statique pour stocker les préparations
+    private static List<Preparation> preparations = new ArrayList<>();
+
+    public String getIdUnique() {
+        return idUnique;
+    }
+
     public String getNom() {
         return nom;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public void setNom(String nom) {
@@ -374,4 +411,14 @@ public class Preparation {
         frame.setVisible(true);
     }
 
+    public static List<Preparation> getPreparations() {
+        return preparations;
+    }
+
+    public void ajouterPreparations(List<Preparation> preparations) {
+        if (preparations != null) {
+            // Ajouter les préparations à la liste des préparations
+            Preparation.preparations.addAll(preparations);
+        }
+    }
 }

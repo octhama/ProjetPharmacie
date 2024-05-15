@@ -1,6 +1,10 @@
+import io.LectureDemandeVersionGeneriqueCsv;
 import io.LectureMedicamentsCsv;
+import io.LectureRegistrePreparation;
+import pharmacie.DemandeVersionGenerique;
 import pharmacie.Medicament;
 import pharmacie.Pharmacie;
+import pharmacie.Preparation;
 import ui.UiGui;
 
 import java.io.IOException;
@@ -12,9 +16,8 @@ import java.util.List;
 
 public class Program {
     public static void main(String[] args) throws IOException {
-        // version graphique du programme (fonctionnelle)
-        Pharmacie pharmacie = new Pharmacie();
         // Chargement des médicaments depuis un fichier CSV
+        Pharmacie pharmacie = new Pharmacie();
         try {
             List<Medicament> medicaments = LectureMedicamentsCsv.lireMedicamentsCsv("src/data/medicaments.csv");
             pharmacie.ajouterMedicaments(medicaments); // Ajouter les médicaments à la pharmacie
@@ -28,11 +31,5 @@ public class Program {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        // version console (non fonctionnelle)
-        /*Pharmacie pharmacie = new Pharmacie();
-        CliUi cli = new CliUi(pharmacie);
-        while (true) {
-            cli.afficherMenu();*/
     }
 }

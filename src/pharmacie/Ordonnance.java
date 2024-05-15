@@ -23,6 +23,25 @@ public class Ordonnance {
         Ordonnance.medicaments = medicaments;
     }
 
+    public Ordonnance(String referencesDuMedecin, String referencesDuPatient, String dateDePrescription, String listeDesMedicaments) {
+        this.referenceMedecin = referencesDuMedecin;
+        this.referencePatient = referencesDuPatient;
+        this.datePrescription = new Date();
+        this.ingredientsPreparation = listeDesMedicaments;
+    }
+
+    @Override
+    public String toString() {
+        return "Ordonnance{" +
+                "idOrdonnance='" + idOrdonnance + '\'' +
+                ", referenceMedecin='" + referenceMedecin + '\'' +
+                ", referencePatient='" + referencePatient + '\'' +
+                ", datePrescription=" + datePrescription +
+                ", medicaments=" + medicaments +
+                ", ingredientsPreparation='" + ingredientsPreparation + '\'' +
+                '}';
+    }
+
     public static void enregistrerOrdonnance() {
         // Demander à l'utilisateur de s'authentifier en tant que médecin
         String idMedecin = JOptionPane.showInputDialog(null, "Veuillez saisir votre identifiant médecin :");

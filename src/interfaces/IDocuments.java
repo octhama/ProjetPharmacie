@@ -9,6 +9,7 @@ import javax.swing.*;
 
 import enums.ETypeMedicament;
 import io.EcritureMedicamentsCsv;
+import io.LectureOrdonnanceCsv;
 import io.LectureRegistrePreparation;
 import org.jetbrains.annotations.NotNull;
 import pharmacie.*;
@@ -67,7 +68,7 @@ public interface IDocuments {
         panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
 
-    // Afficher les medicament de src/data/listeMedecins.csv
+    // Afficher les médecins de src/data/listeMedecins.csv (non implémenté)
     static void afficherListeMedecins(JPanel panel) {
         // Créer une fenêtre pour afficher la liste des médecins
         JFrame frame = new JFrame("Liste des médecins");
@@ -92,7 +93,7 @@ public interface IDocuments {
         panel.revalidate(); // Mettre à jour l'affichage du panneau
     }
 
-    // Afficher les medicaments dans src/data/listePatients.csv
+    // Afficher les patients dans src/data/listePatients.csv (non implémenté)
     static void afficherListePatients(JPanel panel) {
         // Créer une fenêtre pour afficher la liste des patients
         JFrame frame = new JFrame("Liste des patients");
@@ -131,11 +132,11 @@ public interface IDocuments {
         preparationPanel.setLayout(new BoxLayout(preparationPanel, BoxLayout.Y_AXIS));
 
         // Lire le registre de préparation
-        String preparations = LectureRegistrePreparation.lireRegistrePreparation("src/data/registrepreparation.csv");
+        List<Preparation> preparations = LectureRegistrePreparation.lireRegistrePreparation("src/data/registrepreparation.csv");
 
         // Ajouter les détails de chaque préparation commandée dans le panneau
-        for (String preparation : preparations.split("\n")) {
-            JLabel label = new JLabel(preparation);
+        for (Preparation preparation : preparations) {
+            JLabel label = new JLabel(preparation.toString());
             preparationPanel.add(label);
         }
 
@@ -683,4 +684,23 @@ public interface IDocuments {
         }
     }
 
+    static void afficherOrdonnances(JPanel panelAffichageInfo) throws IOException {
+        // Créer un panneau pour afficher les ordonnances
+        JPanel ordonnancesPanel = new JPanel();
+        ordonnancesPanel.setLayout(new BoxLayout(ordonnancesPanel, BoxLayout.Y_AXIS));
+
+        // Lire les ordonnances depuis le fichier CSV
+        List<Ordonnance> ordonnances = LectureOrdonnanceCsv.lireOrdonnances("src/data/dataordonnances.csv");
+
+        // Ajouter les détails de chaque ordonnance au panneau
+        for (Ordonnance ordonnance : ordonnances) {
+            JLabel label = new JLabel(ordonnance.toString());
+            ordonnancesPanel.add(label);
+        }
+
+        // Ajouter le panneau des ordonnances au panneau principal
+        panelAffichageInfo.removeAll(); // Retirer les éventuels anciens éléments du panneau
+        panelAffichageInfo.add(new JScrollPane(ordonnancesPanel), BorderLayout.CENTER);
+        panelAffichageInfo.revalidate(); // Mettre à jour l'affichage du panneau
+    }
 }

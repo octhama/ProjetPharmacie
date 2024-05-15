@@ -66,50 +66,63 @@ public class Pharmacien extends Personne {
         menuPharmacienFrame.add(contentPanel);
 
         // Création des panneaux pour afficher les informations
-        JPanel panelAffichageMedicaments = new JPanel(new BorderLayout());
-        contentPanel.add(panelAffichageMedicaments, "Medicaments");
-        JPanel panelAffichageDemandeMedicamentsGeneriques = new JPanel(new BorderLayout());
-        contentPanel.add(panelAffichageDemandeMedicamentsGeneriques, "Demandes");
-        JPanel panelAffichageRegistrePreparation = new JPanel(new BorderLayout());
-        contentPanel.add(panelAffichageRegistrePreparation, "Registre");
-        JPanel panelAffichageListePatients = new JPanel(new BorderLayout());
-        contentPanel.add(panelAffichageListePatients, "Patients");
-        JPanel panelAffichageListeMedecins = new JPanel(new BorderLayout());
-        contentPanel.add(panelAffichageListeMedecins, "Medecins");
+        JPanel panelAffichageInfo = new JPanel(new BorderLayout());
+        contentPanel.add(panelAffichageInfo, "Affichage des informations");
 
         // Créer un menu pour les actions d'affichage de données
         JMenu menuActionsAffichage = new JMenu("Affichage de données");
         menuBar.add(menuActionsAffichage);
+
         JMenuItem menuItemAfficherMedicaments = new JMenuItem("Afficher les médicaments");
         menuActionsAffichage.add(menuItemAfficherMedicaments);
-        JMenuItem menuItemAfficherDemandeMedicamentsGeneriques = new JMenuItem("Aff. demandes médicaments gen");
+
+        JMenuItem menuItemAfficherOrdonnances = new JMenuItem("Afficher les ordonnances");
+        menuActionsAffichage.add(menuItemAfficherOrdonnances);
+
+        JMenuItem menuItemAfficherDemandeMedicamentsGeneriques = new JMenuItem("Aff. demandes med. gen.");
         menuActionsAffichage.add(menuItemAfficherDemandeMedicamentsGeneriques);
-        JMenuItem menuItemAfficherRegistrePreparation = new JMenuItem("Aff. registre prep. médicaments (ordonnances)");
+
+        JMenuItem menuItemAfficherRegistrePreparation = new JMenuItem("Aff. prep. médicaments");
         menuActionsAffichage.add(menuItemAfficherRegistrePreparation);
-        JMenuItem menuItemAfficherListePatients = new JMenuItem("Aff. patients");
+
+        // Menu pour afficher la liste des patients et des médecins (griser et désactiver)
+        JMenuItem menuItemAfficherListePatients = new JMenuItem("Aff. patients (désactivé)");
         menuActionsAffichage.add(menuItemAfficherListePatients);
-        JMenuItem menuItemAfficherListeMedecins = new JMenuItem("Aff. médecins");
+
+        JMenuItem menuItemAfficherListeMedecins = new JMenuItem("Aff. médecins (désactivé)");
         menuActionsAffichage.add(menuItemAfficherListeMedecins);
 
-        // Ajouter les actions correspondantes aux éléments de menu
+            // Désactiver et griser les éléments de menu
+            menuItemAfficherListePatients.setEnabled(false);
+            menuItemAfficherListeMedecins.setEnabled(false);
 
         // Action pour afficher les médicaments
         menuItemAfficherMedicaments.addActionListener(e -> {
             // Appeler la méthode pour afficher les médicaments dans le panneau de la fenêtre
-            IDocuments.afficherMedicaments(panelAffichageMedicaments);
+            IDocuments.afficherMedicaments(panelAffichageInfo);
+        });
+
+        // Action pour afficher les ordonnances
+        menuItemAfficherOrdonnances.addActionListener(e -> {
+            // Appeler la méthode pour afficher les ordonnances dans le panneau de la fenêtre
+            try {
+                IDocuments.afficherOrdonnances(panelAffichageInfo);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         // Action pour afficher les demandes de médicaments génériques
         menuItemAfficherDemandeMedicamentsGeneriques.addActionListener(e -> {
             // Appeler la méthode pour afficher les demandes de médicaments génériques dans le panneau de la fenêtre
-            IDocuments.afficherDemandeMedicamentsGeneriques(panelAffichageDemandeMedicamentsGeneriques);
+            IDocuments.afficherDemandeMedicamentsGeneriques(panelAffichageInfo);
         });
 
         // Action pour afficher le registre de préparation
         menuItemAfficherRegistrePreparation.addActionListener(e -> {
             // Appeler la méthode pour afficher le registre de préparation dans le panneau de la fenêtre
             try {
-                IDocuments.afficherRegistrePreparation(panelAffichageRegistrePreparation);
+                IDocuments.afficherRegistrePreparation(panelAffichageInfo);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -118,13 +131,13 @@ public class Pharmacien extends Personne {
         // Action pour afficher la liste des patients
         menuItemAfficherListePatients.addActionListener(e -> {
             // Appeler la méthode pour afficher la liste des patients dans le panneau de la fenêtre
-            IDocuments.afficherListePatients(panelAffichageListePatients);
+            IDocuments.afficherListePatients(panelAffichageInfo);
         });
 
         // Action pour afficher la liste des médecins
         menuItemAfficherListeMedecins.addActionListener(e -> {
             // Appeler la méthode pour afficher la liste des médecins dans le panneau de la fenêtre
-            IDocuments.afficherListeMedecins(panelAffichageListeMedecins);
+            IDocuments.afficherListeMedecins(panelAffichageInfo);
         });
 
         // Créer un menu pour les actions du pharmacien
@@ -161,23 +174,35 @@ public class Pharmacien extends Personne {
             }
         });
 
-        // Créer un menu pour les actions du pharmacien
-        JMenu menuActionsGestionDesPersonnes = new JMenu("Gest. Personnes");
+        // Créer un menu pour les actions du pharmacien (grisé et désactivé)
+        JMenu menuActionsGestionDesPersonnes = new JMenu("Gest. Personnes (désactivé)");
         menuBar.add(menuActionsGestionDesPersonnes);
-        JMenuItem menuItemAjouterPatient = new JMenuItem("Ajouter un patient");
+
+        JMenuItem menuItemAjouterPatient = new JMenuItem("Ajouter un patient (désactivé)");
         menuActionsGestionDesPersonnes.add(menuItemAjouterPatient);
-        JMenuItem menuItemSuppPatient = new JMenuItem("Supprimer un patient");
+
+        JMenuItem menuItemSuppPatient = new JMenuItem("Supprimer un patient (désactivé)");
         menuActionsGestionDesPersonnes.add(menuItemSuppPatient);
-        JMenuItem menuItemAjouterMedecin = new JMenuItem("Ajouter un médecin");
+
+        JMenuItem menuItemAjouterMedecin = new JMenuItem("Ajouter un médecin (désactivé)");
         menuActionsGestionDesPersonnes.add(menuItemAjouterMedecin);
-        JMenuItem menuItemSuppMedecin = new JMenuItem("Supprimer un médecin");
+
+        JMenuItem menuItemSuppMedecin = new JMenuItem("Supprimer un médecin (désactivé)");
         menuActionsGestionDesPersonnes.add(menuItemSuppMedecin);
-        JMenuItem menuItemAjouterPharmacien = new JMenuItem("Ajouter un pharmacien");
+
+        JMenuItem menuItemAjouterPharmacien = new JMenuItem("Ajouter un pharmacien (désactivé)");
         menuActionsGestionDesPersonnes.add(menuItemAjouterPharmacien);
-        JMenuItem menuItemSuppPharmacien = new JMenuItem("Supprimer un pharmacien");
+
+        JMenuItem menuItemSuppPharmacien = new JMenuItem("Supprimer un pharmacien (désactivé)");
         menuActionsGestionDesPersonnes.add(menuItemSuppPharmacien);
 
-        // Ajoutez d'autres boutons au panneau du menu si nécessaire
+        // Désactiver et griser les éléments de menu
+        menuItemAjouterPatient.setEnabled(false);
+        menuItemSuppPatient.setEnabled(false);
+        menuItemAjouterMedecin.setEnabled(false);
+        menuItemSuppMedecin.setEnabled(false);
+        menuItemAjouterPharmacien.setEnabled(false);
+        menuItemSuppPharmacien.setEnabled(false);
 
         // Afficher la fenêtre du menu du pharmacien
         menuPharmacienFrame.setVisible(true);

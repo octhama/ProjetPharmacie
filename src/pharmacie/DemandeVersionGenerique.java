@@ -1,6 +1,7 @@
 package pharmacie;
 
 import java.awt.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import ui.UiGui;
 public class DemandeVersionGenerique {
     private String nomMedicament;
     private boolean etatDeLaDemande;
+    public static List<DemandeVersionGenerique> demandes = new ArrayList<>();
 
     public DemandeVersionGenerique(String nom, boolean b) {
         this.nomMedicament = nom;
@@ -21,6 +23,12 @@ public class DemandeVersionGenerique {
 
     public DemandeVersionGenerique(String nom) {
         this.nomMedicament = nom;
+    }
+
+
+    public DemandeVersionGenerique(String nomMedicament, boolean demande, LocalDate dateDemande) {
+        this.nomMedicament = nomMedicament;
+        this.etatDeLaDemande = demande;
     }
 
     public DemandeVersionGenerique() {
@@ -177,5 +185,9 @@ public class DemandeVersionGenerique {
 
         // Afficher la fenêtre
         frame.setVisible(true);
+    }
+
+    public void ajouterDemande(List<DemandeVersionGenerique> demandes) {
+        DemandeVersionGenerique.demandes.addAll(demandes);
     }
 }

@@ -10,10 +10,13 @@ import java.util.*;
 public class Pharmacie {
     private final List<Medicament> medicaments;
     private final List<Patient> patients;
+    private final List <Medecin> medecins;
+    private final List<Ordonnance> ordonnances;
 
     public Pharmacie() {
+        this.medecins = new ArrayList<>();
         this.medicaments = new ArrayList<>();
-        List<Ordonnance> ordonnances = new ArrayList<>();
+        this.ordonnances = new ArrayList<>();
         this.patients = new ArrayList<>();
     }
 
@@ -114,7 +117,11 @@ public class Pharmacie {
     }
 
     public List<Medecin> getMedecins() {
-        return List.of();
+        return medecins;
+    }
+
+    public List<Ordonnance> getOrdonnances() {
+        return ordonnances;
     }
 
     public void ajouterMedicament(Medicament medicament) {
@@ -132,5 +139,13 @@ public class Pharmacie {
 
     public void retirerMedicament(Medicament medicament) {
         medicaments.remove(medicament);
+    }
+
+    public void setMedecins(ArrayList<Object> objects) {
+        for (Object object : objects) {
+            if (object instanceof Medecin) {
+                medecins.add((Medecin) object);
+            }
+        }
     }
 }
