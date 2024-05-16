@@ -74,7 +74,7 @@ public class UiGui extends JFrame implements ActionListener {
         JMenuItem menuCommanderUnePreparation = new JMenuItem("Commander préparation(s)");
         menuCommanderUnePreparation.addActionListener(e -> {
             HashMap<Object, Object> checkBoxSpinnerMap = new HashMap<>();
-            Preparation.commanderUnePreparation(checkBoxSpinnerMap);
+            Commande.commanderUnePreparation(checkBoxSpinnerMap);
         });
         menuActionsPatient.add(menuCommanderUnePreparation);
 
