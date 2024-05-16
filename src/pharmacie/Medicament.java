@@ -189,7 +189,7 @@ public class Medicament {
     }
 
     public void setMedicaments(List<Medicament> medicaments) {
-        Ordonnance.medicaments = medicaments;
+        Ordonnance.setMedicaments(medicaments);
     }
 
     public Medicament[] getMedicaments() {
@@ -197,6 +197,6 @@ public class Medicament {
     }
 
     public void setMedicaments(Medicament[] medicaments) {
-        Ordonnance.medicaments = List.of(medicaments);
+        Ordonnance.setMedicaments(List.of(medicaments));
     }
 }

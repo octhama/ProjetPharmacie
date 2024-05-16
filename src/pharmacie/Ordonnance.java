@@ -15,7 +15,8 @@ public class Ordonnance {
     private final String referencesDuMedecin;
     private final String referencesDuPatient;
     private final LocalDate datePrescription;
-    public static List<Medicament> medicaments;
+    private static List<Medicament> medicaments;
+    private String[] listeMedicamentsOrdonnance;
 
     public Ordonnance(String referencesDuMedecin, String referencesDuPatient, LocalDate datePrescription, List<Medicament> medicaments) {
         this.referencesDuMedecin = referencesDuMedecin;
@@ -27,14 +28,11 @@ public class Ordonnance {
         }
     }
 
-    public Ordonnance(String referencesDuMedecin, String referencesDuPatient, String dateDePrescription, String[] medicaments) {
+    public Ordonnance(String referencesDuMedecin, String referencesDuPatient, String dateDePrescription, String[] listeMedicamentsOrdonnance) {
         this.referencesDuMedecin = referencesDuMedecin;
         this.referencesDuPatient = referencesDuPatient;
         this.datePrescription = LocalDate.parse(dateDePrescription.trim());
-        Ordonnance.medicaments = new ArrayList<>();
-        for (String medicament : medicaments) {
-            Ordonnance.medicaments.add(new Medicament(String.valueOf(medicament)));
-        }
+        this.listeMedicamentsOrdonnance = listeMedicamentsOrdonnance;
     }
 
     public String getReferencesDuMedecin() {
@@ -50,17 +48,20 @@ public class Ordonnance {
     }
 
     public List<Medicament> getMedicaments() {
+        if (medicaments == null) {
+            return new ArrayList<>();
+        }
         return medicaments;
     }
 
-    public void setMedicaments(List<Medicament> medicaments) {
-        this.medicaments = medicaments;
+
+    public String[] getListeMedicamentsOrdonnance() {
+        return listeMedicamentsOrdonnance;
     }
 
-    public void ajouterMedicament(Medicament medicament) {
-        medicaments.add(medicament);
+    public static void setMedicaments(List<Medicament> medicaments) {
+        Ordonnance.medicaments = medicaments;
     }
-
 
     public static void enregistrerOrdonnance() {
         // Demander à l'utilisateur de s'authentifier en tant que médecin

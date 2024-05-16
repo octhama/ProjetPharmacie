@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ffbf0945-00a1-41f4-a3ac-8b676c5570ed" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/src/data/registrecommande.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/io/LectureCommande.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pharmacie/Commande.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/IDocuments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/IDocuments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/LectureRegistrePreparation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/LectureRegistrePreparation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pharmacie/DemandeVersionGenerique.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/DemandeVersionGenerique.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pharmacie/Pharmacien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Pharmacien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pharmacie/Preparation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Preparation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/LectureOrdonnanceCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/LectureOrdonnanceCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Medicament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Medicament.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Ordonnance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Ordonnance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/UiGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UiGui.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,30 +72,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Program.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20240506_0003&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/kuassitehou/Documents/Documents - OHMPXV/GitHub/POO-ESA/ProjetPharmacie&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/kuassitehou/Documents/Documents - OHMPXV/GitHub/POO-ESA/ProjetPharmacie/src/Main.java&quot;,
-    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Program.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "com.google.cloudcode.ide_session_index": "20240516_0000",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/kuassitehou/Documents/Documents - OHMPXV/GitHub/POO-ESA/ProjetPharmacie",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/kuassitehou/Documents/Documents - OHMPXV/GitHub/POO-ESA/ProjetPharmacie/src/Main.java",
+    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="pharmacie" />
@@ -133,6 +127,7 @@
       <workItem from="1715633049096" duration="369000" />
       <workItem from="1715633489974" duration="8947000" />
       <workItem from="1715708092803" duration="26382000" />
+      <workItem from="1715828159532" duration="5929000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />

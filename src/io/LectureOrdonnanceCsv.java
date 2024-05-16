@@ -69,11 +69,14 @@ public class LectureOrdonnanceCsv {
                 String ReferencesDuMedecin = champs[0];
                 String ReferencesDuPatient = champs[1];
                 String DateDePrescription = champs[2];
-                String ListeDesMedicaments = champs[3];
-
-                String[] medicaments = ListeDesMedicaments.split(",");
-
-                Ordonnance ordonnance = new Ordonnance(ReferencesDuMedecin, ReferencesDuPatient, DateDePrescription, medicaments);
+                List <String> ListeDesMedicaments = new ArrayList<>();
+                if (champs.length >= 4) {
+                    String[] medicaments = champs[3].split(";");
+                    for (String medicament : medicaments) {
+                        ListeDesMedicaments.add(medicament.trim());
+                    }
+                }
+                Ordonnance ordonnance = new Ordonnance(ReferencesDuMedecin, ReferencesDuPatient, DateDePrescription, ListeDesMedicaments.toArray(new String[0]));
                 ordonnances.add(ordonnance);
             }
         } catch (IOException e) {

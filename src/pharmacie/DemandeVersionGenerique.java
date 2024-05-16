@@ -186,7 +186,4 @@ public class DemandeVersionGenerique {
         frame.setVisible(true);
     }
 
-    public void ajouterDemande(List<DemandeVersionGenerique> demandes) {
-        DemandeVersionGenerique.demandes.addAll(demandes);
-    }
 }

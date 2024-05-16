@@ -12,7 +12,6 @@ import javax.swing.event.*;
 import java.io.*;
 import java.util.*;
 import java.util.List;
-
 /**
  * Interface graphique pour une pharmacie
  */
@@ -242,7 +241,7 @@ public class UiGui extends JFrame implements ActionListener {
         return label;
     }
 
-    public static JPanel createOrdonnancePanel(Ordonnance ordonnance) {
+    public static JPanel createOrdonnancePanel(Ordonnance ordonnance) throws IOException {
         JPanel ordonnancePanel = new JPanel();
         ordonnancePanel.setLayout(new GridLayout(0, 1));
 
@@ -256,8 +255,8 @@ public class UiGui extends JFrame implements ActionListener {
         JPanel medicamentsPanel = new JPanel();
         medicamentsPanel.setLayout(new BoxLayout(medicamentsPanel, BoxLayout.Y_AXIS));
         // Ajouter chaque médicament de l'ordonnance à ce panneau
-        for (Medicament medicament : ordonnance.getMedicaments()) {
-            JLabel medicamentLabel = new JLabel("- " + medicament.getNom());
+        for (String listeDesMedicamentsOrdonnance : ordonnance.getListeMedicamentsOrdonnance()) {
+            JLabel medicamentLabel = new JLabel("- " + listeDesMedicamentsOrdonnance);
             medicamentsPanel.add(medicamentLabel);
         }
 
