@@ -19,6 +19,10 @@ Exemple en image :
 
 ![](gifs/Program%20-%20Pharmacie%20Version%20Alpha%200.0%202024-05-16%20at%2010.06.56%20PM.gif)
 
+**_Pillule Bleue? Ou Pillule Rouge? Comme dans Matrix, le choix vous appartient ;)**_ 
+
+Lors d'une préparation de commande de médicaments sous réserve d'oronnance, les médicaments génériques ont un code couleur bleu et les médicaments de marque ont un code couleur rouge. Cette fonctionnalité est implémentée pour faciliter la distinction entre les médicaments génériques et les médicaments de marque.
+
 ![](gifs/Program%20-%20Pharmacie%20Version%20Alpha%200.0%202024-05-16%20at%2010.43.06%20PM.gif)
 
 Il y a plusieurs médicaments dans une pharmacie :
