@@ -3,6 +3,8 @@ Note importante
 
 Ce projet est un exemple, une proposition, une approche d'application de gestion de pharmacie développée en Java avec une interface graphique en JavaFX. Il s'agit d'un projet académique ne respectant pas le design pattern MVC(Model-View-Controller). Il est uniquement réalisé dans un but pédagogique. Des fichiers CSV font office de base de données pour stocker les informations des médicaments, des patients, des ordonnances et des commandes. Et chaque type de classe sont regroupés dans un package spécifique. Par exemple les enums sont dans un package enums, les classes de lecture et écriture dans un package io, les classes interfaces dans un package interfaces ainsi de suite pour chaques types de classes dans leurs packages respectifs définis par défaut pour l'environnement de développement Java.
 
+![img.png](img.png)
+
 Pharmacie
 =======================================================================================================================================================================================================================================================
 Contexte
