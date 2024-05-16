@@ -35,7 +35,18 @@ Exemple en image :
 
 ![](gifs/Program%20-%20Pharmacie%20Version%20Alpha%200.0%202024-05-16%20at%2010.53.24%20PM.gif)
 
-Pour chaque médicament, il est possible de demander la version générique plutôt que la marque (sauf pour les préparations). Les médecins peuvent éventuellement mettre le médicament générique sur l'ordonnance. (fonctionnalité implémentée)
+Pour chaque médicament, il est possible de demander la version générique plutôt que la marque (sauf pour les préparations). 
+
+Exemple en image :
+
+![](gifs/Program%20-%20Pharmacie%20Version%20Alpha%200.0%202024-05-16%20at%2011.19.14%20PM.gif)
+
+Les médecins peuvent éventuellement mettre le médicament générique sur l'ordonnance. (fonctionnalité implémentée)
+
+Exemple en image :
+
+
+
 
 Les génériques coûtent moins chers.
 
