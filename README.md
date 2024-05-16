@@ -43,13 +43,18 @@ Exemple en image :
 
 Les médecins peuvent éventuellement mettre le médicament générique sur l'ordonnance. (fonctionnalité implémentée)
 
-Exemple en image :
+Exemple en image (Dans cet exemple, le médecin a été déjà authentifier. Vous trouverez les identifiants dans src/data/authidmedecin.csv) :' :
 
 ![](gifs/Program%20-%20Input%202024-05-17%20at%2012.00.01%20AM.gif)
 
 Les génériques coûtent moins chers.
 
 Pour commander une préparation, il faut une ordonnance. (fonctionnalité implémentée)
+
+Exemple en image :
+
+![](gifs/Program%20-%20Pharmacie%20Version%20Alpha%200.0%202024-05-17%20at%2012.12.05%20AM.gif)
+
 Une préparation contient plusieurs médicaments et est délivrable le lendemain (sauf le dimanche). (fonctionnalité implémentée)
 
 S'il ne faut que 50% d'un médicament pour la préparation, il faut malgré tout payer le prix complet du médicament et le reste est donné au patient. 
