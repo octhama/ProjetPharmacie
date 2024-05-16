@@ -15,6 +15,10 @@ Dans une pharmacie, les personnes viennent :
     - Chercher des médicaments (fonctionnalité implémentée)
     - Commander des préparations. (fonctionnalité implémentée)
 
+Exemple en image :
+
+![](Plan_1.gif)
+
 Il y a plusieurs médicaments dans une pharmacie :
 
     - Certains sont de stock (fonctionnalité implémentée)
@@ -23,7 +27,7 @@ Il y a plusieurs médicaments dans une pharmacie :
 Il y a 2 catégories de médicaments :
     
     - Ceux qui sont délivrables librement (fonctionnalité implémentée)
-    - Ceux pour lesquels il faut une ordonnance (fonctionnalité implémentée)
+    - Ceux pour lesquels il faut une ordonnance (fonctionnalité semi-implémentée)
 
 Pour chaque médicament, il est possible de demander la version générique plutôt que la marque (sauf pour les préparations). Les médecins peuvent éventuellement mettre le médicament générique sur l'ordonnance. (fonctionnalité implémentée)
 
