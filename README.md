@@ -66,11 +66,15 @@ Les ordonnances sont délivrées par des médecins de manière électronique à 
 
 Une ordonnance comprend :
 
-    - Références du médecin (fonctionnalité implémentée)
-    - Références du patient (fonctionnalité implémentée)
-    - Une date de prescription (fonctionnalité implémentée)
-    - Liste de médicaments (fonctionnalité implémentée)
-    - Ingrédients pour une préparation (non implémentée)
+* Références du médecin (fonctionnalité implémentée)
+* Références du patient (fonctionnalité implémentée)
+* Une date de prescription (fonctionnalité implémentée)
+* Liste de médicaments (fonctionnalité implémentée)
+* Ingrédients pour une préparation (non implémentée)
+
+Exemple en image :
+
+![](gifs/Program%20-%20Input%202024-05-17%20at%2012.19.43%20AM.gif)
 
 Diagramme des classes et explication des fonctionnalités du projet Pharmacie
 =======================================================================================================================================================================================================================================================
