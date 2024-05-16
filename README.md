@@ -45,8 +45,7 @@ Les médecins peuvent éventuellement mettre le médicament générique sur l'or
 
 Exemple en image :
 
-
-
+![](gifs/Program%20-%20Input%202024-05-17%20at%2012.00.01%20AM.gif)
 
 Les génériques coûtent moins chers.
 
