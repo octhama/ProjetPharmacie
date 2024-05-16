@@ -12,8 +12,8 @@ Contexte
 
 Dans une pharmacie, les personnes viennent :
 
-    - Chercher des médicaments (fonctionnalité implémentée)
-    - Commander des préparations. (fonctionnalité implémentée)
+* Chercher des médicaments (fonctionnalité implémentée)
+* Commander des préparations. (fonctionnalité implémentée)
 
 Exemple en image :
 
@@ -23,8 +23,8 @@ Exemple en image :
 
 Il y a plusieurs médicaments dans une pharmacie :
 
-    - Certains sont de stock (fonctionnalité implémentée)
-    - Les autres doivent être commandés (fonctionnalité implémentée)
+* Certains sont de stock (fonctionnalité implémentée)
+* Les autres doivent être commandés (fonctionnalité implémentée)
 
 Il y a 2 catégories de médicaments :
     
