@@ -19,6 +19,8 @@ Exemple en image :
 
 ![](gifs/Program%20-%20Pharmacie%20Version%20Alpha%200.0%202024-05-16%20at%2010.06.56%20PM.gif)
 
+![](gifs/Program%20-%20Pharmacie%20Version%20Alpha%200.0%202024-05-16%20at%2010.43.06%20PM.gif)
+
 Il y a plusieurs médicaments dans une pharmacie :
 
     - Certains sont de stock (fonctionnalité implémentée)
