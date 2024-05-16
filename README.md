@@ -17,7 +17,7 @@ Dans une pharmacie, les personnes viennent :
 
 Exemple en image :
 
-![](gifs/Plan_1.gif)
+![](gifs/Program%20-%20Pharmacie%20Version%20Alpha%200.0%202024-05-16%20at%2010.06.56%20PM.gif)
 
 Il y a plusieurs médicaments dans une pharmacie :
 
