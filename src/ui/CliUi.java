@@ -1,8 +1,12 @@
 package ui;
 
+import pharmacie.Commande;
+import pharmacie.DemandeVersionGenerique;
 import pharmacie.Medicament;
 import pharmacie.Pharmacie;
 import exceptions.*;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,7 +25,10 @@ public class CliUi {
         System.out.println("1. Afficher la liste des médicaments");
         System.out.println("2. Trouver des médicaments");
         System.out.println("3. Acheter un médicament");
-        System.out.println("4. Quitter");
+        System.out.println("4. Commander une préparation");
+        System.out.println("5. Faire une demande de médicament en version générique");
+        System.out.println("6. Enregistrer une ordonnance");
+        System.out.println("7. Quitter");
     }
 
     public void afficherMedicaments() {
@@ -37,7 +44,11 @@ public class CliUi {
         String nom = scanner.nextLine();
         List<Medicament> suggestions = pharmacie.trouverMedicamentsSuggestions(nom);
         for (Medicament medicament : suggestions) {
-            System.out.println(medicament.getNom());
+            if (medicament.getNom().contains(nom)) {
+                System.out.println(medicament.getNom());
+            } else {
+                System.out.println("Aucun médicament trouvé.");
+            }
         }
     }
 

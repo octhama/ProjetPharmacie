@@ -1,21 +1,8 @@
 package pharmacie;
 
-import java.awt.*;
-import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
-
-import javax.swing.*;
-import javax.swing.event.*;
-
-import interfaces.IDocuments;
-import io.EcritureMedicamentsCsv;
-import io.EcritureRegistrePreparationCsv;
-import io.LectureMedicamentsCsv;
-import io.LectureOrdonnanceCsv;
-import org.jetbrains.annotations.NotNull;
-import ui.UiGui;
-import utils.DateUtlis;
 
 public class Preparation {
     private String idUnique;
@@ -27,7 +14,6 @@ public class Preparation {
 
     // Ajoutez ce constructeur à la classe Preparation
     public Preparation() {
-        this.nom = nom;
     }
 
     public Preparation(String idUnique, String nom, int quantite, String date) {
@@ -49,7 +35,7 @@ public class Preparation {
     }
 
     // Déclaration d'une liste statique pour stocker les préparations
-    private static List<Preparation> preparations = new ArrayList<>();
+    private static final List<Preparation> preparations = new ArrayList<>();
 
     public String getIdUnique() {
         return idUnique;
@@ -75,8 +61,8 @@ public class Preparation {
         this.quantite = quantite;
     }
 
-    public String getDate() {
-        return date;
+    public LocalDate getDate() {
+        return LocalDate.parse(date);
     }
 
     public void setDate(String date) {

@@ -34,6 +34,11 @@ public class DemandeVersionGenerique {
 
     }
 
+    public static void demandes(String nom, String date) {
+        DemandeVersionGenerique demande = new DemandeVersionGenerique(nom);
+        demandes.add(demande);
+    }
+
     public String getNomMedicament() {
         return nomMedicament;
     }

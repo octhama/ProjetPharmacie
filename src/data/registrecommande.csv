@@ -1,7 +1,7 @@
-idUnique,numeroCommande,nomCommande,quantite,date
-CMD-001,1,Commande de paracétamol et doliprane,3,2024-05-04
-CMD-002-1,2,Commande de paracétamol et doliprane,3,2024-05-04
-CMD-002-2,2,Commande de Hasler,3,2024-05-04
+idUnique,nomCommande,quantiteTotalCommande,date
+CMD-001,Commande de paracétamol et doliprane,10,2024-05-04
+CMD-002-1,Commande de paracétamol et doliprane,9,2024-05-04
+CMD-002-2,Commande de Hasler,6,2024-05-04
 
 
 

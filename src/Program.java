@@ -35,12 +35,18 @@ public class Program {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // Créer une interface graphique pour la pharmacie
+        // Créer une interface graphique pour la pharmacie et l'afficher (Version graphique utilisée)
         try {
             UiGui gui = new UiGui(pharmacie);
             gui.afficher();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // version console (non utilisée)
+        /*Pharmacie pharmacie = new Pharmacie();
+        CliUi cli = new CliUi(pharmacie);
+        while (true) {
+            cli.afficherMenu();*/
     }
 }

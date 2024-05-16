@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
-public class Commande {
+public class Commande extends Preparation{
     private final String idUnique;
     private final int numeroCommande;
     private final String commentaires;
@@ -48,6 +48,7 @@ public class Commande {
         return quantiteTotalCommande;
     }
 
+    @Override
     public LocalDate getDate() {
         return dateCommande;
     }
