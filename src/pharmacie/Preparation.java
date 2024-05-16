@@ -55,24 +55,32 @@ public class Preparation {
         return idUnique;
     }
 
+    public void setIdUnique(String idUnique) {
+        this.idUnique = idUnique;
+    }
+
     public String getNom() {
         return nom;
-    }
-
-    public int getQuantite() {
-        return quantite;
-    }
-
-    public String getDate() {
-        return date;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    public Medicament getMedicament() {
-        return null;
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public static List<Preparation> getPreparations() {

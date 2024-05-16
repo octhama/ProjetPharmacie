@@ -115,7 +115,11 @@ public class Pharmacien extends Personne {
         // Action pour afficher les demandes de médicaments génériques
         menuItemAfficherDemandeMedicamentsGeneriques.addActionListener(e -> {
             // Appeler la méthode pour afficher les demandes de médicaments génériques dans le panneau de la fenêtre
-            IDocuments.afficherDemandeMedicamentsGeneriques(panelAffichageInfo);
+            try {
+                IDocuments.afficherDemandeMedicamentsGeneriques(panelAffichageInfo);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         // Action pour afficher le registre de préparation

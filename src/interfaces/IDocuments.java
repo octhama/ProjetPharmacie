@@ -9,16 +9,12 @@ import java.util.Map;
 import javax.swing.*;
 
 import enums.ETypeMedicament;
-import io.EcritureMedicamentsCsv;
-import io.LectureCommande;
-import io.LectureOrdonnanceCsv;
-import io.LectureRegistrePreparation;
+import io.*;
 import org.jetbrains.annotations.NotNull;
 import pharmacie.*;
 import ui.UiGui;
 
-import static ui.UiGui.createOrdonnancePanel;
-import static ui.UiGui.createPreparationPanel;
+import static ui.UiGui.*;
 
 public interface IDocuments {
     
@@ -124,7 +120,7 @@ public interface IDocuments {
     }
 
     // Afficher les medicament de src/data/demandes_version_generique.csv
-    static void afficherDemandeMedicamentsGeneriques(JPanel panel) {
+    static void afficherDemandeMedicamentsGeneriques(JPanel panel) throws IOException {
         // Créer une fenêtre pour afficher les demandes de médicaments génériques
         JFrame frame = new JFrame("Demandes de médicaments génériques");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -136,10 +132,13 @@ public interface IDocuments {
         JPanel demandePanel = new JPanel();
         demandePanel.setLayout(new BoxLayout(demandePanel, BoxLayout.Y_AXIS));
 
+        // Lire les demandes de médicaments génériques depuis le fichier CSV
+        List<DemandeVersionGenerique> demandes = LectureDemandeVersionGeneriqueCsv.lireDemandesVersionGeneriqueCsv("src/data/demandes_version_generique.csv");
+
         // Ajouter les détails de chaque demande au panneau
-        for (DemandeVersionGenerique demande : UiGui.pharmacie.getDemandesVersionGenerique()) {
-            JLabel label = new JLabel(demande.getNomMedicament() + " - Version générique demandée : " + demande.isVersionGeneriqueDemandee());
-            demandePanel.add(label);
+        for (DemandeVersionGenerique demande : demandes) {
+            JPanel demandesPanel = createDemandeVersionGeneriquePanel(demande);
+            demandePanel.add(demandesPanel);
         }
 
         // Ajouter le panneau des médicaments au panneau principal
@@ -682,32 +681,22 @@ public interface IDocuments {
     }
 
     static void afficherRegistrePreparation(JPanel panelAffichageInfo) throws Exception {
-        // Créer un panneau pour afficher les préparations
-        JPanel preparationsPanel = new JPanel();
-        preparationsPanel.setLayout(new BoxLayout(preparationsPanel, BoxLayout.Y_AXIS));
+        // Créer un panneau pour afficher le registre de préparation
+        JPanel preparationPanel = new JPanel();
+        preparationPanel.setLayout(new BoxLayout(preparationPanel, BoxLayout.Y_AXIS));
 
         // Lire les préparations depuis le fichier CSV
         List<Preparation> preparations = LectureRegistrePreparation.lireRegistrePreparation("src/data/registrepreparation.csv");
 
-        // Lire les commandes depuis le fichier CSV
-        List<Commande> commandes = LectureCommande.lireCommandes("src/data/registrecommande.csv");
-
         // Ajouter les détails de chaque préparation au panneau
         for (Preparation preparation : preparations) {
-            // Filtrer les commandes associées à cette préparation
-            List<Commande> commandesAssociees = new ArrayList<>();
-            for (Commande commande : commandes) {
-                if (commande.getIdUnique().startsWith(preparation.getIdUnique())) {
-                    commandesAssociees.add(commande);
-                }
-            }
-            JPanel preparationPanel = createPreparationPanel(preparation, commandesAssociees);
-            preparationsPanel.add(preparationPanel);
+            JPanel preparationsPanel = createPreparationPanel(preparation); // Créer le panneau pour chaque préparation
+            preparationPanel.add(preparationsPanel); // Ajouter le panneau de la préparation au panneau principal
         }
 
         // Ajouter le panneau des préparations au panneau principal
         panelAffichageInfo.removeAll(); // Retirer les éventuels anciens éléments du panneau
-        panelAffichageInfo.add(new JScrollPane(preparationsPanel), BorderLayout.CENTER);
+        panelAffichageInfo.add(new JScrollPane(preparationPanel), BorderLayout.CENTER);
         panelAffichageInfo.revalidate(); // Mettre à jour l'affichage du panneau
     }
 

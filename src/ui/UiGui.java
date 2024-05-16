@@ -57,12 +57,6 @@ public class UiGui extends JFrame implements ActionListener {
         // Ajout du menu
         JMenuBar menuBar = new JMenuBar();
         this.setJMenuBar(menuBar);
-        JMenu menuFichier = new JMenu("Fichier");
-        menuBar.add(menuFichier);
-        JMenuItem menuItemQuitter = new JMenuItem("Quitter");
-        menuItemQuitter.addActionListener(this);
-        menuFichier.add(menuItemQuitter);
-
         JMenu menuActionsPatient = new JMenu("Menu Patient");
         menuBar.add(menuActionsPatient);
 
@@ -273,29 +267,42 @@ public class UiGui extends JFrame implements ActionListener {
         return ordonnancePanel;
     }
 
-    public static JPanel createPreparationPanel(Preparation preparation, List<Commande> commandes) {
-        // Créer un panneau pour afficher les détails de la préparation
-        JPanel preparationPanel = new JPanel(new GridLayout(commandes.size() + 1, 2));
+    public static JPanel createDemandeVersionGeneriquePanel(DemandeVersionGenerique demande) throws IOException {
+        JPanel demandePanel = new JPanel();
+        demandePanel.setLayout(new GridLayout(0, 1));
+
+        // Ajouter les détails de la demande
+        JLabel nomMedicamentLabel = new JLabel("Nom du médicament: " + demande.getNomMedicament());
+        JLabel demandeVersionGeneriqueLabel = new JLabel("Demande de version générique: " + (demande.isDemande() ? "Oui" : "Non"));
+
+        // Ajouter les détails au panneau principal de la demande
+        demandePanel.add(nomMedicamentLabel);
+        demandePanel.add(demandeVersionGeneriqueLabel);
+
+        // Styling
+        demandePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+        return demandePanel;
+    }
+
+    public static JPanel createPreparationPanel(Preparation preparation) {
+        JPanel preparationPanel = new JPanel();
+        preparationPanel.setLayout(new GridLayout(0, 1));
+
+        // Ajouter les détails de la préparation
+        JLabel idPreparationLabel = new JLabel("Identifiant de la préparation: " + preparation.getIdUnique());
+        JLabel nomPreparationLabel = new JLabel("Nom de la préparation: " + preparation.getNom());
+        JLabel quantitePreparationLabel = new JLabel("Quantité de la préparation: " + preparation.getQuantite());
+        JLabel datePreparationLabel = new JLabel("Date de la préparation: " + preparation.getDate());
+
+        // Ajouter les détails au panneau principal de la préparation
+        preparationPanel.add(idPreparationLabel);
+        preparationPanel.add(nomPreparationLabel);
+        preparationPanel.add(quantitePreparationLabel);
+        preparationPanel.add(datePreparationLabel);
+
+        // Styling
         preparationPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-        // Ajouter le nom de la préparation au panneau
-        JLabel nomLabel = new JLabel("Nom:");
-        JLabel nomValueLabel = new JLabel(preparation.getNom());
-        preparationPanel.add(nomLabel);
-        preparationPanel.add(nomValueLabel);
-
-        // Ajouter les commandes au panneau
-        JLabel commandesLabel = new JLabel("Commandes:");
-        preparationPanel.add(commandesLabel);
-
-        StringBuilder commandesText = new StringBuilder();
-        for (Commande commande : commandes) {
-            if (commande.getIdUnique().startsWith(preparation.getIdUnique())) {
-                commandesText.append(commande.getIdUnique()).append(", ");
-            }
-        }
-        JLabel commandesValueLabel = new JLabel(commandesText.toString());
-        preparationPanel.add(commandesValueLabel);
 
         return preparationPanel;
     }
