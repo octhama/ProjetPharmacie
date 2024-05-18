@@ -54,7 +54,6 @@ public class Ordonnance {
         return medicaments;
     }
 
-
     public String[] getListeMedicamentsOrdonnance() {
         return listeMedicamentsOrdonnance;
     }

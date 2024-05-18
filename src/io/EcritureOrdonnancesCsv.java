@@ -1,7 +1,5 @@
 package io;
 
-import pharmacie.Medicament;
-import pharmacie.Ordonnance;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -9,7 +7,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Stack;
 
 public class EcritureOrdonnancesCsv {

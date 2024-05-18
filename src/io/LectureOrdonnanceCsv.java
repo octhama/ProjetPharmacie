@@ -1,5 +1,6 @@
 package io;
 
+import org.jetbrains.annotations.NotNull;
 import pharmacie.Ordonnance;
 
 import java.io.*;
@@ -59,7 +60,7 @@ public class LectureOrdonnanceCsv {
             return ordonnance;
         }
 
-    public static List<Ordonnance> lireOrdonnances(String cheminFichier) throws IOException {
+    public static @NotNull List<Ordonnance> lireOrdonnances(String cheminFichier) throws IOException {
         List<Ordonnance> ordonnances = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {
             String ligne;

@@ -148,4 +148,8 @@ public class Pharmacie {
             }
         }
     }
+
+    public void setMedicaments(List<Medicament> medicaments) {
+        this.medicaments.addAll(medicaments);
+    }
 }
