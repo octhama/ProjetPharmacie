@@ -26,19 +26,14 @@ public class EcriresuppressiondemedicamentcsvTest {
         writer.write("Medicament3,30.0,Type3,true,15\n");
         writer.close();
 
-        // Create a Medicament object to remove
         Medicament medicamentToRemove = new Medicament("Medicament2", 20.0, ETypeMedicament.ORDONNANCE, false, 10);
 
-        // Call the method to remove the medicament line
         EcritureMedicamentsCsv.ecrireSuppressionDeMedicamentCsv(medicamentToRemove, tempFile);
 
-        // Read the updated CSV file
         List<String> lines = Files.readAllLines(Paths.get(tempFile));
 
-        // Assert that the line corresponding to the medicament has been removed
         assertFalse(lines.contains("Medicament2,20.0,Type2,false,10"));
 
-        // Clean up the temporary file
         Files.deleteIfExists(Paths.get(tempFile));
     }
 
