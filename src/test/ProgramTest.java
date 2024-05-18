@@ -13,9 +13,8 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class ProgramTest {
-
     @Test
-    public void test_loads_and_adds_medicaments_from_csv() throws IOException {
+    public void test_loading_and_ajout_medicaments_depuis_csv() throws IOException {
         Pharmacie pharmacie = new Pharmacie();
         List<Medicament> expectedMedicaments = new ArrayList<>();
         expectedMedicaments.add(new Medicament("Medicament1", 10.0, ETypeMedicament.VENTE_LIBRE, true, 100));
