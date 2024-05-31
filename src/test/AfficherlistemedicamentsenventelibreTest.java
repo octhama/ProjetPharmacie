@@ -14,6 +14,13 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ * Classe de test pour la méthode afficherListeMedicamentsEnVenteLibre.
+ * On teste si la liste des médicaments en vente libre est bien affichée.
+ * On teste le cas où il y a des médicaments en vente libre et le cas où il n'y en a pas.
+ * @see IDocuments#afficherListeMedicamentsEnVenteLibre(JPanel)
+ */
+
 public class AfficherlistemedicamentsenventelibreTest {
 
     @Test

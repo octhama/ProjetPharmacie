@@ -7,7 +7,12 @@ import javax.swing.*;
 import java.io.IOException;
 
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour afficher les ordonnances.
+ * On teste si la liste des ordonnances est bien affichée.
+ * On teste le cas où il y a des ordonnances et le cas où il n'y en a pas.
+ * @see IDocuments#afficherOrdonnances(JPanel)
+ */
 public class AfficherordonnancesTest {
 
 

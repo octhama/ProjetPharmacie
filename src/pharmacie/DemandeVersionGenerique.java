@@ -10,7 +10,10 @@ import javax.swing.*;
 import interfaces.IDocuments;
 import io.EcritureRegistreDemandeVersionGeneriqueCsv;
 import ui.UiGui;
-
+/**
+ * Classe pour les demandes de version générique.
+ * On peut demander un médicament en version générique.
+ */
 public class DemandeVersionGenerique {
     private String nomMedicament;
     private boolean etatDeLaDemande;
@@ -51,6 +54,15 @@ public class DemandeVersionGenerique {
         return null;
     }
 
+    /**
+     * Méthode pour commander un médicament en version générique.
+     * On peut commander un médicament en version générique.
+     * @see #commanderMedicamentVersionGenerique()
+     * @see EcritureRegistreDemandeVersionGeneriqueCsv#ecrireDemandesVersionGeneriqueCsv(List)
+     * @see IDocuments#afficherListeMedicamentsNonGenOnDemand(JPanel)
+     * @see Medicament#getNom()
+     * @see DemandeVersionGenerique#DemandeVersionGenerique(String, boolean)
+     */
     public static void commanderMedicamentVersionGenerique() {
         // Créer une fenêtre pour la commande de médicaments en version générique
         JFrame frame = new JFrame("Demande de médicament(s) en version générique");

@@ -1,5 +1,12 @@
 package pharmacie;
-
+/**
+ * Classe pour les ordonnances.
+ * On peut enregistrer une ordonnance.
+ * @see Ordonnance#enregistrerOrdonnance()
+ * @see Ordonnance#ecrireOrdonnanceCsv(String, String, Date, Stack)
+ * @see Ordonnance#authentifierMedecin(String, String)
+ * @see Ordonnance#medicaments
+ */
 import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;

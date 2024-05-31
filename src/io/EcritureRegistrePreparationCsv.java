@@ -9,7 +9,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Classe pour écrire les préparations dans un fichier CSV.
+ * On peut écrire les préparations dans un fichier CSV.
+ * @see Preparation
+ * @see pharmacie.Preparation
+ * @see pharmacie.Preparation#Preparation(String, String, int, String)
+ * @see pharmacie.Preparation#getIdUnique()
+ * @see pharmacie.Preparation#getNom()
+ * @see pharmacie.Preparation#getQuantite()
+ * @see pharmacie.Preparation#getDate()
+ * @see pharmacie.Preparation#Preparation()
+ */
 public class EcritureRegistrePreparationCsv {
     private static int idCounter; // Compteur pour les identifiants uniques
     public static List<Preparation> preparations; // Liste des préparations

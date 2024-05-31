@@ -7,7 +7,12 @@ import org.junit.Test;
 import javax.swing.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Classe de test pour afficher le registre de préparation.
+ * On teste si le registre de préparation est bien affiché.
+ * On teste le cas où il y a des préparations et le cas où il n'y en a pas.
+ * @see IDocuments#afficherRegistrePreparation(JPanel)
+ */
 public class AfficherregistrepreparationTest {
 
         @Test

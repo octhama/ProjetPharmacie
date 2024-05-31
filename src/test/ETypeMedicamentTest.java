@@ -4,7 +4,11 @@ import enums.ETypeMedicament;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour vérifier l'énumération des types de médicaments.
+ * On teste si les types de médicaments sont bien définis.
+ * @see ETypeMedicament
+ */
 public class ETypeMedicamentTest {
 
     @Test

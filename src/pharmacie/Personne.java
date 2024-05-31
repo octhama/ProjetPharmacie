@@ -1,5 +1,10 @@
 package pharmacie;
-
+/**
+ * Classe pour les personnes.
+ * On peut créer une personne.
+ * @see Medecin
+ * @see Patient
+ */
 public abstract class Personne {
     private String Id;
     private String NumeroNational;

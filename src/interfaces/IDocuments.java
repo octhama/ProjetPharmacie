@@ -15,7 +15,23 @@ import pharmacie.*;
 import ui.UiGui;
 
 import static ui.UiGui.*;
-
+/**
+ * Interface pour afficher les documents de la pharmacie.
+ * On peut afficher les médicaments, les médecins, les patients, les demandes de médicaments génériques, etc.
+ * @see pharmacie.Medicament
+ * @see pharmacie.Medecin
+ * @see pharmacie.Patient
+ * @see pharmacie.DemandeVersionGenerique
+ * @see pharmacie.Pharmacie
+ * @see pharmacie.Pharmacie#ajouterMedicament(Medicament)
+ * @see pharmacie.Pharmacie#retirerMedicament(Medicament)
+ * @see pharmacie.Pharmacie#modifierMedicament(Medicament)
+ * @see pharmacie.Pharmacie#getMedicaments()
+ * @see pharmacie.Pharmacie#getMedecins()
+ * @see pharmacie.Pharmacie#getPatients()
+ * @see pharmacie.Pharmacie#getDemandesVersionGenerique()
+ * @see pharmacie.Pharmacie#setMedicaments(List)
+ */
 public interface IDocuments {
     
     // Affiche les suggestions de médicaments dans le même format que la liste complète

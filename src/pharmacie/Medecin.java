@@ -1,6 +1,9 @@
 package pharmacie;
-
-// Classe Medecin héritant de la classe Personne
+/**
+ * Classe pour les médecins.
+ * On peut créer un médecin.
+ * @see Personne
+ */
 public class Medecin extends Personne{
     // Constructeur
     public Medecin(String Id, String MotDePasse, String nom, String prenom) {

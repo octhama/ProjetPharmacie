@@ -3,7 +3,17 @@ package io;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
+/**
+ * Classe pour lire les identifiants des médecins dans un fichier CSV.
+ * On peut lire les identifiants des médecins dans un fichier CSV.
+ * @see pharmacie.Medecin
+ * @see pharmacie.Medecin#Medecin(String, String, String, String)
+ * @see pharmacie.Medecin#getId()
+ * @see pharmacie.Medecin#getMotDePasse()
+ * @see pharmacie.Medecin#getNom()
+ * @see pharmacie.Medecin#getPrenom()
+ * @see pharmacie.Medecin#Medecin(String, String, String, String)
+ */
 public class LectureMedecinCsv {
 private LectureMedecinCsv() {
         // Constructeur privé pour empêcher l'instanciation de la classe

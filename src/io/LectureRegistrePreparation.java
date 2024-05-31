@@ -1,6 +1,5 @@
 package io;
 
-import pharmacie.Commande;
 import pharmacie.Preparation;
 
 import java.io.BufferedReader;
@@ -8,7 +7,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Classe pour lire les préparations dans un fichier CSV.
+ * On peut lire les préparations dans un fichier CSV.
+ * @see pharmacie.Preparation
+ * @see pharmacie.Preparation#Preparation(String, String, int, String)
+ * @see pharmacie.Preparation#getIdUnique()
+ * @see pharmacie.Preparation#getNom()
+ * @see pharmacie.Preparation#getQuantite()
+ * @see pharmacie.Preparation#getDate()
+ */
 public class LectureRegistrePreparation {
     public static List<Preparation> lireRegistrePreparation(String cheminFichier) throws IOException {
         List<Preparation> preparations = new ArrayList<>();

@@ -9,7 +9,19 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-
+/**
+ * Classe pour écrire les médicaments dans un fichier CSV.
+ * On peut écrire les médicaments dans un fichier CSV.
+ * @see Medicament
+ * @see pharmacie.Medicament
+ * @see pharmacie.Medicament#Medicament(String, double, enums.ETypeMedicament, boolean, int, boolean, boolean)
+ * @see pharmacie.Medicament#getNom()
+ * @see pharmacie.Medicament#getPrix()
+ * @see pharmacie.Medicament#getType()
+ * @see pharmacie.Medicament#isGenerique()
+ * @see pharmacie.Medicament#getQuantiteEnStock()
+ * @see pharmacie.Medicament#Medicament(String, int, boolean)
+ */
 public class EcritureMedicamentsCsv {
     public static void ecrireMajQttStockMedicamentsCsv(@NotNull List<Medicament> medicaments, String fichierCsv) throws IOException {
         // Lire toutes les lignes du fichier CSV

@@ -11,7 +11,10 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Interface utilisateur en ligne pour la pharmacie.
+ * Interface utilisateur en ligne pour la pharmacie. (Non utilisé dans le projet final)
+ * On peut afficher la liste des médicaments, trouver des médicaments, acheter un médicament, commander une préparation,
+ * faire une demande de médicament en version générique et enregistrer une ordonnance.
+ * @see pharmacie.Pharmacie
  */
 
 public class CliUi {

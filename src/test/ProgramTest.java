@@ -11,7 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour lire les médicaments depuis un fichier CSV.
+ * On teste si les médicaments sont bien lus depuis le fichier CSV.
+ * @see LectureMedicamentsCsv#lireMedicamentsCsv(String)
+ */
 public class ProgramTest {
     @Test
     public void test_loading_and_ajout_medicaments_depuis_csv() throws IOException {

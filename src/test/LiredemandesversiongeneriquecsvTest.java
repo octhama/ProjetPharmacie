@@ -9,7 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour lire les demandes de version générique dans un fichier CSV.
+ * On teste si les demandes de version générique sont bien lues dans le fichier CSV.
+ * @see LectureDemandeVersionGeneriqueCsv#lireDemandesVersionGeneriqueCsv(String)
+ */
 public class LiredemandesversiongeneriquecsvTest {
 
     @Test

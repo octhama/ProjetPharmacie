@@ -16,7 +16,11 @@ import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
-
+/**
+ * Classe pour commander une préparation.
+ * On peut commander une préparation en sélectionnant les médicaments à commander.
+ * @see Preparation
+ */
 public class Commande extends Preparation{
     private final String idUnique;
     private final int numeroCommande;
@@ -53,6 +57,17 @@ public class Commande extends Preparation{
         return dateCommande;
     }
 
+    /**
+     * Méthode pour commander une préparation.
+     * On peut commander une préparation en sélectionnant les médicaments à commander.
+     * @param checkBoxSpinnerMap Map pour stocker les cases à cocher et les spinners
+     *                           pour les médicaments sélectionnés
+     *                           (clé : case à cocher, valeur : spinner)
+     *                           (ex : {JCheckBox1@12345=JSpinner1@67890, JCheckBox2@23456=JSpinner2@78901})
+     * @see Preparation
+     * @see Medicament
+     * @see UiGui
+     */
     public static void commanderUnePreparation(HashMap<Object, Object> checkBoxSpinnerMap) {
 
         // Créer une fenêtre pour la commande de préparation

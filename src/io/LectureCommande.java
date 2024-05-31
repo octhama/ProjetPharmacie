@@ -6,7 +6,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Classe pour lire les commandes dans un fichier CSV.
+ * On peut lire les commandes dans un fichier CSV.
+ * @see pharmacie.Commande
+ * @see pharmacie.Commande#Commande(String, int, String, int, String)
+ * @see pharmacie.Commande#getIdUnique()
+ * @see pharmacie.Commande#getNom()
+ * @see pharmacie.Commande#getNumeroCommande()
+ * @see pharmacie.Commande#getQuantite()
+ * @see pharmacie.Commande#getDate()
+ */
 public class LectureCommande {
     public static List<Commande> lireCommandes(String cheminFichier) throws Exception {
         List<Commande> commandes = new ArrayList<>();

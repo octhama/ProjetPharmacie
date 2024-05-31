@@ -13,7 +13,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour écrire la modification de médicament dans un fichier CSV.
+ * On teste si le médicament est bien modifié dans le fichier CSV.
+ * @see EcritureMedicamentsCsv#ecrireModificationDeMedicamentCsv(Medicament, String)
+ */
 public class EcriremodificationdemedicamentcsvTest {
 
     @Test

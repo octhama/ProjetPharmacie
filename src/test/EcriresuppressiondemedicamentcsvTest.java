@@ -13,7 +13,11 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour écrire la suppression de médicament dans un fichier CSV.
+ * On teste si le médicament est bien supprimé dans le fichier CSV.
+ * @see EcritureMedicamentsCsv#ecrireSuppressionDeMedicamentCsv(Medicament, String)
+ */
 public class EcriresuppressiondemedicamentcsvTest {
 
 

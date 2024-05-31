@@ -11,7 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour écrire le registre de préparation dans un fichier CSV.
+ * On teste si le registre de préparation est bien écrit dans le fichier CSV.
+ * @see EcritureRegistrePreparationCsv#ecrireRegistrePreparationCsv(List, List, String)
+ */
 public class EcrireregistrepreparationcsvTest {
 
     @Test

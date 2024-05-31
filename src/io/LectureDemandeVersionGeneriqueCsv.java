@@ -10,7 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static pharmacie.DemandeVersionGenerique.demandes;
-
+/**
+ * Classe pour lire les demandes de version générique dans un fichier CSV.
+ * On peut lire les demandes de version générique dans un fichier CSV.
+ * @see pharmacie.DemandeVersionGenerique
+ * @see pharmacie.DemandeVersionGenerique#DemandeVersionGenerique(String, boolean, LocalDate)
+ * @see pharmacie.DemandeVersionGenerique#getNomMedicament()
+ * @see pharmacie.DemandeVersionGenerique#isDemande()
+ */
 public class LectureDemandeVersionGeneriqueCsv {
     public static List<DemandeVersionGenerique> lireDemandesVersionGeneriqueCsv(String cheminFichier) {
         try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {

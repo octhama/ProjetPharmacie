@@ -11,7 +11,11 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour écrire l'ajout de médicament dans un fichier CSV.
+ * On teste si le médicament est bien écrit dans le fichier CSV.
+ * @see EcritureMedicamentsCsv#ecrireAjoutDeMedicamentCsv(String, Medicament)
+ */
 public class EcrireajoutdemedicamentcsvTest {
 
     @Test

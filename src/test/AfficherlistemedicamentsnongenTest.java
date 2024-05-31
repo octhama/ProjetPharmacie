@@ -13,6 +13,12 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ * Classe de test pour la méthode afficherListeMedicamentsNonGen.
+ * On teste si la liste des médicaments non génériques est bien affichée.
+ * On teste si la liste des médicaments génériques est bien affichée.
+ * @see IDocuments#afficherListeMedicamentsNonGen(JPanel)
+ */
 public class AfficherlistemedicamentsnongenTest {
 
     @Test

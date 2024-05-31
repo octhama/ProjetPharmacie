@@ -7,7 +7,11 @@ import org.junit.Test;
 import java.io.IOException;
 
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour modifier un médicament.
+ * On teste si la modification d'un médicament est bien effectuée.
+ * @see IDocuments#modifierMedicament()
+ */
 public class ModifiermedicamentTest {
 
     @Test

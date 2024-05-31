@@ -13,6 +13,16 @@ import java.util.List;
 
 /**
  * Classe utilitaire pour lire les médicaments d'un fichier CSV.
+ * On peut lire les médicaments d'un fichier CSV.
+ * @see pharmacie.Medicament
+ * @see pharmacie.Medicament#Medicament(String, double, enums.ETypeMedicament, boolean, int)
+ * @see pharmacie.Medicament#getNom()
+ * @see pharmacie.Medicament#getPrix()
+ * @see pharmacie.Medicament#getType()
+ * @see pharmacie.Medicament#isGenerique()
+ * @see pharmacie.Medicament#getQuantiteEnStock()
+ * @see pharmacie.Medicament#Medicament(String, int)
+ * @see pharmacie.Medicament#acheter(int)
  */
 
 public class LectureMedicamentsCsv {

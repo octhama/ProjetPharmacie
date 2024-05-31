@@ -6,6 +6,12 @@ import org.junit.Test;
 import javax.swing.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Classe de test pour afficher la liste des médicaments non génériques.
+ * On teste si la liste des médicaments non génériques est bien affichée.
+ * On teste le cas où il y a des médicaments non génériques et le cas où il n'y en a pas.
+ * @see IDocuments#afficherListeMedicamentsNonGenOnDemand(JPanel)
+ */
 public class AfficherlistemedicamentsnongenondemandTest {
 
         @Test

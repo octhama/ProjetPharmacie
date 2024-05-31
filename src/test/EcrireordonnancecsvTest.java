@@ -13,7 +13,11 @@ import java.util.Date;
 import java.util.Stack;
 
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour écrire les ordonnances dans un fichier CSV.
+ * On teste si les ordonnances sont bien écrites dans le fichier.
+ * @see EcritureOrdonnancesCsv#ecrireOrdonnanceCsv(String, String, Date, Stack)
+ */
 public class EcrireordonnancecsvTest {
 
     private PrintStream sortieOriginale;

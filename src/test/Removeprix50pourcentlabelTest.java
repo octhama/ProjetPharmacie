@@ -7,9 +7,12 @@ import org.junit.Test;
 import javax.swing.*;
 
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour supprimer le label du prix 50%.
+ * On teste si le label du prix 50% est bien supprimé.
+ * @see IDocuments#removePrix50PourcentLabel(JPanel)
+ */
 public class Removeprix50pourcentlabelTest {
-
 
     @Test
     public void test_suppPrix50PourcentLabel_labelOK() {

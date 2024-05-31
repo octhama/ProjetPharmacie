@@ -7,7 +7,15 @@ import exceptions.ExeptionRuptureDeStock;
 import ui.UiGui;
 
 import static io.EcritureRegistrePreparationCsv.medicaments;
-
+/**
+ * Classe pour les médicaments.
+ * On peut ajouter un médicament, retirer un médicament, acheter un médicament, etc.
+ * @see Medicament#acheter(int)
+ * @see Medicament#setMedicaments(Medicament[])
+ * @see Medicament#setQuantiteEnStock(int)
+ * @see Medicament#getMedicaments()
+ * @see Medicament#setMedicaments(List)
+ */
 public class Medicament {
     private String nom;
     private double prix;

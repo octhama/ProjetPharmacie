@@ -3,7 +3,11 @@ import interfaces.IDocuments;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour vérifier l'extraction de la quantité en mg d'un médicament.
+ * On teste si la quantité en mg est bien extraite.
+ * @see IDocuments#extractQuantiteEnMg(String)
+ */
 public class ExtractquantiteenmgTest {
 
     @Test

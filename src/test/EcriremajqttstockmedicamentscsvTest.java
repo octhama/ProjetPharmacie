@@ -13,9 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour écrire la mise à jour de la quantité en stock des médicaments dans un fichier CSV.
+ * On teste si la quantité en stock des médicaments est bien mise à jour dans le fichier.
+ * @see EcritureMedicamentsCsv#ecrireMajQttStockMedicamentsCsv(List, String)
+ */
 public class EcriremajqttstockmedicamentscsvTest {
-
 
     @Test
     public void test_maj_qtt_stck() throws IOException {

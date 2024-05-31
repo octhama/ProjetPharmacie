@@ -9,7 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour écrire les demandes de version générique dans un fichier CSV.
+ * On teste si les demandes sont bien écrites dans le fichier.
+ * @see EcritureRegistreDemandeVersionGeneriqueCsv#ecrireDemandesVersionGeneriqueCsv(List)
+ */
 public class EcriredemandesversiongeneriquecsvTest {
 
     @Test

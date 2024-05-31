@@ -4,9 +4,12 @@ import exceptions.ExeptionRuptureDeStock;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour vérifier l'exception de rupture de stock.
+ * On teste si le message d'erreur est bien affiché.
+ * @see ExeptionRuptureDeStock
+ */
 public class ExeptionRuptureDeStockTest {
-
 
     @Test
     public void test_verif_error_perso_rp_stck_ok() {

@@ -9,7 +9,11 @@ import ui.UiGui;
 import java.io.IOException;
 
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour retirer un médicament.
+ * On teste si le médicament est bien retiré.
+ * @see IDocuments#retirerMedicament()
+ */
 public class RetirermedicamentTest {
 
     @Test

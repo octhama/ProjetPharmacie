@@ -6,7 +6,13 @@ import java.io.*;
 import javax.swing.*;
 
 import interfaces.IDocuments;
-
+/**
+ * Classe pour les pharmaciens.
+ * On peut authentifier un pharmacien, accéder au menu du pharmacien, afficher les médicaments, les ordonnances, les demandes de médicaments génériques, le registre de préparation, etc.
+ * @see Pharmacien#authentifierPharmacien(String, String)
+ * @see Pharmacien#accesMenuPharmacien()
+ * @see Pharmacien#afficherMenuPharmacien()
+ */
 public class Pharmacien extends Personne {
 
     public Pharmacien(String Id, String MotDePasse, String nom, String prenom) {

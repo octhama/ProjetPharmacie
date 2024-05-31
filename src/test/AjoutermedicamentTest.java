@@ -4,7 +4,11 @@ import interfaces.IDocuments;
 import org.junit.Test;
 import pharmacie.Pharmacie;
 import ui.UiGui;
-
+/**
+ * Classe de test pour ajouter un médicament.
+ * On teste si l'ajout d'un médicament est bien effectué.
+ * @see IDocuments#ajouterMedicament()
+ */
 
 public class AjoutermedicamentTest {
         @Test

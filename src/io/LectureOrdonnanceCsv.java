@@ -10,6 +10,13 @@ import java.util.List;
 
 /**
  * Classe pour lire les ordonnances à partir d'un fichier CSV.
+ * On peut lire les ordonnances à partir d'un fichier CSV.
+ * @see pharmacie.Ordonnance
+ * @see pharmacie.Ordonnance#getReferencesDuMedecin()
+ * @see pharmacie.Ordonnance#getReferencesDuPatient()
+ * @see pharmacie.Ordonnance#getDatePrescription()
+ * @see pharmacie.Ordonnance#getMedicaments()
+ * @see pharmacie.Ordonnance#Ordonnance(String, String, String, String[])
  */
 public class LectureOrdonnanceCsv {
 

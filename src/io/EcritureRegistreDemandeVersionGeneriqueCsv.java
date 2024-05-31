@@ -9,7 +9,14 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-
+/**
+ * Classe pour écrire les demandes de version générique dans un fichier CSV.
+ * On peut écrire les demandes de version générique dans un fichier CSV.
+ * @see pharmacie.DemandeVersionGenerique
+ * @see pharmacie.DemandeVersionGenerique#getNomMedicament()
+ * @see pharmacie.DemandeVersionGenerique#isDemande()
+ * @see pharmacie.DemandeVersionGenerique#DemandeVersionGenerique(String, boolean)
+ */
 public class EcritureRegistreDemandeVersionGeneriqueCsv {
     public static void ecrireDemandesVersionGeneriqueCsv(List<DemandeVersionGenerique> demandes) {
         // Chemin du fichier CSV
