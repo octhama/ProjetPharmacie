@@ -27,13 +27,13 @@ public class EcrireajoutdemedicamentcsvTest {
         EcritureMedicamentsCsv.ecrireAjoutDeMedicamentCsv(fichierCsv, medicament);
 
         List<String> lines = Files.readAllLines(Paths.get(fichierCsv));
-        String lastLine = lines.get(lines.size() - 1);
+        String lastLine = lines.getLast();
         String[] values = lastLine.split(",");
-        assertEquals(medicament.getNom(), values[0]);
-        assertEquals(Double.toString(medicament.getPrix()), values[1]);
-        assertEquals(medicament.getType().toString(), values[2]);
-        assertEquals(Boolean.toString(medicament.isGenerique()), values[3]);
-        assertEquals(Integer.toString(medicament.getQuantiteEnStock()), values[4]);
+        assertEquals(medicament.getNom(), values[0]); // le nom du médicament doit être écrit dans le bon format
+        assertEquals(Double.toString(medicament.getPrix()), values[1]); // le prix du médicament doit être écrit dans le bon format
+        assertEquals(medicament.getType().toString(), values[2]); // le type du médicament doit être écrit dans le bon format
+        assertEquals(Boolean.toString(medicament.isGenerique()), values[3]); // le médicament générique doit être écrit dans le bon format
+        assertEquals(Integer.toString(medicament.getQuantiteEnStock()), values[4]); // la quantité en stock du médicament doit être écrite dans le bon format
     }
 
 }

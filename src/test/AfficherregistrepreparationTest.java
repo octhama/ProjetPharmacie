@@ -19,13 +19,13 @@ public class AfficherregistrepreparationTest {
         public void test_readPreparationDataDuCSV() throws Exception {
             JPanel panelAffichageInfo = new JPanel();
             IDocuments.afficherRegistrePreparation(panelAffichageInfo);
-            assertEquals(1, panelAffichageInfo.getComponentCount());
+            assertEquals(1, panelAffichageInfo.getComponentCount()); // 1 s'il n'y a pas de préparations
         }
 
         @Test
         public void test_fichierCSVvide() throws Exception {
             JPanel panelAffichageInfo = new JPanel();
             IDocuments.afficherRegistrePreparation(panelAffichageInfo);
-            assertEquals(1, panelAffichageInfo.getComponentCount());
+            assertEquals(1, panelAffichageInfo.getComponentCount()); // 1 s'il n'y a pas de préparations
         }
 }

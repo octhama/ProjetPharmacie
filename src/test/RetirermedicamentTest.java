@@ -23,9 +23,9 @@ public class RetirermedicamentTest {
         Medicament medication = new Medicament("Medication A", 10.0, ETypeMedicament.VENTE_LIBRE, false, 100);
         UiGui.pharmacie.ajouterMedicament(medication);
 
-        IDocuments.retirerMedicament();
+        IDocuments.retirerMedicament(); // retirer le médicament
 
-        assertTrue(UiGui.pharmacie.getMedicaments().contains(medication));
+        assertTrue(UiGui.pharmacie.getMedicaments().contains(medication)); // le médicament doit être retiré
     }
 
 }

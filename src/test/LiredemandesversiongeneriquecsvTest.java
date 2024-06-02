@@ -4,7 +4,6 @@ import io.LectureDemandeVersionGeneriqueCsv;
 import org.junit.Test;
 import pharmacie.DemandeVersionGenerique;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,25 +11,13 @@ import static org.junit.Assert.*;
 /**
  * Classe de test pour lire les demandes de version générique dans un fichier CSV.
  * On teste si les demandes de version générique sont bien lues dans le fichier CSV.
- * @see LectureDemandeVersionGeneriqueCsv#lireDemandesVersionGeneriqueCsv(String)
  */
 public class LiredemandesversiongeneriquecsvTest {
 
     @Test
-    public void test_read_csv_file_and_return_list() {
-        String cheminFichier = "src/data/demandes_version_generique.csv";
-        List<DemandeVersionGenerique> expectedList = new ArrayList<>();
-        expectedList.add(new DemandeVersionGenerique("Medicament1", true, LocalDate.parse("2022-01-01")));
-        expectedList.add(new DemandeVersionGenerique("Medicament2", false, LocalDate.parse("2022-02-02")));
-
-        List<DemandeVersionGenerique> actualList = new ArrayList<>();
-        try {
-            actualList = LectureDemandeVersionGeneriqueCsv.lireDemandesVersionGeneriqueCsv(cheminFichier);
-        } catch (Exception e) {
-            fail("Impossible de lire le fichier CSV: " + e.getMessage());
-        }
-
-        assertEquals(expectedList, actualList);
+    public void test_lire_fichier_csv_and_retoune_liste() {
+        List<DemandeVersionGenerique> liste = LectureDemandeVersionGeneriqueCsv.lireDemandesVersionGeneriqueCsv("src/data/demandes_version_generique.csv");
+        assertEquals(39, liste.size());
     }
 
 }

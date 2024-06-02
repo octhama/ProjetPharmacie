@@ -93,5 +93,9 @@ public class LectureMedicamentsCsv {
 
         return medicamentsPrescrits;
     }
+
+    public static void loadMedicaments(List<Medicament> medicaments, String s) {
+        medicaments.add(new Medicament(s, 0, ETypeMedicament.ORDONNANCE, false, 0));
+    }
 }
 

@@ -9,6 +9,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -34,11 +35,12 @@ public class EcriresuppressiondemedicamentcsvTest {
 
         EcritureMedicamentsCsv.ecrireSuppressionDeMedicamentCsv(medicamentToRemove, tempFile);
 
-        List<String> lines = Files.readAllLines(Paths.get(tempFile));
+        Path path = Paths.get(tempFile);  // lire le fichier temporaire
+        List<String> lines = Files.readAllLines(path); // lire toutes les lignes du fichier temporaire
 
-        assertFalse(lines.contains("Medicament2,20.0,Type2,false,10"));
+        assertFalse(lines.contains("Medicament2,20.0,Type2,false,10")); // le médicament doit être supprimé du fichier CSV
 
-        Files.deleteIfExists(Paths.get(tempFile));
+        Files.deleteIfExists(path); // supprimer le fichier temporaire
     }
 
 }

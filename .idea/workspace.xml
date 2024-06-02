@@ -5,7 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ffbf0945-00a1-41f4-a3ac-8b676c5570ed" name="Changes" comment="update">
+      <change afterPath="$PROJECT_DIR$/test2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test3.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/dataordonnances.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/dataordonnances.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/demandes_version_generique.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/demandes_version_generique.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/IDocuments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/IDocuments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/EcritureMedecinCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/EcritureMedecinCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/LectureDemandeVersionGeneriqueCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/LectureDemandeVersionGeneriqueCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/LectureMedicamentsCsv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/LectureMedicamentsCsv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/DemandeVersionGenerique.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/DemandeVersionGenerique.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Medecin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Medecin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Medicament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Medicament.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Patient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pharmacie/Personne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pharmacie/Personne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AfficherdemandemedicamentsgeneriquesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AfficherdemandemedicamentsgeneriquesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AfficherlistemedicamentsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AfficherlistemedicamentsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AfficherlistemedicamentsgenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AfficherlistemedicamentsgenTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AfficherlistemedicamentsnongenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AfficherlistemedicamentsnongenTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AfficherlistemedicamentsnongenondemandTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AfficherlistemedicamentsnongenondemandTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AfficherlistemedicamentssurordonnanceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AfficherlistemedicamentssurordonnanceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AffichermedicamentsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AfficherordonnancesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AfficherordonnancesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AfficherregistrepreparationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AfficherregistrepreparationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/CalculerdatelivraisonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/CalculerdatelivraisonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/ETypeMedicamentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ETypeMedicamentTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/EcrireajoutdemedicamentcsvTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/EcrireajoutdemedicamentcsvTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/EcriredemandesversiongeneriquecsvTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/EcriredemandesversiongeneriquecsvTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/EcriremajqttstockmedicamentscsvTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/EcriremajqttstockmedicamentscsvTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/EcriremodificationdemedicamentcsvTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/EcriremodificationdemedicamentcsvTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/EcrireordonnancecsvTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/EcrireordonnancecsvTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/EcrireregistrepreparationcsvTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/EcrireregistrepreparationcsvTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/EcriresuppressiondemedicamentcsvTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/EcriresuppressiondemedicamentcsvTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/ExeptionRuptureDeStockTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ExeptionRuptureDeStockTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/ExtractquantiteenmgTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ExtractquantiteenmgTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/LiredemandesversiongeneriquecsvTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/LiredemandesversiongeneriquecsvTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/ModifiermedicamentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ModifiermedicamentTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/ProgramTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ProgramTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/Removeprix50pourcentlabelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/Removeprix50pourcentlabelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/RetirermedicamentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/RetirermedicamentTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/UiGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UiGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/test.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,44 +135,80 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Program.executor": "Run",
     "JUnit.AfficherdemandemedicamentsgeneriquesTest.executor": "Run with Parallel Runner",
+    "JUnit.AfficherdemandemedicamentsgeneriquesTest.test_afficher_demande_medicaments_generiques.executor": "Run",
     "JUnit.AfficherlistemedicamentsTest.executor": "Run with Parallel Runner",
+    "JUnit.AfficherlistemedicamentsTest.test_affiche_med.executor": "Run",
+    "JUnit.AfficherlistemedicamentsTest.test_med_vide.executor": "Run",
     "JUnit.AfficherlistemedicamentsenventelibreTest.executor": "Run with Parallel Runner",
     "JUnit.AfficherlistemedicamentsenventelibreTest.test_no_medicines.executor": "Run with Parallel Runner",
+    "JUnit.AfficherlistemedicamentsenventelibreTest.test_pas_de_medicaments.executor": "Run",
     "JUnit.AfficherlistemedicamentsenventelibreTest.test_retrieve_all_medicines.executor": "Run with Parallel Runner",
+    "JUnit.AfficherlistemedicamentsenventelibreTest.test_tout_medicaments.executor": "Run",
     "JUnit.AfficherlistemedicamentsgenTest.executor": "Run with Parallel Runner",
+    "JUnit.AfficherlistemedicamentsgenTest.test_afficher_med_gen.executor": "Run",
     "JUnit.AfficherlistemedicamentsgenTest.test_display_generic_medicines.executor": "Run with Parallel Runner",
+    "JUnit.AfficherlistemedicamentsgenTest.test_envoie_null_si_panel_null.executor": "Run",
     "JUnit.AfficherlistemedicamentsnongenTest.executor": "Run with Parallel Runner",
+    "JUnit.AfficherlistemedicamentsnongenTest.test_generique_med.executor": "Run",
+    "JUnit.AfficherlistemedicamentsnongenTest.test_non_gen.executor": "Run",
     "JUnit.AfficherlistemedicamentsnongenondemandTest.executor": "Run with Parallel Runner",
     "JUnit.AfficherlistemedicamentssurordonnanceTest.executor": "Run with Parallel Runner",
     "JUnit.AfficherlistemedicamentssurordonnanceTest.test_display_list_of_medications_of_type_ordonnance.executor": "Run with Parallel Runner",
     "JUnit.AfficherlistemedicamentssurordonnanceTest.test_handle_null_input_panel.executor": "Run with Parallel Runner",
     "JUnit.AffichermedicamentsTest.executor": "Run with Parallel Runner",
+    "JUnit.AffichermedicamentsTest.test_afficher_medicaments_quantite_superieure_ou_egale_20.executor": "Run",
     "JUnit.AfficherordonnancesTest.executor": "Run with Parallel Runner",
+    "JUnit.AfficherordonnancesTest.test_affiche_prescrip.executor": "Run",
     "JUnit.AfficherordonnancesTest.test_empty_prescription_list.executor": "Run",
+    "JUnit.AfficherordonnancesTest.test_prescrip_liste_vide.executor": "Run",
     "JUnit.AfficherregistrepreparationTest.executor": "Run with Parallel Runner",
+    "JUnit.AfficherregistrepreparationTest.test_fichierCSVvide.executor": "Run",
+    "JUnit.AfficherregistrepreparationTest.test_readPreparationDataDuCSV.executor": "Run",
     "JUnit.AjoutermedicamentTest.executor": "Run with Parallel Runner",
+    "JUnit.AjoutermedicamentTest.test_boite_de_diag_ok.executor": "Run",
     "JUnit.CalculerdatelivraisonTest.executor": "Run with Parallel Runner",
+    "JUnit.CalculerdatelivraisonTest.test_retour_obj_datecalend_fail.executor": "Run",
+    "JUnit.CalculerdatelivraisonTest.test_retour_obj_datecalend_ok.executor": "Run",
     "JUnit.ETypeMedicamentTest.executor": "Run with Parallel Runner",
+    "JUnit.ETypeMedicamentTest.test_verif_enum_ok.executor": "Run",
     "JUnit.EcrireajoutdemedicamentcsvTest.executor": "Run with Parallel Runner",
+    "JUnit.EcrireajoutdemedicamentcsvTest.test_ecrire_med_dans_le_bon_format.executor": "Run",
     "JUnit.EcriredemandesversiongeneriquecsvTest.executor": "Run with Parallel Runner",
+    "JUnit.EcriredemandesversiongeneriquecsvTest.test_ecrire_demande_pour_fichier_ok.executor": "Run",
     "JUnit.EcriremajqttstockmedicamentscsvTest.executor": "Run with Parallel Runner",
+    "JUnit.EcriremajqttstockmedicamentscsvTest.test_maj_qtt_stck.executor": "Run",
     "JUnit.EcriremodificationdemedicamentcsvTest.executor": "Run with Parallel Runner",
+    "JUnit.EcriremodificationdemedicamentcsvTest.test_ecrireModificationDeMedicamentCsv.executor": "Run",
+    "JUnit.EcriremodificationdemedicamentcsvTest.test_lireTouteLesLignesDuFichierCsv.executor": "Run",
     "JUnit.EcrireordonnancecsvTest.executor": "Debug",
-    "JUnit.EcrireregistrepreparationcsvTest.executor": "Run with Parallel Runner",
+    "JUnit.EcrireordonnancecsvTest.test_ecrire_nouvelle_ligne_dans_fichier_csv.executor": "Run",
+    "JUnit.EcrireregistrepreparationcsvTest.executor": "Run",
+    "JUnit.EcrireregistrepreparationcsvTest.test_ecrire_med_in_csv.executor": "Run",
     "JUnit.EcrireregistrepreparationcsvTest.test_writes_medicament_to_csv.executor": "Run with Parallel Runner",
-    "JUnit.EcriresuppressiondemedicamentcsvTest.executor": "Run with Parallel Runner",
+    "JUnit.EcriresuppressiondemedicamentcsvTest.executor": "Run",
+    "JUnit.EcriresuppressiondemedicamentcsvTest.test_suppMed.executor": "Run",
     "JUnit.ExeptionRuptureDeStockTest.executor": "Run",
+    "JUnit.ExeptionRuptureDeStockTest.test_verif_error_perso_rp_stck_ok.executor": "Run",
     "JUnit.ExtractquantiteenmgTest.executor": "Run with Parallel Runner",
+    "JUnit.ExtractquantiteenmgTest.test_regex_ok_med.executor": "Run",
+    "JUnit.ExtractquantiteenmgTest.test_regex_sans_espace_ok_med.executor": "Run",
     "JUnit.LiredemandesversiongeneriquecsvTest.executor": "Run",
+    "JUnit.LiredemandesversiongeneriquecsvTest.test_lire_fichier_csv_and_retoune_liste.executor": "Run",
+    "JUnit.LiredemandesversiongeneriquecsvTest.test_read_csv_file_and_return_list.executor": "Run",
     "JUnit.ModifiermedicamentTest.executor": "Run with Parallel Runner",
+    "JUnit.ModifiermedicamentTest.test_boite_diag_modif_med_ok.executor": "Run",
     "JUnit.ModifiermedicamentTest.test_empty_medication_name.executor": "Run with Parallel Runner",
     "JUnit.ProgramTest.executor": "Run with Parallel Runner",
+    "JUnit.ProgramTest.test_loading_and_ajout_medicaments_depuis_csv.executor": "Run",
     "JUnit.Removeprix50pourcentlabelTest.executor": "Run with Parallel Runner",
+    "JUnit.Removeprix50pourcentlabelTest.test_suppPrix50PourcentLabel_labelOK.executor": "Run",
+    "JUnit.Removeprix50pourcentlabelTest.test_suppPrix50PourcentLabel_panelVide.executor": "Run",
     "JUnit.RetirermedicamentTest.executor": "Run with Parallel Runner",
+    "JUnit.RetirermedicamentTest.test_sup_med_existant_ok.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "com.google.cloudcode.ide_session_index": "20240531_0001",
+    "com.google.cloudcode.ide_session_index": "20240601_0001",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
@@ -144,7 +221,7 @@
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "/Users/kuassitehou/Documents/Documents - OHMPXV/GitHub/POO-ESA/ProjetPharmacie/src/Main.java",
     "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }
@@ -167,7 +244,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CalculerdatelivraisonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EcriremodificationdemedicamentcsvTest.test_lireTouteLesLignesDuFichierCsv" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProjetPharmacie" />
       <extension name="coverage">
         <pattern>
@@ -176,13 +253,29 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.CalculerdatelivraisonTest" />
+      <option name="MAIN_CLASS_NAME" value="test.EcriremodificationdemedicamentcsvTest" />
+      <option name="METHOD_NAME" value="test_lireTouteLesLignesDuFichierCsv" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EcrireregistrepreparationcsvTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjetPharmacie" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.EcrireregistrepreparationcsvTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EcrireordonnancecsvTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EcrireregistrepreparationcsvTest.test_ecrire_med_in_csv" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProjetPharmacie" />
       <extension name="coverage">
         <pattern>
@@ -191,13 +284,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.EcrireordonnancecsvTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="test.EcrireregistrepreparationcsvTest" />
+      <option name="METHOD_NAME" value="test_ecrire_med_in_csv" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LiredemandesversiongeneriquecsvTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EcriresuppressiondemedicamentcsvTest.test_suppMed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProjetPharmacie" />
       <extension name="coverage">
         <pattern>
@@ -206,23 +300,9 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.LiredemandesversiongeneriquecsvTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProgramTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ProjetPharmacie" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.ProgramTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="test.EcriresuppressiondemedicamentcsvTest" />
+      <option name="METHOD_NAME" value="test_suppMed" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -230,10 +310,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Program" />
-        <item itemvalue="JUnit.CalculerdatelivraisonTest" />
-        <item itemvalue="JUnit.EcrireordonnancecsvTest" />
-        <item itemvalue="JUnit.ProgramTest" />
-        <item itemvalue="JUnit.LiredemandesversiongeneriquecsvTest" />
+        <item itemvalue="JUnit.EcriremodificationdemedicamentcsvTest.test_lireTouteLesLignesDuFichierCsv" />
+        <item itemvalue="JUnit.EcrireregistrepreparationcsvTest" />
+        <item itemvalue="JUnit.EcrireregistrepreparationcsvTest.test_ecrire_med_in_csv" />
+        <item itemvalue="JUnit.EcriresuppressiondemedicamentcsvTest.test_suppMed" />
       </list>
     </recent_temporary>
   </component>
@@ -277,7 +357,9 @@
       <workItem from="1717053010362" duration="2546000" />
       <workItem from="1717091160263" duration="1169000" />
       <workItem from="1717141252393" duration="1486000" />
-      <workItem from="1717147717564" duration="2277000" />
+      <workItem from="1717147717564" duration="4945000" />
+      <workItem from="1717224172534" duration="2277000" />
+      <workItem from="1717241772029" duration="11320000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />

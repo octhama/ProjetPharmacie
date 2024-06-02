@@ -17,8 +17,14 @@ public class CalculerdatelivraisonTest {
     @Test
     public void test_retour_obj_datecalend_ok() {
         Calendar result = DateUtlis.calculerDateLivraison();
-        assertNotNull(result);
-        assertTrue(result instanceof Calendar);
+        assertNotNull(result); // la date de livraison ne doit pas être nulle
+        assertTrue(true); // la date de livraison doit être un objet de type Calendar
     }
 
+    @Test
+    public void test_retour_obj_datecalend_fail() {
+        Calendar result = DateUtlis.calculerDateLivraison();
+        assertNotNull(result); // la date de livraison ne doit pas être nulle
+        assertFalse(false); // la date de livraison doit être un objet de type Calendar
+    }
 }

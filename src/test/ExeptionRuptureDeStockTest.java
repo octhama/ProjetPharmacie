@@ -15,7 +15,7 @@ public class ExeptionRuptureDeStockTest {
     public void test_verif_error_perso_rp_stck_ok() {
         String message = "Stock rupture";
         ExeptionRuptureDeStock exception = new ExeptionRuptureDeStock(message);
-        assertEquals(message, exception.getMessage());
+        assertEquals(message, exception.getMessage()); // le message d'erreur doit être bien affiché
     }
 
 }

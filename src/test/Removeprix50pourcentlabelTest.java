@@ -21,14 +21,14 @@ public class Removeprix50pourcentlabelTest {
         panel.add(label);
 
         IDocuments.removePrix50PourcentLabel(panel);
-        assertEquals(0, panel.getComponentCount());
+        assertEquals(0, panel.getComponentCount()); // le label doit être supprimé
     }
 
     @Test
     public void test_suppPrix50PourcentLabel_panelVide() {
         JPanel panel = new JPanel();
         IDocuments.removePrix50PourcentLabel(panel);
-        assertEquals(0, panel.getComponentCount());
+        assertEquals(0, panel.getComponentCount()); // le panel doit être vide
     }
 
 }

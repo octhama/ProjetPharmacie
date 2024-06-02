@@ -100,7 +100,7 @@ public interface IDocuments {
 
         // Ajouter les détails de chaque médecin au panneau
         for (Medecin medecin : UiGui.pharmacie.getMedecins()) {
-            JLabel label = new JLabel(medecin.getPrenom() + " " + medecin.getNom() + " - " + medecin.getReference());
+            JLabel label = new JLabel(medecin.getPersonneCivilite()+" "+medecin.getPersonneReference() + " " + medecin.getPersonneNom() + " " + medecin.getPersonnePrenom());
             medecinPanel.add(label);
         }
 
@@ -125,7 +125,7 @@ public interface IDocuments {
 
         // Ajouter les détails de chaque patient au panneau
         for (Patient patient : UiGui.pharmacie.getPatients()) {
-            JLabel label = new JLabel(patient.getPrenom() + " " + patient.getNom() + " - " + patient.getReference());
+            JLabel label = new JLabel(patient.getPersonneReference() + " " + patient.getPersonneNom() + " " + patient.getPersonnePrenom());
             patientPanel.add(label);
         }
 

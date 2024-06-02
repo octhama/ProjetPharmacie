@@ -14,7 +14,7 @@ import static pharmacie.DemandeVersionGenerique.demandes;
  * Classe pour lire les demandes de version générique dans un fichier CSV.
  * On peut lire les demandes de version générique dans un fichier CSV.
  * @see pharmacie.DemandeVersionGenerique
- * @see pharmacie.DemandeVersionGenerique#DemandeVersionGenerique(String, boolean, LocalDate)
+ * @see #DemandeVersionGenerique(String, boolean)
  * @see pharmacie.DemandeVersionGenerique#getNomMedicament()
  * @see pharmacie.DemandeVersionGenerique#isDemande()
  */
@@ -34,7 +34,7 @@ public class LectureDemandeVersionGeneriqueCsv {
                     LocalDate dateDemande = LocalDate.parse(champs[2].trim());
 
                     // Créez l'objet DemandeVersionGenerique
-                    DemandeVersionGenerique demandeVersionGenerique = new DemandeVersionGenerique(nomMedicament, demande, dateDemande);
+                    DemandeVersionGenerique demandeVersionGenerique = new DemandeVersionGenerique(nomMedicament, demande);
 
                     // Assurez-vous que la liste demandes est initialisée
                     if (demandes == null) {

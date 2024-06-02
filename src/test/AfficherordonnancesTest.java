@@ -20,14 +20,14 @@ public class AfficherordonnancesTest {
     public void test_affiche_prescrip() throws IOException {
         JPanel panel = new JPanel();
         IDocuments.afficherOrdonnances(panel);
-        assertNotNull(panel.getComponent(0));
+        assertNotNull(panel.getComponent(0)); // il doit y avoir au moins un composant
     }
 
     @Test
     public void test_prescrip_liste_vide() throws IOException {
         JPanel panel = new JPanel();
         IDocuments.afficherOrdonnances(panel);
-        assertEquals(1, panel.getComponentCount());
+        assertEquals(1, panel.getComponentCount()); // 1 si il n'y a pas d'ordonnances
     }
 
 }

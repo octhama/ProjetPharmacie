@@ -16,12 +16,10 @@ public class ModifiermedicamentTest {
 
     @Test
     public void test_boite_diag_modif_med_ok() {
-        IDocuments documents = new IDocuments() {};
-
         try {
             IDocuments.modifierMedicament();
         } catch (IOException e) {
-            fail("An exception occurred: " + e.getMessage());
+            fail("Erreur lors de la modification du médicament" + e.getMessage());
         }
     }
 

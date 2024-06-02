@@ -10,23 +10,4 @@ public class Medecin extends Personne{
         super(Id, MotDePasse, nom, prenom);
     }
 
-    public String getReference() {
-        return null;
-    }
-
-    public String getId() {
-        return null;
-    }
-
-    public String getMotDePasse() {
-        return null;
-    }
-
-    public String getNom() {
-        return null;
-    }
-
-    public String getPrenom() {
-        return null;
-    }
 }

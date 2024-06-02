@@ -25,21 +25,18 @@ public class EcrireordonnancecsvTest {
 
     @Before
     public void setUp() {
-        // Rediriger System.out pour capturer les déclarations print
-        sortieOriginale = System.out;
-        sortieContenu = new java.io.ByteArrayOutputStream();
-        System.setOut(new PrintStream(sortieContenu));
+        sortieOriginale = System.out; // Sauvegarder la valeur originale de System.out
+        sortieContenu = new java.io.ByteArrayOutputStream(); // Créer un tableau de bytes pour contenir la sortie
+        System.setOut(new PrintStream(sortieContenu)); // Rediriger la sortie vers le tableau de bytes
     }
 
     @After
     public void tearDown() {
-        // Restaurer System.out à son état original
-        System.setOut(sortieOriginale);
+        System.setOut(sortieOriginale); // Remettre System.out à sa valeur d'origine
     }
 
     @Test
     public void test_ecrire_nouvelle_ligne_dans_fichier_csv() {
-        EcritureOrdonnancesCsv ecritureOrdonnancesCsv = new EcritureOrdonnancesCsv();
 
         String referenceMedecin = "medecin1";
         String referencePatient = "patient1";
@@ -67,10 +64,10 @@ public class EcrireordonnancecsvTest {
             fail("Une IOException s'est produite lors de la lecture du fichier CSV");
         }
 
-        assertTrue("La nouvelle ligne avec les paramètres donnés devrait exister dans le fichier CSV", ligneExiste);
+        assertTrue("La nouvelle ligne avec les paramètres donnés devrait exister dans le fichier CSV", ligneExiste); // la nouvelle ligne avec les paramètres donnés devrait exister dans le fichier CSV
 
         // Vérifier que la méthode imprime le message de succès
         String sortieAttendue = "Ordonnance ajoutée avec succès dans le fichier CSV.";
-        assertFalse("Le message de succès devrait être imprimé", sortieContenu.toString().contains(sortieAttendue));
+        assertFalse("Le message de succès devrait être imprimé", sortieContenu.toString().contains(sortieAttendue)); // le message de succès ne doit pas être imprimé
     }
 }

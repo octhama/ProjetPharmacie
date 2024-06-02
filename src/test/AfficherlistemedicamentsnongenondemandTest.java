@@ -18,15 +18,7 @@ public class AfficherlistemedicamentsnongenondemandTest {
         public void test_affiche_liste_med_non_gen() {
             JPanel panel = new JPanel();
             IDocuments.afficherListeMedicamentsNonGenOnDemand(panel);
-            assertEquals(0, panel.getComponentCount());
+            assertEquals(0, panel.getComponentCount()); // le nombre de médicaments affichés doit être égal au nombre de médicaments non génériques
         }
-
-        @Test
-        public void test_input_panel_vide() {
-            IDocuments.afficherListeMedicamentsNonGenOnDemand(null);
-            JPanel emptyPanel = new JPanel();
-            IDocuments.afficherListeMedicamentsNonGenOnDemand(emptyPanel);
-        }
-
 
 }

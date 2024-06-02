@@ -16,9 +16,9 @@ public class ETypeMedicamentTest {
         ETypeMedicament venteLibre = ETypeMedicament.VENTE_LIBRE;
         ETypeMedicament ordonnance = ETypeMedicament.ORDONNANCE;
 
-        assertEquals(ETypeMedicament.VENTE_LIBRE, venteLibre);
-        assertEquals(ETypeMedicament.ORDONNANCE, ordonnance);
-        assertNotEquals(venteLibre, ordonnance);
+        assertEquals(ETypeMedicament.VENTE_LIBRE, venteLibre); // le type de médicament doit être bien défini
+        assertEquals(ETypeMedicament.ORDONNANCE, ordonnance); // le type de médicament doit être bien défini
+        assertNotEquals(venteLibre, ordonnance); // les types de médicaments ne doivent pas être égaux
     }
 
 }

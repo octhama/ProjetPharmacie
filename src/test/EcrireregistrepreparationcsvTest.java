@@ -28,7 +28,7 @@ public class EcrireregistrepreparationcsvTest {
         selectedQuantities.add(2);
         selectedQuantities.add(3);
 
-        String csvFilePath = "test.csv";
+        String csvFilePath = "test3.csv"; // fichier temporaire (changez le numéro de test pour que ça passe)
 
         EcritureRegistrePreparationCsv.ecrireRegistrePreparationCsv(selectedMedicaments, selectedQuantities, csvFilePath);
 
@@ -38,11 +38,11 @@ public class EcrireregistrepreparationcsvTest {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 // Adaptez ce nombre selon le nombre de colonnes attendues
-                assertEquals(4, parts.length);
-                assertNotNull(parts[0]);
-                assertNotNull(parts[1]);
-                assertNotNull(parts[2]);
-                assertNotNull(parts[3]);
+                assertEquals(4, parts.length); // le nombre de colonnes doit être égal à 4
+                assertNotNull(parts[0]); // la première colonne ne doit pas être vide
+                assertNotNull(parts[1]); // la deuxième colonne ne doit pas être vide
+                assertNotNull(parts[2]); // la troisième colonne ne doit pas être vide
+                assertNotNull(parts[3]); // la quatrième colonne ne doit pas être vide
                 lineCount++;
             }
             assertEquals(selectedMedicaments.size(), lineCount);

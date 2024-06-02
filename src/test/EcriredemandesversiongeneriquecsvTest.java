@@ -49,10 +49,11 @@ public class EcriredemandesversiongeneriquecsvTest {
             reader.close();
 
             // Vérifier que le contenu est correct
-            assertEquals("Nom du médicament, Demande, Date de demande", lines.get(0));
-            assertEquals("Medicament1,1,2022-01-01", lines.get(1));
+            assertEquals("Nom du médicament, Demande, Date de demande", lines.get(0)); // la première ligne doit être conservée
+            assertEquals("Medicament1,1,2022-01-01", lines.get(1)); // la deuxième ligne doit être conservée
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }

@@ -22,19 +22,16 @@ import static org.junit.Assert.*;
 public class AfficherlistemedicamentsnongenTest {
 
     @Test
-    public void test_non_generique_med() {
-        JPanel panel = new JPanel();
-        IDocuments.afficherListeMedicamentsNonGen(panel);
-        assertEquals(1, panel.getComponentCount());
-    }
-
-    @Test
-    public void test_generique_med() {
+    public void test_non_gen() {
         JPanel panel = new JPanel();
         List<Medicament> medicaments = new ArrayList<>();
+        medicaments.add(new Medicament("Med1", "Labo1", "Mol1", "Ref1", false));
+        medicaments.add(new Medicament("Med2", "Labo2", "Mol2", "Ref2", false));
+        medicaments.add(new Medicament("Med3", "Labo3", "Mol3", "Ref3", false));
+
         UiGui.pharmacie.setMedicaments(medicaments);
         IDocuments.afficherListeMedicamentsNonGen(panel);
-        assertEquals(1, panel.getComponentCount());
+        assertEquals(1, panel.getComponentCount()); // le nombre de médicaments affichés doit être égal au nombre de médicaments non génériques
     }
 
 }

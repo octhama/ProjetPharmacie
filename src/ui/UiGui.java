@@ -69,6 +69,16 @@ public class UiGui extends JFrame implements ActionListener {
      * @param selectedMedicaments   La liste des médicaments sélectionnés par l'utilisateur (initialisée à vide)
      * @param selectedQuantities    La liste des quantités sélectionnées par l'utilisateur (initialisée à vide)
      * @throws IOException          En cas d'erreur d'entrée/sortie
+     * @see UiGui#pharmacie
+     * @see UiGui#medicamentCheckBoxMap
+     * @see UiGui#spinnerMap
+     * @see UiGui#medicamentGenCheckBoxMap
+     * @see UiGui#selectedMedicaments
+     * @see UiGui#selectedQuantities
+     * @see UiGui#getjMenuItem()
+     * @see UiGui#UiGui(Pharmacie, List, List)
+     * @see UiGui#UiGui(Pharmacie)
+     * @see UiGui#panelAfficherMedicaments
      */
 
     public UiGui(Pharmacie pharmacie, HashMap<Medicament, JCheckBox> medicamentCheckBoxMap, HashMap<JCheckBox, JSpinner> spinnerMap, HashMap<Medicament, JCheckBox> medicamentGenCheckBoxMap, List<Medicament> selectedMedicaments, List<Integer> selectedQuantities) throws IOException {
