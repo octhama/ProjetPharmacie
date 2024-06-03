@@ -15,7 +15,23 @@ import pharmacie.*;
 import ui.UiGui;
 
 import static ui.UiGui.*;
-
+/**
+ * Interface pour afficher les documents de la pharmacie.
+ * On peut afficher les médicaments, les médecins, les patients, les demandes de médicaments génériques, etc.
+ * @see pharmacie.Medicament
+ * @see pharmacie.Medecin
+ * @see pharmacie.Patient
+ * @see pharmacie.DemandeVersionGenerique
+ * @see pharmacie.Pharmacie
+ * @see pharmacie.Pharmacie#ajouterMedicament(Medicament)
+ * @see pharmacie.Pharmacie#retirerMedicament(Medicament)
+ * @see pharmacie.Pharmacie#modifierMedicament(Medicament)
+ * @see pharmacie.Pharmacie#getMedicaments()
+ * @see pharmacie.Pharmacie#getMedecins()
+ * @see pharmacie.Pharmacie#getPatients()
+ * @see pharmacie.Pharmacie#getDemandesVersionGenerique()
+ * @see pharmacie.Pharmacie#setMedicaments(List)
+ */
 public interface IDocuments {
     
     // Affiche les suggestions de médicaments dans le même format que la liste complète
@@ -84,7 +100,7 @@ public interface IDocuments {
 
         // Ajouter les détails de chaque médecin au panneau
         for (Medecin medecin : UiGui.pharmacie.getMedecins()) {
-            JLabel label = new JLabel(medecin.getPrenom() + " " + medecin.getNom() + " - " + medecin.getReference());
+            JLabel label = new JLabel(medecin.getPersonneCivilite()+" "+medecin.getPersonneReference() + " " + medecin.getPersonneNom() + " " + medecin.getPersonnePrenom());
             medecinPanel.add(label);
         }
 
@@ -109,7 +125,7 @@ public interface IDocuments {
 
         // Ajouter les détails de chaque patient au panneau
         for (Patient patient : UiGui.pharmacie.getPatients()) {
-            JLabel label = new JLabel(patient.getPrenom() + " " + patient.getNom() + " - " + patient.getReference());
+            JLabel label = new JLabel(patient.getPersonneReference() + " " + patient.getPersonneNom() + " " + patient.getPersonnePrenom());
             patientPanel.add(label);
         }
 

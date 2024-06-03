@@ -1,7 +1,5 @@
 package io;
 
-import pharmacie.Medicament;
-import pharmacie.Ordonnance;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -9,9 +7,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Stack;
-
+/**
+ * Classe pour écrire les ordonnances dans un fichier CSV.
+ * On peut écrire les ordonnances dans un fichier CSV.
+ * @see pharmacie.Ordonnance
+ * @see pharmacie.Ordonnance#getReferencesDuMedecin()
+ * @see pharmacie.Ordonnance#getReferencesDuPatient()
+ * @see pharmacie.Ordonnance#getDatePrescription()
+ * @see pharmacie.Ordonnance#getMedicaments()
+ * @see pharmacie.Ordonnance#Ordonnance(String, String, String, String[])
+ */
 public class EcritureOrdonnancesCsv {
         public static void ecrireOrdonnanceCsv(String referenceMedecin, String referencePatient, Date datePrescription, Stack<String> medicaments) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

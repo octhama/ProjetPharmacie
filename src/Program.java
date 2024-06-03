@@ -10,6 +10,16 @@ import java.util.List;
 
 /**
  * Classe principale du programme.
+ * On peut charger les médicaments depuis un fichier CSV, charger les préparations depuis un fichier CSV et afficher une interface graphique pour la pharmacie.
+ * @see pharmacie.Pharmacie
+ * @see pharmacie.Medicament
+ * @see pharmacie.Preparation
+ * @see io.LectureMedicamentsCsv
+ * @see io.LectureRegistrePreparation
+ * @see ui.UiGui
+ * @see ui.CliUi
+ * @see exceptions.ExeptionRuptureDeStock
+ * @see enums.ETypeMedicament
  */
 
 public class Program {

@@ -6,7 +6,16 @@ import exceptions.ExeptionRuptureDeStock;
 
 import javax.swing.*;
 import java.util.*;
-
+/**
+ * Classe pour la pharmacie.
+ * On peut ajouter un médicament, retirer un médicament, acheter un médicament, etc.
+ * @see Pharmacie#acheterMedicament(String, int)
+ * @see Pharmacie#ajouterMedicaments(List)
+ * @see Pharmacie#ajouterMedicament(Medicament)
+ * @see Pharmacie#modifierMedicament(Medicament)
+ * @see Pharmacie#retirerMedicament(Medicament)
+ * @see Pharmacie#setMedicaments(List)
+ */
 public class Pharmacie {
     private final List<Medicament> medicaments;
     private final List<Patient> patients;
@@ -147,5 +156,9 @@ public class Pharmacie {
                 medecins.add((Medecin) object);
             }
         }
+    }
+
+    public void setMedicaments(List<Medicament> medicaments) {
+        this.medicaments.addAll(medicaments);
     }
 }

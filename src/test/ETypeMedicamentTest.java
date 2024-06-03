@@ -4,40 +4,21 @@ import enums.ETypeMedicament;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-
+/**
+ * Classe de test pour vérifier l'énumération des types de médicaments.
+ * On teste si les types de médicaments sont bien définis.
+ * @see ETypeMedicament
+ */
 public class ETypeMedicamentTest {
 
-
     @Test
-    public void test_enum_values_accessed_correctly() {
+    public void test_verif_enum_ok() {
         ETypeMedicament venteLibre = ETypeMedicament.VENTE_LIBRE;
         ETypeMedicament ordonnance = ETypeMedicament.ORDONNANCE;
-    
-        assertEquals(ETypeMedicament.VENTE_LIBRE, venteLibre);
-        assertEquals(ETypeMedicament.ORDONNANCE, ordonnance);
-    }
 
-    @Test
-    public void test_enum_values_compared_with_operator() {
-        ETypeMedicament venteLibre = ETypeMedicament.VENTE_LIBRE;
-        ETypeMedicament ordonnance = ETypeMedicament.ORDONNANCE;
-    
-        assertTrue(venteLibre == ETypeMedicament.VENTE_LIBRE);
-        assertTrue(ordonnance == ETypeMedicament.ORDONNANCE);
-    }
-
-    @Test
-    public void test_enum_values_can_be_null() {
-        ETypeMedicament venteLibre = null;
-    
-        assertNull(venteLibre);
-    }
-
-    @Test
-    public void test_enum_values_compared_with_non_enum_values() {
-        ETypeMedicament venteLibre = ETypeMedicament.VENTE_LIBRE;
-    
-        assertFalse(venteLibre.equals("VENTE_LIBRE"));
+        assertEquals(ETypeMedicament.VENTE_LIBRE, venteLibre); // le type de médicament doit être bien défini
+        assertEquals(ETypeMedicament.ORDONNANCE, ordonnance); // le type de médicament doit être bien défini
+        assertNotEquals(venteLibre, ordonnance); // les types de médicaments ne doivent pas être égaux
     }
 
 }

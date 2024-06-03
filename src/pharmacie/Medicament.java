@@ -7,7 +7,15 @@ import exceptions.ExeptionRuptureDeStock;
 import ui.UiGui;
 
 import static io.EcritureRegistrePreparationCsv.medicaments;
-
+/**
+ * Classe pour les médicaments.
+ * On peut ajouter un médicament, retirer un médicament, acheter un médicament, etc.
+ * @see Medicament#acheter(int)
+ * @see Medicament#setMedicaments(Medicament[])
+ * @see Medicament#setQuantiteEnStock(int)
+ * @see Medicament#getMedicaments()
+ * @see Medicament#setMedicaments(List)
+ */
 public class Medicament {
     private String nom;
     private double prix;
@@ -15,7 +23,6 @@ public class Medicament {
     private boolean generique;
     private int quantiteEnStock;
     private boolean commandeA50Pourcent;
-    private boolean prescriptionRequise; // Indique si une ordonnance est requise pour acheter le médicament
 
     public Medicament(String nom, double prix2, ETypeMedicament eTypeMedicament, boolean generique2, int quantiteStock, boolean commandeA50Pourcent, boolean prescriptionRequise) {
         this.nom = nom;
@@ -24,7 +31,7 @@ public class Medicament {
         this.generique = generique2;
         this.quantiteEnStock = quantiteStock;
         this.commandeA50Pourcent = commandeA50Pourcent;
-        this.prescriptionRequise = prescriptionRequise;
+        // Indique si une ordonnance est requise pour acheter le médicament
     }
 
     public Medicament(boolean commandeA50Pourcent) {
@@ -130,6 +137,17 @@ public class Medicament {
         this.type = o;
         this.generique = o1;
         this.quantiteEnStock = o2;
+    }
+
+    // Constructeur pour les médicaments prescrits sur une ordonnance (Test AfficherlistemedicamentssurordonnanceTest)
+    public Medicament(String med1, String labo1, String mol1, String ref1, boolean b) {
+        //TODO Auto-generated constructor stub
+        this.nom = med1;
+        this.prix = 0;
+        this.type = null;
+        this.generique = false;
+        this.quantiteEnStock = 0;
+        this.commandeA50Pourcent = b;
     }
 
     public String getNom() {

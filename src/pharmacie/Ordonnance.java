@@ -1,5 +1,12 @@
 package pharmacie;
-
+/**
+ * Classe pour les ordonnances.
+ * On peut enregistrer une ordonnance.
+ * @see Ordonnance#enregistrerOrdonnance()
+ * @see Ordonnance#ecrireOrdonnanceCsv(String, String, Date, Stack)
+ * @see Ordonnance#authentifierMedecin(String, String)
+ * @see Ordonnance#medicaments
+ */
 import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -54,7 +61,6 @@ public class Ordonnance {
         return medicaments;
     }
 
-
     public String[] getListeMedicamentsOrdonnance() {
         return listeMedicamentsOrdonnance;
     }
@@ -88,18 +94,19 @@ public class Ordonnance {
             }
 
             // Afficher une boîte de dialogue pour saisir le ou les médicament(s) prescrit(s)
-            String medicamentsString = JOptionPane.showInputDialog(null, "Veuillez saisir le ou les médicament(s) prescrit(s) (séparés par des virgules) :");
+            String medicamentsString = JOptionPane.showInputDialog(null, "Veuillez saisir le ou les médicament(s) prescrit(s) (séparés par des point-virgules) :");
             String[] medicamentsArray = medicamentsString.split(",");
             Stack<String> medicaments = new Stack<>();
             for (String medicament : medicamentsArray) {
                 medicaments.push(medicament);
             }
+            // Afficher un message de confirmation
+            JOptionPane.showMessageDialog(null, "Ordonnance enregistrée avec succès.");
             // Enregistrer l'ordonnance
             ecrireOrdonnanceCsv(referenceMedecin, referencePatient, datePrescription, medicaments);
         } else {
             // Afficher un message d'erreur si l'authentification a échoué
             JOptionPane.showMessageDialog(null, "Identifiant ou mot de passe médecin incorrect. Vous n'êtes pas autorisé à enregistrer une ordonnance.");
         }
-
     }
 }

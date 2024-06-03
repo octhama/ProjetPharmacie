@@ -3,7 +3,17 @@ package pharmacie;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
-
+/**
+ * Classe pour les préparations.
+ * On peut ajouter une préparation, retirer une préparation, etc.
+ * @see Preparation#ajouterPreparations(List)
+ * @see Preparation#setCommande (Commande)
+ * @see Preparation#setDate(String)
+ * @see Preparation#setNom(String)
+ * @see Preparation#setQuantite(int)
+ * @see Preparation#setIdUnique(String)
+ * @see Preparation#toString()
+ */
 public class Preparation {
     private String idUnique;
     private String nom;

@@ -1,5 +1,6 @@
 package io;
 
+import org.jetbrains.annotations.NotNull;
 import pharmacie.Ordonnance;
 
 import java.io.*;
@@ -9,6 +10,13 @@ import java.util.List;
 
 /**
  * Classe pour lire les ordonnances à partir d'un fichier CSV.
+ * On peut lire les ordonnances à partir d'un fichier CSV.
+ * @see pharmacie.Ordonnance
+ * @see pharmacie.Ordonnance#getReferencesDuMedecin()
+ * @see pharmacie.Ordonnance#getReferencesDuPatient()
+ * @see pharmacie.Ordonnance#getDatePrescription()
+ * @see pharmacie.Ordonnance#getMedicaments()
+ * @see pharmacie.Ordonnance#Ordonnance(String, String, String, String[])
  */
 public class LectureOrdonnanceCsv {
 
@@ -59,7 +67,7 @@ public class LectureOrdonnanceCsv {
             return ordonnance;
         }
 
-    public static List<Ordonnance> lireOrdonnances(String cheminFichier) throws IOException {
+    public static @NotNull List<Ordonnance> lireOrdonnances(String cheminFichier) throws IOException {
         List<Ordonnance> ordonnances = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {
             String ligne;

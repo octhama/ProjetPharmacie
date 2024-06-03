@@ -1,5 +1,6 @@
 package io;
 
+import org.jetbrains.annotations.NotNull;
 import pharmacie.Medicament;
 import pharmacie.Preparation;
 
@@ -8,7 +9,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Classe pour écrire les préparations dans un fichier CSV.
+ * On peut écrire les préparations dans un fichier CSV.
+ * @see Preparation
+ * @see pharmacie.Preparation
+ * @see pharmacie.Preparation#Preparation(String, String, int, String)
+ * @see pharmacie.Preparation#getIdUnique()
+ * @see pharmacie.Preparation#getNom()
+ * @see pharmacie.Preparation#getQuantite()
+ * @see pharmacie.Preparation#getDate()
+ * @see pharmacie.Preparation#Preparation()
+ */
 public class EcritureRegistrePreparationCsv {
     private static int idCounter; // Compteur pour les identifiants uniques
     public static List<Preparation> preparations; // Liste des préparations
@@ -17,12 +29,8 @@ public class EcritureRegistrePreparationCsv {
 
     static {
         // Initialisation des listes uniquement si elles ne sont pas déjà initialisées
-        if (preparations == null) {
-            preparations = new ArrayList<>();
-        }
-        if (medicaments == null) {
-            medicaments = new ArrayList<>();
-        }
+        preparations = new ArrayList<>();
+        medicaments = new ArrayList<>();
 
         idCounter = 1;
         // Initialisation du compteur à partir du fichier CSV
@@ -52,11 +60,11 @@ public class EcritureRegistrePreparationCsv {
         }
     }
 
-    private static String genererIdUnique() {
+    private static @NotNull String genererIdUnique() {
         return "CMD-PREP" + idCounter++;
     }
 
-    public static void ecrireRegistrePreparationCsv(List<Medicament> selectedMedicaments, List<Integer> selectedQuantities, String csvFilePath) {
+    public static void ecrireRegistrePreparationCsv(@NotNull List<Medicament> selectedMedicaments, List<Integer> selectedQuantities, String csvFilePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath, true))) {
             // Écrire chaque médicament dans une nouvelle ligne
             for (int i = 0; i < selectedMedicaments.size(); i++) {

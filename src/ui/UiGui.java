@@ -13,7 +13,40 @@ import java.io.*;
 import java.util.*;
 import java.util.List;
 /**
- * Interface graphique pour une pharmacie
+ * Interface graphique pour une pharmacie (version graphique utilisée dans le projet final).
+ * @see pharmacie.Pharmacie
+ * @see pharmacie.Medicament
+ * @see pharmacie.Pharmacien
+ * @see pharmacie.Ordonnance
+ * @see pharmacie.Preparation
+ * @see pharmacie.DemandeVersionGenerique
+ * @see pharmacie.Commande
+ * @see pharmacie.Medicament#isGenerique()
+ * @see pharmacie.Medicament#getNom()
+ * @see pharmacie.Medicament#getPrix()
+ * @see pharmacie.Medicament#getType()
+ * @see pharmacie.Medicament#getQuantiteEnStock()
+ * @see pharmacie.Pharmacie#trouverMedicamentsSuggestions(String)
+ * @see pharmacie.Pharmacie#acheterMedicament(String, int)
+ * @see pharmacie.Pharmacien#accesMenuPharmacien()
+ * @see pharmacie.Ordonnance#enregistrerOrdonnance()
+ * @see pharmacie.DemandeVersionGenerique#commanderMedicamentVersionGenerique()
+ * @see pharmacie.Commande#commanderUnePreparation(HashMap)
+ * @see pharmacie.Preparation#Preparation(String, String, int, String)
+ * @see pharmacie.Preparation#getIdUnique()
+ * @see pharmacie.Preparation#getNom()
+ * @see pharmacie.Preparation#getQuantite()
+ * @see pharmacie.Preparation#getDate()
+ * @see pharmacie.Medicament#Medicament(String, double, enums.ETypeMedicament, boolean, int)
+ * @see pharmacie.Medicament#Medicament(String, int)
+ * @see pharmacie.Medicament#acheter(int)
+ * @see pharmacie.Medicament#getType()
+ * @see pharmacie.Medicament#isGenerique()
+ * @see pharmacie.Medicament#getNom()
+ * @see pharmacie.Medicament#getPrix()
+ * @see pharmacie.Medicament#getQuantiteEnStock()
+ * @see pharmacie.Medicament#getType()
+ * @see pharmacie.Medicament#isGenerique()
  */
 
 public class UiGui extends JFrame implements ActionListener {
@@ -36,6 +69,16 @@ public class UiGui extends JFrame implements ActionListener {
      * @param selectedMedicaments   La liste des médicaments sélectionnés par l'utilisateur (initialisée à vide)
      * @param selectedQuantities    La liste des quantités sélectionnées par l'utilisateur (initialisée à vide)
      * @throws IOException          En cas d'erreur d'entrée/sortie
+     * @see UiGui#pharmacie
+     * @see UiGui#medicamentCheckBoxMap
+     * @see UiGui#spinnerMap
+     * @see UiGui#medicamentGenCheckBoxMap
+     * @see UiGui#selectedMedicaments
+     * @see UiGui#selectedQuantities
+     * @see UiGui#getjMenuItem()
+     * @see UiGui#UiGui(Pharmacie, List, List)
+     * @see UiGui#UiGui(Pharmacie)
+     * @see UiGui#panelAfficherMedicaments
      */
 
     public UiGui(Pharmacie pharmacie, HashMap<Medicament, JCheckBox> medicamentCheckBoxMap, HashMap<JCheckBox, JSpinner> spinnerMap, HashMap<Medicament, JCheckBox> medicamentGenCheckBoxMap, List<Medicament> selectedMedicaments, List<Integer> selectedQuantities) throws IOException {
