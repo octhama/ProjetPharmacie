@@ -18,4 +18,11 @@ public class ExeptionRuptureDeStockTest {
         assertEquals(message, exception.getMessage()); // le message d'erreur doit être bien affiché
     }
 
+    @Test
+    public void test_verif_error_perso_rp_stck_echec() {
+        String message = "Stock rupture";
+        ExeptionRuptureDeStock exception = new ExeptionRuptureDeStock(message);
+        assertNotEquals("Erreur", exception.getMessage()); // le message d'erreur doit être différent de "Erreur"
+    }
+
 }

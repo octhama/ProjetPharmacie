@@ -8,11 +8,11 @@ import java.io.IOException;
  * On peut lire les identifiants des médecins dans un fichier CSV.
  * @see pharmacie.Medecin
  * @see pharmacie.Medecin#Medecin(String, String, String, String)
- * @see pharmacie.Medecin#getId()
- * @see pharmacie.Medecin#getMotDePasse()
- * @see pharmacie.Medecin#getNom()
- * @see pharmacie.Medecin#getPrenom()
  * @see pharmacie.Medecin#Medecin(String, String, String, String)
+ * @see pharmacie.Medecin#getPersonneId()
+ * @see pharmacie.Medecin#getPersonneMdp()
+ * @see pharmacie.Medecin#getPersonneNom()
+ * @see pharmacie.Medecin#getPersonnePrenom()
  */
 public class LectureMedecinCsv {
 private LectureMedecinCsv() {

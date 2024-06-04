@@ -6,12 +6,9 @@ import java.util.List;
 /**
  * Classe pour les préparations.
  * On peut ajouter une préparation, retirer une préparation, etc.
- * @see Preparation#ajouterPreparations(List)
- * @see Preparation#setCommande (Commande)
  * @see Preparation#setDate(String)
  * @see Preparation#setNom(String)
  * @see Preparation#setQuantite(int)
- * @see Preparation#setIdUnique(String)
  * @see Preparation#toString()
  */
 public class Preparation {
@@ -20,7 +17,6 @@ public class Preparation {
     private int quantite;
     private String date;
     private Commande commande; // Attribut pour stocker la commande associée à la préparation
-
 
     // Ajoutez ce constructeur à la classe Preparation
     public Preparation() {
@@ -51,10 +47,7 @@ public class Preparation {
         return idUnique;
     }
 
-    public void setIdUnique(String idUnique) {
-        this.idUnique = idUnique;
-    }
-
+    // Méthode pour récupérer le nom de la préparation
     public String getNom() {
         return nom;
     }
@@ -63,6 +56,7 @@ public class Preparation {
         this.nom = nom;
     }
 
+    // Méthode pour récupérer la commande associée à la préparation
     public int getQuantite() {
         return quantite;
     }
@@ -75,23 +69,14 @@ public class Preparation {
         return LocalDate.parse(date);
     }
 
+    // Méthode pour récupérer la date de la préparation
     public void setDate(String date) {
         this.date = date;
     }
 
+    // Méthode pour récupérer la liste des préparations
     public static List<Preparation> getPreparations() {
         return preparations;
     }
 
-    // Méthode pour associer une commande à la préparation
-    public void setCommande(Commande commande) {
-        this.commande = commande;
-    }
-
-    public void ajouterPreparations(List<Preparation> preparations) {
-        if (preparations != null) {
-            // Ajouter les préparations à la liste des préparations
-            Preparation.preparations.addAll(preparations);
-        }
-    }
 }

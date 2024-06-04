@@ -23,6 +23,12 @@ import java.util.List;
  * @see pharmacie.Medicament#Medicament(String, int, boolean)
  */
 public class EcritureMedicamentsCsv {
+    /**
+     * Méthode pour écrire les médicaments dans un fichier CSV.
+     * @param medicaments Liste des médicaments
+     * @param fichierCsv Chemin du fichier CSV
+     * @throws IOException Si une erreur d'entrée/sortie s'est produite
+     */
     public static void ecrireMajQttStockMedicamentsCsv(@NotNull List<Medicament> medicaments, String fichierCsv) throws IOException {
         // Lire toutes les lignes du fichier CSV
         List<String> lignes = Files.readAllLines(Paths.get(fichierCsv));
@@ -57,6 +63,19 @@ public class EcritureMedicamentsCsv {
         }
     }
 
+    /**
+     * Méthode pour écrire l'ajout d'un médicament dans un fichier CSV.
+     * @param fichierCsv Chemin du fichier CSV
+     * @param medicament Médicament à ajouter
+     * @throws IOException Si une erreur d'entrée/sortie s'est produite
+     * @see Medicament
+     * @see pharmacie.Medicament#Medicament(String, double, enums.ETypeMedicament, boolean, int, boolean, boolean)
+     * @see pharmacie.Medicament#getNom()
+     * @see pharmacie.Medicament#getPrix()
+     * @see pharmacie.Medicament#getType()
+     * @see pharmacie.Medicament#isGenerique()
+     * @see pharmacie.Medicament#getQuantiteEnStock()
+     */
     public static void ecrireAjoutDeMedicamentCsv(String fichierCsv, @NotNull Medicament medicament) throws IOException {
         // Construire la ligne à écrire dans le fichier CSV
         String ligne = medicament.getNom() + "," + medicament.getPrix() + "," + medicament.getType() + "," + medicament.isGenerique() + "," + medicament.getQuantiteEnStock();
@@ -67,6 +86,12 @@ public class EcritureMedicamentsCsv {
         }
     }
 
+    /**
+     * Méthode pour écrire la suppression d'un médicament dans un fichier CSV.
+     * @param medicament Médicament à supprimer
+     * @param fichierCsv Chemin du fichier CSV
+     * @throws IOException Si une erreur d'entrée/sortie s'est produite
+     */
     public static void ecrireSuppressionDeMedicamentCsv(Medicament medicament, String fichierCsv) throws IOException {
         // Lire toutes les lignes du fichier CSV
         List<String> lignes = Files.readAllLines(Paths.get(fichierCsv));
@@ -94,6 +119,12 @@ public class EcritureMedicamentsCsv {
         }
     }
 
+    /**
+     * Méthode pour écrire la modification d'un médicament dans un fichier CSV.
+     * @param medicament Médicament à modifier
+     * @param fichierCsv Chemin du fichier CSV
+     * @throws IOException Si une erreur d'entrée/sortie s'est produite
+     */
     public static void ecrireModificationDeMedicamentCsv(Medicament medicament, String fichierCsv) throws IOException {
         // Lire toutes les lignes du fichier CSV
         List<String> lignes = Files.readAllLines(Paths.get(fichierCsv));

@@ -21,6 +21,12 @@ import java.util.List;
  * @see pharmacie.Medecin#Medecin(String, String, String, String)
  */
 public class EcritureMedecinCsv {
+    /**
+     * Méthode pour écrire les médecins dans un fichier CSV. (non implémentée)
+     * @param medecins Liste des médecins
+     * @param fichierCsv Chemin du fichier CSV
+     * @throws IOException Si une erreur d'entrée/sortie s'est produite
+     */
     public static void ecrireMedecinsCsv(List<Medecin> medecins, String fichierCsv) throws IOException {
         // Créer le fichier CSV s'il n'existe pas
         File file = new File(fichierCsv);

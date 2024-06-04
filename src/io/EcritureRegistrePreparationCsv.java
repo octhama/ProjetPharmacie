@@ -27,6 +27,7 @@ public class EcritureRegistrePreparationCsv {
     public static List<Medicament> medicaments; // Liste des médicaments
     public static final String fichierCsv = "src/data/registrepreparation.csv"; // Chemin du fichier CSV
 
+    // Initialisation des listes et du compteur statique dans un bloc statique
     static {
         // Initialisation des listes uniquement si elles ne sont pas déjà initialisées
         preparations = new ArrayList<>();
@@ -60,10 +61,12 @@ public class EcritureRegistrePreparationCsv {
         }
     }
 
+    // Méthode pour générer un identifiant unique
     private static @NotNull String genererIdUnique() {
         return "CMD-PREP" + idCounter++;
     }
 
+    // Méthode pour écrire les préparations dans un fichier CSV
     public static void ecrireRegistrePreparationCsv(@NotNull List<Medicament> selectedMedicaments, List<Integer> selectedQuantities, String csvFilePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath, true))) {
             // Écrire chaque médicament dans une nouvelle ligne

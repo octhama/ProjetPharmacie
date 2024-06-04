@@ -26,11 +26,13 @@ import java.util.List;
  */
 
 public class LectureMedicamentsCsv {
+    // Constructeur privé pour empêcher l'instanciation de la classe
     private LectureMedicamentsCsv() {
         // Constructeur privé pour empêcher l'instanciation de la classe
         throw new AssertionError("Cette classe ne peut pas être instanciée");
     }
 
+    // Méthode statique pour lire les médicaments d'un fichier CSV
     public static @NotNull List<Medicament> lireMedicamentsCsv(String cheminFichier) throws IOException {
         List<Medicament> medicaments = new ArrayList<>();
 
@@ -65,6 +67,7 @@ public class LectureMedicamentsCsv {
         return medicaments;
     }
 
+    // Méthode statique pour lire les médicaments prescrits d'un patient d'un fichier CSV
     public static @NotNull List<String> getMedicamentsPrescrits(String referencePatient) {
         String csvFilePath = "src/data/dataordonnances.csv";
         List<String> medicamentsPrescrits = new ArrayList<>();
@@ -94,6 +97,7 @@ public class LectureMedicamentsCsv {
         return medicamentsPrescrits;
     }
 
+    // Méthode statique pour charger les médicaments dans une liste
     public static void loadMedicaments(List<Medicament> medicaments, String s) {
         medicaments.add(new Medicament(s, 0, ETypeMedicament.ORDONNANCE, false, 0));
     }

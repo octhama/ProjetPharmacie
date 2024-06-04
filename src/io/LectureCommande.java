@@ -18,6 +18,12 @@ import java.util.List;
  * @see pharmacie.Commande#getDate()
  */
 public class LectureCommande {
+    /**
+     * Méthode pour lire les commandes dans un fichier CSV. (non implémentée)
+     * @param cheminFichier Chemin du fichier CSV
+     * @return Liste des commandes
+     * @throws Exception Si une erreur d'entrée/sortie s'est produite
+     */
     public static List<Commande> lireCommandes(String cheminFichier) throws Exception {
         List<Commande> commandes = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {

@@ -16,10 +16,27 @@ import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.List;
+
 /**
  * Classe pour commander une préparation.
  * On peut commander une préparation en sélectionnant les médicaments à commander.
  * @see Preparation
+ * @see Medicament
+ * @see UiGui
+ * @see UiGui#pharmacie
+ * @see UiGui#medicamentCheckBoxMap
+ * @see UiGui#spinnerMap
+ * @see UiGui#selectedMedicaments
+ * @see UiGui#selectedQuantities
+ * @see UiGui#getjCheckBox(Medicament, JPanel)
+ * @see Medicament#isGenerique()
+ * @see Medicament#getQuantiteEnStock()
+ * @see Medicament#getNom()
+ * @see Medicament#getPrix()
+ * @see Medicament#estCommandeA50Pourcent()
+ * @see Medicament#setQuantiteEnStock(int)
+ *
  */
 public class Commande extends Preparation{
     private final String idUnique;
@@ -28,6 +45,14 @@ public class Commande extends Preparation{
     private final int quantiteTotalCommande;
     private final LocalDate dateCommande;
 
+    /**
+     * Constructeur de la classe Commande.
+     * @param idUnique Identifiant unique de la commande
+     * @param numeroCommande Numéro de la commande
+     * @param commentaires Commentaires de la commande
+     * @param quantiteTotalCommande Quantité totale de la commande
+     * @param date Date de la commande
+     */
     public Commande(String idUnique, int numeroCommande, String commentaires, int quantiteTotalCommande, String date) {
         this.idUnique = idUnique;
         this.numeroCommande = numeroCommande;
@@ -59,14 +84,27 @@ public class Commande extends Preparation{
 
     /**
      * Méthode pour commander une préparation.
-     * On peut commander une préparation en sélectionnant les médicaments à commander.
-     * @param checkBoxSpinnerMap Map pour stocker les cases à cocher et les spinners
+     * @param checkBoxSpinnerMap Map des cases à cocher et des spinners
      *                           pour les médicaments sélectionnés
      *                           (clé : case à cocher, valeur : spinner)
-     *                           (ex : {JCheckBox1@12345=JSpinner1@67890, JCheckBox2@23456=JSpinner2@78901})
-     * @see Preparation
-     * @see Medicament
-     * @see UiGui
+     * @see UiGui#medicamentCheckBoxMap
+     * @see UiGui#spinnerMap
+     * @see UiGui#selectedMedicaments
+     * @see UiGui#selectedQuantities
+     * @see UiGui#pharmacie
+     * @see Medicament#getQuantiteEnStock()
+     * @see Medicament#setQuantiteEnStock(int)
+     * @see Medicament#isGenerique()
+     * @see Medicament#getNom()
+     * @see Medicament#getPrix()
+     * @see Medicament#estCommandeA50Pourcent()
+     * @see LectureOrdonnanceCsv#ordonnanceDisponible(String)
+     * @see LectureMedicamentsCsv#getMedicamentsPrescrits(String)
+     * @see EcritureMedicamentsCsv#ecrireMajQttStockMedicamentsCsv(List, String)
+     * @see EcritureRegistrePreparationCsv#ecrireRegistrePreparationCsv(List, List, String)
+     * @see DateUtlis#calculerDateLivraison()
+     * @see JOptionPane#showInputDialog(Component, Object)
+     * @see JOptionPane#showMessageDialog(Component, Object)
      */
     public static void commanderUnePreparation(HashMap<Object, Object> checkBoxSpinnerMap) {
 
@@ -99,7 +137,7 @@ public class Commande extends Preparation{
         searchField.setColumns(20);
         searchPanel.add(searchField, BorderLayout.CENTER);
 
-        // Ajouter un écouteur au champ de recherche pour la recherche dynamique
+        // Ajouter un écouteur de document pour le champ de recherche pour filtrer les médicaments en temps réel
         searchField.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -132,7 +170,13 @@ public class Commande extends Preparation{
                 IDocuments.restoreSpinnerStates();
             }
 
-            // Afficher les médicaments filtrés dans le panneau des médicaments
+            /**
+             * Méthode pour afficher les médicaments dans le panneau des médicaments.
+             * @param filteredMedicaments Liste des médicaments filtrés
+             *                            (médicaments correspondant à la recherche)
+             *                            à afficher dans le panneau des médicaments
+             *                            /!\ Les médicaments filtrés ne sont pas supprimés de la liste d'origine.
+             */
             private void afficherMedicaments(@NotNull java.util.List<Medicament> filteredMedicaments) {
                 // Nettoyer le panneau des médicaments avant d'ajouter de nouveaux éléments
                 medicamentPanel.removeAll();
@@ -226,7 +270,7 @@ public class Commande extends Preparation{
         JButton buttonCommander = new JButton("Commander");
         bottomPanel.add(buttonCommander);
 
-        // Action du bouton de commande
+        // Ajouter un écouteur pour le bouton de commande
         buttonCommander.addActionListener(e -> {
             // Afficher une boîte de dialogue pour saisir l'identifiant de l'ordonnance
             String referenceOrdonnance = JOptionPane.showInputDialog(frame, "Veuillez saisir la référence de l'ordonnance:");
@@ -403,7 +447,6 @@ public class Commande extends Preparation{
         // Afficher la fenêtre
         frame.setVisible(true);
     }
-
 
     @Override
     public String toString() {

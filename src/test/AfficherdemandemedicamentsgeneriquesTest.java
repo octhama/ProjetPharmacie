@@ -21,5 +21,4 @@ public class AfficherdemandemedicamentsgeneriquesTest {
         IDocuments.afficherDemandeMedicamentsGeneriques(panel);
         assertEquals(panel.getComponentCount(), 1);
     }
-
 }

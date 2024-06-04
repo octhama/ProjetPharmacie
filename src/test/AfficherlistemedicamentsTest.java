@@ -21,17 +21,14 @@ import static org.junit.Assert.*;
 public class AfficherlistemedicamentsTest {
 
     @Test
-    public void test_affiche_med() {
+    public void test_affiche_liste_med() {
         JPanel panel = new JPanel();
-        UiGui.pharmacie.setMedicaments(new ArrayList<>());
-        UiGui.pharmacie.getMedicaments().add(new Medicament("med1", 1.0, "desc1", "gen1", 1));
-        UiGui.pharmacie.getMedicaments().add(new Medicament("med2", 2.0, "desc2", "gen2", 2));
-        UiGui.pharmacie.getMedicaments().add(new Medicament("med3", 3.0, "desc3", "gen3", 3));
+        UiGui.pharmacie.setMedicaments(List.of(new Medicament("Doliprane", "Paracétamol", "500mg", "Comprimé", false)));
         IDocuments.afficherListeMedicaments(panel);
         JScrollPane scrollPane = (JScrollPane) panel.getComponent(0);
         JPanel medicamentsPanel = (JPanel) scrollPane.getViewport().getView();
         int actualMedicamentsCount = medicamentsPanel.getComponentCount();
-        assertEquals(3, actualMedicamentsCount); // le nombre de médicaments affichés doit être égal au nombre de médicaments dans la pharmacie
+        assertEquals(1, actualMedicamentsCount); // le nombre de médicaments affichés doit être égal au nombre de médicaments dans la pharmacie
     }
 
     @Test

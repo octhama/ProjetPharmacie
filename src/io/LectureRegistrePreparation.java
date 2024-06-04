@@ -18,6 +18,12 @@ import java.util.List;
  * @see pharmacie.Preparation#getDate()
  */
 public class LectureRegistrePreparation {
+    /**
+     * Méthode pour lire les préparations dans un fichier CSV.
+     * @param cheminFichier Chemin du fichier CSV
+     * @return Liste des préparations
+     * @throws IOException Si une erreur d'entrée/sortie s'est produite
+     */
     public static List<Preparation> lireRegistrePreparation(String cheminFichier) throws IOException {
         List<Preparation> preparations = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {

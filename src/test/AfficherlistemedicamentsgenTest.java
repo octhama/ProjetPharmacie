@@ -18,8 +18,9 @@ import java.awt.*;
 public class AfficherlistemedicamentsgenTest {
 
         @Test
-        public void test_afficher_med_gen() {
-            IDocuments.afficherListeMedicamentsGen(new JPanel());
-            Assert.assertTrue(true); // il doit y avoir au moins un composant dans le panel
+        public void test_affiche_liste_med_gen() {
+            JPanel panel = new JPanel();
+            IDocuments.afficherListeMedicamentsGen(panel);
+            Assert.assertEquals(0, panel.getComponentCount()); // le nombre de médicaments affichés doit être égal au nombre de médicaments génériques
         }
 }

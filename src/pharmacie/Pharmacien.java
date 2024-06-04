@@ -19,6 +19,7 @@ public class Pharmacien extends Personne {
         super(Id, MotDePasse, nom, prenom);
     }
 
+    // Méthode pour authentifier un pharmacien en utilisant un identifiant et un mot de passe)
     public static boolean authentifierPharmacien(String id, String password) {
     String csvFilePath = "src/data/authidpharmacien.csv";
 
@@ -40,6 +41,7 @@ public class Pharmacien extends Personne {
     return false; // Aucune correspondance trouvée
 }
 
+    // Méthode pour accéder au menu du pharmacien
     public static void accesMenuPharmacien() {
         // Demander à l'utilisateur de saisir l'identifiant et le mot de passe
         String id = JOptionPane.showInputDialog(null, "Identifiant pharmacien :");
@@ -55,6 +57,7 @@ public class Pharmacien extends Personne {
         }
     }
 
+    // Méthode pour afficher le menu du pharmacien
     private static void afficherMenuPharmacien() {
         SwingUtilities.invokeLater(() -> { // Exécuter l'interface graphique dans le thread de l'EDT (Event Dispatch Thread)
         // Créer une nouvelle fenêtre pour le menu du pharmacien

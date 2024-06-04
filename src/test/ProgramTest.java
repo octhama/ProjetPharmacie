@@ -12,7 +12,9 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 /**
- * Classe de test pour lire les médicaments dans un fichier CSV.
+ * Classe de test pour le programme principal.
+ * On teste le chargement et l'ajout des médicaments depuis un fichier CSV.
+ * @see Pharmacie
  */
 public class ProgramTest {
     @Test

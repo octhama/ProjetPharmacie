@@ -19,7 +19,14 @@ import java.util.Stack;
  * @see pharmacie.Ordonnance#Ordonnance(String, String, String, String[])
  */
 public class EcritureOrdonnancesCsv {
-        public static void ecrireOrdonnanceCsv(String referenceMedecin, String referencePatient, Date datePrescription, Stack<String> medicaments) {
+    /**
+     * Méthode pour écrire les ordonnances dans un fichier CSV.
+     * @param referenceMedecin Référence du médecin
+     * @param referencePatient Référence du patient
+     * @param datePrescription Date de prescription
+     * @param medicaments Liste des médicaments
+     */
+    public static void ecrireOrdonnanceCsv(String referenceMedecin, String referencePatient, Date datePrescription, Stack<String> medicaments) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = dateFormat.format(datePrescription);
         final String CSV_FILE_PATH = "src/data/dataordonnances.csv";

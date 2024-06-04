@@ -1,5 +1,7 @@
 package pharmacie;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import javax.swing.JCheckBox;
 import enums.ETypeMedicament;
@@ -108,10 +110,6 @@ public class Medicament {
         this.quantiteEnStock = quantiteStock;
     }
 
-    public Medicament() {
-
-    }
-
     public Medicament(String med2, double v, ETypeMedicament o, Boolean o1, int i) {
         //TODO Auto-generated constructor stub
         this.nom = med2;
@@ -150,6 +148,11 @@ public class Medicament {
         this.commandeA50Pourcent = b;
     }
 
+    public static void supprimerMedicament(List<Medicament> liste, Medicament med) {
+        // Supprimer le médicament de la liste
+        liste.remove(med);
+    }
+
     public String getNom() {
         return nom;
     }
@@ -183,6 +186,7 @@ public class Medicament {
         return commandeA50Pourcent;
     }
 
+    // Méthode pour vérifier si les médicaments sélectionnés correspondent à ceux prescrits
     public static boolean medicamentsCorrespondants(List<String> medicamentsPrescrits) {
         for (Map.Entry<Medicament, JCheckBox> entry : UiGui.medicamentCheckBoxMap.entrySet()) {
             Medicament medicament = entry.getKey();
@@ -206,6 +210,7 @@ public class Medicament {
         return true;
     }
 
+    // Méthode pour ajouter un médicament à la liste des médicaments
     public void setMedicaments(List<Medicament> medicaments) {
         Ordonnance.setMedicaments(medicaments);
     }

@@ -18,14 +18,13 @@ public class RetirermedicamentTest {
 
     @Test
     public void test_sup_med_existant_ok() throws IOException {
-        IDocuments documents = new IDocuments() {};
 
-        Medicament medication = new Medicament("Medication A", 10.0, ETypeMedicament.VENTE_LIBRE, false, 100);
-        UiGui.pharmacie.ajouterMedicament(medication);
+        Medicament med = new Medicament("Medication A", 10.0, ETypeMedicament.VENTE_LIBRE, false, 100);
+        UiGui.pharmacie.ajouterMedicament(med);
 
         IDocuments.retirerMedicament(); // retirer le médicament
 
-        assertTrue(UiGui.pharmacie.getMedicaments().contains(medication)); // le médicament doit être retiré
+        assertTrue(UiGui.pharmacie.getMedicaments().contains(med)); // le médicament doit être retiré
     }
 
 }

@@ -9,5 +9,4 @@ public class Medecin extends Personne{
     public Medecin(String Id, String MotDePasse, String nom, String prenom) {
         super(Id, MotDePasse, nom, prenom);
     }
-
 }

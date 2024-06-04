@@ -56,6 +56,16 @@ public class DemandeVersionGenerique {
      * @see IDocuments#afficherListeMedicamentsNonGenOnDemand(JPanel)
      * @see Medicament#getNom()
      * @see DemandeVersionGenerique#DemandeVersionGenerique(String, boolean)
+     * @see DemandeVersionGenerique#getNomMedicament()
+     * @see DemandeVersionGenerique#isDemande()
+     * @see DemandeVersionGenerique#demandes(String, String)
+     * @see DemandeVersionGenerique#isVersionGeneriqueDemandee()
+     * @see JFrame#dispose()
+     * @see JFrame#setSize(int, int)
+     * @see JFrame#setLocationRelativeTo(Component)
+     * @see JFrame#setDefaultCloseOperation(int)
+     * @see JFrame#setResizable(boolean)
+     * @see JFrame#setVisible(boolean)
      */
     public static void commanderMedicamentVersionGenerique() {
         // Créer une fenêtre pour la commande de médicaments en version générique

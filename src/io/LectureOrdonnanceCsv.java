@@ -19,7 +19,7 @@ import java.util.List;
  * @see pharmacie.Ordonnance#Ordonnance(String, String, String, String[])
  */
 public class LectureOrdonnanceCsv {
-
+    // Méthode pour vérifier si une ordonnance est disponible pour un patient donné
     public static boolean ordonnanceDisponible(String referencePatient) {
             String csvFilePath = "src/data/dataordonnances.csv";
     
@@ -67,6 +67,7 @@ public class LectureOrdonnanceCsv {
             return ordonnance;
         }
 
+    // Méthode pour lire les ordonnances à partir d'un fichier CSV
     public static @NotNull List<Ordonnance> lireOrdonnances(String cheminFichier) throws IOException {
         List<Ordonnance> ordonnances = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {

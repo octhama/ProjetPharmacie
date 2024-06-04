@@ -12,16 +12,15 @@ public class ExtractquantiteenmgTest {
 
     @Test
     public void test_regex_ok_med() {
-        String medicationName = "Medication 500mg";
-        String quantite = IDocuments.extractQuantiteEnMg(medicationName);
+        String nomMed = "Med 500mg";
+        String quantite = IDocuments.extractQuantiteEnMg(nomMed);
         assertEquals("500mg", quantite); // la quantité en mg doit être bien extraite
     }
 
     @Test
-    public void test_regex_sans_espace_ok_med() {
-        String medicationName = "Medication500mg";
-        String quantite = IDocuments.extractQuantiteEnMg(medicationName);
-        assertEquals("500mg", quantite); // la quantité en mg
+    public void test_regex_ko_med() {
+        String nomMed = "Med";
+        String quantite = IDocuments.extractQuantiteEnMg(nomMed);
+        assertEquals("", quantite); // la quantité en mg doit être vide
     }
-
 }
