@@ -6,6 +6,13 @@ public class DateUtlis {
     /**
      * Fonction pour calculer la date de livraison en ajoutant un jour à la date actuelle
      * @return la date de livraison
+     * @see Calendar#getInstance()
+     * @see Calendar#add(int, int)
+     * @see Calendar#DAY_OF_MONTH
+     * @see Calendar#DAY_OF_WEEK
+     * @see Calendar#SUNDAY
+     * @see Calendar#get(int)
+     * @see Calendar#add(int, int)
      */
 
     // Fonction pour calculer la date de livraison en ajoutant un jour à la date actuelle

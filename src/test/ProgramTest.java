@@ -21,9 +21,9 @@ public class ProgramTest {
     public void test_loading_and_ajout_medicaments_depuis_csv() throws IOException {
         Pharmacie pharmacie = new Pharmacie();
         List<Medicament> medicaments = new ArrayList<>();
-        LectureMedicamentsCsv.loadMedicaments(medicaments, "src/data/medicaments.csv");
+        LectureMedicamentsCsv.loadMedicaments(medicaments, "src/data/medicaments.csv"); // Charger les médicaments depuis un fichier CSV
         pharmacie.setMedicaments(medicaments);
-        assertEquals(1, pharmacie.getMedicaments().size());
+        assertEquals(1, pharmacie.getMedicaments().size()); // le nombre de médicaments dans la pharmacie doit être égal au nombre de médicaments dans le fichier CSV
     }
 
 }

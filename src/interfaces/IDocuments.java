@@ -591,7 +591,7 @@ public interface IDocuments {
             checkBox.addItemListener(e -> {
                 boolean isSelected = checkBox.isSelected();
                 nameLabel.setEnabled(isSelected);
-                genLabel.setVisible(isSelected); // Afficher ou cacher le label en fonction de l'état du checkbox
+                genLabel.setVisible(isSelected); // Afficher ou cacher le label en fonction de l'État du checkbox
             });
 
             // Par défaut, les labels sont désactivés

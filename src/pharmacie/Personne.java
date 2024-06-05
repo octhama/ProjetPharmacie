@@ -42,10 +42,6 @@ public abstract class Personne {
         return Id;
     }
 
-    public String getPersonneNumeroNational(){
-        return NumeroNational;
-    }
-
     public String getPersonneReference(){
         return Reference;
     }
@@ -62,39 +58,7 @@ public abstract class Personne {
         return prenom;
     }
 
-    public String getPersonneAdresse(){
-        return adresse;
-    }
-
-    public String getPersonneContactGSM(){
-        return ContactGSM;
-    }
-
-    public String getPersonneStatut(){
-        return statut;
-    }
-
-    public String getPersonneHistoriqueOrdonnance(){
-        return historiqueOrdonnance;
-    }
-
-    public void setPersonneHistoriqueOrdonnance(String historiqueOrdonnance){
-        this.historiqueOrdonnance = historiqueOrdonnance;
-    }
-
     public String getPersonneCivilite(){
         return civilite;
-    }
-
-    public void setPersonneCivilite(String civilite){
-        this.civilite = civilite;
-    }
-
-    public void setPersonneNom(String nom){
-        this.nom = nom;
-    }
-
-    public void setPersonnePrenom(String prenom){
-        this.prenom = prenom;
     }
 }
