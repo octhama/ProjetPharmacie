@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ffbf0945-00a1-41f4-a3ac-8b676c5570ed" name="Changes" comment="update">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="ffbf0945-00a1-41f4-a3ac-8b676c5570ed" name="Changes" comment="update final">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/demandes_version_generique.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/demandes_version_generique.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/medicaments.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/medicaments.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/EcriremodificationdemedicamentcsvTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/ProgramTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ProgramTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/DateUtlis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/DateUtlis.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,11 +53,6 @@
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
-  </component>
-  <component name="JavaAutoRunManager">
-    <enabled-run-configurations>
-      <run-configuration type="JUnit" name="EcrireordonnancecsvTest" />
-    </enabled-run-configurations>
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -208,7 +197,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AfficherlistemedicamentsgenTest.test_affiche_liste_med_gen">
+  <component name="RunManager" selected="Application.Program">
     <configuration name="Program" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Program" />
       <module name="ProjetPharmacie" />
@@ -282,8 +271,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AfficherlistemedicamentsgenTest.test_affiche_liste_med_gen" />
         <item itemvalue="Application.Program" />
+        <item itemvalue="JUnit.AfficherlistemedicamentsgenTest.test_affiche_liste_med_gen" />
         <item itemvalue="JUnit.AfficherdemandemedicamentsgeneriquesTest.test_afficher_demande_medicaments_generiques" />
         <item itemvalue="JUnit.RetirermedicamentTest.test_sup_med_existant_ok" />
         <item itemvalue="JUnit.EcriresuppressiondemedicamentcsvTest.testEcrireSuppressionDeMedicamentCsv" />
@@ -333,7 +322,7 @@
       <workItem from="1717147717564" duration="4945000" />
       <workItem from="1717224172534" duration="2277000" />
       <workItem from="1717241772029" duration="29805000" />
-      <workItem from="1717571659830" duration="397000" />
+      <workItem from="1717571659830" duration="675000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -679,7 +668,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717303417132</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="update final">
+      <option name="closed" value="true" />
+      <created>1717572270796</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1717572270796</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -699,7 +696,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="update final" />
+    <option name="LAST_COMMIT_MESSAGE" value="update final" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
